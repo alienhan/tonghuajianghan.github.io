@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="redis 基础,redis 安装," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="sdafsafwefas">
+<meta name="description" content="安装:  下载地址：https://github.com/dmajkic/redis/downloads 启动服务:  redis-server.exe redis.conf  windows安装sentinel集群复制redis 3份(redis2.8以上)  maste目录中的redis6379.conf配置如下需要绑定一下机器IP地址，切勿使用默认地址127.0.0.1，最后说明原因,配置成">
+<meta name="keywords" content="redis 基础,redis 安装">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://yoursite.com/2018/06/08/test/index.html">
+<meta property="og:title" content="redis-install">
+<meta property="og:url" content="http://yoursite.com/2018/06/08/redis-install/index.html">
 <meta property="og:site_name" content="大东山下">
-<meta property="og:description" content="sdafsafwefas">
+<meta property="og:description" content="安装:  下载地址：https://github.com/dmajkic/redis/downloads 启动服务:  redis-server.exe redis.conf  windows安装sentinel集群复制redis 3份(redis2.8以上)  maste目录中的redis6379.conf配置如下需要绑定一下机器IP地址，切勿使用默认地址127.0.0.1，最后说明原因,配置成">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-08T06:49:29.842Z">
+<meta property="og:updated_time" content="2018-06-08T09:17:29.036Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="test">
-<meta name="twitter:description" content="sdafsafwefas">
+<meta name="twitter:title" content="redis-install">
+<meta name="twitter:description" content="安装:  下载地址：https://github.com/dmajkic/redis/downloads 启动服务:  redis-server.exe redis.conf  windows安装sentinel集群复制redis 3份(redis2.8以上)  maste目录中的redis6379.conf配置如下需要绑定一下机器IP地址，切勿使用默认地址127.0.0.1，最后说明原因,配置成">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/08/test/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/08/redis-install/"/>
 
 
 
 
 
-  <title>test | 大东山下</title>
+  <title>redis-install | 大东山下</title>
   
 
 
@@ -232,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/08/test/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/08/redis-install/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -249,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">test</h1>
+          <h1 class="post-title" itemprop="name headline">redis-install</h1>
         
 
         <div class="post-meta">
@@ -261,7 +262,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-08T14:49:02+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-08T17:41:47+08:00">
                 2018-06-08
               </time>
             
@@ -271,6 +272,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -299,7 +322,23 @@
       
 
       
-        <p><code>sdafsafwefas</code></p>
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装:"></a>安装:</h2><p>  下载地址：<a href="https://github.com/dmajkic/redis/downloads" target="_blank" rel="noopener">https://github.com/dmajkic/redis/downloads</a></p>
+<h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务:"></a>启动服务:</h3><p>  redis-server.exe redis.conf</p>
+<hr>
+<h2 id="windows安装sentinel集群"><a href="#windows安装sentinel集群" class="headerlink" title="windows安装sentinel集群"></a>windows安装sentinel集群</h2><p>复制redis 3份(redis2.8以上)</p>
+<ol>
+<li><p>maste目录中的redis6379.conf配置如下<br><strong><em>需要绑定一下机器IP地址，切勿使用默认地址127.0.0.1，最后说明原因,配置成ipv4地址</em></strong><br>bind 192.168.31.196</p>
+</li>
+<li><p>slave中的redis6380.conf配置如下<br>bind 192.168.31.196<br>port 6380<br>这里配置master的地址和端口号<br> slaveof 192.168.31.196 6379<br>如果master有密码，配置如下<br> masterauth xxx</p>
+</li>
+<li><p>配置sentinel实例<br>创建sentinel26379.conf文件<br>bind 192.168.31.196<br>port 26379<br>dir sentinel<br>sentinel monitor mymaster 192.168.31.196 6379 1<br>sentinel down-after-milliseconds mymaster 60000<br>sentinel failover-timeout mymaster 180000<br>sentinel parallel-syncs mymaster 1  </p>
+</li>
+</ol>
+<h2 id="启动过程"><a href="#启动过程" class="headerlink" title="启动过程"></a>启动过程</h2><ol>
+<li>启动redis(主,从)<br>redis-server.exe redis.windows.conf  </li>
+<li>启动sentinel<br>redis-server.exe sentinel.conf –sentinel  </li>
+</ol>
+<h3 id="windows启动redis-客户端"><a href="#windows启动redis-客户端" class="headerlink" title="windows启动redis 客户端"></a>windows启动redis 客户端</h3><p>redis-cli.exe -h address -p port<br>address,port 必须正确,否则cmd就会卡住.  </p>
 
       
     </div>
@@ -314,6 +353,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/redis-基础/" rel="tag"># redis 基础</a>
+          
+            <a href="/tags/redis-安装/" rel="tag"># redis 安装</a>
+          
+        </div>
       
 
       
@@ -388,8 +435,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -404,7 +460,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -426,7 +482,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -449,6 +505,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动服务"><span class="nav-number">1.1.</span> <span class="nav-text">启动服务:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#windows安装sentinel集群"><span class="nav-number">2.</span> <span class="nav-text">windows安装sentinel集群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动过程"><span class="nav-number">3.</span> <span class="nav-text">启动过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows启动redis-客户端"><span class="nav-number">3.1.</span> <span class="nav-text">windows启动redis 客户端</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
