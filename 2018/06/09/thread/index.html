@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="thread,thread pool,线程池优化/监控,线程状态,jvm线程监控," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="java 多线程    http://penghb.com 线程 dump 执行jps命令，列出正在运行的java程序的进程ID 12345D:\gitrepo\thread-test&amp;gt;jps5056 RemoteMavenServer (pid 对应线程名字)7264 Launcher10644 Jps7636  执行jstack pid   线程状态 new: 创建了,还没有启动 run">
+<meta name="description" content="java多线程http://penghb.com jvm线程监控线程 dump 执行jps命令，列出正在运行的java程序的进程ID 12345D:\gitrepo\thread-test&amp;gt;jps5056 RemoteMavenServer (pid 对应线程名字)7264 Launcher10644 Jps7636  执行jstack pid   线程状态 new: 创建了,还没有启动 r">
+<meta name="keywords" content="thread,thread pool,线程池优化&#x2F;监控,线程状态,jvm线程监控">
 <meta property="og:type" content="article">
-<meta property="og:title" content="大东山下">
+<meta property="og:title" content="多线程线程状态 \ 线程池优化&#x2F;监控 \ jvm线程监控">
 <meta property="og:url" content="http://yoursite.com/2018/06/09/thread/index.html">
 <meta property="og:site_name" content="大东山下">
-<meta property="og:description" content="java 多线程    http://penghb.com 线程 dump 执行jps命令，列出正在运行的java程序的进程ID 12345D:\gitrepo\thread-test&amp;gt;jps5056 RemoteMavenServer (pid 对应线程名字)7264 Launcher10644 Jps7636  执行jstack pid   线程状态 new: 创建了,还没有启动 run">
+<meta property="og:description" content="java多线程http://penghb.com jvm线程监控线程 dump 执行jps命令，列出正在运行的java程序的进程ID 12345D:\gitrepo\thread-test&amp;gt;jps5056 RemoteMavenServer (pid 对应线程名字)7264 Launcher10644 Jps7636  执行jstack pid   线程状态 new: 创建了,还没有启动 r">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-09T12:50:18.816Z">
+<meta property="og:updated_time" content="2018-06-09T13:06:31.115Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="大东山下">
-<meta name="twitter:description" content="java 多线程    http://penghb.com 线程 dump 执行jps命令，列出正在运行的java程序的进程ID 12345D:\gitrepo\thread-test&amp;gt;jps5056 RemoteMavenServer (pid 对应线程名字)7264 Launcher10644 Jps7636  执行jstack pid   线程状态 new: 创建了,还没有启动 run">
+<meta name="twitter:title" content="多线程线程状态 \ 线程池优化&#x2F;监控 \ jvm线程监控">
+<meta name="twitter:description" content="java多线程http://penghb.com jvm线程监控线程 dump 执行jps命令，列出正在运行的java程序的进程ID 12345D:\gitrepo\thread-test&amp;gt;jps5056 RemoteMavenServer (pid 对应线程名字)7264 Launcher10644 Jps7636  执行jstack pid   线程状态 new: 创建了,还没有启动 r">
 
 
 
@@ -125,7 +126,7 @@
 
 
 
-  <title> | 大东山下</title>
+  <title>多线程线程状态 \ 线程池优化/监控 \ jvm线程监控 | 大东山下</title>
   
 
 
@@ -249,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">多线程线程状态 \ 线程池优化/监控 \ jvm线程监控</h1>
         
 
         <div class="post-meta">
@@ -261,7 +262,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-09T20:50:18+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-09T21:06:31+08:00">
                 2018-06-09
               </time>
             
@@ -271,6 +272,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/thread/" itemprop="url" rel="index">
+                    <span itemprop="name">thread</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -299,8 +322,8 @@
       
 
       
-        <p>java 多线程<br>    <a href="http://penghb.com" target="_blank" rel="noopener">http://penghb.com</a></p>
-<h3 id="线程-dump"><a href="#线程-dump" class="headerlink" title="线程 dump"></a>线程 dump</h3><ol>
+        <h3 id="java多线程"><a href="#java多线程" class="headerlink" title="java多线程"></a>java多线程</h3><pre><code>http://penghb.com
+</code></pre><h3 id="jvm线程监控"><a href="#jvm线程监控" class="headerlink" title="jvm线程监控"></a>jvm线程监控</h3><h4 id="线程-dump"><a href="#线程-dump" class="headerlink" title="线程 dump"></a>线程 dump</h4><ol>
 <li><p>执行<code>jps</code>命令，列出正在运行的java程序的进程ID</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">D:\gitrepo\thread-test&gt;jps</span><br><span class="line">5056 RemoteMavenServer (pid 对应线程名字)</span><br><span class="line">7264 Launcher</span><br><span class="line">10644 Jps</span><br><span class="line">7636</span><br></pre></td></tr></table></figure>
 </li>
@@ -388,6 +411,20 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/thread/" rel="tag"># thread</a>
+          
+            <a href="/tags/thread-pool/" rel="tag"># thread pool</a>
+          
+            <a href="/tags/线程池优化-监控/" rel="tag"># 线程池优化/监控</a>
+          
+            <a href="/tags/线程状态/" rel="tag"># 线程状态</a>
+          
+            <a href="/tags/jvm线程监控/" rel="tag"># jvm线程监控</a>
+          
+        </div>
+      
 
       
       
@@ -397,8 +434,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/09/thread source read/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2018/06/09/thread-lock/" rel="next" title="多线程--锁">
+                <i class="fa fa-chevron-left"></i> 多线程--锁
               </a>
             
           </div>
@@ -406,10 +443,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/09/thread-lock/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -497,7 +530,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -508,7 +541,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -541,7 +574,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#线程-dump"><span class="nav-number">1.</span> <span class="nav-text">线程 dump</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程状态"><span class="nav-number">2.</span> <span class="nav-text">线程状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dump文件中的线程状态"><span class="nav-number">3.</span> <span class="nav-text">Dump文件中的线程状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thread-java分析"><span class="nav-number">4.</span> <span class="nav-text">Thread.java分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#终止线程"><span class="nav-number">5.</span> <span class="nav-text">终止线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合理的配置线程池"><span class="nav-number">6.</span> <span class="nav-text">合理的配置线程池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程池的监控"><span class="nav-number">7.</span> <span class="nav-text">线程池的监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org-springframework-scheduling-concurrent-ThreadPoolTaskExecutor"><span class="nav-number">8.</span> <span class="nav-text">org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#java多线程"><span class="nav-number">1.</span> <span class="nav-text">java多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jvm线程监控"><span class="nav-number">2.</span> <span class="nav-text">jvm线程监控</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线程-dump"><span class="nav-number">2.1.</span> <span class="nav-text">线程 dump</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程状态"><span class="nav-number">3.</span> <span class="nav-text">线程状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dump文件中的线程状态"><span class="nav-number">4.</span> <span class="nav-text">Dump文件中的线程状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thread-java分析"><span class="nav-number">5.</span> <span class="nav-text">Thread.java分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#终止线程"><span class="nav-number">6.</span> <span class="nav-text">终止线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合理的配置线程池"><span class="nav-number">7.</span> <span class="nav-text">合理的配置线程池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程池的监控"><span class="nav-number">8.</span> <span class="nav-text">线程池的监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org-springframework-scheduling-concurrent-ThreadPoolTaskExecutor"><span class="nav-number">9.</span> <span class="nav-text">org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor</span></a></li></ol></div>
             
 
           </div>
