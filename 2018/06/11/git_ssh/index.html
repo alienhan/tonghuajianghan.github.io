@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="git官网 http://www.git-scm.com/   githubusername :tonghuajianghanemail :tonghuajianghan@gmail.compassword : 百度      创建git仓库    添加用户名和密码：    git config –global user.name “jh” （github登录名）git config –globa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大东山下">
+<meta property="og:url" content="http://yoursite.com/2018/06/11/git_ssh/index.html">
+<meta property="og:site_name" content="大东山下">
+<meta property="og:description" content="git官网 http://www.git-scm.com/   githubusername :tonghuajianghanemail :tonghuajianghan@gmail.compassword : 百度      创建git仓库    添加用户名和密码：    git config –global user.name “jh” （github登录名）git config –globa">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-11T03:38:40.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="大东山下">
+<meta name="twitter:description" content="git官网 http://www.git-scm.com/   githubusername :tonghuajianghanemail :tonghuajianghan@gmail.compassword : 百度      创建git仓库    添加用户名和密码：    git config –global user.name “jh” （github登录名）git config –globa">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/11/git_ssh/"/>
+
+
+
+
+
+  <title> | 大东山下</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">大东山下</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/git_ssh/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:36:08+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><h2 id="官网-http-www-git-scm-com"><a href="#官网-http-www-git-scm-com" class="headerlink" title="官网 http://www.git-scm.com/  "></a>官网 <a href="http://www.git-scm.com/" target="_blank" rel="noopener">http://www.git-scm.com/</a>  </h2><ol>
+<li>github<br>username :tonghuajianghan<br>email :<a href="mailto:tonghuajianghan@gmail.com" target="_blank" rel="noopener">tonghuajianghan@gmail.com</a><br>password : 百度  </li>
+</ol>
+<hr>
+<ol start="2">
+<li>创建git仓库  </li>
+</ol>
+<p>添加用户名和密码：  </p>
+<blockquote>
+<p>git config –global user.name “jh” （github登录名）<br>git config –global user.email “<a href="mailto:tonghuajianghan@gmail.com" target="_blank" rel="noopener">tonghuajianghan@gmail.com</a>“（github登陆邮箱）  </p>
+</blockquote>
+<p>初始化git本地存储库：<br>创建一个文件-&gt;cd 这个文件夹（例：cd E：note）<br>-&gt;git init（初始化本地git）<br>或<br>图形化界面Git GUI创建一个新版本库<br>或<br>克隆一个本地存储库  </p>
+<blockquote>
+<p>cd f:<br>$ git clone git://github.com/schacon/grit.git  </p>
+</blockquote>
+<p>Eclipse Git 插件：<br>右键项目名-&gt;Team-&gt;share project -&gt;Git-&gt;<br>-&gt;选择文件位置（存储库）<br>-&gt;选择版本名（项目所属位置）  </p>
+<hr>
+<ol start="3">
+<li>git本地仓库与github连接  </li>
+</ol>
+<p>ssh 操作<br>1).生成ssh密钥在Administrator/.ssh（文件位置，默认生成）<br>这个格式改过，每个git版本有些许的不同：  </p>
+<p>格式1:</p>
+<blockquote>
+<p>$ssh keygen -t rsa -C “<a href="mailto:tonghuajianghan@gmail.com" target="_blank" rel="noopener">tonghuajianghan@gmail.com</a>“<br>可能报错：<br>ssh: Could not resolve hostname keygen: Name or service not known  </p>
+</blockquote>
+<p>格式2：</p>
+<blockquote>
+<p>$ssh-keygen -t rsa -C “<a href="mailto:tonghuajianghan@gmail.com" target="_blank" rel="noopener">tonghuajianghan@gmail.com</a>“  </p>
+</blockquote>
+<p>生成 id_rsa 和 id_rsa.pub 两个秘钥文件<br>接着又会提示你输入两次密码（该密码是你push文件的时候要输入的密码，<br>而不是github管理者的密码）  </p>
+<p>2).添加你的 SSH key 到 github上面去<br>account setting下设置  </p>
+<p>3).新建本地版本库<br>创建一个文件，在文件下<br>git init 就创建一个git本地版本库<br>生成一个.git文件<br>sts右击项目——&gt;Team-&gt;share Patch<br>-&gt;选中刚才设置的git本地版本库就行  </p>
+<p>4).新建github远程版本库（在github网站上新建）<br>  4.1new repository -&gt;create Repository-&gt;完成<br>  4.2Create a new repository on the command line  </p>
+<p>touch README.md<br>git init<br>git add README.md<br>git commit -m “first commit”<br>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:lizhenyu/helloworld.git<br>git push -u origin master<br>Push an existing repository from the command line  </p>
+<p>5). 连接本地版本库与远程版本库<br>origin是默认已有远程版本库<br>$git remote -v 列出远程版本库详细内容  </p>
+<p>要添加一个新的远程仓库,可以指定一个简单的名字,<br>以便将来引用,运行 git remote add [shortname] [url]:  </p>
+<p>例1：  </p>
+<blockquote>
+<p>git remote add origin <a href="https://github.com/lizhenyu/helloworld.git" target="_blank" rel="noopener">https://github.com/lizhenyu/helloworld.git</a><br>git push -u origin master    </p>
+</blockquote>
+<p>例2：  </p>
+<blockquote>
+<p>$git remote add origintestgit0001 <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:tonghuajianghan/firstdemo.git<br>                (用于本地标名识)，取代firstdemo.git  </p>
+</blockquote>
+<p>$ git push -u origin master<br>Counting objects: 19, done.<br>Delta compression using up to 4 threads.<br>Compressing objects: 100% (19/19), done.<br>Writing objects: 100% (19/19), 13.73 KiB, done.<br>Total 23 (delta 6), reused 0 (delta 0)<br>To <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:tonghuajianghan/firstdemo.git<br>  [new branch]      master -&gt; master<br>Branch master set up to track remote branch master from origin.<br>把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。<br>由于远程库是空的，我们第一次推送master分支时，<br>加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，<br>还会把本地的master分支和远程的master分支关联起来，  </p>
+<p>6).再次提交远程版本库<br>$ git push origin master<br>在以后的推送或者拉取时就可以简化命令。<br>只要本地作了提交，就可以通过命令：  </p>
+<p>7).<br>将某个远程主机的更新，全部取回本地。<br>$ git fetch &lt;远程主机名&gt;<br>默认情况下，git fetch取回所有分支（branch）的更新。<br>如果只想取回特定分支的更新，可以指定分支名。<br>$ git fetch &lt;远程主机名&gt; &lt;分支名&gt;<br>比如，取回origin主机的master分支。<br>$ git fetch origin master<br>所取回的更新，在本地主机上要用”远程主机名/分支名”的形式读取。<br>比如origin主机的master，就要用origin/master读取。  </p>
+<p>8).克隆远程服务器仓库到本地：<br>$git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:tonghuajianghan/firstdemo.git  </p>
+<p>9).git 提交时，忽略某些文件  </p>
+<ul>
+<li>error:<blockquote>
+<p>git无法pull仓库refusing to merge unrelated histories<br>git pull origin master –allow-unrelated-histories</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<p>git基本命令：  </p>
+<p>只是用于提交的用户名和邮箱（用作标示）<br>$git config –global user.name “”<br>$git config –global user.email “”  </p>
+<p>显示config配置<br>$git config –list  </p>
+<p>updates were rejected because the tip<br>远程版本库高于本地版本库<br>应该先pull  </p>
+<hr>
+<p>git branch  </p>
+<p>git branch 不带参数：列出本地已经存在的分支，<br>并且在当前分支的前面加“*”号标记  </p>
+<p>git branch -r 列出远程分支  </p>
+<p>git branch -a 列出本地分支和远程分支  </p>
+<p>git branch 创建一个新的本地分支，需要注意，<br>此处只是创建分支，不进行分支切换<br>example: git branch mybranch  </p>
+<p>$ git checkout -b iss53 新建并切换  </p>
+<p>git branch -m | -M oldbranch newbranc<br>重命名分支，如果newbranch名字分支已经存在，<br>则需要使用-M强制重命名，否则，使用-m进行重命名。  </p>
+<p>git branch -d | -D branchname<br>删除branchname分支  </p>
+<p>git branch -d -r branchname<br>删除远程branchname分支  </p>
+<p>要切换到其他分支，可以执行 git checkout 命令<br>$ git checkout testing<br>当添加文件时，没有git add ，git不会对文件进行监听<br>这样在切换分支时，文件不会受到影响  </p>
+<p>不同分支初始化时，均继承master的文件  </p>
+<p>git merge 合并  </p>
+<hr>
+<p>git 删除文件  </p>
+<p>在被 git 管理的目录中删除文件时，可以选择如下两种方式来记录删除动作:<br>一、rm + git commit -am “abc”<br>二、git rm + git commit -m “abc”<br>另外，git add . 仅能记录添加、改动的动作，删除的动作需靠 git rm 来完成。  </p>
+<p>最后，rm 删除的文件是处于 not staged 状态的，<br>也就是一种介于 “未改动” 和 “已提交过” 之间的状态。  </p>
+<hr>
+<p>git .gitignore<br>    注意空格！！！  </p>
+<pre><code>在 .git 相同文件夹下新建.gitignore文件  
+
+#注释  
+/build/ 忽略根目录下build文件夹下的所有文件  
+</code></pre><hr>
+<p>git 回滚 reset  </p>
+<p>本地回滚  </p>
+<p>git reset –soft | –mixed | –hard<br>                    默认  </p>
+<p>–mixed<br>会保留源码,只是将git commit和index 信息回退到了某个版本.  </p>
+<p>–soft<br>保留源码,只回退到commit 信息到某个版本.不涉及index的回退,如果还需要提交,直接commit即可.  </p>
+<p>–hard<br>源码也会回退到某个版本,commit和index 都回回退到某个版本.(注意,这种方式是改变本地代码仓库源码)  </p>
+<hr>
+<p>git commit -a -m ‘added new benchmarks’   </p>
+<p>跳过使用暂存区域<br>尽管使用暂存区域的方式可以精心准备要提交的细节，<br>但有时候这么做略显繁琐。 Git 提供了一个跳过使用暂存区域的方式，<br>只要在提交的时候，给 git commit 加上 -a 选项，<br>Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 git add 步骤  </p>
+<hr>
+<p>EGit myeclipse   </p>
+<p>egit <a href="http://archive.eclipse.org/egit/updates-3.0" target="_blank" rel="noopener">http://archive.eclipse.org/egit/updates-3.0</a><br>myeclipse 2013</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/11/hadoop/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/11/07_java_web/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">落叶</p>
+              <p class="site-description motion-element" itemprop="description">java redis mysql mybatis</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git"><span class="nav-number">1.</span> <span class="nav-text">git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#官网-http-www-git-scm-com"><span class="nav-number">2.</span> <span class="nav-text">官网 http://www.git-scm.com/  </span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">落叶</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

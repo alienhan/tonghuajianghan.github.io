@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="maven简介：   settings.xml ,pom.xml   demo   mvn error   安装，配置   引用框架包配置(http://mvnrepository.com)   配置mirrors ，repository   解决Eclipse建立Maven项目后无法建立src/main/java资源文件夹的办法   mvn 命令   mvn commond build web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大东山下">
+<meta property="og:url" content="http://yoursite.com/2018/06/11/mvn/index.html">
+<meta property="og:site_name" content="大东山下">
+<meta property="og:description" content="maven简介：   settings.xml ,pom.xml   demo   mvn error   安装，配置   引用框架包配置(http://mvnrepository.com)   配置mirrors ，repository   解决Eclipse建立Maven项目后无法建立src/main/java资源文件夹的办法   mvn 命令   mvn commond build web">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-11T03:38:40.031Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="大东山下">
+<meta name="twitter:description" content="maven简介：   settings.xml ,pom.xml   demo   mvn error   安装，配置   引用框架包配置(http://mvnrepository.com)   配置mirrors ，repository   解决Eclipse建立Maven项目后无法建立src/main/java资源文件夹的办法   mvn 命令   mvn commond build web">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/11/mvn/"/>
+
+
+
+
+
+  <title> | 大东山下</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">大东山下</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/mvn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:34:48+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li>maven简介：  </li>
+<li>settings.xml ,pom.xml  </li>
+<li>demo  </li>
+<li>mvn error  </li>
+<li>安装，配置  </li>
+<li>引用框架包配置(<a href="http://mvnrepository.com" target="_blank" rel="noopener">http://mvnrepository.com</a>)  </li>
+<li>配置mirrors ，repository  </li>
+<li>解决Eclipse建立Maven项目后无法建立src/main/java资源文件夹的办法  </li>
+<li>mvn 命令  </li>
+<li>mvn commond build webapp java web project  </li>
+<li>nux Nexus  </li>
+<li>eclipse maven plugin  </li>
+<li>mvn spring   </li>
+<li>mvn update  </li>
+<li>eclipse create mvn project  </li>
+<li>mvn 引用不到链接sqllserver的jar包  </li>
+</ol>
+<hr>
+<p>远程中央仓库的地址为 <a href="http://repo1.maven.org/" target="_blank" rel="noopener">http://repo1.maven.org/</a><br><a href="http://search.maven.org" target="_blank" rel="noopener">http://search.maven.org</a><br><a href="http://maven.oschina.net/home.html" target="_blank" rel="noopener">http://maven.oschina.net/home.html</a><br><a href="http://mvnrepository.com/" target="_blank" rel="noopener">http://mvnrepository.com/</a>  是mvn官方仓库  </p>
+<hr>
+<ol>
+<li>maven简介：  </li>
+</ol>
+<p>作用：<br>用来帮助实现项目的构建、测试、打包和部署  </p>
+<p>原理：<br>Maven是基于项目对象模型(POM)，<br>可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。<br>可以多个项目中共享JAR  </p>
+<p>生命周期:<br>当你运行 mvn install 的时候被调用。<br>这条命令告诉 Maven 执行一系列的有序的步骤，<br>直到到达你指定的生命周期。遍历生命周期旅途中的一个影响就是，<br>Maven 运行了许多默认的插件目标，这些目标完成了像编译和创建一个 JAR 文件这样的工作。<br>此外，Maven能够很方便的帮你管理项目报告，生成站点，管理JAR文件，等等。  </p>
+<p>优点：<br>在Java项目中,每个项目都有很多依赖的Jar包,<br>我们一般都放在自己项目的lib目录中,<br>这样就会导致同样的Jar包在各个不同的项目中重复出现，<br>时间长了将会浪费很大的硬盘空间。使用Maven对项目进行管理就可以解决以上问题。  </p>
+<p>Maven执行原理：<br>依赖和项目构建的输出都可以由 Maven 的坐标进行唯一的区分，<br>基于这种机制，Maven 将所有项目的构件文件放置在一个统一的位置，<br>也就是 Maven 仓库。<br>所有 Maven 项目可以从同一个 Maven 仓库中获取自己所需要的依赖 JAR，<br>这节省了磁盘资源。实际的 Maven 项目中不需要存储依赖的文件，<br>只需要在 POM 文件中生成依赖关系，在构建的时候 Maven 就会自动去仓库中下载。  </p>
+<p>依靠包查询：<br>我们项目中依赖的 Jar 包可以通过依赖的方式引入<br>maven是单独管理一个项目。的jar包位置，组织形式的。<br>在安装了 Maven 的机器上，会生成一个 ~.m2\repository 目录，<br>这个目录被称为本地仓库，当 Maven 查找需要的依赖时，首先会在本地查找，<br>如果本地仓库中存在，则直接使用，否则 Maven 回去远程仓库查找，<br>查找到后下载到本地进行使用。  </p>
+<hr>
+<ol start="2">
+<li>settings.xml ,pom.xml  </li>
+</ol>
+<p>配置文件作用域：<br>conf/settings.xml  </p>
+<p>修改maven本地仓库的位置：<br>apache-maven-3.1.2/conf/setting.xml  </p>
+<p><localrepository>d:maven2</localrepository><br>当修改过后，不会自动新建/.m2文件  </p>
+<p>settings.xml对于maven来说相当于全局性的配置，用于所有的项目<br>加载的方向正好相反，下级影响上级  </p>
+<p>pom.xml节点的说明：  </p>
+<p><project>　　　　　　pom文件的顶级节点<br>　　　　<modelversion>　　　object model版本，对Maven2和Maven3来说，只能是4.0.0　<br>　　　　<groupid>　　　　　　项目创建组织的标识符，一般是域名的倒写<br>　　　　<artifactid>　　　　定义了项目在所属组织的标识符下的唯一标识，一个组织下可以有多个项目<br>　　　　<packaging>　　　　  打包的方式，有jar、war、ear等<br>　　　　<version>　　　　　  当前项目的版本，SNAPSHOT，表示是快照版本，在开发中<br>  　　　<name>　　　　　　　 项目的名称<br>　　　　<url>　　　　　　　　项目的地址<br>　　　　<dependencies>　　 构建项目依赖的jar<br>　　　　<description>　　　　项目的描述  </description></dependencies></url></name></version></packaging></artifactid></groupid></modelversion></project></p>
+<hr>
+<ol start="3">
+<li>demo  </li>
+</ol>
+<p>mvn dependency search查询位置  </p>
+<p>1.mvn archetype:generate -DarchetypeCatalog=internal<br>  或mvn archetype:generate（简单）  </p>
+<p>2.mvn eclipse:eclipse 在eclipse工作目录下运行<br>3.mvn tomcat:run<br>4.指定eclipse中的maven的本地仓库地址,运行命令:<br>mvn  -Declipse.workspace= <eclipse workspace路径="">   eclipse:add-maven-repo   </eclipse></p>
+<p>创建依赖  </p>
+<dependency><br>   <groupid>javax.servlet</groupid><br>   <artifactid>servlet-api</artifactid><br>   <version>2.5</version><br></dependency>  
+
+<h2 id="http-www-jarvana-com-jarvana"><a href="#http-www-jarvana-com-jarvana" class="headerlink" title="http://www.jarvana.com/jarvana/   "></a><a href="http://www.jarvana.com/jarvana/" target="_blank" rel="noopener">http://www.jarvana.com/jarvana/</a>   </h2><ol start="4">
+<li>mvn error  </li>
+</ol>
+<p>1）.出现创建不了mvn project<br>错误：can mot resolve archetype<br>windows - preference - maven -archetype<br>add remote catalog<br><a href="http://repo1.maven.org/maven2/archetype-catalog.xml" target="_blank" rel="noopener">http://repo1.maven.org/maven2/archetype-catalog.xml</a>  </p>
+<p>2）.  </p>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://maven.apache.org/POM/4.0.0   
+http://maven.apache.org/maven-v4_0_0.xsd">  
+
+<p>报错：<br>Description Resource Path Location Type<br>Could not calculate build plan:<br>Failure to transfer org.apache.maven.plugins:maven-war-plugin:pom:2.1.1 from<br><a href="http://repo1.maven.org/maven2" target="_blank" rel="noopener">http://repo1.maven.org/maven2</a> was cached in the local repository,<br>resolution will not be reattempted until the update interval<br>of central has elapsed or updates are forced. Original error:<br>Could not transfer artifact org.apache.maven.plugins:maven-war-plugin:pom:2.1.1<br>from/to central (<a href="http://repo1.maven.org/maven2)" target="_blank" rel="noopener">http://repo1.maven.org/maven2)</a>: ConnectException<br>first-maven Unknown    Maven Problem<br>解决：<br>应该是连不上<a href="http://repo1.maven.org/maven2这个仓库，在pom.xml文件加一下下面的配置" target="_blank" rel="noopener">http://repo1.maven.org/maven2这个仓库，在pom.xml文件加一下下面的配置</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;repositories&gt;    </span><br><span class="line">    &lt;repository&gt;    </span><br><span class="line">      &lt;snapshots&gt;    </span><br><span class="line">        &lt;enabled&gt;false&lt;/enabled&gt;    </span><br><span class="line">      &lt;/snapshots&gt;    </span><br><span class="line">      &lt;id&gt;central&lt;/id&gt;    </span><br><span class="line">      &lt;name&gt;Maven Repository Switchboard&lt;/name&gt;    </span><br><span class="line">      &lt;url&gt;http://repo2.maven.org/maven2&lt;/url&gt;    </span><br><span class="line">    &lt;/repository&gt;    </span><br><span class="line">&lt;/repositories&gt;</span><br></pre></td></tr></table></figure></p>
+<p>3）分析：<br>./m2/settings 影响默认conf/settiongs的配置<br>java.lang.ClassNotFoundException: org.springframework.web.context.ContextLoaderListener  </p>
+<p>4）<br>Failed to execute goal org.apache.maven.plugins:maven-archetype-plugin错误解决方法<br>解决方法：将命令中的create改为generate：<br>mvn archetype:generate -DgroupId=com.tutorialspoint.test<br>-DartifactId=helloworld -DarchetypeArtifactId=maven-archetype-webapp  </p>
+<p>5)Java compiler level does not match the version of the installed<br>  Java project facet.SSJ UnknownFaceted Project Problem (Java Version Mismatch)<br>  properties-&gt; java complier -&gt; 改成与版本相同的jre  </p>
+<hr>
+<ol start="5">
+<li>安装，配置  </li>
+</ol>
+<p>1） 解压maven压缩包<br>2） 配置环境变量，添加%MAVEN_HOME%,path中添加%MAVEN_HOME%\bin<br>3） 测试安装是否成功，mvn -v<br>4） 安装eclipse的插件<br>5） eclipse创建maven项目<br>6） eclipse添加maven的配置<br>        进入MyEclipse→window→Preferences→<br>    Maven4MyEclipse→Maven→Installations→User Sittings<br>        点击右侧Browse指向%MAVEN_HOME%\conf\settings.xml<br>7）  </p>
+<hr>
+<ol start="6">
+<li>引用包配置(<a href="http://mvnrepository.com" target="_blank" rel="noopener">http://mvnrepository.com</a>)  </li>
+</ol>
+<p>搜索结果<br>   引用spring mvc<br>   Spring Web MVC  </p>
+<p>   引用hibernate<br>   Hibernate Core Aggregator   </p>
+<p>   引用struts<br>   struts 2<br>   struts-core   </p>
+<hr>
+<ol start="7">
+<li><p>配置mirrors ，repository  </p>
+<p>覆盖中央仓库的默认地址，<br>那么这里我们就会使用的镜像了，在setting.xml里面配置<br><mirrorof>,表示只为central仓库做镜像，<br>如果想为所有的仓库做镜像那么可以改为： <mirrorof>*</mirrorof>  </mirrorof></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> &lt;mirrors&gt;  </span><br><span class="line">&lt;mirror&gt;  </span><br><span class="line">	&lt;id&gt;repo1&lt;/id&gt;  </span><br><span class="line">	&lt;name&gt;repo1&lt;/name&gt;  </span><br><span class="line">	&lt;url&gt;http://repo1.maven.org/maven2/spring/&lt;/url&gt;  </span><br><span class="line">	&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;    &lt;!--表明为central中央仓库配置镜像仓库--&gt;  </span><br><span class="line">&lt;/mirror&gt;  </span><br><span class="line"> &lt;/mirrors&gt;  </span><br><span class="line"> &lt;profiles&gt;   </span><br><span class="line">    </span><br><span class="line">	&lt;profile&gt;  </span><br><span class="line">	  &lt;id&gt;repo&lt;/id&gt;    </span><br><span class="line">	  &lt;repositories&gt;  </span><br><span class="line">		   &lt;repository&gt;    </span><br><span class="line">			  &lt;id&gt;com.springsource.repository.maven.release&lt;/id&gt;    </span><br><span class="line">			  &lt;url&gt;http://maven.springframework.org/release/&lt;/url&gt;    </span><br><span class="line">			  &lt;snapshots&gt;&lt;enabled&gt;false&lt;/enabled&gt;&lt;/snapshots&gt;    </span><br><span class="line">		   &lt;/repository&gt;   </span><br><span class="line">	  &lt;/repositories&gt;  </span><br><span class="line">   &lt;/profile&gt;  </span><br><span class="line"> </span><br><span class="line"> &lt;/profiles&gt;  </span><br><span class="line">  &lt;activeProfiles&gt;    </span><br><span class="line"> &lt;activeProfile&gt;repo&lt;/activeProfile&gt;  	  </span><br><span class="line"> &lt;/activeProfiles&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<ol start="8">
+<li>解决Eclipse建立Maven项目后无法建立src/main/java资源文件夹的办法<br>在项目上右键选择properties，<br>然后点击java build path，在Librarys下，<br>编辑JRE System Library，<br>选择workspace default jre就可以了。  </li>
+</ol>
+<hr>
+<ol start="9">
+<li>mvn 命令  </li>
+</ol>
+<p>运行mvn command 必须在有pom.xml文件的父文件夹  </p>
+<p>生成清除Eclipse项目结构：<br>mvn eclipse:eclipse<br>mvn eclipse:clean  </p>
+<p>编译项目到target、安装项目到.m2文件夹下的资源库中<br>mvn install  </p>
+<p>清理（删除target目录下编译内容）<br>mvn clean  </p>
+<p>仅打包Web页面文件<br>mvn war:exploded  </p>
+<p>编译项目<br>mvn compile  </p>
+<p>打包发布<br>mvn package  </p>
+<p>打包时跳过测试<br>mvn package -Dmaven.test.skip=ture  </p>
+<p>编译源代码： mvn compile<br>编译测试代码：mvn test-compile<br>运行测试：mvn test    </p>
+<p>安装第三方包<br>经常有第三方包，因为一些原因，在网上repository上没有，需要自己动手安装。<br>比如sun某些版本的jar文件，比如oracle的驱动。<br>已oracle驱动程序为例，比如驱动路径为c:/driver/ojdbc14.jar，<br>是10.2.0.3.0版本<br>在该网址能够查到：<br><a href="http://www.mvnrepository.com/artifact/com.oracle/ojdbc14" target="_blank" rel="noopener">http://www.mvnrepository.com/artifact/com.oracle/ojdbc14</a><br>artifactId和groupId。<br>mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.3.0 -Dpackaging=jar -Dfile=c:/driver/ojdbc14.jar<br>这样就可以在pom中依赖引用了：  </p>
+<p><dependency><br>    <groupid>com.oracle</groupid><br>    <artifactid>ojdbc14</artifactid><br>    <version>10.2.0.3.0</version>  </dependency></p>
+<h2 id=""><a href="#" class="headerlink" title="  "></a>  </h2><ol start="10">
+<li>mvn commond build  java web project  </li>
+</ol>
+<p>z.    zero<br>    error:        当使用maven-3.1.0时报引用包错误。找不到xxx-2.0.6<br>    selution:    更换3.2.6就可以了，它引用2.1.0 plugin包  </p>
+<p>a. 创建：<br>    mvn archetype:create -DgroupId=com.learn -DartifactId=LearnNew -DarchetypeArtifactId=maven-archetype-webapp<br>    error:        [ERROR] Failed to execute goal org.apache.maven.plugins:maven-archetype-plugin:2<br>            .4:create (default-cli) on project standalone-pom: Unable to parse configuration<br>    solution:    可以将 create 换成 generate  </p>
+<p>b.    生成elipse项目<br>    mvn eclipse:eclipse<br>    待解决：<br>    error :        缺包<br>                Failed to execute goalk org.apache.maven.plugins:maven-eclipse-plugin:2.1.0<br>    solution:    手动添加jar包到本地仓库<br>    mvn install:install-file -Dfile=jar包的位置 -DgroupId=groupId -DartifactId=artifactId -Dversion=version -Dpackaging=jar  </p>
+<p>c.    eclipse 添加maven生成的工程<br>    export-&gt; exists maven project<br>    导入后自动生成 .classpath  .project<br>    但是不能mvn configration file 会报找不到文件错误  </p>
+<pre><code>也可以在myeclipse中创建文件  
+</code></pre><p>d. 运行：<br>    Run -&gt; mvn install -&gt; run as java application<br>    没有mvn intall则找不到.class类文件<br>    mvn install 是将你打好的jar包安装到你的本地库中，一般没有设置过是在 用户目录下的 .m2\下面。<br>    mvn package 只是将你的代码打包到输出目录，一般的是 target下面  </p>
+<p>e. 作为web项目运行<br>   增加MyEclipse的Web Project功能<br>   选择工程–&gt;MyEclipse–&gt;Project Capabilities–&gt;Add Web Project Capabilites，<br>   弹出窗口中设置参数如下，再接下来的弹出窗口中选择yes。<br>   这样我们的工程就是web工程了(注意工程图标有变化，而且MyEclipse自动依赖了JEE的包)。  </p>
+<p>f. 修改根路径名<br>   Myeclipse–&gt;Web<br>   这一个是用来修改设置工程的web特性  </p>
+<p>g. 当页面还是报404 的时候可能是myeclipse的tomcat缓存<br>    删除tomcat路径下的项目，就可以了  </p>
+<hr>
+<ol start="11">
+<li>Nexus  </li>
+</ol>
+<p>Synatype Nexus  </p>
+<p>maven 配置依赖nexus  </p>
+<p><repositories><br>     <repository><br>         <id>nexus</id><br>         <name>Team Nexus Repository</name><br>         <url><a href="http://localhost:8081/nexus/content/groups/public" target="_blank" rel="noopener">http://localhost:8081/nexus/content/groups/public</a></url><br>     </repository><br></repositories>  </p>
+<pluginrepositories><br>     <pluginrepository><br>         <id>nexus</id><br>         <name>Team Nexus Repository</name><br>         <url><a href="http://localhost:8081/nexus/content/groups/public" target="_blank" rel="noopener">http://localhost:8081/nexus/content/groups/public</a></url><br>     </pluginrepository><br></pluginrepositories>  
+
+<hr>
+<ol start="12">
+<li><p>eclipse maven plugin  </p>
+<p>1）下载eclipse maven plugin插件<br>2）在eclipse安装文件夹下创建links文件夹  </p>
+<pre><code>新建maven.link文件：  
+内容为：path=D:/java/eclipse/myplugins/maven  
+</code></pre><p>3）在eclipse安装文件夹下创建myplugins文件  </p>
+<pre><code>将maven插件解压到当前文件夹下  
+</code></pre><p>4）重启eclipse<br>5）配置eclipse maven plugin   </p>
+</li>
+</ol>
+<hr>
+<ol start="13">
+<li>mvn spring   </li>
+</ol>
+<p>.classpath<br>    error:<br>        mvn java.lang.ClassNotFoundException: org.springframework.web.context.<br>                  ContextLoaderListener<br>        根本原因是eclipse只是添加了类的引用<br>    1.solution:<br>        项目根目录下的.classpath,找到<br>        <classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER">  </classpathentry></p>
+<pre><code>    替换为:  
+    &lt;classpathentry kind=&quot;con&quot; path=&quot;org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER&quot;&gt;  
+         &lt;attributes&gt;  
+             &lt;attribute name=&quot;org.eclipse.jst.component.dependency&quot; value=&quot;/WEB-INF/lib&quot;/&gt;  
+         &lt;/attributes&gt;  
+    &lt;/classpathentry&gt;  
+2.   
+    1.右键点击项目--选择Properties选择Deployment（部署） Assembly（程序集）,  
+    在右边点击Add按钮，在弹出的窗口中选择Java Build Path Entries  
+    2.点击Next，选择Maven Dependencies  
+    3.点击Finish，然后可以看到已经把Maven Dependencies添加到Web应用结构中了  
+</code></pre><p>添加maven库包的引用  </p>
+<classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER">  
+
+
+<hr>
+<ol start="14">
+<li><p>mvn update  </p>
+<p>1.在eclipse中对项目右键点击 maven –&gt; update dependencies,这样对maven库进行更新。  </p>
+<p>2.update Project Configration 会根据maven默认的设置改变项目的配置文件  </p>
+<pre><code>例：可以改变.classpath文件  
+（不要轻易使用）  
+</code></pre></li>
+</ol>
+<hr>
+<ol start="15">
+<li><p>eclipse create mvn project  </p>
+</li>
+<li><p>new-&gt;mvn project  </p>
+</li>
+<li><p>生成web项目 properties-&gt;project facets-&gt;Dynamic Web Module<br>注意添加的web文件的位置  </p>
+</li>
+<li><p>配置build path 新建java ，配置编译文件位置,<br>配置java版本  </p>
+</li>
+<li><p>配置maven引用包编译位置 deployment assembly -&gt;add -&gt; java build enties path  </p>
+</li>
+<li><p>添加tomcat lib jar  </p>
+</li>
+<li><p>创建：<br>mvn archetype:create -DgroupId=com.learn -DartifactId=LearnNew -DarchetypeArtifactId=maven-archetype-webapp<br>若是缺少maven-archetype-plugin:2.4:create 则将create变成generate   </p>
+</li>
+</ol>
+<hr>
+<p>mvn 引用不到链接sqllserver的jar包<br>    Missing artifact com.microsoft.sqlserver:sqljdbc4:jar:4.0  </p>
+<ol>
+<li><p>在这个网站下载jdbc驱动包<br> <a href="https://www.microsoft.com/en-us/download/details.aspx?id=11774" target="_blank" rel="noopener">https://www.microsoft.com/en-us/download/details.aspx?id=11774</a>  </p>
+</li>
+<li><p>手动添加sqlserver jdbc驱动包到mvn仓库中。<br>cd到jar包的路径下  </p>
+<pre><code>mvn install:install-file -Dfile=sqljdbc4.jar -DgroupId=com.microsoft.sqlserver -DartifactId=sqljdbc4 -Dversion=4.0 -Dpackaging=jar
+</code></pre></li>
+</ol>
+<hr>
+<p>新建maven多子项目，想要添加的子项目不在父项目下(与父项目并行)</p>
+<ol>
+<li>file–&gt;import–&gt;General–&gt;Existing Project into Workspace</li>
+<li>删除掉父项目下的文件夹即可</li>
+</ol>
+<hr>
+</classpathentry></project>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/11/kafka/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/11/jvm_code/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">落叶</p>
+              <p class="site-description motion-element" itemprop="description">java redis mysql mybatis</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#http-www-jarvana-com-jarvana"><span class="nav-number">1.</span> <span class="nav-text">http://www.jarvana.com/jarvana/   </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.</span> <span class="nav-text">  </span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">落叶</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

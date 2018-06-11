@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/09/thread/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -251,7 +251,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/09/thread/" itemprop="url">多线程线程状态 \ 线程池优化/监控 \ jvm线程监控</a></h1>
+                <a class="post-title-link" href="/2018/06/11/html/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -263,8 +263,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-09T21:06:31+08:00">
-                2018-06-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:36:09+08:00">
+                2018-06-11
               </time>
             
 
@@ -273,28 +273,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/thread/" itemprop="url" rel="index">
-                    <span itemprop="name">thread</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -325,913 +303,10 @@
       
         
           
-            <h3 id="java多线程"><a href="#java多线程" class="headerlink" title="java多线程"></a>java多线程</h3><pre><code>http://penghb.com
-</code></pre><h3 id="jvm线程监控"><a href="#jvm线程监控" class="headerlink" title="jvm线程监控"></a>jvm线程监控</h3><h4 id="线程-dump"><a href="#线程-dump" class="headerlink" title="线程 dump"></a>线程 dump</h4><ol>
-<li><p>执行<code>jps</code>命令，列出正在运行的java程序的进程ID</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">D:\gitrepo\thread-test&gt;jps</span><br><span class="line">5056 RemoteMavenServer (pid 对应线程名字)</span><br><span class="line">7264 Launcher</span><br><span class="line">10644 Jps</span><br><span class="line">7636</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>执行<code>jstack pid</code></p>
-</li>
-</ol>
-<h3 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h3><ol>
-<li>new: 创建了,还没有启动</li>
-<li>runable: 正在Java虚拟机下跑任务的线程的状态。在RUNNABLE状态下的线程可能<br>会处于等待状态， 因为它正在等待一些系统资源的释放，比如IO</li>
-<li>BLOCKED: 阻塞状态，等待锁的释放，比如线程A进入了一个<code>synchronized</code>方法，线程B也想进入这个方法，但是这个方法的锁已经被线程A获取了，这个时候线程B就处于BLOCKED状态<ol>
-<li>分析:线程处于BLOCKED状态，这个时候可以分析一下是不是lock加锁的时候忘记释放了，或者释放的时机不对。导致另外的线程一直处于BLOCKED状态。</li>
-</ol>
-</li>
-<li>WAITING: 等待状态，处于等待状态的线程是由于执行了3个方法中的任意方法。<ol>
-<li>Object的wait方法，并且没有使用timeout参数;</li>
-<li>Thread的join方法，没有使用timeout参数</li>
-<li>LockSupport的park方法。 处于waiting状态的线程会等待另外一个线程处理特殊的行为。 再举个例子，如果一个线程调用了一个对象的wait方法，那么这个线程就会处于waiting状态直到另外一个线程调用这个对象的notify或者notifyAll方法后才会解除这个状态</li>
-</ol>
-</li>
-<li>TIMED_WAITING: 有等待时间的等待状态，比如调用了以下几个方法中的任意方法，并且指定了等待时间，线程就会处于这个状态。<ol>
-<li>Thread.sleep方法</li>
-<li>Object的wait方法，带有时间</li>
-<li>Thread.join方法，带有时间</li>
-<li>LockSupport的parkNanos方法，带有时间</li>
-<li>LockSupport的parkUntil方法，带有时间</li>
-</ol>
-</li>
-<li>TERMINATED: 线程中止的状态，这个线程已经完整地执行了它的任务(jstack 看不到线程了)</li>
-</ol>
-<p>在Thread.java 下的 enum State下</p>
-<h3 id="Dump文件中的线程状态"><a href="#Dump文件中的线程状态" class="headerlink" title="Dump文件中的线程状态"></a>Dump文件中的线程状态</h3><ol>
-<li>Deadlock</li>
-<li>Runnable</li>
-<li>Waiting on condition</li>
-<li>Blocked</li>
-<li>Waiting for monitor entry 和 in Object.wait()</li>
-</ol>
-<h3 id="Thread-java分析"><a href="#Thread-java分析" class="headerlink" title="Thread.java分析"></a>Thread.java分析</h3><ol>
-<li>exit()<br> exit( )是由系统调用的，用于线程在真正的退出前进行一些清理的操作。看看里面进行的操作是什么吧，可以看出，里面执行的是group 赋值为null了， 将target引用进行释放，同时释放了threadLocals所占用的资源，等等属性都赋值为null。</li>
-<li>sleep()<br> 这个方法的作用使得当前线程休眠一定的时间，但是这个期间是不释放持有的锁的。这个方法里面首先进行的是休眠时间的判断，然后又是调用本地方法。</li>
-<li>join()方法<br> join方法是等待该线程执行，直到超时或者终止，可以作为线程通信的一种方式，A线程调用B线程的join（阻塞），等待B完成后再往下执行。 join（）方法中重载了多个方法，但是主要的方法是下面的方法。</li>
-<li>interrupt()方法<br>中断当前的线程<ol>
-<li>阻塞状态:<br>阻塞函数,如Thread.sleep、Thread.join、Object.wait等在检查到线程的中断状态的时候，<br>会抛出InteruptedExeption, 同时会清除线程的中断状态。<br>对于InterruptedException的处理，可以有两种情况：<ol>
-<li>外层代码处理异常，直接抛出这个异常即可</li>
-<li>不能抛出这个异常，比如在run()方法内，因为在得到这个异常的同时，线程的中断状态已经被清除了，需要保留线程的中断状态，则需要调    用Thread.currentThread().interrupt()</li>
-</ol>
-</li>
-<li>运行状态:<br>将该线程的中断标志设置为 true，仅此而已。被设置中断标志的线程将继续正常运行，不受影响。</li>
-</ol>
-</li>
-</ol>
-<h3 id="终止线程"><a href="#终止线程" class="headerlink" title="终止线程"></a>终止线程</h3><p>首先，一个线程不应该由其他线程来强制中断或停止，而是应该由线程自己自行停止。<br>所以，Thread.stop, Thread.suspend, Thread.resume 都已经被废弃了。<br>而 Thread.interrupt 的作用其实也不是中断线程，而是「通知线程应该中断了」，<br>具体到底中断还是继续运行，应该由被通知的线程自己处理。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//“中断”方式终止处于“阻塞状态”的线程。</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 执行任务...</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException ie) &#123;</span><br><span class="line">        <span class="comment">// 由于产生InterruptedException异常，退出while(true)循环，线程终止！</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//终止处于“运行状态”的线程</span></span><br><span class="line">    <span class="keyword">if</span> (!isInterrupted()) &#123;</span><br><span class="line">        <span class="comment">// 执行任务...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="合理的配置线程池"><a href="#合理的配置线程池" class="headerlink" title="合理的配置线程池"></a>合理的配置线程池</h3><p>要想合理的配置线程池，就必须首先分析任务特性，可以从以下几个角度来进行分析：</p>
-<ol>
-<li>任务的性质：CPU密集型任务，IO密集型任务和混合型任务。</li>
-<li>任务的优先级：高，中和低。</li>
-<li>任务的执行时间：长，中和短。</li>
-<li>任务的依赖性：是否依赖其他系统资源，如数据库连接。</li>
-</ol>
-<p>任务性质不同的任务可以用不同规模的线程池分开处理。CPU密集型任务配置尽可能少的线程数量，如配置Ncpu+1个线程的线程池。<br>IO密集型任务则由于需要等待IO操作，线程并不是一直在执行任务，则配置尽可能多的线程，如2*Ncpu。<br>混合型的任务，如果可以拆分，则将其拆分成一个CPU密集型任务和一个IO密集型任务，只要这两个任务执行的时间相差不是太大，那么分解后执行的吞吐率要高于串行执行的吞吐率，如果这两个任务执行时间相差太大，则没必要进行分解。<br>可以通过<br>    <code>Runtime.getRuntime().availableProcessors()</code>方法获得当前设备的CPU个数。</p>
-<p>优先级不同的任务可以使用优先级队列PriorityBlockingQueue来处理。它可以让优先级高的任务先得到执行，需要注意的是如果一直有优先级高的任务提交到队列里，那么优先级低的任务可能永远不能执行。</p>
-<p>执行时间不同的任务可以交给不同规模的线程池来处理，或者也可以使用优先级队列，让执行时间短的任务先执行。</p>
-<p>依赖数据库连接池的任务，因为线程提交SQL后需要等待数据库返回结果，如果等待的时间越长CPU空闲时间就越长，那么线程数应该设置越大，这样才能更好的利用CPU。</p>
-<p>建议使用有界队列<br>    有界队列能增加系统的稳定性和预警能力，可以根据需要设大一点，比如几千。有一次我们组使用的后台任务线程池的队列和线程池全满了，不断的抛出抛弃任务的异常，通过排查发现是数据库出现了问题，导致执行SQL变得非常缓慢，因为后台任务线程池里的任务全是需要向数据库查询和插入数据的，所以导致线程池里的工作线程全部阻塞住，任务积压在线程池里。如果当时我们设置成无界队列，线程池的队列就会越来越多，有可能会撑满内存，导致整个系统不可用，而不只是后台任务出现问题。当然我们的系统所有的任务是用的单独的服务器部署的，而我们使用不同规模的线程池跑不同类型的任务，但是出现这样问题时也会影响到其他任务。</p>
-<h3 id="线程池的监控"><a href="#线程池的监控" class="headerlink" title="线程池的监控"></a>线程池的监控</h3><p>通过线程池提供的参数进行监控。线程池里有一些属性在监控线程池的时候可以使用</p>
-<ol>
-<li>taskCount：线程池需要执行的任务数量。</li>
-<li>completedTaskCount：线程池在运行过程中已完成的任务数量。小于或等于taskCount。</li>
-<li>largestPoolSize：线程池曾经创建过的最大线程数量。通过这个数据可以知道线程池是否满过。<br> 如等于线程池的最大大小，则表示线程池曾经满了。</li>
-<li>getPoolSize:线程池的线程数量。如果线程池不销毁的话，池里的线程不会自动销毁，所以这个大小只增不减。</li>
-<li>getActiveCount：获取活动的线程数。<br>通过扩展线程池进行监控。通过继承线程池并重写线程池的beforeExecute，afterExecute和terminated方法，我们可以在任务执行前，执行后和线程池关闭前干一些事情。如监控任务的平均执行时间，最大执行时间和最小执行时间等。这几个方法在线程池里是空方法。</li>
-</ol>
-<h3 id="org-springframework-scheduling-concurrent-ThreadPoolTaskExecutor"><a href="#org-springframework-scheduling-concurrent-ThreadPoolTaskExecutor" class="headerlink" title="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor"></a>org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/09/thread-lock/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/09/thread-lock/" itemprop="url">多线程--锁</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-09T21:06:31+08:00">
-                2018-06-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/thread/" itemprop="url" rel="index">
-                    <span itemprop="name">thread</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="死锁前提"><a href="#死锁前提" class="headerlink" title="死锁前提"></a>死锁前提</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/09/thread source read/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/09/thread source read/" itemprop="url">多线程源码阅读 \ Current/Collection/Thread</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-09T21:06:31+08:00">
-                2018-06-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/thread/" itemprop="url" rel="index">
-                    <span itemprop="name">thread</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="HashMap-source-read"><a href="#HashMap-source-read" class="headerlink" title="HashMap source read"></a>HashMap source read</h3><p>参考:<br>  <a href="http://penghb.com/2017/10/15/java/hashMap/" target="_blank" rel="noopener">http://penghb.com/2017/10/15/java/hashMap/</a></p>
-<ol>
-<li><p>hashtable区别<br> 不同步<br> 允许使用null</p>
-</li>
-<li><p>1.8改进<br> 数据存储结构引进了<code>红黑树</code>，使得查询更加的快捷.</p>
-</li>
-</ol>
-<h3 id="ConcurrentHashMap-source-read"><a href="#ConcurrentHashMap-source-read" class="headerlink" title="ConcurrentHashMap source read"></a>ConcurrentHashMap source read</h3><p>参考:<br><a href="http://penghb.com/2017/10/27/java/concurrentHashMap/" target="_blank" rel="noopener">http://penghb.com/2017/10/27/java/concurrentHashMap/</a></p>
-<p>JDK1.8改进</p>
-<ol>
-<li><code>取消segments字段</code>，（Segment虽保留，但已经简化属性，仅仅是为了兼容旧版本。）<br>直接采用transient volatile HashEntry table保存数据，采用table数组元素作为锁，从而实现了对每一行数据进行加锁，进一步减少并发冲突的概率。</li>
-<li>将原先table数组＋单向链表的数据结构，变更为table数组＋单向链表＋红黑树的结构。（这点和HashMap是一样的）</li>
-</ol>
-<h3 id="Threadlocal-source-read"><a href="#Threadlocal-source-read" class="headerlink" title="Threadlocal source read"></a>Threadlocal source read</h3><p>参考:<br><a href="http://penghb.com/2017/10/18/java/threadLocal/" target="_blank" rel="noopener">http://penghb.com/2017/10/18/java/threadLocal/</a></p>
-<p>该类提供线程本地变量。这些变量与一般的变量不同，每个线程访问一个线程（通过get或set方法）有自己独立的变量初始化副本。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/08/redis-read/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/08/redis-read/" itemprop="url">redis 事物,参数解释,应用场景</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-08T17:41:47+08:00">
-                2018-06-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="redis-问题"><a href="#redis-问题" class="headerlink" title="redis 问题"></a>redis 问题</h2><pre><code>缓存淘汰策略  
-分布式事物锁  
-事务  
-redis错误处理,网络断了,出问题应该怎么处理  
-redis性能监控  
-redis 缓存击穿,失效,热点key  
-</code></pre><h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p><a href="http://redisbook.readthedocs.io/en/latest/feature/transaction.html" target="_blank" rel="noopener">http://redisbook.readthedocs.io/en/latest/feature/transaction.html</a><br>  Redis 通过 MULTI 、 DISCARD 、 EXEC 和 WATCH 四个命令来实现事务功能<br>WATCH 命令用于在事务开始之前监视任意数量的键：<br> 当调用 EXEC 命令执行事务时， 如果任意一个被监视的键已经被其他客户端修改了， 那么整个事务不再执行， 直接返回失败。</p>
-<p>事务提供了一种将多个命令打包，然后一次性、有序地执行的机制。<br>事务在执行过程中不会被中断，所有事务命令执行完之后，事务才能结束。<br>多个命令会被入队到事务队列中，然后按先进先出（FIFO）的顺序执行。<br>带 WATCH 命令的事务会将客户端和被监视的键在数据库的   <code>watched_keys</code>字典中进行关联，当键被修改时，程序会将所有监视被修改键的客户端的 <code>REDIS_DIRTY_CAS</code> 选项打开。<br>只有在客户端的 <code>REDIS_DIRTY_CAS</code> 选项未被打开时，才能执行事务，否则事务直接返回失败。<br>Redis 的事务保证了 ACID 中的一致性（C）和隔离性（I），但并不保证原子性（A）和持久性（D）。  </p>
-<h2 id="Redis的单线程属性"><a href="#Redis的单线程属性" class="headerlink" title="Redis的单线程属性"></a>Redis的单线程属性</h2><p>由于Redis是单线程机制，所以不会出现并发问题，所以可以将其作为：计数器，产生唯一ID，做秒杀系统。  </p>
-<h2 id="redis-性能指标"><a href="#redis-性能指标" class="headerlink" title="redis 性能指标"></a>redis 性能指标</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">info</span><br><span class="line">    # Server  </span><br><span class="line">    redis_version:3.2.4 #Redis版本                                          </span><br><span class="line">    redis_git_sha1:00000000 #Git SHA1  </span><br><span class="line">    redis_git_dirty:0 #Git dirty flag  </span><br><span class="line">    redis_build_id:4a0a5391316325c5  </span><br><span class="line">    redis_mode:cluster  </span><br><span class="line">    os:Linux 2.6.32-358.el6.x86_64 x86_64 #Redis 服务器的宿主操作系统  </span><br><span class="line">    arch_bits:64 #架构（32 或 64 位）  </span><br><span class="line">    multiplexing_api:epoll #Redis 所使用的事件处理机制  </span><br><span class="line">    gcc_version:4.4.7 #编译 Redis 时所使用的 GCC 版本  </span><br><span class="line">    process_id:42341 #服务器进程的 PID  </span><br><span class="line">    run_id:961f96e23843202ae98dbeffb655b4f9c4d4c57e #Redis 服务器的随机标识符（用于 Sentinel 和集群）  </span><br><span class="line">    tcp_port:28001  #TCP/IP 监听端口  </span><br><span class="line">    uptime_in_seconds:60872 #运行时间（秒）  </span><br><span class="line">    uptime_in_days:0 #运行天数  </span><br><span class="line">    hz:10  </span><br><span class="line">    lru_clock:12112874 #以分钟为单位进行自增的时钟，用于 LRU 管理  </span><br><span class="line">    executable:/home/app/redis3/redis-server  </span><br><span class="line">    config_file:/home/app/redis3/./cluster/28001/redis-28001.conf  #cluster配置文件     </span><br><span class="line">    # Clients  </span><br><span class="line">    connected_clients:68  #连接的客户端数量  </span><br><span class="line">    client_longest_output_list:0 #当前连接的客户端当中，最长的输出列表  </span><br><span class="line">    client_biggest_input_buf:0 #当前连接的客户端当中，最大输入缓存  </span><br><span class="line">    blocked_clients:0 #正在等待阻塞命令（BLPOP、BRPOP、BRPOPLPUSH）的客户端的数量        </span><br><span class="line">    # Memory  </span><br><span class="line">    used_memory:831391096 #由 Redis 分配器分配的内存总量（以字节为单位）  </span><br><span class="line">    used_memory_human:792.88M  </span><br><span class="line">    used_memory_rss:888795136 #Redis分配的内存总量(该值与top命令输出一致)  </span><br><span class="line">    used_memory_rss_human:847.62M  </span><br><span class="line">    used_memory_peak:833008000 #Redis 的内存消耗峰值（以字节为单位）  </span><br><span class="line">    used_memory_peak_human:794.42M   </span><br><span class="line">    total_system_memory:33661575168  </span><br><span class="line">    total_system_memory_human:31.35G  </span><br><span class="line">    used_memory_lua:37888  </span><br><span class="line">    used_memory_lua_human:37.00K  </span><br><span class="line">    maxmemory:0  </span><br><span class="line">    maxmemory_human:0B  </span><br><span class="line">    maxmemory_policy:noeviction  </span><br><span class="line">    mem_fragmentation_ratio:1.07 #内存碎片比率  </span><br><span class="line">    mem_allocator:jemalloc-4.0.3        </span><br><span class="line">    # Persistence  </span><br><span class="line">    loading:0 #一个标志值，记录了服务器是否正在载入持久化文件  </span><br><span class="line">    rdb_changes_since_last_save:7358 #距离最近一次成功创建持久化文件之后，经过了多少秒  </span><br><span class="line">    rdb_bgsave_in_progress:0 #一个标志值，记录了服务器是否正在创建 RDB 文件  </span><br><span class="line">    rdb_last_save_time:1505285008 #最近一次成功创建 RDB 文件的 UNIX 时间戳  </span><br><span class="line">    rdb_last_bgsave_status:ok #一个标志值，记录了最近一次创建 RDB 文件的结果是成功还是失败  </span><br><span class="line">    rdb_last_bgsave_time_sec:10 #记录了最近一次创建 RDB 文件耗费的秒数  </span><br><span class="line">    rdb_current_bgsave_time_sec:-1 #如果服务器正在创建 RDB 文件，那么这个值记录的就是当前的创建操作已经耗费的秒数  </span><br><span class="line">    aof_enabled:1 #redis是否开启了aof  </span><br><span class="line">    aof_rewrite_in_progress:0 #一个标志值，记录了服务器是否正在创建 AOF 文件  </span><br><span class="line">    aof_rewrite_scheduled:0 #一个标志值，记录了在 RDB 文件创建完毕之后，是否需要执行预约的 AOF 重写操作  </span><br><span class="line">    aof_last_rewrite_time_sec:4 #最近一次创建 AOF 文件耗费的时长  </span><br><span class="line">    aof_current_rewrite_time_sec:-1 #如果服务器正在创建 AOF 文件，那么这个域记录的就是当前的创建操作已经耗费的秒数  </span><br><span class="line">    aof_last_bgrewrite_status:ok #一个标志值，记录了最近一次创建 AOF 文件的结果是成功还是失败  </span><br><span class="line">    aof_last_write_status:ok  </span><br><span class="line">    aof_current_size:633883114  </span><br><span class="line">    aof_base_size:428945179 #服务器启动时或者 AOF 重写最近一次执行之后，AOF 文件的大小  </span><br><span class="line">    aof_pending_rewrite:0 # 一个标志值，记录了是否有 AOF 重写操作在等待 RDB 文件创建完毕之后执行  </span><br><span class="line">    aof_buffer_length:0 #AOF 缓冲区的大小  </span><br><span class="line">    aof_rewrite_buffer_length:0 #AOF 重写缓冲区的大小  </span><br><span class="line">    aof_pending_bio_fsync:0 # 后台 I/O 队列里面，等待执行的 fsync 调用数量  </span><br><span class="line">    aof_delayed_fsync:12 #被延迟的 fsync 调用数量       </span><br><span class="line">    # Stats  </span><br><span class="line">    total_connections_received:619104 #服务器已接受的连接请求数量  </span><br><span class="line">    total_commands_processed:26830012 #服务器已执行的命令数量  </span><br><span class="line">    instantaneous_ops_per_sec:1159 #服务器每秒钟执行的命令数量  </span><br><span class="line">    total_net_input_bytes:1304952619 #redis网络入口流量字节数  </span><br><span class="line">    total_net_output_bytes:1009790961 #redis网络出口流量字节数  </span><br><span class="line">    instantaneous_input_kbps:55.85 #redis网络入口kps  </span><br><span class="line">    instantaneous_output_kbps:3553.89 #redis网络出口kps  </span><br><span class="line">    rejected_connections:0 #因为最大客户端数量限制而被拒绝的连接请求数量  </span><br><span class="line">    sync_full:2  </span><br><span class="line">    sync_partial_ok:0  </span><br><span class="line">    sync_partial_err:0  </span><br><span class="line">    expired_keys:0 #因为过期而被自动删除的数据库键数量  </span><br><span class="line">    evicted_keys:0 #因为最大内存容量限制而被驱逐（evict）的键数量  </span><br><span class="line">    keyspace_hits:0 #查找数据库键成功的次数  </span><br><span class="line">    keyspace_misses:0 #查找数据库键失败的次数  </span><br><span class="line">    pubsub_channels:0 #当前使用中的频道数量  </span><br><span class="line">    pubsub_patterns:0 #当前使用中的模式数量  </span><br><span class="line">    latest_fork_usec:2639  </span><br><span class="line">    migrate_cached_sockets:0        </span><br><span class="line">    # Replication  </span><br><span class="line">    role:master #当前实例的角色master还是slave  </span><br><span class="line">    connected_slaves:1  </span><br><span class="line">    slave0:ip=172.18.1.162,port=28004,state=online,offset=674295829,lag=0  </span><br><span class="line">    master_repl_offset:674298545  </span><br><span class="line">    repl_backlog_active:1  </span><br><span class="line">    repl_backlog_size:1048576  </span><br><span class="line">    repl_backlog_first_byte_offset:673249970  </span><br><span class="line">    repl_backlog_histlen:1048576       </span><br><span class="line">    # CPU  </span><br><span class="line">    used_cpu_sys:718.26 #服务器耗费的累计系统CPU  </span><br><span class="line">    used_cpu_user:468.60 #服务器耗费的累计用户CPU  </span><br><span class="line">    used_cpu_sys_children:122.46 #后台进程耗费的系统CPU   </span><br><span class="line">    used_cpu_user_children:835.28 #后台进程耗费的用户CPU        </span><br><span class="line">    # Cluster  </span><br><span class="line">    cluster_enabled:1 #是否开启集群模式 1代表是       </span><br><span class="line">    # Keyspace  </span><br><span class="line">    db0:keys=3322,expires=0,avg_ttl=0 #各个数据库的 key 的数量，以及带有生存期的 key 的数量</span><br></pre></td></tr></table></figure>
-<h2 id="MONITOR"><a href="#MONITOR" class="headerlink" title="MONITOR"></a>MONITOR</h2><h2 id="SLOWLOG"><a href="#SLOWLOG" class="headerlink" title="SLOWLOG"></a>SLOWLOG</h2><p>通过SLOWLOG可以读取慢查询日志  </p>
-<pre><code>127.0.0.1:6320&gt; slowlog get 1    
-     1) (integer) 394689     #slowlog的唯一编号    
-     2) (integer) 1480851711     #此次slowlog事件的发生时间    
-     3) (integer) 10639     #耗时    
-     4) 1) &quot;HGET&quot;     #slowlog事件所对应的redis 命令    
-        2) &quot;hash:submit_sent_150004&quot;    
-        3) &quot;15000429648122734363745165312&quot;  
-</code></pre><p>分析:</p>
-<ol>
-<li>redis使用单线程处理客户端的请求，结果是，当请求缓慢服务时，所有其他客户端将等待这个请求被服务。如果需要执行很多的slow commands，建议把slow queries放到redis slave上去执行。  </li>
-<li>关于keys命令：执行慢速命令所产生的非常常见的延迟源是在生产环境中使用KEYS命令。   如Redis文档中所述，KEYS应该只用于调试目的。<br>SCAN:<br>SCAN是基于游标的迭代器。 这意味着在每次调用命令时，服务器返回一个更新的游标，用户需要在下一次调用中用作游标参数。<br>当游标设置为0时，迭代开始，并且当服务器返回的游标为0时终止迭代。  </li>
-</ol>
-<h2 id="redis延迟时间排查"><a href="#redis延迟时间排查" class="headerlink" title="redis延迟时间排查"></a>redis延迟时间排查</h2><p>定义:<br>    延迟指的是客户端从发送命令到接收命令回复这段时间的最大值<br>测试一下redis的响应速度：<br>    <code>redis-cli --latency -h xxx -p xxxx</code><br>这条命令会向Redis插入示例数据来检查平均延时。 Ctrl+C可以随时结束测试；<br>出现延时的可能:<br>硬件<br>网络<br>Redis命令：  </p>
-<ol>
-<li>一些时间复杂度比较高的命令，如 lrem，sort，sunion等命令会花比较长时间；另外，大量的重复连接也会造成延时，重用连接是一种很好的品质；如果有大量写操作，可以使用 pipeline管道的方式（类似mysql事务），一次性提交，这样数据量也少了，连接次数也少了，不用每次都返回数据，  </li>
-<li>速度自然会快很多；  </li>
-<li>一个非常常见的造成Redis响应延迟的情况是在生产环境中使用KEYS命令<br>使用单线程的一个结果是，当一个请求的处理很慢时，所有其他客户端将等待该请求被处理完毕。  </li>
-</ol>
-<h2 id="Redis持久化："><a href="#Redis持久化：" class="headerlink" title="Redis持久化："></a>Redis持久化：</h2><ol>
-<li><p>Redis持久化需要fork出一个进程来进行持久化操作，这本身就会引发延时，如果数据变化大，RDB配置时间短，<br>那这个代价还是挺大的；再加上，硬盘这东西真有点不靠谱，如果还是虚拟机上的虚拟硬盘，如果还是NFS共享目录，那这延时会让你崩溃。所以，如果系统不需要持久化，关了吧。  </p>
-</li>
-<li><p>Redis有两种持久化的方式：快照（RDB文件）和追加式文件（AOF文件）：<br>1) RDB持久化方式会在一个特定的间隔保存那个时间点的一个数据快照。<br>2) AOF持久化方式则会记录每一个服务器收到的写操作。在服务启动时，这些记录的操作会逐条执行从而重建出原来的数据。写操作命令记录的格式跟Redis协议一致，以追加的方式进行保存。</p>
-</li>
-<li><p>Redis的持久化是可以禁用的，就是说你可以让数据的生命周期只存在于服务器的运行时间里。<br>两种方式的持久化是可以同时存在的，但是当Redis重启时，AOF文件会被优先用于重建数据。</p>
-</li>
-<li><p>RDB  </p>
-<ol>
-<li>优点<br>RDB的性能很好，需要进行持久化时，主进程会fork一个子进程出来，<br>然后把持久化的工作交给子进程，自己不会有相关的I/O操作。<br>比起AOF，在数据量比较大的情况下，RDB的启动速度更快。  </li>
-<li>缺点<br> RDB容易造成数据的丢失。假设每5分钟保存一次快照，如果Redis因为某些原因不能正常工作，<br> 那么从上次产生快照到Redis出现问题这段时间的数据就会丢失了。<br> RDB使用fork()产生子进程进行数据的持久化，如果数据比较大的话可能就会花费点时间，造成Redis停止服务几毫秒。如果数据量很大且CPU性能不是很好的时候，停止服务的时间甚至会到1秒。  </li>
-<li>保存点（RDB的启用和禁用）<br> 配置保存点，使Redis如果在每N秒后数据发生了M次改变就保存快照文件。<br> 例如下面这个保存点配置表示每60秒，如果数据发生了1000次以上的变动，<br> Redis就会自动保存快照文件：   <pre><code>save 60 1000  
-</code></pre> 禁用快照保存  <pre><code>save &quot;&quot;  
-</code></pre> 保存点可以设置多个，Redis的配置文件就默认设置了3个保存点：</li>
-</ol>
-</li>
-</ol>
-<h2 id="持久化和延迟-性能的权衡"><a href="#持久化和延迟-性能的权衡" class="headerlink" title="持久化和延迟/性能的权衡"></a>持久化和延迟/性能的权衡</h2><p>为了在后台生成RDB文件，或者当AOF持久化开启时重写AOF文件，Redis需要执行fork。<br>fork操作（在主线程中执行）会引发响应延迟。  </p>
-<ol>
-<li>AOF + fsync always: 非常慢，只有当你确实需要时才使用该配置。  </li>
-<li>AOF + fsync every second: 一个比较均衡的选择。  </li>
-<li>AOF + fsync every second +no-appendfsync-on-rewrite选项为yes:也是一个比较均衡的选择，但是要避免重写期间执行fsync，<br>这可以降低磁盘压力。  </li>
-<li>AOF + fsync never: 将fsync操作交给内核，减少了对磁盘的压力和延迟。  </li>
-<li>RDB: 这里你可以配置触发生成RDB文件的条件。  </li>
-</ol>
-<h2 id="关闭主服务器持久化时，复制功能的数据安全"><a href="#关闭主服务器持久化时，复制功能的数据安全" class="headerlink" title="关闭主服务器持久化时，复制功能的数据安全"></a>关闭主服务器持久化时，复制功能的数据安全</h2><p>禁止主服务器关闭持久化的同时自动拉起。<br>在关闭主服务器上的持久化，并同时开启自动拉起进程的情况下，即便使用Sentinel来实现Redis的高可用性，也是非常危险的。<br>因为主服务器可能拉起得非常快，以至于Sentinel在配置的心跳时间间隔内没有检测到主服务器已被重启，然后还是会执行上面的数据丢失的流程。  </p>
-<h2 id="redis-使用场景"><a href="#redis-使用场景" class="headerlink" title="redis 使用场景"></a>redis 使用场景</h2><ol>
-<li><p>string<br> String是二进制安全的。它可以包含任何数据，图片或者其他序列化后的对象  </p>
-</li>
-<li><p>hash<br> hash特别适合用于存储对象,替代对象序列化/反序列化  </p>
-</li>
-<li><p>list<br> Lists的另一个应用就是消息队列，可以利用Lists的PUSH操作，将任务存在Lists中，然后工作线程再用POP操作将任务取出进行执行。<br> List即可以作为栈，也可以作为队列。<br> 最新列表  </p>
-</li>
-<li><p>set<br> 无序,不重复(自动去除重复)<br> 集合提供了求交集、并集、差集  </p>
-<p> 求共同关注,相同关注等  </p>
-</li>
-<li><p>Sorted Set zset<br>   增加了一个权重参数score，使得集合中的元素能够按score进行有序排列<br> 可以用Sorted Sets来做带权重的队列，比如普通消息的score为1，重要消息的score为2，然后工作线程可以选择按score的倒序来获取工作任务。让重要的任务优先执行。  </p>
-<ul>
-<li>自动排序  </li>
-<li>用户排名等<br>  比如按照用户投票时间来排序等等场景。  </li>
-<li>排行榜/top n  </li>
-<li>构建有优先级的队列系统  </li>
-</ul>
-</li>
-<li><p>计数器<br> 全局增量ID生成，类似“秒杀”  </p>
-</li>
-<li>验证重复访问<br> 验证前端的重复请求（可以自由扩展类似情况），可以通过redis进行过滤：每次请求将request Ip、参数、接口等hash作为key存储redis（幂等性请求），设置多长时间有效期，<br> 然后下次请求过来的时候先在redis中检索有没有这个key，进而验证是不是一定时间内过来的重复提交  </li>
-<li>秒杀<br> list<br> 由于 Redis 是单线程模型，lua 可以保证多个命令的原子性。  </li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/08/redis-q/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/08/redis-q/" itemprop="url">redis-q</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-08T17:41:47+08:00">
-                2018-06-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p><a href="https://www.jianshu.com/p/d5a3668d4dad" target="_blank" rel="noopener">https://www.jianshu.com/p/d5a3668d4dad</a><br>分布式缓存是网站服务端经常用到的一种技术，在读多写少的业务场景中，通过使用缓存可以有效地支撑高并发的访问量，对后端的数据库等数据源做到很好地保护.  </p>
-<p>现在有很多分布式缓存，比如Redis、Memcached以及阿里的Tair等，不管我们使用的哪种缓存产品，基本上都会遇到<code>缓存击穿</code>、<code>缓存失效</code>以及<code>热点key</code>的问题.  </p>
-<h3 id="缓存击穿："><a href="#缓存击穿：" class="headerlink" title="缓存击穿："></a>缓存击穿：</h3><p>查询一个数据库中不存在的数据，比如商品详情，查询一个不存在的ID，每次都会访问DB，如果有人恶意破坏，很可能直接对DB造成过大地压力。</p>
-<p>缓存击穿的解决方案：<br>　　当通过某一个key去查询数据的时候，如果对应在数据库中的数据都不存在，我们将此key对应的value设置为一个默认的值，比如“NULL”，并设置一个缓存的失效时间，这时在缓存失效之前，所有通过此key的访问都被缓存挡住了。后面如果此key对应的数据在DB中存在时，缓存失效之后，通过此key再去访问数据，就能拿到新的value了。</p>
-<h3 id="缓存失效-雪崩-："><a href="#缓存失效-雪崩-：" class="headerlink" title="缓存失效(雪崩)："></a>缓存失效(雪崩)：</h3><p>　　在高并发的环境下，如果此时key对应的缓存失效，此时有多个进程就会去同时去查询DB，然后再去同时设置缓存。这个时候如果这个key是系统中的热点key或者同时失效的数量比较多时，DB访问量会瞬间增大，造成过大的压力。</p>
-<p>缓存失效的解决方案：</p>
-<ol>
-<li>将系统中key的缓存失效时间均匀地错开，防止统一时间点有大量的key对应的缓存失效；</li>
-<li>重新设计缓存的使用方式，当我们通过key去查询数据时，首先查询缓存，如果此时缓存中查询不到，就通过分布式锁进行加锁，取得锁的进程查DB并设置缓存，然后解锁；其他进程如果发现有锁就等待，然后等解锁后返回缓存数据或者再次查询DB。<br> 重建缓存不能在短时间完成，可能是一个复杂计算，例如复杂的 SQL、多次 IO、多个依赖等</li>
-</ol>
-<h3 id="热点key："><a href="#热点key：" class="headerlink" title="热点key："></a>热点key：</h3><p>　　缓存中的某些Key(可能对应用与某个促销商品)对应的value存储在集群中一台机器，使得所有流量涌向同一机器，成为系统的瓶颈，该问题的挑战在于它无法通过增加机器容量来解决。</p>
-<p>发现热点key  </p>
-<p>热点key的解决方案：  </p>
-<ol>
-<li>客户端热点key缓存：将热点key对应value并缓存在客户端本地，并且设置一个失效时间。对于每次读请求，将首先检查key是否存在于本地缓存中，如果存在则直接返回，如果不存在再去访问分布式缓存的机器。</li>
-<li>将热点key分散为多个子key，然后存储到缓存集群的不同机器上，这些子key对应的value都和热点key是一样的。当通过热点key去查询数据时，通过某种hash算法随机选择一个子key，然后再去访问缓存机器，将热点分散到了多个子key上。</li>
-<li>永远不过期<br> (1) 从redis上看，确实没有设置过期时间，这就保证了，不会出现热点key过期问题，也就是“物理”不过期。<br> (2) 从功能上看，如果不过期，那不就成静态的了吗？所以我们把过期时间存在key对应的value里，如果发现要过期了，通过一个后台的异步线程进行缓存的构建，也就是“逻辑”过期<br> <strong><em>查询redis-&gt;发现过期-&gt;异步构建-&gt;输出老值</em></strong></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/08/redis-install/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/08/redis-install/" itemprop="url">redis-install</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-08T17:41:47+08:00">
-                2018-06-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="安装"><a href="#安装" class="headerlink" title="安装:"></a>安装:</h2><p>  下载地址：<a href="https://github.com/dmajkic/redis/downloads" target="_blank" rel="noopener">https://github.com/dmajkic/redis/downloads</a></p>
-<h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务:"></a>启动服务:</h3><p>  redis-server.exe redis.conf</p>
+            <h2 id="html"><a href="#html" class="headerlink" title="#html"></a>#html</h2><p>button from���������⣺<br>��button ��һ��type=button�Ϳ����ˡ�<br>��Ϊbutton�ڷ�ie�������Ĭ��������submit��  </p>
 <hr>
-<h2 id="windows安装sentinel集群"><a href="#windows安装sentinel集群" class="headerlink" title="windows安装sentinel集群"></a>windows安装sentinel集群</h2><p>复制redis 3份(redis2.8以上)</p>
-<ol>
-<li><p>maste目录中的redis6379.conf配置如下<br><strong><em>需要绑定一下机器IP地址，切勿使用默认地址127.0.0.1，最后说明原因,配置成ipv4地址</em></strong><br>bind 192.168.31.196</p>
-</li>
-<li><p>slave中的redis6380.conf配置如下<br>bind 192.168.31.196<br>port 6380<br>这里配置master的地址和端口号<br> slaveof 192.168.31.196 6379<br>如果master有密码，配置如下<br> masterauth xxx</p>
-</li>
-<li><p>配置sentinel实例<br>创建sentinel26379.conf文件<br>bind 192.168.31.196<br>port 26379<br>dir sentinel<br>sentinel monitor mymaster 192.168.31.196 6379 1<br>sentinel down-after-milliseconds mymaster 60000<br>sentinel failover-timeout mymaster 180000<br>sentinel parallel-syncs mymaster 1  </p>
-</li>
-</ol>
-<h2 id="启动过程"><a href="#启动过程" class="headerlink" title="启动过程"></a>启动过程</h2><ol>
-<li>启动redis(主,从)<br>redis-server.exe redis.windows.conf  </li>
-<li>启动sentinel<br>redis-server.exe sentinel.conf –sentinel  </li>
-</ol>
-<h3 id="windows启动redis-客户端"><a href="#windows启动redis-客户端" class="headerlink" title="windows启动redis 客户端"></a>windows启动redis 客户端</h3><p>redis-cli.exe -h address -p port<br>address,port 必须正确,否则cmd就会卡住.  </p>
+<p>w3c֧�����⣺<br>ie�Ͱ汾��֧��w3c��׼  </p>
+<hr>
 
           
         
@@ -1280,7 +355,7 @@ redis 缓存击穿,失效,热点key
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/08/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/extjs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -1299,7 +374,7 @@ redis 缓存击穿,失效,热点key
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/08/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2018/06/11/extjs/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -1311,8 +386,8 @@ redis 缓存击穿,失效,热点key
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-08T17:41:47+08:00">
-                2018-06-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:36:09+08:00">
+                2018-06-11
               </time>
             
 
@@ -1351,15 +426,1116 @@ redis 缓存击穿,失效,热点key
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <p>常用的编译app sencha命令：<br>sencha package build 打包命令<br>sencha ant clean //清除编译制品<br>sencha app build development //构建为开发环境项目<br>sencha app build production //构建为生成环境项目<br>sencha app refresh //可在添加类、删除类或更改类名后运行。它会通过Ext.Loader来更新bootstrap文件，方便开发模式的调试<br>sencha ant sass //该命令会根据Sass源代码重新生成CSS文件。它可在任何scss文件改变后运行。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> ...</span><br><span class="line">   "env": "$&#123;build.environment&#125;", </span><br><span class="line">   "serviceUrl":"$&#123;app.url&#125;", //定义Ext下的全局变量，可直接引用workspace中添加的属性配置</span><br><span class="line">   "theme": "theme-test", //可在此处指定app所需的主题</span><br><span class="line">   "requires":[</span><br><span class="line">         "font-awesome", //字体图标</span><br><span class="line">         "commonWidget", //上方创建的公共包</span><br><span class="line">         "ext-locale", //国际化</span><br><span class="line">         ...</span><br><span class="line">     ]</span><br><span class="line"> ...</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/dom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/dom/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:36:09+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="dom"><a href="#dom" class="headerlink" title="#dom            "></a>#dom            </h2><p>*dom����            </p>
+<pre><code>1���壺            
+ͨ�� JavaScript��            
+�������ع����� HTML �ĵ���            
+��������ӡ��Ƴ����ı������ҳ���ϵ���Ŀ��            
+Ҫ�ı�ҳ���ĳ��������            
+JavaScript ����Ҫ��ö� HTML �ĵ�������Ԫ�ؽ��з��ʵ���ڡ�            
+�����ڣ�            
+��ͬ�� HTML Ԫ�ؽ�����ӡ��ƶ����ı���Ƴ��ķ���������            
+����ͨ���ĵ�����ģ������õģ�DOM��            
+</code></pre><p>*����            </p>
+<pre><code>html dom            
+HTML �ĵ��е�ÿ���ɷֶ���һ���ڵ㡣            
+�ڵ�            
+���� DOM��HTML �ĵ��е�ÿ���ɷֶ���һ���ڵ㡣            
+DOM �������涨�ģ�            
+�����ĵ���һ���ĵ��ڵ�            
+ÿ�� HTML ��ǩ��һ��Ԫ�ؽڵ�            
+������ HTML Ԫ���е��ı����ı��ڵ�            
+ÿһ�� HTML ������һ�����Խڵ�            
+ע������ע�ͽڵ�            
+
+html dom�ڵ����            
+
+getElementById() �� getElementsByTagName()            
+
+getElementById() �� getElementsByTagName() �����ַ�����            
+�ɲ������� HTML �ĵ��е��κ� HTML Ԫ�ء�            
+�����ַ���������ĵ��Ľṹ��            
+������ϣ�������ĵ������е� &lt;p&gt; Ԫ�أ�            
+getElementsByTagName() �������ȫ���ҵ���            
+���� &lt;p&gt; Ԫ�ش����ĵ��е��ĸ���Ρ�ͬʱ��            
+getElementById() ����Ҳ�᷵����ȷ��Ԫ�أ�            
+���������������ĵ��ṹ�е�ʲôλ�á�            
+�����ַ����������ṩ�κ�������Ҫ�� HTML Ԫ�أ�            
+�����������ĵ���������λ�ã�            
+
+getElementById() ��ͨ��ָ���� ID ������Ԫ�أ�            
+
+getElementById() �﷨            
+document.getElementById(&quot;ID&quot;);             
+ע�ͣ�getElementById() �޷������� XML �С��� XML �ĵ��У�            
+������ͨ��ӵ������ id �������������������������ͱ����� XML DTD �н�            
+��������            
+getElementsByTagName() ������ʹ��ָ���ı�ǩ���������е�Ԫ�أ���Ϊһ���ڵ��б���            
+��ЩԪ��������ʹ�ô˷���ʱ������Ԫ�صĺ��            
+��            
+getElementsByTagName() �ɱ������κε� HTML Ԫ�أ�            
+getElementsByTagName() �﷨            
+document.getElementsByTagName(&quot;��ǩ����&quot;);             
+���ߣ�            
+document.getElementById(&apos;ID&apos;).getElementsByTagName(&quot;��ǩ����&quot;);             
+
+����������ӻ᷵������ &lt;p&gt; Ԫ�ص�һ���ڵ��б�            
+����Щ &lt;p&gt; Ԫ�ر����� id Ϊ &quot;maindiv&quot; ��Ԫ�صĺ����            
+document.getElementById(&apos;maindiv&apos;).getElementsByTagName(&quot;p&quot;);             
+</code></pre><p>*�ڵ��б�nodeList��            </p>
+<hr>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/ajax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/ajax/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:36:09+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#ajax            </p>
+<hr>
+<p>说明：<br>    如果需要像 HTML 表单那样 POST 数据，<br>    请使用 setRequestHeader() 来添加 HTTP 头。<br>    然后在 send() 方法中规定您希望发送的数据：<br>    xmlhttp.open(“POST”,”ajax_test.asp”,true);<br>    xmlhttp.setRequestHeader<br>    (“Content-type”,”application/x-www-form-urlencoded”);<br>    xmlhttp.send(“fname=Bill&amp;lname=Gates”);            </p>
+<hr>
+<p>js submit file</p>
+<p>#gameIcon 为<input type="file" name="gameIcon"><br>$(“#gameIcon”).change(function(){<br>        var file = this.files[0];<br>        console.log(file);<br>        var reader = new FileReader();<br>        reader.readAsDataURL(file);<br>        reader.onload = function(e){<br>            var form = new FormData();// ??只有form格式可以传数据<br>            form.append(“uploadFile”, file);<br>            var settings = {<br>              “async”: true,<br>              “crossDomain”: true,<br>              “url”: ctx + “/fileAction/commonFileUpLoad.action”,<br>              “method”: “POST”,<br>              “headers”: {<br>                “cache-control”: “no-cache”,<br>              },<br>              “processData”: false,<br>              “contentType”: false,<br>              “mimeType”: “multipart/form-data”,<br>              “data”: form<br>            }</p>
+<pre><code>        $.ajax(settings).done(function (response) {
+          console.log(response);
+        });
+
+    }; 
+});
+</code></pre><hr>
+<p>spring js 序列化传参 serialize</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/idea/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/idea/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:36:09+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#idea</p>
+<hr>
+<p>ctrl + alt + l 格式化<br>ctrl + shift + enter 一行对齐</p>
+<p>mark derectory as excluded 后 tomcat无法加载对应文件夹下的文件</p>
+<p>ctrl + alt + l 格式化<br>ctrl + shift + enter 一行对齐<br>alt + F7 查询方法被调用位置<br>alt + enter 自动导入包<br>F11 行前打 √<br>Structure  Alt + 7 显示当前类的所有方法</p>
+<p>#版本控制工具<br>绿色，已经加入控制暂未提交<br>红色，未加入版本控制<br>蓝色，加入，已提交，有改动<br>白色，加入，已提交，无改动<br>灰色：版本控制已忽略文件。</p>
+<p>#设置</p>
+<p>#去除自动补全的大小写敏感：<br>不知道多少童鞋和我一样被Eclipse惯坏了，使用自动补全完全不注意大小写的，IntelliJ默认区分大小写，很是让人难过。不过在Editor=&gt;Code Completion里把Case sensitive completion设置为None就可以了。</p>
+<p>#plujin jrebel</p>
+<p>#active code<br>ks7u6sCdw4AKnRX/LKIE3+/tWTIVrDa5skvaBnYKhQaroFkFMecKO1OcpDZCs/rlAKfoiSyM3/nqKI8sxBOiZnKqf9rN+473BRfutfkoduYfAd3sUF0q6i19X5QN4EH6W9I0pQ==</p>
+<p>#junit<br>安装:<br>plugin 收搜 junit generator<br>配置代理<br>IntelliJ IDEA JUnit Generator自动创建测试用例到指定(maven)test目录<br>1.打开File-&gt;Settings<br>2.搜索junit，找到JUnit Generator<br>3.Properties选项卡里的Output Path为测试用例生成的目录，修改为test目录：<br>${SOURCEPATH}/../../test/java/${PACKAGE}/${FILENAME}<br>4.切换到JUnit 4选项卡，可以修改生成测试用例的模板，比如类名、包名等</p>
+<hr>
+<p>#IntelliJ Idea 常用快捷键列表<br><a href="http://wiki.jikexueyuan.com/project/intellij-idea-tutorial/keymap-introduce.html" target="_blank" rel="noopener">http://wiki.jikexueyuan.com/project/intellij-idea-tutorial/keymap-introduce.html</a></p>
+<p>Ctrl+Shift + Enter，语句完成<br>“！”，否定完成，输入表达式时按 “！”键<br>Ctrl+E，最近的文件<br>Ctrl+Shift+E，最近更改的文件<br>Shift+Click，可以关闭文件<br>Ctrl+[ OR ]，可以跑到大括号的开头与结尾<br>Ctrl+F12，可以显示当前文件的结构<br>Ctrl+F7，可以查询当前元素在当前文件中的引用，然后按 F3 可以选择<br>Ctrl+N，可以快速打开类<br>Ctrl+Shift+N，可以快速打开文件<br>Alt+Q，可以看到当前方法的声明<br>Ctrl+P，可以显示参数信息<br>Ctrl+Shift+Insert，可以选择剪贴板内容并插入<br>Alt+Insert，可以生成构造器/Getter/Setter等<br>Ctrl+Alt+V，可以引入变量。例如：new String(); 自动导入变量定义<br>Ctrl+Alt+T，可以把代码包在一个块内，例如：try/catch<br>Ctrl+Enter，导入包，自动修正<br>Ctrl+Alt+L，格式化代码<br>Ctrl+Alt+I，将选中的代码进行自动缩进编排，这个功能在编辑 JSP 文件时也可以工作<br>Ctrl+Alt+O，优化导入的类和包<br>Ctrl+R，替换文本<br>Ctrl+F，查找文本<br>Ctrl+Shift+Space，自动补全代码<br>Ctrl+空格，代码提示（与系统输入法快捷键冲突）<br>Ctrl+Shift+Alt+N，查找类中的方法或变量<br>Alt+Shift+C，最近的更改<br>Alt+Shift+Up/Down，上/下移一行<br>Shift+F6，重构 – 重命名<br>Ctrl+X，删除行<br>Ctrl+D，复制行<br>Ctrl+/或Ctrl+Shift+/，注释（//或者/**/）<br>Ctrl+J，自动代码（例如：serr）<br>Ctrl+Alt+J，用动态模板环绕<br>Ctrl+H，显示类结构图（类的继承层次）<br>Ctrl+Q，显示注释文档<br>Alt+F1，查找代码所在位置<br>Alt+1，快速打开或隐藏工程面板<br>Ctrl+Alt+left/right，返回至上次浏览的位置<br>Alt+left/right，切换代码视图<br>Alt+Up/Down，在方法间快速移动定位<br>Ctrl+Shift+Up/Down，向上/下移动语句<br>F2 或 Shift+F2，高亮错误或警告快速定位<br>Tab，代码标签输入完成后，按 Tab，生成代码<br>Ctrl+Shift+F7，高亮显示所有该文本，按 Esc 高亮消失<br>Alt+F3，逐个往下查找相同文本，并高亮显示<br>Ctrl+Up/Down，光标中转到第一行或最后一行下<br>Ctrl+B/Ctrl+Click，快速打开光标处的类或方法（跳转到定义处）<br>Ctrl+Alt+B，跳转到方法实现处<br>Ctrl+Shift+Backspace，跳转到上次编辑的地方<br>Ctrl+O，重写方法<br>Ctrl+Alt+Space，类名自动完成<br>Ctrl+Alt+Up/Down，快速跳转搜索结果<br>Ctrl+Shift+J，整合两行<br>Alt+F8，计算变量值<br>Ctrl+Shift+V，可以将最近使用的剪贴板内容选择插入到文本<br>Ctrl+Alt+Shift+V，简单粘贴<br>Shift+Esc，不仅可以把焦点移到编辑器上，而且还可以隐藏当前（或最后活动的）工具窗口<br>F12，把焦点从编辑器移到最近使用的工具窗口<br>Shift+F1，要打开编辑器光标字符处使用的类或者方法 Java 文档的浏览器<br>Ctrl+W，可以选择单词继而语句继而行继而函数<br>Ctrl+Shift+W，取消选择光标所在词<br>Alt+F7，查找整个工程中使用地某一个类、方法或者变量的位置<br>Ctrl+I，实现方法<br>Ctrl+Shift+U，大小写转化<br>Ctrl+Y，删除当前行</p>
+<p>Shift+Enter，向下插入新行<br>psvm/sout，main/System.out.println(); Ctrl+J，查看更多<br>Ctrl+Shift+F，全局查找<br>Ctrl+F，查找/Shift+F3，向上查找/F3，向下查找<br>Ctrl+Shift+S，高级搜索<br>Ctrl+U，转到父类<br>Ctrl+Alt+S，打开设置对话框<br>Alt+Shift+Inert，开启/关闭列选择模式<br>Ctrl+Alt+Shift+S，打开当前项目/模块属性<br>Ctrl+G，定位行<br>Alt+Home，跳转到导航栏<br>Ctrl+Enter，上插一行<br>Ctrl+Backspace，按单词删除<br>Ctrl+”+/-”，当前方法展开、折叠<br>Ctrl+Shift+”+/-”，全部展开、折叠<br>【调试部分、编译】<br>Ctrl+F2，停止<br>Alt+Shift+F9，选择 Debug<br>Alt+Shift+F10，选择 Run<br>Ctrl+Shift+F9，编译<br>Ctrl+Shift+F10，运行<br>Ctrl+Shift+F8，查看断点<br>F8，步过<br>F7，步入<br>Shift+F7，智能步入<br>Shift+F8，步出<br>Alt+Shift+F8，强制步过<br>Alt+Shift+F7，强制步入<br>Alt+F9，运行至光标处<br>Ctrl+Alt+F9，强制运行至光标处<br>F9，恢复程序<br>Alt+F10，定位到断点<br>Ctrl+F8，切换行断点<br>Ctrl+F9，生成项目<br>Alt+1，项目<br>Alt+2，收藏<br>Alt+6，TODO<br>Alt+7，结构<br>Ctrl+Shift+C，复制路径<br>Ctrl+Alt+Shift+C，复制引用，必须选择类名<br>Ctrl+Alt+Y，同步<br>Ctrl+~，快速切换方案（界面外观、代码风格、快捷键映射等菜单）<br>Shift+F12，还原默认布局<br>Ctrl+Shift+F12，隐藏/恢复所有窗口<br>Ctrl+F4，关闭<br>Ctrl+Shift+F4，关闭活动选项卡<br>Ctrl+Tab，转到下一个拆分器<br>Ctrl+Shift+Tab，转到上一个拆分器<br>【重构】<br>Ctrl+Alt+Shift+T，弹出重构菜单<br>Shift+F6，重命名<br>F6，移动<br>F5，复制<br>Alt+Delete，安全删除<br>Ctrl+Alt+N，内联<br>【查找】<br>Ctrl+F，查找<br>Ctrl+R，替换<br>F3，查找下一个<br>Shift+F3，查找上一个<br>Ctrl+Shift+F，在路径中查找<br>Ctrl+Shift+R，在路径中替换<br>Ctrl+Shift+S，搜索结构<br>Ctrl+Shift+M，替换结构<br>Alt+F7，查找用法<br>Ctrl+Alt+F7，显示用法<br>Ctrl+F7，在文件中查找用法<br>Ctrl+Shift+F7，在文件中高亮显示用法</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/hexo/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:36:09+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/Atom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/Atom/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:36:09+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>预览: ctrl + shift + m</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/function-SQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/function-SQL/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:36:09+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>合并多个列   mysql</p>
+<p>SELECT<br>    uniMark,operateTime,rcsCode,rcsCodeName,quota,<br>    GROUP_CONCAT(type, “:”, quota) AS index_quota<br>FROM<br>    t_quota_cashier_pay_channel_code<br>GROUP BY<br>    <code>rcsCode</code>;</p>
+<p>group_concat(param1,param2,param3)<br>param1:分组字段<br>param2:分割符<br>param3:被分组字段</p>
+<p>根据分组显示合并的字符串<br>eg: type1:quota1,type2:quota2</p>
+<hr>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/08_java_log/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/08_java_log/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:36:09+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>slf4j<br>    SLF4J不同于其他日志类库，与其它有很大的不同。<br>    SLF4J(Simple logging Facade for Java)不是一个真正的日志实现，<br>    而是一个抽象层（ abstraction layer），它允许你在后台使用任意一个日志类库。<br>    如果是在编写供内外部都可以使用的API或者通用类库，<br>    那么你真不会希望使用你类库的客户端必须使用你选择的日志类库。</p>
+<hr>
+<p>配置slf4j,配置log4j</p>
+<p>引入jar包：<br>      slf4j-api-1.5.8.jar<br>      slf4j-log4j12-1.5.8.jar<br>      log4j-1.2.17.jar    </p>
+<p>配置slf4j： </p>
+<p>配置log4j：<br>    配置log4j.properties</p>
+<p>① 配置根Logger<br>    配置显示日志记录的优先级<br>    log4j.rootLogger=warn, stdout</p>
+<p>② 配置日志信息输出目的地Appender</p>
+<p>log4j.appender.appenderName.option = valueN </p>
+<pre><code>valueN的值
+org.apache.log4j.ConsoleAppender（控制台）
+org.apache.log4j.FileAppender（文件)
+</code></pre><p>　    org.apache.log4j.DailyRollingFileAppender（每天产生一个日志文件）<br>　    org.apache.log4j.RollingFileAppender（文件大小到达指定尺寸的时候产生一个新的文件）<br>　    org.apache.log4j.WriterAppender（将日志信息以流格式发送到任意指定的地方）</p>
+<ol start="3">
+<li>输出debug语句<br> log4j.logger.org.hibernate=debug</li>
+</ol>
+<hr>
+<p>web.xml配置：</p>
+<p><context-param><br>    <param-name>log4jConfigLocation</param-name><br>    <param-value>/WEB-INF/classes/log4j.properties</param-value><br></context-param></p>
+<listener><br>    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class><br></listener>
+
+<hr>
+<p>java 调用：</p>
+<pre><code>import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+private static Logger log = LoggerFactory.getLogger(TicketQrInfoAction.class);
+</code></pre><hr>
+<p>log4j.properties</p>
+<pre><code># Output pattern : date [thread] priority category - message   FATAL 0  ERROR 3  WARN 4  INFO 6  DEBUG 7 
+log4j.rootLogger=DEBUG,Console,File
+
+#Console
+log4j.appender.Console=org.apache.log4j.ConsoleAppender
+log4j.appender.Console.threshold=DEBUG
+log4j.appender.Console.layout=org.apache.log4j.PatternLayout
+log4j.appender.Console.layout.ConversionPattern=%d [%t] %-5p [%c] - %m%n
+
+#Springframework level
+log4j.logger.org.springframework=DEBUG
+log4j.logger.com.mybatis=DEBUG
+log4j.logger.org.apache.ibatis=DEBUG
+log4j.logger.com.ibatis = DEBUG
+log4j.logger.java.sql=DEBUG
+log4j.logger.java.sql.ResultSet=DEBUG  
+log4j.logger.org.apache=DEBUG  
+log4j.logger.java.sql.Connection=DEBUG  
+log4j.logger.java.sql.Statement=DEBUG  
+log4j.logger.java.sql.PreparedStatement=DEBUG   
+
+#log4j.appender.File=org.apache.log4j.DailyRollingFileAppender
+#log4j.appender.File.File=${tms.root}logs/log
+#log4j.appender.File.DatePattern=&apos;_&apos;yyyy-MM-dd&apos;.log&apos; 
+#log4j.appender.File.layout=org.apache.log4j.PatternLayout
+#log4j.appender.File.layout.ConversionPattern=[TMS] %p [%t] %-d{yyyy-MM-dd HH\:mm\:ss} %C.%M(%L) | %m%n
+</code></pre><hr>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/07_java_web/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/07_java_web/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:36:09+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>web.xml 加载顺序：<br>    加载顺序与它们在 web.xml 文件中的先后顺序无关。<br>    context-param -&gt; listener -&gt; filter -&gt; servlet</p>
+<p>context-param<br>    context-param，它用于向 ServletContext 提供键值对，即应用程序上下文信息。<br>    我们的 listener, filter 等在初始化时会用到这些上下文中的信息</p>
+<hr>
+<p>http</p>
+<hr>
 
           
         
@@ -1398,6 +1574,10 @@ redis 缓存击穿,失效,热点key
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1441,7 +1621,7 @@ redis 缓存击穿,失效,热点key
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

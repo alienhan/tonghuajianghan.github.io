@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Ĭ�Ϸ��� tomcat��������ssl tomcat������https���� eclipse tomcat servers �����ļ� context.xml tomcat-user.xml�������������tomcat���û� tomcatͨ��conf-Catalina-localhostĿ¼������Ŀ tomcat �·���localhost���� �">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大东山下">
+<meta property="og:url" content="http://yoursite.com/2018/06/11/Tomcat/index.html">
+<meta property="og:site_name" content="大东山下">
+<meta property="og:description" content="Ĭ�Ϸ��� tomcat��������ssl tomcat������https���� eclipse tomcat servers �����ļ� context.xml tomcat-user.xml�������������tomcat���û� tomcatͨ��conf-Catalina-localhostĿ¼������Ŀ tomcat �·���localhost���� �">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-11T03:38:40.045Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="大东山下">
+<meta name="twitter:description" content="Ĭ�Ϸ��� tomcat��������ssl tomcat������https���� eclipse tomcat servers �����ļ� context.xml tomcat-user.xml�������������tomcat���û� tomcatͨ��conf-Catalina-localhostĿ¼������Ŀ tomcat �·���localhost���� �">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/11/Tomcat/"/>
+
+
+
+
+
+  <title> | 大东山下</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">大东山下</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/Tomcat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:32:20+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li>Ĭ�Ϸ���</li>
+<li>tomcat��������ssl</li>
+<li>tomcat������https����</li>
+<li>eclipse tomcat servers �����ļ�</li>
+<li>context.xml</li>
+<li>tomcat-user.xml�������������tomcat���û�</li>
+<li>tomcatͨ��conf-Catalina-localhostĿ¼������Ŀ</li>
+<li>tomcat �·���localhost����</li>
+<li>������Ŀ</li>
+<li>tomcat ���÷���������,����eclipse��debug���� || eclipse ����Զ��tomcat || tomcat����������Զ�̵���</li>
+</ol>
+<hr>
+<ol>
+<li>Ĭ�Ϸ���<br>tomcatĬ�Ϸ���ROOT Ӧ�ó���</li>
+</ol>
+<hr>
+<ol start="2">
+<li>tomcat��������ssl</li>
+</ol>
+<p>1):����keystore�ļ�<br>keytool -v -genkey -alias tomcat -keyalg RSA -keystore d:/tomcat.keystore<br>ע�⣺<br>      cn=localhost</p>
+<p>2):��keystore�е���server.cer���ļ�<br>   keytool -export -trustcacerts -alias tomcat -file d:/server.cer -keystore d:/tomcat.keystore -storepass 123456</p>
+<p>3):��server.cer�ļ����뵽jdk�еĴ���֤��Ŀ���<br>keytool -import -trustcacerts -alias tomcat -file d:/server.cer -keystore D:\Java\jdk1.6.0_19/jre/lib/security/cacerts -storepass changeit</p>
+<p>4):����tomcat��conf�ļ��µ�sever.xml�ļ�</p>
+<connector port="8443" protocol="HTTP/1.1" sslenabled="true" maxthreads="150" scheme="https" secure="true" clientauth="false" keystorefile="D:\tomcat.keystore" keystorepass="123456" sslprotocol="TLS">
+
+<p>5)��װserver.cer֤��</p>
+<h2 id="��server-cer��װ�������εĸ�L¼��"><a href="#��server-cer��װ�������εĸ�L¼��" class="headerlink" title="  ��server.cer��װ�������εĸ�Ŀ¼��"></a>  ��server.cer��װ�������εĸ�Ŀ¼��</h2><ol start="3">
+<li>tomcat������https����</li>
+</ol>
+<p>example:<br><a href="http://blog.csdn.net/supersky07/article/details/7407523" target="_blank" rel="noopener">http://blog.csdn.net/supersky07/article/details/7407523</a></p>
+<p>[tomcat������https������֤�����˫����֤��]<br>tomcat ����֤�������<br>keytool -import -alias rootca.cer -keystore your_keystore<br> -storepass your_pass -trustcacerts -file c:\rootca.cer<br>�����֤��ʱ��������Ҫ�ͷ�����֤��alias������ͬ��</p>
+<p>���������֤��ʱ����ע���Լ���alias��</p>
+<p>����ǵ���SSL��<br>ֻ��Ҫ�ڷ���˲���SSL֤�鼴��ʵ��https://���ܷ��ʣ�<br>���˫����֤�������SSL+�ͻ���֤����֤����<br>Ҳֻ��ҪWeb Server�����ü��ɣ���ȫ����Ҫд���롣</p>
+<p>jdk�Դ���keytool��openssl</p>
+<p>1)��keytool �� openssl���ǹ��ߡ�<br>������Ǹ���Ӧ�÷���������web server��ͬ��<br>��ʹ�ö�Ӧ�Ĺ���.tomcat��Ҫʹ��keytool���ߡ�</p>
+<p>2)��cer��crt����֤���ʽ������webserver<br>����Ӧ�÷�����֧�����־ͽ�֤��ĳ��ĸ����ܼ򵥡�<br>JKS��һ�ָ�ʽ��һ��ʹ��openssl�Ķ���jks��ʽ����key��ʽ��<br>ʹ��keytool�Ķ���keystore��ʽ��</p>
+<p>3)�����ڵ����֤�����⣬һ�㶼Ҫ�����֤�顣<br>�ͻ���֤������˵�ĵ��룬��û���ס��Ҿ��ÿͻ��˲���Ҫ�ٵ����˰ɣ�<br>�ڷ���������˫����֤��Ҳ����Ҫ���룬ֻ��Ҫ�ӷ�����������һ�¼��ɡ�<br>tomcat��֤�鵼�룬����Ҫ�����֤�飨������м���֤�飬Ҳ����Ҫ����ģ�</p>
+<hr>
+<ol start="4">
+<li>eclipse tomcat servers �����ļ�</li>
+</ol>
+<p>server.xml</p>
+<!--���������Ŀ¼,�Ƿ����¼���-->
+<context docbase="dev_pss" path="/dev_pss" reloadable="true" source="org.eclipse.jst.jee.server:dev_pss">
+
+<hr>
+<ol start="5">
+<li>context.xml<br>context.xmlһ����Catalina�µ��ļ�<br>�������û�����.<br>���ǿ�������Ŀ��ʱ��<br>һ�㶼����������ļ��������һ����Ŀ��<br>�����ǰ���Ŀ������webapp��ȥ,</li>
+</ol>
+<p>��Ŀ�ײ�λ��</p>
+<context path="/pss-dev" docbase="E:/worksapce/wondersWorkspace/dev_pss/WebRoot">
+
+<p>���ݿ�</p>
+<resource name="jdbc/pss" type="javax.sql.DataSource" driverclassname="oracle.jdbc.driver.OracleDriver" url="jdbc:oracle:thin:@10.1.8.217:1521:sck" username="PSS" password="xdrcft56" maxidle="2" maxwait="5000" maxactive="4">
+
+<hr>
+<ol start="7">
+<li>tomcatͨ��conf-Catalina-localhostĿ¼������Ŀ</li>
+</ol>
+<p>ע�⣺xml���ļ���һ��Ҫ�ͷ���·��һ�£�</p>
+<p>�������ò�����eclipseֱ�ӽ���Ŀ���ص�tomcat�У���˲�����eclipse������Ŀ<br>ֱ������tomcat���С�</p>
+<p>(���)<br>eclipse3.2�е�tomcat����Ϳ���ֱ����tomcat��������eclipse��������</p>
+<hr>
+<ol start="8">
+<li>tomcat �·���localhost����<br>������tomcat����·�������⣬�ı��127.0.0.1����</li>
+</ol>
+<hr>
+<ol start="9">
+<li>������Ŀ<br> tomcat6������Ŀ��<pre><code>1.�����ⲿ�ļ�
+    ����%tomcat%/conf/Catalina/localhost/xx.xml
+2.�ڶ��η�����ʱ�򣬽�����ԭ������
+3.��ȷ����tomcat
+</code></pre></li>
+</ol>
+<hr>
+<ol start="10">
+<li><p>tomcat ���÷���������,����eclipse��debug���� || eclipse ����Զ��tomcat || tomcat����������Զ�̵���<br>������tomcat��:<br>bin-&gt;catalina.bat –&gt;</p>
+<p>set JAVA_OPTS=%JAVA_OPTS% %LOGGING_MANAGER%<br>set CATALINA_OPTS=-server -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000<br>rem —– Execute The Requested Command —————————————</p>
+</li>
+</ol>
+<p>����eclipse��:<br>    servers –&gt; tomcat 6.x –&gt; ��Ŀ –&gt;right click -&gt; Remote Java Application –&gt; Coonect –&gt;<br>    ���ñ�����Ŀ,Զ�̷�������ַ,�˿�</p>
+<hr>
+<h1 id=""><a href="#" class="headerlink" title="========================================================================================================================================="></a>=========================================================================================================================================</h1><p>error</p>
+<p>jetty û������,tomcat�Ͼ�������<br>SAX2 driver class org.apache.xerces.parsers.SAXParser not found<br>���:<br><a href="https://stackoverflow.com/questions/11677572/dealing-with-xerces-hell-in-java-maven" target="_blank" rel="noopener">https://stackoverflow.com/questions/11677572/dealing-with-xerces-hell-in-java-maven</a></p>
+<dependency><br>    <groupid>xerces</groupid><br>    <artifactid>xercesImpl</artifactid><br>    <version>2.0.2</version><br></dependency>
+</resource></context></context></connector>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/11/storm/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/11/redis-install/" rel="prev" title="redis-install">
+                redis-install <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">落叶</p>
+              <p class="site-description motion-element" itemprop="description">java redis mysql mybatis</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#��server-cer��װ�������εĸ�L¼��"><span class="nav-number">1.</span> <span class="nav-text">  ��server.cer��װ�������εĸ�Ŀ¼��</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">=========================================================================================================================================</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">落叶</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
