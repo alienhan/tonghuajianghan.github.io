@@ -232,947 +232,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/kafka/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/kafka/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:34:48+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>##kafka<br>  官网：<a href="http://kafka.apache.org" target="_blank" rel="noopener">http://kafka.apache.org</a></p>
-<hr>
-<p>#安装启动</p>
-<ol>
-<li>前提条件：<blockquote>
-<p>jdk<br>zookeeper(详细在zookeeper.txt中)</p>
-</blockquote>
-</li>
-</ol>
-<p>#安装kafka</p>
-<ul>
-<li>下载地址：<a href="https://www.apache.org/dyn/closer.cgi?path=/kafka/0.10.2.0/kafka_2.10-0.10.2.0.tgz" target="_blank" rel="noopener">https://www.apache.org/dyn/closer.cgi?path=/kafka/0.10.2.0/kafka_2.10-0.10.2.0.tgz</a><blockquote>
-<p>注意：<br>kafka 2.10-0.10,kafka_2.10-0.9.0.0   对应java8</p>
-</blockquote>
-</li>
-</ul>
-<p><strong>windows 安装问题</strong></p>
-<ol>
-<li>编辑config/serer.properties   </li>
-<li><p>找到并编辑“log.dirs=/tmp/kafka-logs” to “log.dir=D:\java\kafka\kafka\kafka-logs”<br>3.如果Zookeeper在某些其他的机器或集群上运行，可以将“zookeeper.connect:2181”修改为自定义IP与端口。<br>在这个演示中我们使用了同一个机器，因此没必要做修改。文件中的Kafka端口和broker.id也是可以配置的。其他设置不变。 </p>
-<p>4.Kafka会按照默认，在9092端口上运行，并连接zookeeper的默认端口：2181。</p>
-</li>
-</ol>
-<p><strong>linux 安装问题</strong><br>Unrecognized VM option ‘+UseCompressedOops’ when running kafka from my ubuntu in vmware<br>解决:<br>vi bin/kafka-run-class.sh</p>
-<p>before removing :<br>KAFKA_JVM_PERFORMANCE_OPTS=”-server -XX:+UseCompressedOops -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:+CMSScavengeBeforeRemark -XX:+DisableExplicitGC -Djava.awt.headless=true”</p>
-<p>after removing :<br>KAFKA_JVM_PERFORMANCE_OPTS=”-server -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:+CMSScavengeBeforeRemark -XX:+DisableExplicitGC -Djava.awt.headless=true”</p>
-<p>#运行kafka<br>    重要：确保在启动Kafka服务器前，Zookeeper实例已经准备好并开始运行。</p>
-<pre><code>window启动:
-.\bin\windows\kafka-server-start.bat .\config\server.properties
-
-linux 启动:
-sh bin/kafka-server-start.sh  config/server.properties 
-</code></pre><hr>
-<p>#component 组件<br>topic<br>    topic 是在broker站点上新建的因此 无论生产端,消费端都没有配置的权利,<br>    因此在项目中的关于topic配置,只是单纯的与broker站点上的配置相同,不起任何配置性作用.<br>    项目中只能配置producer,customer的相关配置.<br>partition：分区编号<br>offset：表示该parition已经消费了多少条message<br>logSize：表示该partition已经写了多少条message<br>Lag：表示有多少条message没有被消费。</p>
-<p>#producer 配置<br>acks<br>  数据 durability 的设置；<br>  producer希望leader返回的用于确认请求完成的确认数量. 可选值 all, -1, 0 1. 默认值为1<br>  acks=0 不需要等待服务器的确认. 这时retries设置无效. 响应里来自服务端的offset总是-1.     producer只管发不管发送成功与否。延迟低，容易丢失数据。<br>  acks=1表示leader写入成功（但是并没有刷新到磁盘）后即向producer响应。延迟中等，一旦leader副本挂了，就会丢失数据。<br>  acks=all等待数据完成副本的复制, 等同于-1. 假如需要保证消息不丢失, 需要使用该设置. 同时需要设置unclean.leader.election.enable为true, 保证当ISR列表为空时, 选择其他存活的副本作为新的leader.<br>producer.type：<br>  消息发送类型同步还是异步，默认为同步<br>compression.codec：<br>  消息的压缩格式，默认为none不压缩，也可以为gzip, snappy, lz4<br>max.in.flight.requests.per.connection=1<br>  同一分区消息乱序：假设a,b两条消息，a先发送后由于发送失败重试，这时顺序就会在b的消息后面，可以设置max.in.flight.requests.per.connection=1来避免<br>  max.in.flight.requests.per.connection：限制客户端在单个连接上能够发送的未响应请求的个数。设置此值是1表示kafka broker在响应请求之前client不能再向同一个broker发送请求，但吞吐量会下降<br><strong>异步生产者配置</strong><br>  queue.buffering.max.ms：生产者异步缓存数据的最大时间，单位毫秒<br>  queue.buffering.max.messages：生产者异步缓存消息的最大容量<br>  queue.enqueue.timeout.ms：队列超时事件。0，如果队列满了就放弃；-ve，如果队列满了就会永远阻塞；+ve，如果队列满了会阻塞一段时间。<br>  batch.num.messages：生产者可以批量处理的消息数</p>
-<p>#Consumer<br>auto.commit.enable = true<br>  true时，Consumer会在消费消息后将offset同步到zookeeper，这样当Consumer失败后，新的consumer就能从zookeeper获取最新的offset<br>  如果设为true，consumer会定时向ZooKeeper发送已经获取到的消息的offset。当consumer进程挂掉时，已经提交的offset可以继续使用，让新的consumer继续工作。<br>auto.commit.interval.ms = 60 * 1000<br>  consumer向ZooKeeper发送offset的时间间隔。自动提交的时间间隔 interval(时间间隔)</p>
-<p>rebalance.max.retries 默认值：4<br>  当一个新的consumer加入一个consumer group时，会有一个rebalance的操作，导致每一个consumer和partition的关系重新分配。如果这个重分配失败的话，会进行重试，此配置就代表最大的重试次数。<br>rebalance.backoff.ms = 2000 默认值：2000<br>  每次reblance的时间间隔<br>refresh.leader.backoff.ms<br>  在consumer发现失去某个partition的leader后，在leader选出来前的等待的backoff时间。</p>
-<p><strong>Consumer Kafka消息消费一致性</strong><br>Kafka消费端的offset主要由consumer来控制, Kafka将每个consumer所监听的tocpic的partition的offset保存在__consumer_offsets主题中. consumer需要将处理完成的消息的offset提交到服务端, 主要有ConsumerCoordinator完成的.</p>
-<p>每次从kafka拉取数据之前, 假如是异步提交offset, 会先调用已经完成的offset commit的callBack, 然后检查ConsumerCoordinator的连接状态. 如果设置了自动提交offset, 会继续上次从服务端获取的数据的offset异步提交到服务端. 这里需要注意的是会有几种情况出现:<br>    1.消息丢失<br>      消息处理耗时较多, 假如处理单条消息的耗时为t, 拉取的消息个数为n. t * n &gt; auto_commit_interval_ms, 会导致没有处理完的消息的offset被commit到服务端. 假如此时消费端挂掉, 没有处理完的数据将会丢失.<br>    2.重复消费<br>      假如消息处理完成, offset还未commit到服务端的时候消费端挂掉, 已经处理完的消息会被再次消费.<br>      影响着数据一致性和性能<br>      业务处理:<br>        去重：将消息的唯一标识保存到外部介质中，每次消费处理时判断是否处理过<br>    3.消息乱序:<br>        retry造成的<br>        max.in.flight.requests.per.connection = 1<br>           限制客户端在单个连接上能够发送的未响应请求的个数。设置此值是1表示kafka broker在响应请求之前client不能再向同一个broker发送请求<br>           (保证单个partition有序)<br>  enable.auto.commit 默认为true<br>  auto.commit.interval.ms 默认为5000 ms (5s)<br>  max.poll.records 默认为500<br>  fetch.max.bytes 默认为52428800 bytes (50Mib).<br>解决方案.<br>1.<br>  把enable.auto.commit设置为false, 并在每处理完一条数据后手动提交offset.<br>  这里需要主意的时, 提交的offset是对当前消息的offset基础上进行加1.<br>   consumer.commitSync(Collections.singletonMap(new TopicPartition(record.topic(), record.partition()), new OffsetAndMetadata(record.offset() + 1)));<br>2.<br>  新建线程处理消息<br><strong>kafka partition和consumer数目关系</strong><br>  kafka的设计是在一个partition上是不允许并发<br>  partiton数目是consumer数目的整数倍<br>  kafka只保证在一个partition上数据是有序<br>  增减consumer，broker，partition会导致rebalance，所以rebalance后consumer对应的partition会发生变化</p>
-<p>#kafka副本问题<br>发消息过程<br>  Producer在发布消息到某个Partition时，先通过ZooKeeper找到该Partition的Leader，然后无论该Topic的Replication Factor为多少（也即该Partition有多少个Replica），Producer只将该消息发送到该Partition的Leader。Leader会将该消息写入其本地Log。每个Follower都从Leader pull数据。这种方式上，Follower存储的数据顺序与Leader保持一致.<br>Kafka分配Replica的算法<br>    将所有Broker（假设共n个Broker）和待分配的Partition排序.<br>    将第i个Partition分配到第（i mod n）个Broker上.<br>    将第i个Partition的第j个Replica分配到第（(i + j) mode n）个Broker上.</p>
-<p>#zookeeper如何管理kafka<br>  Producer端使用zookeeper用来”发现”broker列表,以及和Topic下每个partition leader建立socket连接并发送消息.<br>  Broker端使用zookeeper用来注册broker信息,以及监测partition leader存活性.<br>  Consumer端使用zookeeper用来注册consumer信息,其中包括consumer消费的partition列表等,同时也用来发现broker列表,并和partition leader建立socket连接,并获取消息.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/java web listener/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/java web listener/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:34:48+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>##java web listener##</p>
-<h2 id="在JavaWeb被监听的事件源为：ServletContext、HttpSession、ServletRequest，即三大域对象。"><a href="#在JavaWeb被监听的事件源为：ServletContext、HttpSession、ServletRequest，即三大域对象。" class="headerlink" title="在JavaWeb被监听的事件源为：ServletContext、HttpSession、ServletRequest，即三大域对象。"></a>在JavaWeb被监听的事件源为：ServletContext、HttpSession、ServletRequest，即三大域对象。</h2><p>监听域对象“创建”与“销毁”的监听器；<br>监听域对象“操作域属性”的监听器；<br>监听HttpSession的监听器。</p>
-<p>创建与销毁监听器一共有三个：<br>ServletContextListener：Tomcat启动和关闭时调用下面两个方法<br>    public void contextInitialized(ServletContextEvent evt)：ServletContext对象被创建后调用；<br>    public void contextDestroyed(ServletContextEvent evt)：ServletContext对象被销毁前调用；<br>HttpSessionListener：开始会话和结束会话时调用下面两个方法<br>    public void sessionCreated(HttpSessionEvent evt)：HttpSession对象被创建后调用；<br>    public void sessionDestroyed(HttpSessionEvent evt)：HttpSession对象被销毁前调用；<br>ServletRequestListener：开始请求和结束请求时调用下面两个方法<br>    public void requestInitiallized(ServletRequestEvent evt)：ServletRequest对象被创建后调用；<br>    public void requestDestroyed(ServletRequestEvent evt)：ServletRequest对象被销毁前调用。</p>
-<hr>
-<p>事件对象:<br>ServletContextEvent：ServletContextgetServletContext()；<br>HttpSeessionEvent：HttpSessiongetSession()；<br>ServletRequestEvent：</p>
-<hr>
-<p>操作域属性的监听器<br>    ServletContextAttributeEvent<br>    HttpSessionBindingEvent<br>    ServletRequestAttributeEvent</p>
-<p>————————————-ServletContextAttributeEvent—————-<br>import javax.servlet.ServletContextAttributeEvent;<br>import javax.servlet.ServletContextAttributeListener;<br>public class MyServletContextAttributeListener implements ServletContextAttributeListener{</p>
-<pre><code>@Override
-public void attributeAdded(ServletContextAttributeEvent arg0) {
-    System.out.println(attributeAdded:+arg0.getName()+,+arg0.getValue());
-}
-
-@Override
-public void attributeRemoved(ServletContextAttributeEvent arg0) {
-    System.out.println(attributeRemoved:+arg0.getName()+,+arg0.getValue());
-}
-
-@Override
-public void attributeReplaced(ServletContextAttributeEvent arg0) {
-    //arg0.getValue()为替代之前的值
-    //arg0.getServletContext().getAttribute(arg0.getName())为替代之后的值
-    System.out.println(attributeReplaced:+arg0.getName()+,+arg0.getValue()
-            +,+arg0.getServletContext().getAttribute(arg0.getName()));
-}
-</code></pre><h2 id=""><a href="#" class="headerlink" title="}"></a>}</h2><p>ServletContext对象</p>
-<p>ServletContext对象代表了一个应用，他是一个Context域对象，它里面的方法主要是一些全局性的方法，可以用来存储各个Servlet之间的共享数据。<br>ServletContext对象的应用场景，主要用于Servlet之间数据共享(可以用来做聊天室)，获取web应用的初始化参数，实现Servlet转发，读取资源文件。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/tiles/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/tiles/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:32:23+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="tiles-SiteMesh"><a href="#tiles-SiteMesh" class="headerlink" title="#tiles SiteMesh"></a>#tiles SiteMesh</h2><pre><code>Tiles 是一种JSP布局框架，主要目的是为了将复数的jsp页面作为一个
-的页面的部分机能，然后用来组合成一个最终表示用页面用的
-</code></pre><hr>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/thread/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/thread/" itemprop="url">多线程线程状态 \ 线程池优化/监控 \ jvm线程监控</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:32:23+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/thread/" itemprop="url" rel="index">
-                    <span itemprop="name">thread</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="java多线程"><a href="#java多线程" class="headerlink" title="java多线程"></a>java多线程</h3><pre><code>http://penghb.com
-</code></pre><h3 id="jvm线程监控"><a href="#jvm线程监控" class="headerlink" title="jvm线程监控"></a>jvm线程监控</h3><h4 id="线程-dump"><a href="#线程-dump" class="headerlink" title="线程 dump"></a>线程 dump</h4><ol>
-<li><p>执行<code>jps</code>命令，列出正在运行的java程序的进程ID</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">D:\gitrepo\thread-test&gt;jps</span><br><span class="line">5056 RemoteMavenServer (pid 对应线程名字)</span><br><span class="line">7264 Launcher</span><br><span class="line">10644 Jps</span><br><span class="line">7636</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>执行<code>jstack pid</code></p>
-</li>
-</ol>
-<h3 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h3><ol>
-<li>new: 创建了,还没有启动</li>
-<li>runable: 正在Java虚拟机下跑任务的线程的状态。在RUNNABLE状态下的线程可能<br>会处于等待状态， 因为它正在等待一些系统资源的释放，比如IO</li>
-<li>BLOCKED: 阻塞状态，等待锁的释放，比如线程A进入了一个<code>synchronized</code>方法，线程B也想进入这个方法，但是这个方法的锁已经被线程A获取了，这个时候线程B就处于BLOCKED状态<ol>
-<li>分析:线程处于BLOCKED状态，这个时候可以分析一下是不是lock加锁的时候忘记释放了，或者释放的时机不对。导致另外的线程一直处于BLOCKED状态。</li>
-</ol>
-</li>
-<li>WAITING: 等待状态，处于等待状态的线程是由于执行了3个方法中的任意方法。<ol>
-<li>Object的wait方法，并且没有使用timeout参数;</li>
-<li>Thread的join方法，没有使用timeout参数</li>
-<li>LockSupport的park方法。 处于waiting状态的线程会等待另外一个线程处理特殊的行为。 再举个例子，如果一个线程调用了一个对象的wait方法，那么这个线程就会处于waiting状态直到另外一个线程调用这个对象的notify或者notifyAll方法后才会解除这个状态</li>
-</ol>
-</li>
-<li>TIMED_WAITING: 有等待时间的等待状态，比如调用了以下几个方法中的任意方法，并且指定了等待时间，线程就会处于这个状态。<ol>
-<li>Thread.sleep方法</li>
-<li>Object的wait方法，带有时间</li>
-<li>Thread.join方法，带有时间</li>
-<li>LockSupport的parkNanos方法，带有时间</li>
-<li>LockSupport的parkUntil方法，带有时间</li>
-</ol>
-</li>
-<li>TERMINATED: 线程中止的状态，这个线程已经完整地执行了它的任务(jstack 看不到线程了)</li>
-</ol>
-<p>在Thread.java 下的 enum State下</p>
-<h3 id="Dump文件中的线程状态"><a href="#Dump文件中的线程状态" class="headerlink" title="Dump文件中的线程状态"></a>Dump文件中的线程状态</h3><ol>
-<li>Deadlock</li>
-<li>Runnable</li>
-<li>Waiting on condition</li>
-<li>Blocked</li>
-<li>Waiting for monitor entry 和 in Object.wait()</li>
-</ol>
-<h3 id="Thread-java分析"><a href="#Thread-java分析" class="headerlink" title="Thread.java分析"></a>Thread.java分析</h3><ol>
-<li>exit()<br> exit( )是由系统调用的，用于线程在真正的退出前进行一些清理的操作。看看里面进行的操作是什么吧，可以看出，里面执行的是group 赋值为null了， 将target引用进行释放，同时释放了threadLocals所占用的资源，等等属性都赋值为null。</li>
-<li>sleep()<br> 这个方法的作用使得当前线程休眠一定的时间，但是这个期间是不释放持有的锁的。这个方法里面首先进行的是休眠时间的判断，然后又是调用本地方法。</li>
-<li>join()方法<br> join方法是等待该线程执行，直到超时或者终止，可以作为线程通信的一种方式，A线程调用B线程的join（阻塞），等待B完成后再往下执行。 join（）方法中重载了多个方法，但是主要的方法是下面的方法。</li>
-<li>interrupt()方法<br>中断当前的线程<ol>
-<li>阻塞状态:<br>阻塞函数,如Thread.sleep、Thread.join、Object.wait等在检查到线程的中断状态的时候，<br>会抛出InteruptedExeption, 同时会清除线程的中断状态。<br>对于InterruptedException的处理，可以有两种情况：<ol>
-<li>外层代码处理异常，直接抛出这个异常即可</li>
-<li>不能抛出这个异常，比如在run()方法内，因为在得到这个异常的同时，线程的中断状态已经被清除了，需要保留线程的中断状态，则需要调    用Thread.currentThread().interrupt()</li>
-</ol>
-</li>
-<li>运行状态:<br>将该线程的中断标志设置为 true，仅此而已。被设置中断标志的线程将继续正常运行，不受影响。</li>
-</ol>
-</li>
-</ol>
-<h3 id="终止线程"><a href="#终止线程" class="headerlink" title="终止线程"></a>终止线程</h3><p>首先，一个线程不应该由其他线程来强制中断或停止，而是应该由线程自己自行停止。<br>所以，Thread.stop, Thread.suspend, Thread.resume 都已经被废弃了。<br>而 Thread.interrupt 的作用其实也不是中断线程，而是「通知线程应该中断了」，<br>具体到底中断还是继续运行，应该由被通知的线程自己处理。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//“中断”方式终止处于“阻塞状态”的线程。</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 执行任务...</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException ie) &#123;</span><br><span class="line">        <span class="comment">// 由于产生InterruptedException异常，退出while(true)循环，线程终止！</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//终止处于“运行状态”的线程</span></span><br><span class="line">    <span class="keyword">if</span> (!isInterrupted()) &#123;</span><br><span class="line">        <span class="comment">// 执行任务...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="合理的配置线程池"><a href="#合理的配置线程池" class="headerlink" title="合理的配置线程池"></a>合理的配置线程池</h3><p>要想合理的配置线程池，就必须首先分析任务特性，可以从以下几个角度来进行分析：</p>
-<ol>
-<li>任务的性质：CPU密集型任务，IO密集型任务和混合型任务。</li>
-<li>任务的优先级：高，中和低。</li>
-<li>任务的执行时间：长，中和短。</li>
-<li>任务的依赖性：是否依赖其他系统资源，如数据库连接。</li>
-</ol>
-<p>任务性质不同的任务可以用不同规模的线程池分开处理。CPU密集型任务配置尽可能少的线程数量，如配置Ncpu+1个线程的线程池。<br>IO密集型任务则由于需要等待IO操作，线程并不是一直在执行任务，则配置尽可能多的线程，如2*Ncpu。<br>混合型的任务，如果可以拆分，则将其拆分成一个CPU密集型任务和一个IO密集型任务，只要这两个任务执行的时间相差不是太大，那么分解后执行的吞吐率要高于串行执行的吞吐率，如果这两个任务执行时间相差太大，则没必要进行分解。<br>可以通过<br>    <code>Runtime.getRuntime().availableProcessors()</code>方法获得当前设备的CPU个数。</p>
-<p>优先级不同的任务可以使用优先级队列PriorityBlockingQueue来处理。它可以让优先级高的任务先得到执行，需要注意的是如果一直有优先级高的任务提交到队列里，那么优先级低的任务可能永远不能执行。</p>
-<p>执行时间不同的任务可以交给不同规模的线程池来处理，或者也可以使用优先级队列，让执行时间短的任务先执行。</p>
-<p>依赖数据库连接池的任务，因为线程提交SQL后需要等待数据库返回结果，如果等待的时间越长CPU空闲时间就越长，那么线程数应该设置越大，这样才能更好的利用CPU。</p>
-<p>建议使用有界队列<br>    有界队列能增加系统的稳定性和预警能力，可以根据需要设大一点，比如几千。有一次我们组使用的后台任务线程池的队列和线程池全满了，不断的抛出抛弃任务的异常，通过排查发现是数据库出现了问题，导致执行SQL变得非常缓慢，因为后台任务线程池里的任务全是需要向数据库查询和插入数据的，所以导致线程池里的工作线程全部阻塞住，任务积压在线程池里。如果当时我们设置成无界队列，线程池的队列就会越来越多，有可能会撑满内存，导致整个系统不可用，而不只是后台任务出现问题。当然我们的系统所有的任务是用的单独的服务器部署的，而我们使用不同规模的线程池跑不同类型的任务，但是出现这样问题时也会影响到其他任务。</p>
-<h3 id="线程池的监控"><a href="#线程池的监控" class="headerlink" title="线程池的监控"></a>线程池的监控</h3><p>通过线程池提供的参数进行监控。线程池里有一些属性在监控线程池的时候可以使用</p>
-<ol>
-<li>taskCount：线程池需要执行的任务数量。</li>
-<li>completedTaskCount：线程池在运行过程中已完成的任务数量。小于或等于taskCount。</li>
-<li>largestPoolSize：线程池曾经创建过的最大线程数量。通过这个数据可以知道线程池是否满过。<br> 如等于线程池的最大大小，则表示线程池曾经满了。</li>
-<li>getPoolSize:线程池的线程数量。如果线程池不销毁的话，池里的线程不会自动销毁，所以这个大小只增不减。</li>
-<li>getActiveCount：获取活动的线程数。<br>通过扩展线程池进行监控。通过继承线程池并重写线程池的beforeExecute，afterExecute和terminated方法，我们可以在任务执行前，执行后和线程池关闭前干一些事情。如监控任务的平均执行时间，最大执行时间和最小执行时间等。这几个方法在线程池里是空方法。</li>
-</ol>
-<h3 id="Spring-线程池应用"><a href="#Spring-线程池应用" class="headerlink" title="Spring 线程池应用"></a>Spring 线程池应用</h3><p>org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/thread-lock/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/thread-lock/" itemprop="url">多线程--锁</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:32:23+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/thread/" itemprop="url" rel="index">
-                    <span itemprop="name">thread</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="死锁前提"><a href="#死锁前提" class="headerlink" title="死锁前提"></a>死锁前提</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/thread source read/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/thread source read/" itemprop="url">多线程源码阅读 \ Current/Collection/Thread</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:32:23+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/thread/" itemprop="url" rel="index">
-                    <span itemprop="name">thread</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="HashMap-source-read"><a href="#HashMap-source-read" class="headerlink" title="HashMap source read"></a>HashMap source read</h3><p>参考:<br>  <a href="http://penghb.com/2017/10/15/java/hashMap/" target="_blank" rel="noopener">http://penghb.com/2017/10/15/java/hashMap/</a></p>
-<ol>
-<li><p>hashtable区别<br> 不同步<br> 允许使用null</p>
-</li>
-<li><p>1.8改进<br> 数据存储结构引进了<code>红黑树</code>，使得查询更加的快捷.</p>
-</li>
-</ol>
-<h3 id="ConcurrentHashMap-source-read"><a href="#ConcurrentHashMap-source-read" class="headerlink" title="ConcurrentHashMap source read"></a>ConcurrentHashMap source read</h3><p>参考:<br><a href="http://penghb.com/2017/10/27/java/concurrentHashMap/" target="_blank" rel="noopener">http://penghb.com/2017/10/27/java/concurrentHashMap/</a></p>
-<p>JDK1.8改进</p>
-<ol>
-<li><code>取消segments字段</code>，（Segment虽保留，但已经简化属性，仅仅是为了兼容旧版本。）<br>直接采用transient volatile HashEntry table保存数据，采用table数组元素作为锁，从而实现了对每一行数据进行加锁，进一步减少并发冲突的概率。</li>
-<li>将原先table数组＋单向链表的数据结构，变更为table数组＋单向链表＋红黑树的结构。（这点和HashMap是一样的）</li>
-</ol>
-<h3 id="Threadlocal-source-read"><a href="#Threadlocal-source-read" class="headerlink" title="Threadlocal source read"></a>Threadlocal source read</h3><p>参考:<br><a href="http://penghb.com/2017/10/18/java/threadLocal/" target="_blank" rel="noopener">http://penghb.com/2017/10/18/java/threadLocal/</a></p>
-<p>该类提供线程本地变量。这些变量与一般的变量不同，每个线程访问一个线程（通过get或set方法）有自己独立的变量初始化副本。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/spring_read/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1204,7 +263,7 @@ public void attributeReplaced(ServletContextAttributeEvent arg0) {
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:32:23+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
                 2018-06-11
               </time>
             
@@ -1337,7 +396,7 @@ public void attributeReplaced(ServletContextAttributeEvent arg0) {
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:32:23+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
                 2018-06-11
               </time>
             
@@ -1462,7 +521,7 @@ public void attributeReplaced(ServletContextAttributeEvent arg0) {
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:32:23+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
                 2018-06-11
               </time>
             
@@ -1576,6 +635,131 @@ public void attributeReplaced(ServletContextAttributeEvent arg0) {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/Net-Protocol/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/Net-Protocol/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#http<br>    <a href="https://zh.wikipedia.org/wiki/超文本传输协议" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/超文本传输协议</a><br>    <a href="https://tools.ietf.org/html/rfc2616" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc2616</a> http1.1<br>    <a href="https://tools.ietf.org/html/rfc7540" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc7540</a> http2.0<br>超文本传输协议（英文：HyperText Transfer Protocol，缩写：HTTP）是一种用于分布式、协作式和超媒体信息系统的应用层协议[1]。HTTP是万维网的数据通信的基础。</p>
+<p>征求意见稿（英语：Request For Comments，缩写为RFC）<a href="https://zh.wikipedia.org/wiki/RFC" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/RFC</a></p>
+<p>请求方法:<br>    GET<br>    HEAD<br>        与GET方法一样，都是向服务器发出指定资源的请求。只不过服务器将不传回资源的本文部分。它的好处在于，使用这个方法可以在不必传输全部内容的情况下，就可以获取其中“关于该资源的信息”（元信息或称元数据）。<br>    POST PUT DELETE<br>    TRACE 回显服务器收到的请求，主要用于测试或诊断。<br>    OPTIONS<br>         这个方法可使服务器传回该资源所支持的所有HTTP请求方法。用’*’来代替资源名称，向Web服务器发送OPTIONS请求，可以测试服务器功能是否正常运作。<br>    CONNECT<br>        HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。通常用于SSL加密服务器的链接（经由非加密的HTTP代理服务器）。<br>    PATCH<br>        用于将局部修改应用到资源。</p>
+<p>副作用<br>    若干次请求的副作用与单次请求相同或者根本没有副作用，那么这些请求方法就能够被视作<code>幂等(idempotence)</code></p>
+<p>状态代码的第一个数字代表当前响应的类型：<br>    1xx消息——请求已被服务器接收，继续处理<br>    2xx成功——请求已成功被服务器接收、理解、并接受<br>    3xx重定向——需要后续操作才能完成这一请求<br>    4xx请求错误——请求含有词法错误或者无法被执行<br>    5xx服务器错误——服务器在处理某个正确请求时发生错误</p>
+<p>持续连线<br>    在HTTP 0.9和1.0中，TCP连接在每一次请求/回应对之后关闭。在HTTP 1.1中，引入了保持连接的机制，一个连接可以重复在多个请求/回应使用。持续连接的方式可以大大减少等待时间，因为在发出第一个请求后，双方不需要重新运行TCP交握程序。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/README/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1607,7 +791,7 @@ public void attributeReplaced(ServletContextAttributeEvent arg0) {
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:32:23+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
                 2018-06-11
               </time>
             
@@ -1683,11 +867,854 @@ public void attributeReplaced(ServletContextAttributeEvent arg0) {
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/jvm_code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/jvm_code/" itemprop="url">jvm</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jvm/" itemprop="url" rel="index">
+                    <span itemprop="name">jvm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="JAVA虚拟机关闭钩子-Shutdown-Hook"><a href="#JAVA虚拟机关闭钩子-Shutdown-Hook" class="headerlink" title="JAVA虚拟机关闭钩子(Shutdown Hook)"></a>JAVA虚拟机关闭钩子(Shutdown Hook)</h3><p>JDK提供了Java.Runtime.addShutdownHook(Thread hook)方法，可以注册一个JVM关闭的钩子，这个钩子可以在一下几种场景中被调用： </p>
+<ol>
+<li>程序正常退出</li>
+<li>使用System.exit()</li>
+<li>终端使用Ctrl+C触发的中断</li>
+<li>系统关闭</li>
+<li>OutOfMemory宕机</li>
+<li>使用Kill pid命令干掉进程（注：在使用kill -9 pid时，是不会被调用的）</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/jvm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/jvm/" itemprop="url">jvm</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jvm/" itemprop="url" rel="index">
+                    <span itemprop="name">jvm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><ol>
+<li>编译成class文件(.class 文件结构)<br> 查看字节码: <pre><code>`javac 编译`
+`javap -verbose Class`
+</code></pre></li>
+<li><p>类(Class对象)加载到虚拟机内存过程(<br> 所谓的类加载就是把.class文件加载到内存成为Class对象) </p>
+<p> loading-&gt;linking(verification-&gt;preparation-&gt;resolution)<br> -&gt;initialization-&gt;using-&gt;unloading  </p>
+<p> preparation(准备): 类变量分配内存,设置初始值<br> resolution(解析):虚拟机将<code>常量池内</code>的符号引用替换成<code>直接引用</code>的过程.<br> initialization:执行<clinit>()方法的过程<br>   <code>&lt;clinit&gt;</code>()方法是编译器自动收集类变量,静态语句{}合成的.  </clinit></p>
+</li>
+<li><p>类加载器(双亲委派机制,树状结构):  </p>
+<ol>
+<li>启动类加载器(bootstrap ClassLoader c++实现)  </li>
+<li>扩展类加载器(Extension ClassLoader)  </li>
+<li>应用程序类加载器(Application ClassLoader)  </li>
+<li>自定义类加载器(User ClassLoader)  </li>
+<li>过程 : 类加载器收到一个类加载请求,先请求委派给父加载器完成加载  </li>
+<li>OSGi 非树状结构   </li>
+</ol>
+</li>
+<li>初始化前提:<ol>
+<li>遇到 <code>new getstatic putstatic invokestatic</code>这4条字节码(java 代码场景 使用new 实例化对象,读取或设置一个类的静态字段(final 除外))  </li>
+<li>反射调用时  </li>
+<li>初始化类的时候要先初始化父类  </li>
+<li>main  </li>
+<li>动态语言支持  </li>
+</ol>
+</li>
+</ol>
+<h3 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h3><p>main-&gt;启动线程-&gt;调用方法-&gt;线程结束  </p>
+<p>运行时栈帧结构(一个栈帧对应一个方法)  </p>
+<ul>
+<li>局部变量表  </li>
+<li>操作数栈  </li>
+<li>动态链接  </li>
+<li>方法返回地址  </li>
+<li>附加信息  </li>
+</ul>
+<h3 id="垃圾收集-Garbage-Collection"><a href="#垃圾收集-Garbage-Collection" class="headerlink" title="垃圾收集 Garbage Collection"></a>垃圾收集 Garbage Collection</h3><h4 id="GC目的"><a href="#GC目的" class="headerlink" title="GC目的:"></a>GC目的:</h4><ul>
+<li>那些内存需要回收  </li>
+<li>什么时候回收  </li>
+<li>如何回收 </li>
+</ul>
+<h4 id="判断对象死亡"><a href="#判断对象死亡" class="headerlink" title="判断对象死亡"></a>判断对象死亡</h4><ol>
+<li>引用计数算法(java中不用)  </li>
+<li>可达性分析算法<br> GC Roots:  <ul>
+<li>虚拟机栈中本地变量表中的引用对象(reference)  </li>
+<li>方法区中类静态属性引用的对象  </li>
+<li>方法区中常量引用的对象  </li>
+<li>本地方法栈(JNI)引用对象(native)  </li>
+</ul>
+</li>
+<li>引用种类<br> 强 strong 1,弱 weak 3,软 soft 2,虚 phantom 4  </li>
+</ol>
+<h4 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h4><ul>
+<li>种类<br>  标记-清除算法 Mark-Sweep<br>  标记-整理算法 Mark-Compact<br>  复制算法<br>  分代收集算法  <ul>
+<li>新生代 young generation–&gt;复制算法 Minor GC  </li>
+<li>老生代 tenured generation–&gt;标记 清理\整理 算法</li>
+<li>Major GC  </li>
+</ul>
+</li>
+<li>算法实现  <ul>
+<li>枚举根节点-&gt;停顿  </li>
+<li>安全点/区域  <ul>
+<li>发生GC时,要求所有线程处在安全域内  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h4><ul>
+<li>并行:多条GC线程同时工作,用户线程处于等待状态  </li>
+<li>并发:用户线程与GC线程同时执行(但不一定是并行的,可能会交替执行)</li>
+<li>serial(串行) 暂停其他所有工作线程  <ul>
+<li>serial new 复制算法  <code>新生代</code>  </li>
+<li>serial old 标记-整理算法 <code>老年代</code>  </li>
+</ul>
+</li>
+<li>parnew  <code>新生代</code><br>  多线程版serial  </li>
+<li>parallel(并行)  <ul>
+<li>目标:达到一个可控的吞吐量  <ul>
+<li>吞吐量= 用户代码运行时间/(用户代码运行时间 + GC时间)  </li>
+</ul>
+</li>
+<li>parallel scavenge(打扫) <code>新生代</code>  </li>
+<li>parallel old <code>老年代</code>  </li>
+</ul>
+</li>
+<li>CMS concunrrent mark sweep(打扫) <code>老年代</code><br>  目标:获取最短回收停顿时间  </li>
+<li>G1 garbage first  <ul>
+<li>其他收集器区别: 将整个java堆划分成多个大小相等的区 域(Region)  </li>
+<li>region包含有 新/老代  </li>
+</ul>
+</li>
+</ul>
+<h3 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h3><ul>
+<li>young generation<ul>
+<li>Eden space 8(比例)<br>  当Eden区内存不够的时候就会触发MinorGC，对新生代区进行一次垃圾回收。</li>
+<li>survivor space 2  <ul>
+<li>form space 1<br>  上一次GC的幸存者，作为这一次GC的被扫描者。  </li>
+<li>to space 1<br>  保留了一次MinorGC过程中的幸存者。  </li>
+</ul>
+</li>
+<li>gc:MinorGC  <ul>
+<li>MinorGC的过程：  <ul>
+<li>MinorGC采用复制算法。  </li>
+<li>首先，把Eden和ServivorFrom区域中存活的对象复制到ServicorTo区域（如果有对象的年龄以及达到了老年的标准，则赋值到老年代区），同时把这些对象的年龄+1（如果ServicorTo不够位置了就放到老年区）；  </li>
+<li>然后，清空Eden和ServicorFrom中的对象；最后，ServicorTo和ServicorFrom互换，原ServicorTo成为下一次GC时的ServicorFrom区。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>tenured generation<ul>
+<li>gc:MajorGC</li>
+<li>进入条件<br>  survivor对象每经历一次GC,年龄+1,默认年龄15时,对象进入老年代<br>  大对象(很长的字符串/数组)直接进入老年代  </li>
+</ul>
+</li>
+<li>permanent generation<br>  PermGen PermGen space的全称是Permanent Generation space,是指内存的永久保存区域<br>  主要存放Class和Meta（元数据）的信息,Class在被加载的时候被放入永久区域.它和存放实例的区域不同,GC不会在主程序运行期对永久区域进行清理。所这也导致了永久代的区域会随着加载的Class的增多而胀满，最终抛出OOM异常。<br>  在Java8中，永久代已经被移除，被一个称为“元数据区”（元空间）的区域所取代。<br>  元空间的本质和永久代类似，都是对JVM规范中方法区的实现。不过元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。因此，默认情况下，元空间的大小仅受本地内存限制。类的元数据放入 native memory, 字符串池和类的静态变量放入java堆中. 这样可以加载多少类的元数据就不再由MaxPermSize控制, 而由系统的实际可用空间来控制.</li>
+</ul>
+<h3 id="命令-调试"><a href="#命令-调试" class="headerlink" title="命令 调试"></a>命令 调试</h3><h4 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h4><ul>
+<li>jps jvm process status  <ul>
+<li>列出正在运行的虚拟机进程</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/08_java_log/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/08_java_log/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>slf4j<br>    SLF4J不同于其他日志类库，与其它有很大的不同。<br>    SLF4J(Simple logging Facade for Java)不是一个真正的日志实现，<br>    而是一个抽象层（ abstraction layer），它允许你在后台使用任意一个日志类库。<br>    如果是在编写供内外部都可以使用的API或者通用类库，<br>    那么你真不会希望使用你类库的客户端必须使用你选择的日志类库。</p>
+<hr>
+<p>配置slf4j,配置log4j</p>
+<p>引入jar包：<br>      slf4j-api-1.5.8.jar<br>      slf4j-log4j12-1.5.8.jar<br>      log4j-1.2.17.jar    </p>
+<p>配置slf4j： </p>
+<p>配置log4j：<br>    配置log4j.properties</p>
+<p>① 配置根Logger<br>    配置显示日志记录的优先级<br>    log4j.rootLogger=warn, stdout</p>
+<p>② 配置日志信息输出目的地Appender</p>
+<p>log4j.appender.appenderName.option = valueN </p>
+<pre><code>valueN的值
+org.apache.log4j.ConsoleAppender（控制台）
+org.apache.log4j.FileAppender（文件)
+</code></pre><p>　    org.apache.log4j.DailyRollingFileAppender（每天产生一个日志文件）<br>　    org.apache.log4j.RollingFileAppender（文件大小到达指定尺寸的时候产生一个新的文件）<br>　    org.apache.log4j.WriterAppender（将日志信息以流格式发送到任意指定的地方）</p>
+<ol start="3">
+<li>输出debug语句<br> log4j.logger.org.hibernate=debug</li>
+</ol>
+<hr>
+<p>web.xml配置：</p>
+<p><context-param><br>    <param-name>log4jConfigLocation</param-name><br>    <param-value>/WEB-INF/classes/log4j.properties</param-value><br></context-param></p>
+<listener><br>    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class><br></listener>
+
+<hr>
+<p>java 调用：</p>
+<pre><code>import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+private static Logger log = LoggerFactory.getLogger(TicketQrInfoAction.class);
+</code></pre><hr>
+<p>log4j.properties</p>
+<pre><code># Output pattern : date [thread] priority category - message   FATAL 0  ERROR 3  WARN 4  INFO 6  DEBUG 7 
+log4j.rootLogger=DEBUG,Console,File
+
+#Console
+log4j.appender.Console=org.apache.log4j.ConsoleAppender
+log4j.appender.Console.threshold=DEBUG
+log4j.appender.Console.layout=org.apache.log4j.PatternLayout
+log4j.appender.Console.layout.ConversionPattern=%d [%t] %-5p [%c] - %m%n
+
+#Springframework level
+log4j.logger.org.springframework=DEBUG
+log4j.logger.com.mybatis=DEBUG
+log4j.logger.org.apache.ibatis=DEBUG
+log4j.logger.com.ibatis = DEBUG
+log4j.logger.java.sql=DEBUG
+log4j.logger.java.sql.ResultSet=DEBUG  
+log4j.logger.org.apache=DEBUG  
+log4j.logger.java.sql.Connection=DEBUG  
+log4j.logger.java.sql.Statement=DEBUG  
+log4j.logger.java.sql.PreparedStatement=DEBUG   
+
+#log4j.appender.File=org.apache.log4j.DailyRollingFileAppender
+#log4j.appender.File.File=${tms.root}logs/log
+#log4j.appender.File.DatePattern=&apos;_&apos;yyyy-MM-dd&apos;.log&apos; 
+#log4j.appender.File.layout=org.apache.log4j.PatternLayout
+#log4j.appender.File.layout.ConversionPattern=[TMS] %p [%t] %-d{yyyy-MM-dd HH\:mm\:ss} %C.%M(%L) | %m%n
+</code></pre><hr>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/07_java_web/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/07_java_web/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>web.xml 加载顺序：<br>    加载顺序与它们在 web.xml 文件中的先后顺序无关。<br>    context-param -&gt; listener -&gt; filter -&gt; servlet</p>
+<p>context-param<br>    context-param，它用于向 ServletContext 提供键值对，即应用程序上下文信息。<br>    我们的 listener, filter 等在初始化时会用到这些上下文中的信息</p>
+<hr>
+<p>http</p>
+<hr>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/svn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/svn/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>svn  </p>
+<hr>
+<p>eclipse svn �����ļ��ж�<br>.metadata�ļ���ס�˻�����pull�µ��ļ�������ͻ��Ӧ��ɾ���ļ�����������  </p>
+<hr>
+<p>eclipse ���svn�����<br>    help -&gt;install new SoftWare…<br>    ѡ���ļ����µ�site-1.8.14.zip��Ӽ���  </p>
+<p>����Դ��ͬ����<br>    �鿴�����޸���ԭ������ֿ�Ĳ�ͬ��<br>    �ύ֮ǰ�ȸ��¡������ͻ  </p>
+<p>svn�����ļ�<br>    �������Ͻ��ļ�ɾ������svn���ܼ�ص�<br>    �ڽ��ļ����뵽��Ŀ�У��� team-&gt;svn:ignore<br>    Ҳ����˵ֻ���½����ļ����������svn:ignore  </p>
+<p>����svn����  </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1733,7 +1760,7 @@ public void attributeReplaced(ServletContextAttributeEvent arg0) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1744,7 +1771,7 @@ public void attributeReplaced(ServletContextAttributeEvent arg0) {
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1755,7 +1782,7 @@ public void attributeReplaced(ServletContextAttributeEvent arg0) {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

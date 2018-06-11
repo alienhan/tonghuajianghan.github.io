@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/git_ssh/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/ajax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -251,7 +251,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/11/git_ssh/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/06/11/ajax/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -263,7 +263,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:36:08+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
                 2018-06-11
               </time>
             
@@ -303,270 +303,609 @@
       
         
           
-            <h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><h2 id="官网-http-www-git-scm-com"><a href="#官网-http-www-git-scm-com" class="headerlink" title="官网 http://www.git-scm.com/  "></a>官网 <a href="http://www.git-scm.com/" target="_blank" rel="noopener">http://www.git-scm.com/</a>  </h2><ol>
-<li>github<br>username :tonghuajianghan<br>email :<a href="mailto:tonghuajianghan@gmail.com" target="_blank" rel="noopener">tonghuajianghan@gmail.com</a><br>password : 百度  </li>
-</ol>
+            <p>#ajax            </p>
 <hr>
-<ol start="2">
-<li>创建git仓库  </li>
-</ol>
-<p>添加用户名和密码：  </p>
-<blockquote>
-<p>git config –global user.name “jh” （github登录名）<br>git config –global user.email “<a href="mailto:tonghuajianghan@gmail.com" target="_blank" rel="noopener">tonghuajianghan@gmail.com</a>“（github登陆邮箱）  </p>
-</blockquote>
-<p>初始化git本地存储库：<br>创建一个文件-&gt;cd 这个文件夹（例：cd E：note）<br>-&gt;git init（初始化本地git）<br>或<br>图形化界面Git GUI创建一个新版本库<br>或<br>克隆一个本地存储库  </p>
-<blockquote>
-<p>cd f:<br>$ git clone git://github.com/schacon/grit.git  </p>
-</blockquote>
-<p>Eclipse Git 插件：<br>右键项目名-&gt;Team-&gt;share project -&gt;Git-&gt;<br>-&gt;选择文件位置（存储库）<br>-&gt;选择版本名（项目所属位置）  </p>
+<p>说明：<br>    如果需要像 HTML 表单那样 POST 数据，<br>    请使用 setRequestHeader() 来添加 HTTP 头。<br>    然后在 send() 方法中规定您希望发送的数据：<br>    xmlhttp.open(“POST”,”ajax_test.asp”,true);<br>    xmlhttp.setRequestHeader<br>    (“Content-type”,”application/x-www-form-urlencoded”);<br>    xmlhttp.send(“fname=Bill&amp;lname=Gates”);            </p>
 <hr>
-<ol start="3">
-<li>git本地仓库与github连接  </li>
-</ol>
-<p>ssh 操作<br>1).生成ssh密钥在Administrator/.ssh（文件位置，默认生成）<br>这个格式改过，每个git版本有些许的不同：  </p>
-<p>格式1:</p>
-<blockquote>
-<p>$ssh keygen -t rsa -C “<a href="mailto:tonghuajianghan@gmail.com" target="_blank" rel="noopener">tonghuajianghan@gmail.com</a>“<br>可能报错：<br>ssh: Could not resolve hostname keygen: Name or service not known  </p>
-</blockquote>
-<p>格式2：</p>
-<blockquote>
-<p>$ssh-keygen -t rsa -C “<a href="mailto:tonghuajianghan@gmail.com" target="_blank" rel="noopener">tonghuajianghan@gmail.com</a>“  </p>
-</blockquote>
-<p>生成 id_rsa 和 id_rsa.pub 两个秘钥文件<br>接着又会提示你输入两次密码（该密码是你push文件的时候要输入的密码，<br>而不是github管理者的密码）  </p>
-<p>2).添加你的 SSH key 到 github上面去<br>account setting下设置  </p>
-<p>3).新建本地版本库<br>创建一个文件，在文件下<br>git init 就创建一个git本地版本库<br>生成一个.git文件<br>sts右击项目——&gt;Team-&gt;share Patch<br>-&gt;选中刚才设置的git本地版本库就行  </p>
-<p>4).新建github远程版本库（在github网站上新建）<br>  4.1new repository -&gt;create Repository-&gt;完成<br>  4.2Create a new repository on the command line  </p>
-<p>touch README.md<br>git init<br>git add README.md<br>git commit -m “first commit”<br>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:lizhenyu/helloworld.git<br>git push -u origin master<br>Push an existing repository from the command line  </p>
-<p>5). 连接本地版本库与远程版本库<br>origin是默认已有远程版本库<br>$git remote -v 列出远程版本库详细内容  </p>
-<p>要添加一个新的远程仓库,可以指定一个简单的名字,<br>以便将来引用,运行 git remote add [shortname] [url]:  </p>
-<p>例1：  </p>
-<blockquote>
-<p>git remote add origin <a href="https://github.com/lizhenyu/helloworld.git" target="_blank" rel="noopener">https://github.com/lizhenyu/helloworld.git</a><br>git push -u origin master    </p>
-</blockquote>
-<p>例2：  </p>
-<blockquote>
-<p>$git remote add origintestgit0001 <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:tonghuajianghan/firstdemo.git<br>                (用于本地标名识)，取代firstdemo.git  </p>
-</blockquote>
-<p>$ git push -u origin master<br>Counting objects: 19, done.<br>Delta compression using up to 4 threads.<br>Compressing objects: 100% (19/19), done.<br>Writing objects: 100% (19/19), 13.73 KiB, done.<br>Total 23 (delta 6), reused 0 (delta 0)<br>To <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:tonghuajianghan/firstdemo.git<br>  [new branch]      master -&gt; master<br>Branch master set up to track remote branch master from origin.<br>把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。<br>由于远程库是空的，我们第一次推送master分支时，<br>加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，<br>还会把本地的master分支和远程的master分支关联起来，  </p>
-<p>6).再次提交远程版本库<br>$ git push origin master<br>在以后的推送或者拉取时就可以简化命令。<br>只要本地作了提交，就可以通过命令：  </p>
-<p>7).<br>将某个远程主机的更新，全部取回本地。<br>$ git fetch &lt;远程主机名&gt;<br>默认情况下，git fetch取回所有分支（branch）的更新。<br>如果只想取回特定分支的更新，可以指定分支名。<br>$ git fetch &lt;远程主机名&gt; &lt;分支名&gt;<br>比如，取回origin主机的master分支。<br>$ git fetch origin master<br>所取回的更新，在本地主机上要用”远程主机名/分支名”的形式读取。<br>比如origin主机的master，就要用origin/master读取。  </p>
-<p>8).克隆远程服务器仓库到本地：<br>$git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:tonghuajianghan/firstdemo.git  </p>
-<p>9).git 提交时，忽略某些文件  </p>
-<ul>
-<li>error:<blockquote>
-<p>git无法pull仓库refusing to merge unrelated histories<br>git pull origin master –allow-unrelated-histories</p>
-</blockquote>
+<p>js submit file</p>
+<p>#gameIcon 为<input type="file" name="gameIcon"><br>$(“#gameIcon”).change(function(){<br>        var file = this.files[0];<br>        console.log(file);<br>        var reader = new FileReader();<br>        reader.readAsDataURL(file);<br>        reader.onload = function(e){<br>            var form = new FormData();// ??只有form格式可以传数据<br>            form.append(“uploadFile”, file);<br>            var settings = {<br>              “async”: true,<br>              “crossDomain”: true,<br>              “url”: ctx + “/fileAction/commonFileUpLoad.action”,<br>              “method”: “POST”,<br>              “headers”: {<br>                “cache-control”: “no-cache”,<br>              },<br>              “processData”: false,<br>              “contentType”: false,<br>              “mimeType”: “multipart/form-data”,<br>              “data”: form<br>            }</p>
+<pre><code>        $.ajax(settings).done(function (response) {
+          console.log(response);
+        });
+
+    }; 
+});
+</code></pre><hr>
+<p>spring js 序列化传参 serialize</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/idea/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/idea/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#idea</p>
+<hr>
+<p>ctrl + alt + l 格式化<br>ctrl + shift + enter 一行对齐</p>
+<p>mark derectory as excluded 后 tomcat无法加载对应文件夹下的文件</p>
+<p>ctrl + alt + l 格式化<br>ctrl + shift + enter 一行对齐<br>alt + F7 查询方法被调用位置<br>alt + enter 自动导入包<br>F11 行前打 √<br>Structure  Alt + 7 显示当前类的所有方法</p>
+<p>#版本控制工具<br>绿色，已经加入控制暂未提交<br>红色，未加入版本控制<br>蓝色，加入，已提交，有改动<br>白色，加入，已提交，无改动<br>灰色：版本控制已忽略文件。</p>
+<p>#设置</p>
+<p>#去除自动补全的大小写敏感：<br>不知道多少童鞋和我一样被Eclipse惯坏了，使用自动补全完全不注意大小写的，IntelliJ默认区分大小写，很是让人难过。不过在Editor=&gt;Code Completion里把Case sensitive completion设置为None就可以了。</p>
+<p>#plujin jrebel</p>
+<p>#active code<br>ks7u6sCdw4AKnRX/LKIE3+/tWTIVrDa5skvaBnYKhQaroFkFMecKO1OcpDZCs/rlAKfoiSyM3/nqKI8sxBOiZnKqf9rN+473BRfutfkoduYfAd3sUF0q6i19X5QN4EH6W9I0pQ==</p>
+<p>#junit<br>安装:<br>plugin 收搜 junit generator<br>配置代理<br>IntelliJ IDEA JUnit Generator自动创建测试用例到指定(maven)test目录<br>1.打开File-&gt;Settings<br>2.搜索junit，找到JUnit Generator<br>3.Properties选项卡里的Output Path为测试用例生成的目录，修改为test目录：<br>${SOURCEPATH}/../../test/java/${PACKAGE}/${FILENAME}<br>4.切换到JUnit 4选项卡，可以修改生成测试用例的模板，比如类名、包名等</p>
+<hr>
+<p>#IntelliJ Idea 常用快捷键列表<br><a href="http://wiki.jikexueyuan.com/project/intellij-idea-tutorial/keymap-introduce.html" target="_blank" rel="noopener">http://wiki.jikexueyuan.com/project/intellij-idea-tutorial/keymap-introduce.html</a></p>
+<p>Ctrl+Shift + Enter，语句完成<br>“！”，否定完成，输入表达式时按 “！”键<br>Ctrl+E，最近的文件<br>Ctrl+Shift+E，最近更改的文件<br>Shift+Click，可以关闭文件<br>Ctrl+[ OR ]，可以跑到大括号的开头与结尾<br>Ctrl+F12，可以显示当前文件的结构<br>Ctrl+F7，可以查询当前元素在当前文件中的引用，然后按 F3 可以选择<br>Ctrl+N，可以快速打开类<br>Ctrl+Shift+N，可以快速打开文件<br>Alt+Q，可以看到当前方法的声明<br>Ctrl+P，可以显示参数信息<br>Ctrl+Shift+Insert，可以选择剪贴板内容并插入<br>Alt+Insert，可以生成构造器/Getter/Setter等<br>Ctrl+Alt+V，可以引入变量。例如：new String(); 自动导入变量定义<br>Ctrl+Alt+T，可以把代码包在一个块内，例如：try/catch<br>Ctrl+Enter，导入包，自动修正<br>Ctrl+Alt+L，格式化代码<br>Ctrl+Alt+I，将选中的代码进行自动缩进编排，这个功能在编辑 JSP 文件时也可以工作<br>Ctrl+Alt+O，优化导入的类和包<br>Ctrl+R，替换文本<br>Ctrl+F，查找文本<br>Ctrl+Shift+Space，自动补全代码<br>Ctrl+空格，代码提示（与系统输入法快捷键冲突）<br>Ctrl+Shift+Alt+N，查找类中的方法或变量<br>Alt+Shift+C，最近的更改<br>Alt+Shift+Up/Down，上/下移一行<br>Shift+F6，重构 – 重命名<br>Ctrl+X，删除行<br>Ctrl+D，复制行<br>Ctrl+/或Ctrl+Shift+/，注释（//或者/**/）<br>Ctrl+J，自动代码（例如：serr）<br>Ctrl+Alt+J，用动态模板环绕<br>Ctrl+H，显示类结构图（类的继承层次）<br>Ctrl+Q，显示注释文档<br>Alt+F1，查找代码所在位置<br>Alt+1，快速打开或隐藏工程面板<br>Ctrl+Alt+left/right，返回至上次浏览的位置<br>Alt+left/right，切换代码视图<br>Alt+Up/Down，在方法间快速移动定位<br>Ctrl+Shift+Up/Down，向上/下移动语句<br>F2 或 Shift+F2，高亮错误或警告快速定位<br>Tab，代码标签输入完成后，按 Tab，生成代码<br>Ctrl+Shift+F7，高亮显示所有该文本，按 Esc 高亮消失<br>Alt+F3，逐个往下查找相同文本，并高亮显示<br>Ctrl+Up/Down，光标中转到第一行或最后一行下<br>Ctrl+B/Ctrl+Click，快速打开光标处的类或方法（跳转到定义处）<br>Ctrl+Alt+B，跳转到方法实现处<br>Ctrl+Shift+Backspace，跳转到上次编辑的地方<br>Ctrl+O，重写方法<br>Ctrl+Alt+Space，类名自动完成<br>Ctrl+Alt+Up/Down，快速跳转搜索结果<br>Ctrl+Shift+J，整合两行<br>Alt+F8，计算变量值<br>Ctrl+Shift+V，可以将最近使用的剪贴板内容选择插入到文本<br>Ctrl+Alt+Shift+V，简单粘贴<br>Shift+Esc，不仅可以把焦点移到编辑器上，而且还可以隐藏当前（或最后活动的）工具窗口<br>F12，把焦点从编辑器移到最近使用的工具窗口<br>Shift+F1，要打开编辑器光标字符处使用的类或者方法 Java 文档的浏览器<br>Ctrl+W，可以选择单词继而语句继而行继而函数<br>Ctrl+Shift+W，取消选择光标所在词<br>Alt+F7，查找整个工程中使用地某一个类、方法或者变量的位置<br>Ctrl+I，实现方法<br>Ctrl+Shift+U，大小写转化<br>Ctrl+Y，删除当前行</p>
+<p>Shift+Enter，向下插入新行<br>psvm/sout，main/System.out.println(); Ctrl+J，查看更多<br>Ctrl+Shift+F，全局查找<br>Ctrl+F，查找/Shift+F3，向上查找/F3，向下查找<br>Ctrl+Shift+S，高级搜索<br>Ctrl+U，转到父类<br>Ctrl+Alt+S，打开设置对话框<br>Alt+Shift+Inert，开启/关闭列选择模式<br>Ctrl+Alt+Shift+S，打开当前项目/模块属性<br>Ctrl+G，定位行<br>Alt+Home，跳转到导航栏<br>Ctrl+Enter，上插一行<br>Ctrl+Backspace，按单词删除<br>Ctrl+”+/-”，当前方法展开、折叠<br>Ctrl+Shift+”+/-”，全部展开、折叠<br>【调试部分、编译】<br>Ctrl+F2，停止<br>Alt+Shift+F9，选择 Debug<br>Alt+Shift+F10，选择 Run<br>Ctrl+Shift+F9，编译<br>Ctrl+Shift+F10，运行<br>Ctrl+Shift+F8，查看断点<br>F8，步过<br>F7，步入<br>Shift+F7，智能步入<br>Shift+F8，步出<br>Alt+Shift+F8，强制步过<br>Alt+Shift+F7，强制步入<br>Alt+F9，运行至光标处<br>Ctrl+Alt+F9，强制运行至光标处<br>F9，恢复程序<br>Alt+F10，定位到断点<br>Ctrl+F8，切换行断点<br>Ctrl+F9，生成项目<br>Alt+1，项目<br>Alt+2，收藏<br>Alt+6，TODO<br>Alt+7，结构<br>Ctrl+Shift+C，复制路径<br>Ctrl+Alt+Shift+C，复制引用，必须选择类名<br>Ctrl+Alt+Y，同步<br>Ctrl+~，快速切换方案（界面外观、代码风格、快捷键映射等菜单）<br>Shift+F12，还原默认布局<br>Ctrl+Shift+F12，隐藏/恢复所有窗口<br>Ctrl+F4，关闭<br>Ctrl+Shift+F4，关闭活动选项卡<br>Ctrl+Tab，转到下一个拆分器<br>Ctrl+Shift+Tab，转到上一个拆分器<br>【重构】<br>Ctrl+Alt+Shift+T，弹出重构菜单<br>Shift+F6，重命名<br>F6，移动<br>F5，复制<br>Alt+Delete，安全删除<br>Ctrl+Alt+N，内联<br>【查找】<br>Ctrl+F，查找<br>Ctrl+R，替换<br>F3，查找下一个<br>Shift+F3，查找上一个<br>Ctrl+Shift+F，在路径中查找<br>Ctrl+Shift+R，在路径中替换<br>Ctrl+Shift+S，搜索结构<br>Ctrl+Shift+M，替换结构<br>Alt+F7，查找用法<br>Ctrl+Alt+F7，显示用法<br>Ctrl+F7，在文件中查找用法<br>Ctrl+Shift+F7，在文件中高亮显示用法</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/hexo/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/Atom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/Atom/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>预览: ctrl + shift + m</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/thread/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/thread/" itemprop="url">多线程线程状态 \ 线程池优化/监控 \ jvm线程监控</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/thread/" itemprop="url" rel="index">
+                    <span itemprop="name">thread</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="java多线程"><a href="#java多线程" class="headerlink" title="java多线程"></a>java多线程</h3><pre><code>http://penghb.com
+</code></pre><h3 id="jvm线程监控"><a href="#jvm线程监控" class="headerlink" title="jvm线程监控"></a>jvm线程监控</h3><h4 id="线程-dump"><a href="#线程-dump" class="headerlink" title="线程 dump"></a>线程 dump</h4><ol>
+<li><p>执行<code>jps</code>命令，列出正在运行的java程序的进程ID</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">D:\gitrepo\thread-test&gt;jps</span><br><span class="line">5056 RemoteMavenServer (pid 对应线程名字)</span><br><span class="line">7264 Launcher</span><br><span class="line">10644 Jps</span><br><span class="line">7636</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<hr>
-<p>git基本命令：  </p>
-<p>只是用于提交的用户名和邮箱（用作标示）<br>$git config –global user.name “”<br>$git config –global user.email “”  </p>
-<p>显示config配置<br>$git config –list  </p>
-<p>updates were rejected because the tip<br>远程版本库高于本地版本库<br>应该先pull  </p>
-<hr>
-<p>git branch  </p>
-<p>git branch 不带参数：列出本地已经存在的分支，<br>并且在当前分支的前面加“*”号标记  </p>
-<p>git branch -r 列出远程分支  </p>
-<p>git branch -a 列出本地分支和远程分支  </p>
-<p>git branch 创建一个新的本地分支，需要注意，<br>此处只是创建分支，不进行分支切换<br>example: git branch mybranch  </p>
-<p>$ git checkout -b iss53 新建并切换  </p>
-<p>git branch -m | -M oldbranch newbranc<br>重命名分支，如果newbranch名字分支已经存在，<br>则需要使用-M强制重命名，否则，使用-m进行重命名。  </p>
-<p>git branch -d | -D branchname<br>删除branchname分支  </p>
-<p>git branch -d -r branchname<br>删除远程branchname分支  </p>
-<p>要切换到其他分支，可以执行 git checkout 命令<br>$ git checkout testing<br>当添加文件时，没有git add ，git不会对文件进行监听<br>这样在切换分支时，文件不会受到影响  </p>
-<p>不同分支初始化时，均继承master的文件  </p>
-<p>git merge 合并  </p>
-<hr>
-<p>git 删除文件  </p>
-<p>在被 git 管理的目录中删除文件时，可以选择如下两种方式来记录删除动作:<br>一、rm + git commit -am “abc”<br>二、git rm + git commit -m “abc”<br>另外，git add . 仅能记录添加、改动的动作，删除的动作需靠 git rm 来完成。  </p>
-<p>最后，rm 删除的文件是处于 not staged 状态的，<br>也就是一种介于 “未改动” 和 “已提交过” 之间的状态。  </p>
-<hr>
-<p>git .gitignore<br>    注意空格！！！  </p>
-<pre><code>在 .git 相同文件夹下新建.gitignore文件  
-
-#注释  
-/build/ 忽略根目录下build文件夹下的所有文件  
-</code></pre><hr>
-<p>git 回滚 reset  </p>
-<p>本地回滚  </p>
-<p>git reset –soft | –mixed | –hard<br>                    默认  </p>
-<p>–mixed<br>会保留源码,只是将git commit和index 信息回退到了某个版本.  </p>
-<p>–soft<br>保留源码,只回退到commit 信息到某个版本.不涉及index的回退,如果还需要提交,直接commit即可.  </p>
-<p>–hard<br>源码也会回退到某个版本,commit和index 都回回退到某个版本.(注意,这种方式是改变本地代码仓库源码)  </p>
-<hr>
-<p>git commit -a -m ‘added new benchmarks’   </p>
-<p>跳过使用暂存区域<br>尽管使用暂存区域的方式可以精心准备要提交的细节，<br>但有时候这么做略显繁琐。 Git 提供了一个跳过使用暂存区域的方式，<br>只要在提交的时候，给 git commit 加上 -a 选项，<br>Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 git add 步骤  </p>
-<hr>
-<p>EGit myeclipse   </p>
-<p>egit <a href="http://archive.eclipse.org/egit/updates-3.0" target="_blank" rel="noopener">http://archive.eclipse.org/egit/updates-3.0</a><br>myeclipse 2013</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/hadoop/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/hadoop/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:36:08+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#_#hadoop</p>
-<hr>
-<p>#安装<br>参考:<br>    <a href="http://www.cnblogs.com/wuxun1997/p/6847950.html" target="_blank" rel="noopener">http://www.cnblogs.com/wuxun1997/p/6847950.html</a><br>windows 需要文件<br>    <a href="https://github.com/steveloughran/winutils" target="_blank" rel="noopener">https://github.com/steveloughran/winutils</a><br>    替换bin下的文件,system32下放入hadoop.dll</p>
-<hr>
-<p>#hadoop 启动</p>
-<p>先启动zookeeper</p>
-<p>启动Hadoop集群需要启动HDFS集群和Map/Reduce集群。</p>
-<pre><code>1. 格式化一个新的分布式文件系统：(只能格式化一次,多次会造成put时sid错误.)
-    hadoop namenode -format
-2. 在分配的NameNode上，运行下面的命令启动HDFS：
-    sbin&gt;start-all.cmd
-3. 检验
-
-   * sbin&gt;jps
-        4944 DataNode
-        5860 NodeManager
-        3532 Jps
-        7852 NameNode
-        7932 ResourceManager
-</code></pre><p>监听端口<br>    <a href="http://localhost:9000/" target="_blank" rel="noopener">http://localhost:9000/</a> <code>与外部程序交互端口</code><br>web 页面访问端口欧<br>    <a href="http://localhost:50070/" target="_blank" rel="noopener">http://localhost:50070/</a> <code>看hdfs文件</code><br>    <a href="http://localhost:8088" target="_blank" rel="noopener">http://localhost:8088</a> <code>mapreduce任务</code></p>
-<hr>
-<p>#hadoop shell</p>
-<p>#put<br>使用方法：hadoop fs -put <localsrc> … <dst><br>从本地文件系统中复制单个或多个源路径到目标文件系统。也支持从标准输入中读取输入写入目标文件系统。</dst></localsrc></p>
-<pre><code>* hadoop fs -put localfile /user/hadoop/hadoopfile
-* hadoop fs -put localfile1 localfile2 /user/hadoop/hadoopdir
-* hadoop fs -put localfile hdfs://host:port/hadoop/hadoopfile
-* hadoop fs -put - hdfs://host:port/hadoop/hadoopfile
-</code></pre><p>从标准输入中读取输入。</p>
-<p>返回值：<br>成功返回0，失败返回-1。(我put的时候没有返回值?)  </p>
-<p>put 的hadoop 的位置的路径下没有其他文件或目录时,直接替换这个路径,而不是在这个路径下新建文集  </p>
-<p>#mkdir<br>使用方法：hadoop fs -mkdir <paths><br>接受路径指定的uri作为参数，创建这些目录。其行为类似于Unix的mkdir -p，它会创建路径中的各级父目录。<br>示例：</paths></p>
-<pre><code>* hadoop fs -mkdir /user/hadoop/dir1 /user/hadoop/dir2
-* hadoop fs -mkdir hdfs://host1:port1/user/hadoop/dir hdfs://host2:port2/user/hadoop/dir
-</code></pre><p>返回值：<br>成功返回0，失败返回-1。</p>
-<p>mkdir多路径的时候(/user/hadoop/dir1) 如果没有父路径则不会新建子目录,会报错</p>
-<hr>
-<p>#mapreduce demo</p>
-<p>#运行hadoop官网给的demo (失败)<br>    <a href="http://hadoop.apache.org/docs/r1.0.4/cn/mapred_tutorial.html" target="_blank" rel="noopener">http://hadoop.apache.org/docs/r1.0.4/cn/mapred_tutorial.html</a><br>运行应用程序：</p>
-<pre><code>&gt; $ bin/hadoop jar /usr/joe/wordcount.jar org.myorg.WordCount /usr/joe/wordcount/input /usr/joe/wordcount/output
-</code></pre><p>应该为:</p>
-<pre><code>&gt; hadoop jar D:\java\hadoop-2.8.1\sbin\hh\hadoop-test-1.0.0.jar hadoop.WordCount /usr/joe/wordcount/input /usr/joe/wordcount/output
-</code></pre><p>不用加jar包名称</p>
-<p>运行失败 原因:<br>    8/01/25 18:41:16 INFO mapreduce.Job: Job job_1516876525498_0002 failed with state FAILED due to: Application application_1516876525498_0002 failed 2 times due to AM Container for appattempt_1516876525498_0002_000<br>    002 exited with  exitCode: 5<br>    Failing this attempt.Diagnostics: Exception from container-launch.<br>    Container id: container_1516876525498_0002_02_000001<br>    Exit code: 5<br>    Exception message: AssignProcessToJobObject error (5): ?????<br>未解决文档<br>    <a href="https://wiki.apache.org/hadoop/Hadoop2OnWindows" target="_blank" rel="noopener">https://wiki.apache.org/hadoop/Hadoop2OnWindows</a></p>
-<p>#运行成功 通过idea运行(<code>成功</code>) demo<br><a href="https://www.jianshu.com/p/3e1b398ebfea" target="_blank" rel="noopener">https://www.jianshu.com/p/3e1b398ebfea</a></p>
-<p>error:<br>    版本问题(版本低于hadoop环境)<br>    Server IPC version 9 cannot communicate with client version 4</p>
-<p>8088 没有监控到运行?<br>    idea 运行的程序都监测不到</p>
-<p>#map reduce 计算模型<br>执行任务角色:<br>    jobTracker(跟踪器) 调度工作 <code>一个hadoop集群中只有一个</code><br>    taskTracker 执行工作</p>
-<hr>
-<p>#lang comparable 可比较的<br>Comparable 是排序接口。<br>若一个类实现了Comparable接口，就意味着“该类支持排序”。  即然实现Comparable接口的类支持排序，假设现在存在“实现Comparable接口的类的对象的List列表(或数组)”，则该List列表(或数组)可以通过 Collections.sort（或 Arrays.sort）进行排序。</p>
+<li><p>执行<code>jstack pid</code></p>
+</li>
+</ol>
+<h3 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h3><ol>
+<li>new: 创建了,还没有启动</li>
+<li>runable: 正在Java虚拟机下跑任务的线程的状态。在RUNNABLE状态下的线程可能<br>会处于等待状态， 因为它正在等待一些系统资源的释放，比如IO</li>
+<li>BLOCKED: 阻塞状态，等待锁的释放，比如线程A进入了一个<code>synchronized</code>方法，线程B也想进入这个方法，但是这个方法的锁已经被线程A获取了，这个时候线程B就处于BLOCKED状态<ol>
+<li>分析:线程处于BLOCKED状态，这个时候可以分析一下是不是lock加锁的时候忘记释放了，或者释放的时机不对。导致另外的线程一直处于BLOCKED状态。</li>
+</ol>
+</li>
+<li>WAITING: 等待状态，处于等待状态的线程是由于执行了3个方法中的任意方法。<ol>
+<li>Object的wait方法，并且没有使用timeout参数;</li>
+<li>Thread的join方法，没有使用timeout参数</li>
+<li>LockSupport的park方法。 处于waiting状态的线程会等待另外一个线程处理特殊的行为。 再举个例子，如果一个线程调用了一个对象的wait方法，那么这个线程就会处于waiting状态直到另外一个线程调用这个对象的notify或者notifyAll方法后才会解除这个状态</li>
+</ol>
+</li>
+<li>TIMED_WAITING: 有等待时间的等待状态，比如调用了以下几个方法中的任意方法，并且指定了等待时间，线程就会处于这个状态。<ol>
+<li>Thread.sleep方法</li>
+<li>Object的wait方法，带有时间</li>
+<li>Thread.join方法，带有时间</li>
+<li>LockSupport的parkNanos方法，带有时间</li>
+<li>LockSupport的parkUntil方法，带有时间</li>
+</ol>
+</li>
+<li>TERMINATED: 线程中止的状态，这个线程已经完整地执行了它的任务(jstack 看不到线程了)</li>
+</ol>
+<p>在Thread.java 下的 enum State下</p>
+<h3 id="Dump文件中的线程状态"><a href="#Dump文件中的线程状态" class="headerlink" title="Dump文件中的线程状态"></a>Dump文件中的线程状态</h3><ol>
+<li>Deadlock</li>
+<li>Runnable</li>
+<li>Waiting on condition</li>
+<li>Blocked</li>
+<li>Waiting for monitor entry 和 in Object.wait()</li>
+</ol>
+<h3 id="Thread-java分析"><a href="#Thread-java分析" class="headerlink" title="Thread.java分析"></a>Thread.java分析</h3><ol>
+<li>exit()<br> exit( )是由系统调用的，用于线程在真正的退出前进行一些清理的操作。看看里面进行的操作是什么吧，可以看出，里面执行的是group 赋值为null了， 将target引用进行释放，同时释放了threadLocals所占用的资源，等等属性都赋值为null。</li>
+<li>sleep()<br> 这个方法的作用使得当前线程休眠一定的时间，但是这个期间是不释放持有的锁的。这个方法里面首先进行的是休眠时间的判断，然后又是调用本地方法。</li>
+<li>join()方法<br> join方法是等待该线程执行，直到超时或者终止，可以作为线程通信的一种方式，A线程调用B线程的join（阻塞），等待B完成后再往下执行。 join（）方法中重载了多个方法，但是主要的方法是下面的方法。</li>
+<li>interrupt()方法<br>中断当前的线程<ol>
+<li>阻塞状态:<br>阻塞函数,如Thread.sleep、Thread.join、Object.wait等在检查到线程的中断状态的时候，<br>会抛出InteruptedExeption, 同时会清除线程的中断状态。<br>对于InterruptedException的处理，可以有两种情况：<ol>
+<li>外层代码处理异常，直接抛出这个异常即可</li>
+<li>不能抛出这个异常，比如在run()方法内，因为在得到这个异常的同时，线程的中断状态已经被清除了，需要保留线程的中断状态，则需要调    用Thread.currentThread().interrupt()</li>
+</ol>
+</li>
+<li>运行状态:<br>将该线程的中断标志设置为 true，仅此而已。被设置中断标志的线程将继续正常运行，不受影响。</li>
+</ol>
+</li>
+</ol>
+<h3 id="终止线程"><a href="#终止线程" class="headerlink" title="终止线程"></a>终止线程</h3><p>首先，一个线程不应该由其他线程来强制中断或停止，而是应该由线程自己自行停止。<br>所以，Thread.stop, Thread.suspend, Thread.resume 都已经被废弃了。<br>而 Thread.interrupt 的作用其实也不是中断线程，而是「通知线程应该中断了」，<br>具体到底中断还是继续运行，应该由被通知的线程自己处理。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//“中断”方式终止处于“阻塞状态”的线程。</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 执行任务...</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException ie) &#123;</span><br><span class="line">        <span class="comment">// 由于产生InterruptedException异常，退出while(true)循环，线程终止！</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//终止处于“运行状态”的线程</span></span><br><span class="line">    <span class="keyword">if</span> (!isInterrupted()) &#123;</span><br><span class="line">        <span class="comment">// 执行任务...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="合理的配置线程池"><a href="#合理的配置线程池" class="headerlink" title="合理的配置线程池"></a>合理的配置线程池</h3><p>要想合理的配置线程池，就必须首先分析任务特性，可以从以下几个角度来进行分析：</p>
+<ol>
+<li>任务的性质：CPU密集型任务，IO密集型任务和混合型任务。</li>
+<li>任务的优先级：高，中和低。</li>
+<li>任务的执行时间：长，中和短。</li>
+<li>任务的依赖性：是否依赖其他系统资源，如数据库连接。</li>
+</ol>
+<p>任务性质不同的任务可以用不同规模的线程池分开处理。CPU密集型任务配置尽可能少的线程数量，如配置Ncpu+1个线程的线程池。<br>IO密集型任务则由于需要等待IO操作，线程并不是一直在执行任务，则配置尽可能多的线程，如2*Ncpu。<br>混合型的任务，如果可以拆分，则将其拆分成一个CPU密集型任务和一个IO密集型任务，只要这两个任务执行的时间相差不是太大，那么分解后执行的吞吐率要高于串行执行的吞吐率，如果这两个任务执行时间相差太大，则没必要进行分解。<br>可以通过<br>    <code>Runtime.getRuntime().availableProcessors()</code>方法获得当前设备的CPU个数。</p>
+<p>优先级不同的任务可以使用优先级队列PriorityBlockingQueue来处理。它可以让优先级高的任务先得到执行，需要注意的是如果一直有优先级高的任务提交到队列里，那么优先级低的任务可能永远不能执行。</p>
+<p>执行时间不同的任务可以交给不同规模的线程池来处理，或者也可以使用优先级队列，让执行时间短的任务先执行。</p>
+<p>依赖数据库连接池的任务，因为线程提交SQL后需要等待数据库返回结果，如果等待的时间越长CPU空闲时间就越长，那么线程数应该设置越大，这样才能更好的利用CPU。</p>
+<p>建议使用有界队列<br>    有界队列能增加系统的稳定性和预警能力，可以根据需要设大一点，比如几千。有一次我们组使用的后台任务线程池的队列和线程池全满了，不断的抛出抛弃任务的异常，通过排查发现是数据库出现了问题，导致执行SQL变得非常缓慢，因为后台任务线程池里的任务全是需要向数据库查询和插入数据的，所以导致线程池里的工作线程全部阻塞住，任务积压在线程池里。如果当时我们设置成无界队列，线程池的队列就会越来越多，有可能会撑满内存，导致整个系统不可用，而不只是后台任务出现问题。当然我们的系统所有的任务是用的单独的服务器部署的，而我们使用不同规模的线程池跑不同类型的任务，但是出现这样问题时也会影响到其他任务。</p>
+<h3 id="线程池的监控"><a href="#线程池的监控" class="headerlink" title="线程池的监控"></a>线程池的监控</h3><p>通过线程池提供的参数进行监控。线程池里有一些属性在监控线程池的时候可以使用</p>
+<ol>
+<li>taskCount：线程池需要执行的任务数量。</li>
+<li>completedTaskCount：线程池在运行过程中已完成的任务数量。小于或等于taskCount。</li>
+<li>largestPoolSize：线程池曾经创建过的最大线程数量。通过这个数据可以知道线程池是否满过。<br> 如等于线程池的最大大小，则表示线程池曾经满了。</li>
+<li>getPoolSize:线程池的线程数量。如果线程池不销毁的话，池里的线程不会自动销毁，所以这个大小只增不减。</li>
+<li>getActiveCount：获取活动的线程数。<br>通过扩展线程池进行监控。通过继承线程池并重写线程池的beforeExecute，afterExecute和terminated方法，我们可以在任务执行前，执行后和线程池关闭前干一些事情。如监控任务的平均执行时间，最大执行时间和最小执行时间等。这几个方法在线程池里是空方法。</li>
+</ol>
+<h3 id="Spring-线程池应用"><a href="#Spring-线程池应用" class="headerlink" title="Spring 线程池应用"></a>Spring 线程池应用</h3><p>org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor</p>
 
           
         
@@ -615,7 +954,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/algorithm_start/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/thread-lock/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -634,7 +973,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/11/algorithm_start/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/06/11/thread-lock/" itemprop="url">多线程--锁</a></h1>
         
 
         <div class="post-meta">
@@ -646,7 +985,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:36:08+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
                 2018-06-11
               </time>
             
@@ -656,6 +995,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/thread/" itemprop="url" rel="index">
+                    <span itemprop="name">thread</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -686,23 +1047,7 @@
       
         
           
-            <p><a href="http://staff.ustc.edu.cn/~lszhuang/alg/" target="_blank" rel="noopener">http://staff.ustc.edu.cn/~lszhuang/alg/</a></p>
-<p>数据有两种搞搞的方式<br>    处理(计算)<br>    存储<br>算法应该都是围绕这两方面搞的</p>
-<p>#分析方法<br>增量法(穷举法) 暴力搜寻法<br>    暴力破解<br>    回溯法 <a href="https://zh.wikipedia.org/wiki/回溯法" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/回溯法</a><br>        对于某些计算问题而言，回溯法是一种可以找出所有（或一部分）解的一般性算法，尤其适用于约束满足问题（在解决约束满足问题时，我们逐步构造更多的候选解，并且在确定某一部分候选解不可能补全成正确解之后放弃继续搜索这个部分候选解本身及其可以拓展出的子候选解，转而测试其他的部分候选解）。</p>
-<p>分治法<br>    步骤: 分解,解决,合并<br>    code: 递归式<br>    实现: 分治是把数组按元素分成最小份,切割原有样本<br>    在每一层递归上都有三个步骤：<br>        分解：将原问题分解为若干个规模较小，相对独立，与原问题形式相同的子问题。<br>        解决：若子问题规模较小且易于解决时，则直接解。否则，递归地解决各子问题。<br>        合并：将各子问题的解合并为原问题的解。<br>            一般需要辅助数组,层层合并<br>    归并排序<br>    快速排序<br>动态规划<br>    <a href="https://zh.wikipedia.org/wiki/动态规划" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/动态规划</a><br>    动态规划在查找有很多重叠子问题的情况的最优解时有效。它将问题重新组合成子问题。为了避免多次解决这些子问题，它们的结果都逐渐被计算并被保存，从简单的问题直到整个问题都被解决。因此，动态规划保存递归时的结果，因而不会在解决同样的问题时花费时间。<br>    <code>动态规划只能应用于有最优子结构的问题</code>。最优子结构的意思是局部最优解能决定全局最优解（对有些问题这个要求并不能完全满足，故有时需要引入一定的近似）。简单地说，问题能够分解成子问题来解决。<br>    <code>NP</code><br>    非定常多项式（英语：non-deterministic polynomial，缩写：NP）时间复杂性类，或称非确定性多项式时间复杂性类，包含了可以在多项式时间内，对一个判定性算法问题的实例，一个给定的解是否正确的算法问题。<br>    <code>复杂性类</code><br>    将计算问题按照在不同计算模型下所需资源的不同予以分类，从而得到一个对算法问题“难度”的类别，就是复杂性理论中复杂性类概念的来源。例如一个问题如果在确定性图灵机上所需时间不会超过一个确定的多项式（以输入的长度为多项式的不定元），那么我们称这类问题的集合为P（polynomial time Turing machine）。而将前述定义中的“确定性图灵机”改为“不确定性图灵机”，那么所得到的问题集合为NP（non-deteministic polynomial time Turing machine）。类似的，设 {\displaystyle n} n为输入的长度，那我们可以定义“在确定性图灵机上所需空间不超 {\displaystyle O(\log n)} O(\log n)的算法问题的集合”（即为 {\displaystyle L} L），“存在深度为 {\displaystyle O(\log n)} O(\log n)，输入的度（fan-in）为 {\displaystyle O(1)} O(1)的电路族（circuit family）的算法问题的集合”（即为NC1）等等复杂性类。<br>    NP困难问题和NP完全问题[编辑]<br>    要理解这几个概念，首先要明白几件事：<br>    对于NP问题是否存在确定的多项式时间的解，目前还不清楚（即有可能有一天可以证明NP问题=P问题，但目前还证明不出来、也不能证明NP问题≠P问题，目前的结论只是NP问题集⊇P问题集<br>    问题之间可以规约，即如果某个NP问题存在确定的多项式时间解，那么另一个NP问题也存在确定的多项式时间解。这个过程是可以证明的、并且已经被证明。<br>    NP困难问题（NP-hard problems）<br>    是指这样的一类问题，它们本身的复杂度是多少无所谓（但由后面的论述可知至少是NP），但是只要这个问题找到确定的多项式时间的解，那么我们可以证明出所有的NP问题都一定存在确定的多项式时间的解。（简单叙述一下就是，只要有一个NP困难问题找到P解，那么所有NP问题都是P问题）<br>    NP完全问题（NP-complete problems）<br>    如果一个问题既是NP困难问题又是NP问题，我们称之为NP完全问题。<br>    <code>NPC</code><br>    <a href="https://zh.wikipedia.org/wiki/NP完全" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/NP完全</a><br>    可归约在此意指对每个问题L，总有一个多项式时间多对一变换，即一个决定性的算法可以将实例l ∈ L转化成实例c ∈ C，并让c回答Yes当且仅当此答案对l也是Yes。为了证明某个NP问题A实际上是NPC问题，证明者必须找出一个已知的NPC问题可以变换成A。<br>        布尔可满足性问题<br>        N-puzzle问题（华容道问题）<br>        背包问题<br>        汉弥尔顿循环问题<br>        旅行推销员问题<br>        子图同构问题：（Subgraph isomorphism problem）<br>        子集合加总问题<br>        分团问题<br>        顶点涵盖问题<br>        独立顶点集问题：（Independent set problem）<br>        图着色问题<br>        扫雷[2]</p>
-<pre><code>返回最大连续子数组和
-返回不含重复最大子字符串
-    转化成一个循环内的临时最大值currSum(局部最优解),
-    与所有的最大值maxSum比较问题
-
-寻找最小的f个数
-    转化成内部f个数的排序
-
-返回所有和等于sum的组合
-    转化成包含,不包含问题
-</code></pre><p>贪心法<br>    贪心法是一种在每一步选择中都采取在当前状态下最好或最优（即最有利）的选择，从而希望导致结果是最好或最优的算法。<br>    贪心算法与动态规划的不同在于它对每个子问题的解决方案都做出选择，不能回退。动态规划则会保存以前的运算结果，并根据以前的结果对当前进行选择，有回退功能。</p>
-<p>数据结构<br>    是一种存储和组织数据的方式,旨在便于访问和修改</p>
-
+            <h3 id="死锁前提"><a href="#死锁前提" class="headerlink" title="死锁前提"></a>死锁前提</h3>
           
         
       
@@ -750,7 +1095,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/json_xml_数据格式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/thread source read/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -769,7 +1114,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/11/json_xml_数据格式/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/06/11/thread source read/" itemprop="url">多线程源码阅读 \ Current/Collection/Thread</a></h1>
         
 
         <div class="post-meta">
@@ -781,7 +1126,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:34:51+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
                 2018-06-11
               </time>
             
@@ -791,6 +1136,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/thread/" itemprop="url" rel="index">
+                    <span itemprop="name">thread</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -821,165 +1188,21 @@
       
         
           
-            <h1 id="json"><a href="#json" class="headerlink" title="json"></a>json</h1><p>JSON (JavaScript Object Notation) javascript对象封装.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/jquery_plujin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/jquery_plujin/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:34:51+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#js 插件            </p>
-<hr>
-<p>#autocomplete<br>定义：<br>AutoComplete控件就是在用户在文本框输入前几个字母或是汉字的时候,<br>该控件就能从存放数据的文本或是数据库里将所有以这些字母开头的数据提示给用户            </p>
-<p>eclipse中默认的浏览器不兼容autocomplete            </p>
-<p>autocomplete不能集成到同一个文本框中            </p>
-<p>最简格式：html            </p>
-<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;styles.css&quot; /&gt;本地包            
-&lt;script src=&quot;http://code.jquery.com/jquery-1.8.2.min.js&quot;&gt;&lt;/script&gt;            
-&lt;script src=&quot;http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js&quot;&gt;&lt;/script&gt;            
-&lt;script src=&quot;jqm.autoComplete-1.5.2.js&quot;&gt;&lt;/script&gt;            
-
-&lt;input autocomplete=&quot;off&quot; id=&quot;searchField&quot; class=&quot;searchField&quot; placeholder=&quot;Categories&quot; /&gt;            
-&lt;div id=&quot;suggestions&quot; data-role=&quot;listview&quot; data-inset=&quot;true&quot;&gt;&lt;/div&gt;            
-
-
-&lt;script&gt;            
-    $(&quot;#mainPage&quot;).bind(&quot;pageshow&quot;, function(e) {            
-        var data = [&apos;姜晗&apos;,&apos;C&apos;, &apos;Clojure&apos;, &apos;Java&apos;, &apos;Scala&apos;, &apos;Objective-C&apos;, &apos;C++&apos;, &apos;PHP&apos;, &apos;C#&apos;, &apos;(Visual) Basic&apos;,                    
-                    &apos;Python&apos;, &apos;Perl&apos;, &apos;JavaScript&apos;, &apos;Ruby&apos;, &apos;Visual Basic .NET&apos;, &apos;Transact-SQL&apos;, &apos;Lisp&apos;, &apos;Pascal&apos;,                    
-                    &apos;Bash&apos;, &apos;PL/SQL&apos;, &apos;Delphi/Object Pascal&apos;, &apos;Ada&apos;, &apos;MATLAB&apos;];            
-        $(&quot;#searchField&quot;).autocomplete({            
-            target: $(&apos;#suggestions&apos;),            
-            source: data,            
-            link: &apos;target.html?term=&apos;,            
-            minLength: 1,            
-            matchFromStart: false,                                
-        });            
-    });             
-&lt;/script&gt;            
-</code></pre><hr>
-<p>#Flexigrid<br>*安装<br>/Flexigrid/WebContent/page/test/main_busic.jsp                </p>
-<p>2012.12.14初步实现了flexigrid的安装实现                </p>
-<p>将flexigrid.js<br>flexigrid.css<br>jquery-1.8.2.js<br>导入到项目中的前台文件<br>初始化必须的两个方法<br>$(“#flex1”).flexigrid<br>function addFormData()            </p>
-<p><em>Flexigrid功能：<br>    重量轻，但丰富的数据网格，可调整大小的列和滚动数据相匹配的标题，<br>    再加上连接到一个XML或JSON数据源使用Ajax加载的内容的能力。<br>    类似的概念与外部电网唯一的纯的jQuery的爱，这使得它重量轻，最少的配置与运行如下的jQuery的口头禅。            
-</em>特点<br>    可调整大小的列<br>    可调高度和宽度<br>    可排序的列标题<br>    酷主题<br>    可以将一个普通的表<br>    能够连接到一个Ajax数据源（XML和JSON）<br>    分页<br>    显示/隐藏列<br>    工具栏（新）<br>    搜索（新）<br>    可访问API<br>    可调整大小的宽度<br>    JSON支持<br>    工具栏<br>    表切换按钮<br>    显示/隐藏列控制移动的列标题，（尝试它通过一个头mouseovering，点击右边的黑色三角形）<br>    固定分页问题上的多个实例<br>    Mootools和固定的原型noConflict（）的兼容性问题<br>    onError事件Ajax交互，（它会通过一个变量调用数据的服务器），让你来处理服务器的问题<br>    新的$（）。flexAddData方法，可以让你直接添加新的数据到网格中使用自己的数据源。<br>    新预处理API，允许您修改或处理由服务器发送数据之前将它传递给Flexigrid，例如允许你使用自己的JSON格式。<br>    单排选择使用{singleSelect：真正}中的选项<br>    快速搜索<br>    还有更多的<br>    我来添加一个可编辑和Resortable的的行功能，??以及其他很酷的GUI功能。<br>    我的主要目标的插件，最终还是保持它的重量轻！<br>*ajax<br>    flexigrid表格中的数据——&gt;自动生成xml格式——&gt;添加到新建的.xml文件中<br>    支持ajax跨域：<br>        url中加callback=?<br>        后台获得callback函数的名字<br>        返回json数据格式为:print(callbackName+”(“+jsonString+”)”);              </p>
-<pre><code>flexigrid生成的xml保存在一个.xml文件中            
-  url: &apos;grid_lock.xml&apos;,             
-  dataType: &apos;xml&apos;,             
-</code></pre><hr>
+            <h3 id="HashMap-source-read"><a href="#HashMap-source-read" class="headerlink" title="HashMap source read"></a>HashMap source read</h3><p>参考:<br>  <a href="http://penghb.com/2017/10/15/java/hashMap/" target="_blank" rel="noopener">http://penghb.com/2017/10/15/java/hashMap/</a></p>
+<ol>
+<li><p>hashtable区别<br> 不同步<br> 允许使用null</p>
+</li>
+<li><p>1.8改进<br> 数据存储结构引进了<code>红黑树</code>，使得查询更加的快捷.</p>
+</li>
+</ol>
+<h3 id="ConcurrentHashMap-source-read"><a href="#ConcurrentHashMap-source-read" class="headerlink" title="ConcurrentHashMap source read"></a>ConcurrentHashMap source read</h3><p>参考:<br><a href="http://penghb.com/2017/10/27/java/concurrentHashMap/" target="_blank" rel="noopener">http://penghb.com/2017/10/27/java/concurrentHashMap/</a></p>
+<p>JDK1.8改进</p>
+<ol>
+<li><code>取消segments字段</code>，（Segment虽保留，但已经简化属性，仅仅是为了兼容旧版本。）<br>直接采用transient volatile HashEntry table保存数据，采用table数组元素作为锁，从而实现了对每一行数据进行加锁，进一步减少并发冲突的概率。</li>
+<li>将原先table数组＋单向链表的数据结构，变更为table数组＋单向链表＋红黑树的结构。（这点和HashMap是一样的）</li>
+</ol>
+<h3 id="Threadlocal-source-read"><a href="#Threadlocal-source-read" class="headerlink" title="Threadlocal source read"></a>Threadlocal source read</h3><p>参考:<br><a href="http://penghb.com/2017/10/18/java/threadLocal/" target="_blank" rel="noopener">http://penghb.com/2017/10/18/java/threadLocal/</a></p>
+<p>该类提供线程本地变量。这些变量与一般的变量不同，每个线程访问一个线程（通过get或set方法）有自己独立的变量初始化副本。</p>
 
           
         
@@ -1059,7 +1282,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:34:50+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
                 2018-06-11
               </time>
             
@@ -1200,7 +1423,7 @@ StatementHandler
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:34:50+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
                 2018-06-11
               </time>
             
@@ -1312,7 +1535,7 @@ StatementHandler
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/Net-Protocol/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/function-SQL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -1331,7 +1554,7 @@ StatementHandler
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/11/Net-Protocol/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/06/11/function-SQL/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -1343,7 +1566,7 @@ StatementHandler
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:34:50+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
                 2018-06-11
               </time>
             
@@ -1383,452 +1606,13 @@ StatementHandler
       
         
           
-            <p>#http<br>    <a href="https://zh.wikipedia.org/wiki/超文本传输协议" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/超文本传输协议</a><br>    <a href="https://tools.ietf.org/html/rfc2616" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc2616</a> http1.1<br>    <a href="https://tools.ietf.org/html/rfc7540" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc7540</a> http2.0<br>超文本传输协议（英文：HyperText Transfer Protocol，缩写：HTTP）是一种用于分布式、协作式和超媒体信息系统的应用层协议[1]。HTTP是万维网的数据通信的基础。</p>
-<p>征求意见稿（英语：Request For Comments，缩写为RFC）<a href="https://zh.wikipedia.org/wiki/RFC" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/RFC</a></p>
-<p>请求方法:<br>    GET<br>    HEAD<br>        与GET方法一样，都是向服务器发出指定资源的请求。只不过服务器将不传回资源的本文部分。它的好处在于，使用这个方法可以在不必传输全部内容的情况下，就可以获取其中“关于该资源的信息”（元信息或称元数据）。<br>    POST PUT DELETE<br>    TRACE 回显服务器收到的请求，主要用于测试或诊断。<br>    OPTIONS<br>         这个方法可使服务器传回该资源所支持的所有HTTP请求方法。用’*’来代替资源名称，向Web服务器发送OPTIONS请求，可以测试服务器功能是否正常运作。<br>    CONNECT<br>        HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。通常用于SSL加密服务器的链接（经由非加密的HTTP代理服务器）。<br>    PATCH<br>        用于将局部修改应用到资源。</p>
-<p>副作用<br>    若干次请求的副作用与单次请求相同或者根本没有副作用，那么这些请求方法就能够被视作<code>幂等(idempotence)</code></p>
-<p>状态代码的第一个数字代表当前响应的类型：<br>    1xx消息——请求已被服务器接收，继续处理<br>    2xx成功——请求已成功被服务器接收、理解、并接受<br>    3xx重定向——需要后续操作才能完成这一请求<br>    4xx请求错误——请求含有词法错误或者无法被执行<br>    5xx服务器错误——服务器在处理某个正确请求时发生错误</p>
-<p>持续连线<br>    在HTTP 0.9和1.0中，TCP连接在每一次请求/回应对之后关闭。在HTTP 1.1中，引入了保持连接的机制，一个连接可以重复在多个请求/回应使用。持续连接的方式可以大大减少等待时间，因为在发出第一个请求后，双方不需要重新运行TCP交握程序。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/jvm_code/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/jvm_code/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:34:50+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#JAVA虚拟机关闭钩子(Shutdown Hook)<br>JDK提供了Java.Runtime.addShutdownHook(Thread hook)方法，可以注册一个JVM关闭的钩子，这个钩子可以在一下几种场景中被调用：</p>
-<pre><code>1. 程序正常退出
-2. 使用System.exit()
-3. 终端使用Ctrl+C触发的中断
-4. 系统关闭
-5. OutOfMemory宕机
-6. 使用Kill pid命令干掉进程（注：在使用kill -9 pid时，是不会被调用的）
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/mvn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/mvn/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:34:48+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>maven简介：  </li>
-<li>settings.xml ,pom.xml  </li>
-<li>demo  </li>
-<li>mvn error  </li>
-<li>安装，配置  </li>
-<li>引用框架包配置(<a href="http://mvnrepository.com" target="_blank" rel="noopener">http://mvnrepository.com</a>)  </li>
-<li>配置mirrors ，repository  </li>
-<li>解决Eclipse建立Maven项目后无法建立src/main/java资源文件夹的办法  </li>
-<li>mvn 命令  </li>
-<li>mvn commond build webapp java web project  </li>
-<li>nux Nexus  </li>
-<li>eclipse maven plugin  </li>
-<li>mvn spring   </li>
-<li>mvn update  </li>
-<li>eclipse create mvn project  </li>
-<li>mvn 引用不到链接sqllserver的jar包  </li>
-</ol>
+            <hr>
+<p>合并多个列   mysql</p>
+<p>SELECT<br>    uniMark,operateTime,rcsCode,rcsCodeName,quota,<br>    GROUP_CONCAT(type, “:”, quota) AS index_quota<br>FROM<br>    t_quota_cashier_pay_channel_code<br>GROUP BY<br>    <code>rcsCode</code>;</p>
+<p>group_concat(param1,param2,param3)<br>param1:分组字段<br>param2:分割符<br>param3:被分组字段</p>
+<p>根据分组显示合并的字符串<br>eg: type1:quota1,type2:quota2</p>
 <hr>
-<p>远程中央仓库的地址为 <a href="http://repo1.maven.org/" target="_blank" rel="noopener">http://repo1.maven.org/</a><br><a href="http://search.maven.org" target="_blank" rel="noopener">http://search.maven.org</a><br><a href="http://maven.oschina.net/home.html" target="_blank" rel="noopener">http://maven.oschina.net/home.html</a><br><a href="http://mvnrepository.com/" target="_blank" rel="noopener">http://mvnrepository.com/</a>  是mvn官方仓库  </p>
-<hr>
-<ol>
-<li>maven简介：  </li>
-</ol>
-<p>作用：<br>用来帮助实现项目的构建、测试、打包和部署  </p>
-<p>原理：<br>Maven是基于项目对象模型(POM)，<br>可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。<br>可以多个项目中共享JAR  </p>
-<p>生命周期:<br>当你运行 mvn install 的时候被调用。<br>这条命令告诉 Maven 执行一系列的有序的步骤，<br>直到到达你指定的生命周期。遍历生命周期旅途中的一个影响就是，<br>Maven 运行了许多默认的插件目标，这些目标完成了像编译和创建一个 JAR 文件这样的工作。<br>此外，Maven能够很方便的帮你管理项目报告，生成站点，管理JAR文件，等等。  </p>
-<p>优点：<br>在Java项目中,每个项目都有很多依赖的Jar包,<br>我们一般都放在自己项目的lib目录中,<br>这样就会导致同样的Jar包在各个不同的项目中重复出现，<br>时间长了将会浪费很大的硬盘空间。使用Maven对项目进行管理就可以解决以上问题。  </p>
-<p>Maven执行原理：<br>依赖和项目构建的输出都可以由 Maven 的坐标进行唯一的区分，<br>基于这种机制，Maven 将所有项目的构件文件放置在一个统一的位置，<br>也就是 Maven 仓库。<br>所有 Maven 项目可以从同一个 Maven 仓库中获取自己所需要的依赖 JAR，<br>这节省了磁盘资源。实际的 Maven 项目中不需要存储依赖的文件，<br>只需要在 POM 文件中生成依赖关系，在构建的时候 Maven 就会自动去仓库中下载。  </p>
-<p>依靠包查询：<br>我们项目中依赖的 Jar 包可以通过依赖的方式引入<br>maven是单独管理一个项目。的jar包位置，组织形式的。<br>在安装了 Maven 的机器上，会生成一个 ~.m2\repository 目录，<br>这个目录被称为本地仓库，当 Maven 查找需要的依赖时，首先会在本地查找，<br>如果本地仓库中存在，则直接使用，否则 Maven 回去远程仓库查找，<br>查找到后下载到本地进行使用。  </p>
-<hr>
-<ol start="2">
-<li>settings.xml ,pom.xml  </li>
-</ol>
-<p>配置文件作用域：<br>conf/settings.xml  </p>
-<p>修改maven本地仓库的位置：<br>apache-maven-3.1.2/conf/setting.xml  </p>
-<p><localrepository>d:maven2</localrepository><br>当修改过后，不会自动新建/.m2文件  </p>
-<p>settings.xml对于maven来说相当于全局性的配置，用于所有的项目<br>加载的方向正好相反，下级影响上级  </p>
-<p>pom.xml节点的说明：  </p>
-<p><project>　　　　　　pom文件的顶级节点<br>　　　　<modelversion>　　　object model版本，对Maven2和Maven3来说，只能是4.0.0　<br>　　　　<groupid>　　　　　　项目创建组织的标识符，一般是域名的倒写<br>　　　　<artifactid>　　　　定义了项目在所属组织的标识符下的唯一标识，一个组织下可以有多个项目<br>　　　　<packaging>　　　　  打包的方式，有jar、war、ear等<br>　　　　<version>　　　　　  当前项目的版本，SNAPSHOT，表示是快照版本，在开发中<br>  　　　<name>　　　　　　　 项目的名称<br>　　　　<url>　　　　　　　　项目的地址<br>　　　　<dependencies>　　 构建项目依赖的jar<br>　　　　<description>　　　　项目的描述  </description></dependencies></url></name></version></packaging></artifactid></groupid></modelversion></project></p>
-<hr>
-<ol start="3">
-<li>demo  </li>
-</ol>
-<p>mvn dependency search查询位置  </p>
-<p>1.mvn archetype:generate -DarchetypeCatalog=internal<br>  或mvn archetype:generate（简单）  </p>
-<p>2.mvn eclipse:eclipse 在eclipse工作目录下运行<br>3.mvn tomcat:run<br>4.指定eclipse中的maven的本地仓库地址,运行命令:<br>mvn  -Declipse.workspace= <eclipse workspace路径="">   eclipse:add-maven-repo   </eclipse></p>
-<p>创建依赖  </p>
-<dependency><br>   <groupid>javax.servlet</groupid><br>   <artifactid>servlet-api</artifactid><br>   <version>2.5</version><br></dependency>  
 
-<h2 id="http-www-jarvana-com-jarvana"><a href="#http-www-jarvana-com-jarvana" class="headerlink" title="http://www.jarvana.com/jarvana/   "></a><a href="http://www.jarvana.com/jarvana/" target="_blank" rel="noopener">http://www.jarvana.com/jarvana/</a>   </h2><ol start="4">
-<li>mvn error  </li>
-</ol>
-<p>1）.出现创建不了mvn project<br>错误：can mot resolve archetype<br>windows - preference - maven -archetype<br>add remote catalog<br><a href="http://repo1.maven.org/maven2/archetype-catalog.xml" target="_blank" rel="noopener">http://repo1.maven.org/maven2/archetype-catalog.xml</a>  </p>
-<p>2）.  </p>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://maven.apache.org/POM/4.0.0   
-http://maven.apache.org/maven-v4_0_0.xsd">  
-
-<p>报错：<br>Description Resource Path Location Type<br>Could not calculate build plan:<br>Failure to transfer org.apache.maven.plugins:maven-war-plugin:pom:2.1.1 from<br><a href="http://repo1.maven.org/maven2" target="_blank" rel="noopener">http://repo1.maven.org/maven2</a> was cached in the local repository,<br>resolution will not be reattempted until the update interval<br>of central has elapsed or updates are forced. Original error:<br>Could not transfer artifact org.apache.maven.plugins:maven-war-plugin:pom:2.1.1<br>from/to central (<a href="http://repo1.maven.org/maven2)" target="_blank" rel="noopener">http://repo1.maven.org/maven2)</a>: ConnectException<br>first-maven Unknown    Maven Problem<br>解决：<br>应该是连不上<a href="http://repo1.maven.org/maven2这个仓库，在pom.xml文件加一下下面的配置" target="_blank" rel="noopener">http://repo1.maven.org/maven2这个仓库，在pom.xml文件加一下下面的配置</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;repositories&gt;    </span><br><span class="line">    &lt;repository&gt;    </span><br><span class="line">      &lt;snapshots&gt;    </span><br><span class="line">        &lt;enabled&gt;false&lt;/enabled&gt;    </span><br><span class="line">      &lt;/snapshots&gt;    </span><br><span class="line">      &lt;id&gt;central&lt;/id&gt;    </span><br><span class="line">      &lt;name&gt;Maven Repository Switchboard&lt;/name&gt;    </span><br><span class="line">      &lt;url&gt;http://repo2.maven.org/maven2&lt;/url&gt;    </span><br><span class="line">    &lt;/repository&gt;    </span><br><span class="line">&lt;/repositories&gt;</span><br></pre></td></tr></table></figure></p>
-<p>3）分析：<br>./m2/settings 影响默认conf/settiongs的配置<br>java.lang.ClassNotFoundException: org.springframework.web.context.ContextLoaderListener  </p>
-<p>4）<br>Failed to execute goal org.apache.maven.plugins:maven-archetype-plugin错误解决方法<br>解决方法：将命令中的create改为generate：<br>mvn archetype:generate -DgroupId=com.tutorialspoint.test<br>-DartifactId=helloworld -DarchetypeArtifactId=maven-archetype-webapp  </p>
-<p>5)Java compiler level does not match the version of the installed<br>  Java project facet.SSJ UnknownFaceted Project Problem (Java Version Mismatch)<br>  properties-&gt; java complier -&gt; 改成与版本相同的jre  </p>
-<hr>
-<ol start="5">
-<li>安装，配置  </li>
-</ol>
-<p>1） 解压maven压缩包<br>2） 配置环境变量，添加%MAVEN_HOME%,path中添加%MAVEN_HOME%\bin<br>3） 测试安装是否成功，mvn -v<br>4） 安装eclipse的插件<br>5） eclipse创建maven项目<br>6） eclipse添加maven的配置<br>        进入MyEclipse→window→Preferences→<br>    Maven4MyEclipse→Maven→Installations→User Sittings<br>        点击右侧Browse指向%MAVEN_HOME%\conf\settings.xml<br>7）  </p>
-<hr>
-<ol start="6">
-<li>引用包配置(<a href="http://mvnrepository.com" target="_blank" rel="noopener">http://mvnrepository.com</a>)  </li>
-</ol>
-<p>搜索结果<br>   引用spring mvc<br>   Spring Web MVC  </p>
-<p>   引用hibernate<br>   Hibernate Core Aggregator   </p>
-<p>   引用struts<br>   struts 2<br>   struts-core   </p>
-<hr>
-<ol start="7">
-<li><p>配置mirrors ，repository  </p>
-<p>覆盖中央仓库的默认地址，<br>那么这里我们就会使用的镜像了，在setting.xml里面配置<br><mirrorof>,表示只为central仓库做镜像，<br>如果想为所有的仓库做镜像那么可以改为： <mirrorof>*</mirrorof>  </mirrorof></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> &lt;mirrors&gt;  </span><br><span class="line">&lt;mirror&gt;  </span><br><span class="line">	&lt;id&gt;repo1&lt;/id&gt;  </span><br><span class="line">	&lt;name&gt;repo1&lt;/name&gt;  </span><br><span class="line">	&lt;url&gt;http://repo1.maven.org/maven2/spring/&lt;/url&gt;  </span><br><span class="line">	&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;    &lt;!--表明为central中央仓库配置镜像仓库--&gt;  </span><br><span class="line">&lt;/mirror&gt;  </span><br><span class="line"> &lt;/mirrors&gt;  </span><br><span class="line"> &lt;profiles&gt;   </span><br><span class="line">    </span><br><span class="line">	&lt;profile&gt;  </span><br><span class="line">	  &lt;id&gt;repo&lt;/id&gt;    </span><br><span class="line">	  &lt;repositories&gt;  </span><br><span class="line">		   &lt;repository&gt;    </span><br><span class="line">			  &lt;id&gt;com.springsource.repository.maven.release&lt;/id&gt;    </span><br><span class="line">			  &lt;url&gt;http://maven.springframework.org/release/&lt;/url&gt;    </span><br><span class="line">			  &lt;snapshots&gt;&lt;enabled&gt;false&lt;/enabled&gt;&lt;/snapshots&gt;    </span><br><span class="line">		   &lt;/repository&gt;   </span><br><span class="line">	  &lt;/repositories&gt;  </span><br><span class="line">   &lt;/profile&gt;  </span><br><span class="line"> </span><br><span class="line"> &lt;/profiles&gt;  </span><br><span class="line">  &lt;activeProfiles&gt;    </span><br><span class="line"> &lt;activeProfile&gt;repo&lt;/activeProfile&gt;  	  </span><br><span class="line"> &lt;/activeProfiles&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<ol start="8">
-<li>解决Eclipse建立Maven项目后无法建立src/main/java资源文件夹的办法<br>在项目上右键选择properties，<br>然后点击java build path，在Librarys下，<br>编辑JRE System Library，<br>选择workspace default jre就可以了。  </li>
-</ol>
-<hr>
-<ol start="9">
-<li>mvn 命令  </li>
-</ol>
-<p>运行mvn command 必须在有pom.xml文件的父文件夹  </p>
-<p>生成清除Eclipse项目结构：<br>mvn eclipse:eclipse<br>mvn eclipse:clean  </p>
-<p>编译项目到target、安装项目到.m2文件夹下的资源库中<br>mvn install  </p>
-<p>清理（删除target目录下编译内容）<br>mvn clean  </p>
-<p>仅打包Web页面文件<br>mvn war:exploded  </p>
-<p>编译项目<br>mvn compile  </p>
-<p>打包发布<br>mvn package  </p>
-<p>打包时跳过测试<br>mvn package -Dmaven.test.skip=ture  </p>
-<p>编译源代码： mvn compile<br>编译测试代码：mvn test-compile<br>运行测试：mvn test    </p>
-<p>安装第三方包<br>经常有第三方包，因为一些原因，在网上repository上没有，需要自己动手安装。<br>比如sun某些版本的jar文件，比如oracle的驱动。<br>已oracle驱动程序为例，比如驱动路径为c:/driver/ojdbc14.jar，<br>是10.2.0.3.0版本<br>在该网址能够查到：<br><a href="http://www.mvnrepository.com/artifact/com.oracle/ojdbc14" target="_blank" rel="noopener">http://www.mvnrepository.com/artifact/com.oracle/ojdbc14</a><br>artifactId和groupId。<br>mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.3.0 -Dpackaging=jar -Dfile=c:/driver/ojdbc14.jar<br>这样就可以在pom中依赖引用了：  </p>
-<p><dependency><br>    <groupid>com.oracle</groupid><br>    <artifactid>ojdbc14</artifactid><br>    <version>10.2.0.3.0</version>  </dependency></p>
-<h2 id=""><a href="#" class="headerlink" title="  "></a>  </h2><ol start="10">
-<li>mvn commond build  java web project  </li>
-</ol>
-<p>z.    zero<br>    error:        当使用maven-3.1.0时报引用包错误。找不到xxx-2.0.6<br>    selution:    更换3.2.6就可以了，它引用2.1.0 plugin包  </p>
-<p>a. 创建：<br>    mvn archetype:create -DgroupId=com.learn -DartifactId=LearnNew -DarchetypeArtifactId=maven-archetype-webapp<br>    error:        [ERROR] Failed to execute goal org.apache.maven.plugins:maven-archetype-plugin:2<br>            .4:create (default-cli) on project standalone-pom: Unable to parse configuration<br>    solution:    可以将 create 换成 generate  </p>
-<p>b.    生成elipse项目<br>    mvn eclipse:eclipse<br>    待解决：<br>    error :        缺包<br>                Failed to execute goalk org.apache.maven.plugins:maven-eclipse-plugin:2.1.0<br>    solution:    手动添加jar包到本地仓库<br>    mvn install:install-file -Dfile=jar包的位置 -DgroupId=groupId -DartifactId=artifactId -Dversion=version -Dpackaging=jar  </p>
-<p>c.    eclipse 添加maven生成的工程<br>    export-&gt; exists maven project<br>    导入后自动生成 .classpath  .project<br>    但是不能mvn configration file 会报找不到文件错误  </p>
-<pre><code>也可以在myeclipse中创建文件  
-</code></pre><p>d. 运行：<br>    Run -&gt; mvn install -&gt; run as java application<br>    没有mvn intall则找不到.class类文件<br>    mvn install 是将你打好的jar包安装到你的本地库中，一般没有设置过是在 用户目录下的 .m2\下面。<br>    mvn package 只是将你的代码打包到输出目录，一般的是 target下面  </p>
-<p>e. 作为web项目运行<br>   增加MyEclipse的Web Project功能<br>   选择工程–&gt;MyEclipse–&gt;Project Capabilities–&gt;Add Web Project Capabilites，<br>   弹出窗口中设置参数如下，再接下来的弹出窗口中选择yes。<br>   这样我们的工程就是web工程了(注意工程图标有变化，而且MyEclipse自动依赖了JEE的包)。  </p>
-<p>f. 修改根路径名<br>   Myeclipse–&gt;Web<br>   这一个是用来修改设置工程的web特性  </p>
-<p>g. 当页面还是报404 的时候可能是myeclipse的tomcat缓存<br>    删除tomcat路径下的项目，就可以了  </p>
-<hr>
-<ol start="11">
-<li>Nexus  </li>
-</ol>
-<p>Synatype Nexus  </p>
-<p>maven 配置依赖nexus  </p>
-<p><repositories><br>     <repository><br>         <id>nexus</id><br>         <name>Team Nexus Repository</name><br>         <url><a href="http://localhost:8081/nexus/content/groups/public" target="_blank" rel="noopener">http://localhost:8081/nexus/content/groups/public</a></url><br>     </repository><br></repositories>  </p>
-<pluginrepositories><br>     <pluginrepository><br>         <id>nexus</id><br>         <name>Team Nexus Repository</name><br>         <url><a href="http://localhost:8081/nexus/content/groups/public" target="_blank" rel="noopener">http://localhost:8081/nexus/content/groups/public</a></url><br>     </pluginrepository><br></pluginrepositories>  
-
-<hr>
-<ol start="12">
-<li><p>eclipse maven plugin  </p>
-<p>1）下载eclipse maven plugin插件<br>2）在eclipse安装文件夹下创建links文件夹  </p>
-<pre><code>新建maven.link文件：  
-内容为：path=D:/java/eclipse/myplugins/maven  
-</code></pre><p>3）在eclipse安装文件夹下创建myplugins文件  </p>
-<pre><code>将maven插件解压到当前文件夹下  
-</code></pre><p>4）重启eclipse<br>5）配置eclipse maven plugin   </p>
-</li>
-</ol>
-<hr>
-<ol start="13">
-<li>mvn spring   </li>
-</ol>
-<p>.classpath<br>    error:<br>        mvn java.lang.ClassNotFoundException: org.springframework.web.context.<br>                  ContextLoaderListener<br>        根本原因是eclipse只是添加了类的引用<br>    1.solution:<br>        项目根目录下的.classpath,找到<br>        <classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER">  </classpathentry></p>
-<pre><code>    替换为:  
-    &lt;classpathentry kind=&quot;con&quot; path=&quot;org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER&quot;&gt;  
-         &lt;attributes&gt;  
-             &lt;attribute name=&quot;org.eclipse.jst.component.dependency&quot; value=&quot;/WEB-INF/lib&quot;/&gt;  
-         &lt;/attributes&gt;  
-    &lt;/classpathentry&gt;  
-2.   
-    1.右键点击项目--选择Properties选择Deployment（部署） Assembly（程序集）,  
-    在右边点击Add按钮，在弹出的窗口中选择Java Build Path Entries  
-    2.点击Next，选择Maven Dependencies  
-    3.点击Finish，然后可以看到已经把Maven Dependencies添加到Web应用结构中了  
-</code></pre><p>添加maven库包的引用  </p>
-<classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER">  
-
-
-<hr>
-<ol start="14">
-<li><p>mvn update  </p>
-<p>1.在eclipse中对项目右键点击 maven –&gt; update dependencies,这样对maven库进行更新。  </p>
-<p>2.update Project Configration 会根据maven默认的设置改变项目的配置文件  </p>
-<pre><code>例：可以改变.classpath文件  
-（不要轻易使用）  
-</code></pre></li>
-</ol>
-<hr>
-<ol start="15">
-<li><p>eclipse create mvn project  </p>
-</li>
-<li><p>new-&gt;mvn project  </p>
-</li>
-<li><p>生成web项目 properties-&gt;project facets-&gt;Dynamic Web Module<br>注意添加的web文件的位置  </p>
-</li>
-<li><p>配置build path 新建java ，配置编译文件位置,<br>配置java版本  </p>
-</li>
-<li><p>配置maven引用包编译位置 deployment assembly -&gt;add -&gt; java build enties path  </p>
-</li>
-<li><p>添加tomcat lib jar  </p>
-</li>
-<li><p>创建：<br>mvn archetype:create -DgroupId=com.learn -DartifactId=LearnNew -DarchetypeArtifactId=maven-archetype-webapp<br>若是缺少maven-archetype-plugin:2.4:create 则将create变成generate   </p>
-</li>
-</ol>
-<hr>
-<p>mvn 引用不到链接sqllserver的jar包<br>    Missing artifact com.microsoft.sqlserver:sqljdbc4:jar:4.0  </p>
-<ol>
-<li><p>在这个网站下载jdbc驱动包<br> <a href="https://www.microsoft.com/en-us/download/details.aspx?id=11774" target="_blank" rel="noopener">https://www.microsoft.com/en-us/download/details.aspx?id=11774</a>  </p>
-</li>
-<li><p>手动添加sqlserver jdbc驱动包到mvn仓库中。<br>cd到jar包的路径下  </p>
-<pre><code>mvn install:install-file -Dfile=sqljdbc4.jar -DgroupId=com.microsoft.sqlserver -DartifactId=sqljdbc4 -Dversion=4.0 -Dpackaging=jar
-</code></pre></li>
-</ol>
-<hr>
-<p>新建maven多子项目，想要添加的子项目不在父项目下(与父项目并行)</p>
-<ol>
-<li>file–&gt;import–&gt;General–&gt;Existing Project into Workspace</li>
-<li>删除掉父项目下的文件夹即可</li>
-</ol>
-<hr>
-</classpathentry></project>
           
         
       
@@ -1867,7 +1651,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1913,7 +1697,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1924,7 +1708,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1935,7 +1719,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

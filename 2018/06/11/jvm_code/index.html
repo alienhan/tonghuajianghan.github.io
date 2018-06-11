@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="jvm,jvm 编程,jvm code," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="#JAVA虚拟机关闭钩子(Shutdown Hook)JDK提供了Java.Runtime.addShutdownHook(Thread hook)方法，可以注册一个JVM关闭的钩子，这个钩子可以在一下几种场景中被调用： 1. 程序正常退出 2. 使用System.exit() 3. 终端使用Ctrl+C触发的中断 4. 系统关闭 5. OutOfMemory宕机 6. 使用Kill pid命令干">
+<meta name="description" content="JAVA虚拟机关闭钩子(Shutdown Hook)JDK提供了Java.Runtime.addShutdownHook(Thread hook)方法，可以注册一个JVM关闭的钩子，这个钩子可以在一下几种场景中被调用：   程序正常退出 使用System.exit() 终端使用Ctrl+C触发的中断 系统关闭 OutOfMemory宕机 使用Kill pid命令干掉进程（注：在使用kill -9">
+<meta name="keywords" content="jvm,jvm 编程,jvm code">
 <meta property="og:type" content="article">
-<meta property="og:title" content="大东山下">
+<meta property="og:title" content="jvm">
 <meta property="og:url" content="http://yoursite.com/2018/06/11/jvm_code/index.html">
 <meta property="og:site_name" content="大东山下">
-<meta property="og:description" content="#JAVA虚拟机关闭钩子(Shutdown Hook)JDK提供了Java.Runtime.addShutdownHook(Thread hook)方法，可以注册一个JVM关闭的钩子，这个钩子可以在一下几种场景中被调用： 1. 程序正常退出 2. 使用System.exit() 3. 终端使用Ctrl+C触发的中断 4. 系统关闭 5. OutOfMemory宕机 6. 使用Kill pid命令干">
+<meta property="og:description" content="JAVA虚拟机关闭钩子(Shutdown Hook)JDK提供了Java.Runtime.addShutdownHook(Thread hook)方法，可以注册一个JVM关闭的钩子，这个钩子可以在一下几种场景中被调用：   程序正常退出 使用System.exit() 终端使用Ctrl+C触发的中断 系统关闭 OutOfMemory宕机 使用Kill pid命令干掉进程（注：在使用kill -9">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-11T03:38:40.155Z">
+<meta property="og:updated_time" content="2018-06-11T07:45:21.741Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="大东山下">
-<meta name="twitter:description" content="#JAVA虚拟机关闭钩子(Shutdown Hook)JDK提供了Java.Runtime.addShutdownHook(Thread hook)方法，可以注册一个JVM关闭的钩子，这个钩子可以在一下几种场景中被调用： 1. 程序正常退出 2. 使用System.exit() 3. 终端使用Ctrl+C触发的中断 4. 系统关闭 5. OutOfMemory宕机 6. 使用Kill pid命令干">
+<meta name="twitter:title" content="jvm">
+<meta name="twitter:description" content="JAVA虚拟机关闭钩子(Shutdown Hook)JDK提供了Java.Runtime.addShutdownHook(Thread hook)方法，可以注册一个JVM关闭的钩子，这个钩子可以在一下几种场景中被调用：   程序正常退出 使用System.exit() 终端使用Ctrl+C触发的中断 系统关闭 OutOfMemory宕机 使用Kill pid命令干掉进程（注：在使用kill -9">
 
 
 
@@ -125,7 +126,7 @@
 
 
 
-  <title> | 大东山下</title>
+  <title>jvm | 大东山下</title>
   
 
 
@@ -249,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">jvm</h1>
         
 
         <div class="post-meta">
@@ -261,7 +262,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:34:50+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
                 2018-06-11
               </time>
             
@@ -271,6 +272,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jvm/" itemprop="url" rel="index">
+                    <span itemprop="name">jvm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -299,14 +322,16 @@
       
 
       
-        <p>#JAVA虚拟机关闭钩子(Shutdown Hook)<br>JDK提供了Java.Runtime.addShutdownHook(Thread hook)方法，可以注册一个JVM关闭的钩子，这个钩子可以在一下几种场景中被调用：</p>
-<pre><code>1. 程序正常退出
-2. 使用System.exit()
-3. 终端使用Ctrl+C触发的中断
-4. 系统关闭
-5. OutOfMemory宕机
-6. 使用Kill pid命令干掉进程（注：在使用kill -9 pid时，是不会被调用的）
-</code></pre>
+        <h3 id="JAVA虚拟机关闭钩子-Shutdown-Hook"><a href="#JAVA虚拟机关闭钩子-Shutdown-Hook" class="headerlink" title="JAVA虚拟机关闭钩子(Shutdown Hook)"></a>JAVA虚拟机关闭钩子(Shutdown Hook)</h3><p>JDK提供了Java.Runtime.addShutdownHook(Thread hook)方法，可以注册一个JVM关闭的钩子，这个钩子可以在一下几种场景中被调用： </p>
+<ol>
+<li>程序正常退出</li>
+<li>使用System.exit()</li>
+<li>终端使用Ctrl+C触发的中断</li>
+<li>系统关闭</li>
+<li>OutOfMemory宕机</li>
+<li>使用Kill pid命令干掉进程（注：在使用kill -9 pid时，是不会被调用的）</li>
+</ol>
+
       
     </div>
     
@@ -321,6 +346,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/jvm/" rel="tag"># jvm</a>
+          
+            <a href="/tags/jvm-编程/" rel="tag"># jvm 编程</a>
+          
+            <a href="/tags/jvm-code/" rel="tag"># jvm code</a>
+          
+        </div>
+      
 
       
       
@@ -330,8 +365,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/11/mvn/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2018/06/11/jvm/" rel="next" title="jvm">
+                <i class="fa fa-chevron-left"></i> jvm
               </a>
             
           </div>
@@ -340,7 +375,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/11/Net-Protocol/" rel="prev" title="">
+              <a href="/2018/06/11/README/" rel="prev" title="">
                  <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -394,8 +429,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -410,7 +454,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -421,7 +465,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -432,7 +476,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -455,6 +499,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA虚拟机关闭钩子-Shutdown-Hook"><span class="nav-number">1.</span> <span class="nav-text">JAVA虚拟机关闭钩子(Shutdown Hook)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
