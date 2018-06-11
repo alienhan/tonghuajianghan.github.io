@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="mysql-索引,mysql-慢查询优化,mysql-锁,mysql-事物," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="index index type    聚集index  == 主键   根据这个来组织数据存储(InnoDB)按照每张表的主键来构建一颗b+树,叶子节点存放整张表的行记录   辅助索引(sencondary index,也称 非聚集索引)    叶子节点包括{对应行记录,指针 (告诉存储引擎那可以找到对应的行记录,因此InnoDB的指针指向就是聚集索引键,查找是两次查找,辅助找一次,聚集找一次)">
+<meta name="keywords" content="mysql-索引,mysql-慢查询优化,mysql-锁,mysql-事物">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql-索引 慢查询优化 锁 事物">
+<meta property="og:url" content="http://yoursite.com/2018/06/11/mysql-索引 慢查询优化 锁 事物/index.html">
+<meta property="og:site_name" content="大东山下">
+<meta property="og:description" content="index index type    聚集index  == 主键   根据这个来组织数据存储(InnoDB)按照每张表的主键来构建一颗b+树,叶子节点存放整张表的行记录   辅助索引(sencondary index,也称 非聚集索引)    叶子节点包括{对应行记录,指针 (告诉存储引擎那可以找到对应的行记录,因此InnoDB的指针指向就是聚集索引键,查找是两次查找,辅助找一次,聚集找一次)">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-11T10:00:36.323Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql-索引 慢查询优化 锁 事物">
+<meta name="twitter:description" content="index index type    聚集index  == 主键   根据这个来组织数据存储(InnoDB)按照每张表的主键来构建一颗b+树,叶子节点存放整张表的行记录   辅助索引(sencondary index,也称 非聚集索引)    叶子节点包括{对应行记录,指针 (告诉存储引擎那可以找到对应的行记录,因此InnoDB的指针指向就是聚集索引键,查找是两次查找,辅助找一次,聚集找一次)">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/11/mysql-索引 慢查询优化 锁 事物/"/>
+
+
+
+
+
+  <title>mysql-索引 慢查询优化 锁 事物 | 大东山下</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">大东山下</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/mysql-索引 慢查询优化 锁 事物/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mysql-索引 慢查询优化 锁 事物</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T18:00:36+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="index"><a href="#index" class="headerlink" title="index"></a>index</h3><ol>
+<li><p>index type  </p>
+<ul>
+<li>聚集index  == 主键  <ul>
+<li>根据这个来组织数据存储(InnoDB)<br>按照每张表的主键来构建一颗b+树,叶子节点存放整张表的行记录</li>
+</ul>
+</li>
+<li><p>辅助索引(sencondary index,也称 非聚集索引)  </p>
+<ul>
+<li>叶子节点包括{<br>对应行记录,<br>指针 (告诉存储引擎那可以找到对应的行记录,因此InnoDB的指针指向就是聚集索引键,<br>查找是两次查找,辅助找一次,聚集找一次)<br>}  </li>
+</ul>
+</li>
+<li><p>联合索引</p>
+<ul>
+<li>根据查询条件判断是新建联合索引,还是新建单一索引</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>新建索引的原则 </p>
+<ol>
+<li>最左前缀匹配原则</li>
+<li>=和in可以乱序</li>
+<li>尽量选择区分度高的列作为索引</li>
+<li>索引列不能参与计算</li>
+<li>尽量的扩展索引，不要新建索引</li>
+</ol>
+</li>
+<li><p>sql select 使用索引的情况</p>
+<ol>
+<li>左前缀原则</li>
+<li>= in 换原则</li>
+<li>索引位数</li>
+<li><p>覆盖索引与排序<br> 当索引中的列包含所有查询中需要使用到的列的时候,mysql就可以使用索引返回需要的数据,而无需查询对应的行<br> 在数据库中，如果无法利用索引完成排序，随着过滤数据的数据量的上升，排序的成本会越来越大，即使是采用了limit，但是数据库是会选择将结果集进行全部排序，再取排序后的limit 记录，而且MySQL 针对可以用索引完成排序的limit 有优化，更能减少成本  </p>
+<p> 查找遇到排序的时候总是先排序,order by中的字段一定要在最左前缀字段,这样索引构建的顺序<br> 才是依赖它构建的,排序的时候才不会用到filesort(若order by 字段使用索引,则直接检索出来的数据就是排序的,不用再使用filesort对已经检索出来的数据再次排序)  </p>
+</li>
+<li><p>包含 &gt; , &lt; , between and ,like 回中断使用索引.后面的where查询列不会使用索引  </p>
+</li>
+<li>like “%abc” 不使用索引, like “abc%” 使用索引   </li>
+</ol>
+</li>
+<li><p>优化器不使用索引的情况  </p>
+</li>
+<li><p>explain分析使用索引</p>
+</li>
+</ol>
+<h3 id="slow-select"><a href="#slow-select" class="headerlink" title="slow select"></a>slow select</h3><ol>
+<li>查询慢原因:   <ul>
+<li>分析查询生命周期  </li>
+</ul>
+</li>
+<li><p>基础优化  </p>
+<ul>
+<li>是否向服务器请求了不需要的数据   <ul>
+<li>eg: * 请求不需要的列,列优化   </li>
+</ul>
+</li>
+<li>是否扫描了额外的数据<br>  explain type 显示: 主要使用索引优化  <ul>
+<li>聚集索引中使用where过滤–存储引擎完成  </li>
+<li>索引覆盖扫描(extra using index)<br>  返回需要的记录(解释:从索引树种取数据,无需回表中查询)–服务层执行  </li>
+<li>从数据表中查询(extra using where),查询完才过滤数据–服务层执行  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>重构查询  </p>
+<ul>
+<li>切分查询  </li>
+<li>分解关联查询  </li>
+</ul>
+</li>
+<li><p>生命周期<br> sql  </p>
+<ul>
+<li><p>client—-&gt;查询缓存–&gt;(解析器–&gt;预处理器)–&gt;优化器–&gt;存储引擎–&gt;数据  </p>
+</li>
+<li><p>client:show full processlist  </p>
+</li>
+<li>optimize:<br>  show status like ‘last_query_cost’  优化器认为大约1024个数据页的随机查询才能完成上一条语句的查询  </li>
+</ul>
+</li>
+</ol>
+<h3 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h3><p>实现事物隔离性要求</p>
+<p>innoDB存储引擎中的锁  </p>
+<ul>
+<li>类型(行):  <ul>
+<li>共享锁  </li>
+<li>排他锁  </li>
+</ul>
+</li>
+<li>多粒度(granular)锁:  <ul>
+<li>行级锁  <ul>
+<li>record lock:单个行上锁  </li>
+<li>gap lock  </li>
+<li>next-key lock  </li>
+</ul>
+</li>
+<li>表级锁<br>(行间锁属于行锁的一种)  <ul>
+<li>支持方式:<ul>
+<li>意向锁(intention lock)<br>多层上锁机制,若想对一行进行上锁,要先对对应的数据库上锁,表上锁(对行上排他锁,对数据库和表也上排他锁),<br>意向锁之间不进行相互阻塞,即使都是意向排他锁.  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实现锁:<br>  一致性非锁定读,是指innodb通过多版本控制的方式(MVCC)读取当前执行时间的数据.</li>
+</ul>
+<h3 id="事物"><a href="#事物" class="headerlink" title="事物"></a>事物</h3><h4 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h4><p>phantom(幻像) 问题  </p>
+<ul>
+<li>phantom problem 是指在同一事物下,连续两次执行同样的sql,导致不同的结果,<br>  第二次sql可能返回之前不存在的结果  </li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql-索引/" rel="tag"># mysql-索引</a>
+          
+            <a href="/tags/mysql-慢查询优化/" rel="tag"># mysql-慢查询优化</a>
+          
+            <a href="/tags/mysql-锁/" rel="tag"># mysql-锁</a>
+          
+            <a href="/tags/mysql-事物/" rel="tag"># mysql-事物</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/11/mybatis-basic/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/11/mysql/" rel="prev" title="mysql基础\配置\安装\基础mysql sql">
+                mysql基础\配置\安装\基础mysql sql <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">落叶</p>
+              <p class="site-description motion-element" itemprop="description">java redis mysql mybatis</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#index"><span class="nav-number">1.</span> <span class="nav-text">index</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#slow-select"><span class="nav-number">2.</span> <span class="nav-text">slow select</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁机制"><span class="nav-number">3.</span> <span class="nav-text">锁机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事物"><span class="nav-number">4.</span> <span class="nav-text">事物</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#隔离性"><span class="nav-number">4.1.</span> <span class="nav-text">隔离性</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">落叶</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

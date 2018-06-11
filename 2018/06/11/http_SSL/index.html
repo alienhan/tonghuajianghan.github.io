@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java 处理http,java 处理ssl," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="#java http 链接code:    String urlStr = “www.baidu.com&amp;quot;;    URL url = new URL(urlStr);    HttpURLConnection http = (HttpURLConnection) url.openConnection();    http.setRequestMethod(“POST”);//get,p">
+<meta name="description" content="java http 链接code:1234567891011121314151617181920String urlStr = &quot;www.baidu.com&quot;;URL url = new URL(urlStr);HttpURLConnection http = (HttpURLConnection) url.openConnection();http.setRequestMethod(&quot;POST&quot;">
+<meta name="keywords" content="java 处理http,java 处理ssl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="大东山下">
+<meta property="og:title" content="java处理网络协议">
 <meta property="og:url" content="http://yoursite.com/2018/06/11/http_SSL/index.html">
 <meta property="og:site_name" content="大东山下">
-<meta property="og:description" content="#java http 链接code:    String urlStr = “www.baidu.com&amp;quot;;    URL url = new URL(urlStr);    HttpURLConnection http = (HttpURLConnection) url.openConnection();    http.setRequestMethod(“POST”);//get,p">
+<meta property="og:description" content="java http 链接code:1234567891011121314151617181920String urlStr = &quot;www.baidu.com&quot;;URL url = new URL(urlStr);HttpURLConnection http = (HttpURLConnection) url.openConnection();http.setRequestMethod(&quot;POST&quot;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-11T07:45:21.238Z">
+<meta property="og:updated_time" content="2018-06-11T10:00:35.840Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="大东山下">
-<meta name="twitter:description" content="#java http 链接code:    String urlStr = “www.baidu.com&amp;quot;;    URL url = new URL(urlStr);    HttpURLConnection http = (HttpURLConnection) url.openConnection();    http.setRequestMethod(“POST”);//get,p">
+<meta name="twitter:title" content="java处理网络协议">
+<meta name="twitter:description" content="java http 链接code:1234567891011121314151617181920String urlStr = &quot;www.baidu.com&quot;;URL url = new URL(urlStr);HttpURLConnection http = (HttpURLConnection) url.openConnection();http.setRequestMethod(&quot;POST&quot;">
 
 
 
@@ -125,7 +126,7 @@
 
 
 
-  <title> | 大东山下</title>
+  <title>java处理网络协议 | 大东山下</title>
   
 
 
@@ -249,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">java处理网络协议</h1>
         
 
         <div class="post-meta">
@@ -271,6 +272,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络协议/" itemprop="url" rel="index">
+                    <span itemprop="name">网络协议</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -299,62 +322,9 @@
       
 
       
-        <p>#java http 链接<br>code:<br>    String urlStr = “<a href="http://www.baidu.com&quot;" target="_blank" rel="noopener">www.baidu.com&quot;</a>;<br>    URL url = new URL(urlStr);<br>    HttpURLConnection http = (HttpURLConnection) url.openConnection();<br>    http.setRequestMethod(“POST”);//get,post 请求方法<br>    http.setRequestProperty(“Content-Type”, “application/x-www-form-urlencoded”);<br>    http.setDoOutput(true);//可以输出<br>    http.setDoInput(true);//可以输入<br>    http.connect();</p>
-<pre><code>OutputStream os = http.getOutputStream();//Returns an output stream that writes to this connection.
-os.write(paramStr.getBytes(encode));// 传入参数，encode为参数在字节流中的编码
-os.flush();
-os.close();
+        <h3 id="java-http-链接"><a href="#java-http-链接" class="headerlink" title="java http 链接"></a>java http 链接</h3><p>code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">String urlStr = <span class="string">"www.baidu.com"</span>;</span><br><span class="line">URL url = <span class="keyword">new</span> URL(urlStr);</span><br><span class="line">HttpURLConnection http = (HttpURLConnection) url.openConnection();</span><br><span class="line">http.setRequestMethod(<span class="string">"POST"</span>);<span class="comment">//get,post 请求方法</span></span><br><span class="line">http.setRequestProperty(<span class="string">"Content-Type"</span>, <span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line">http.setDoOutput(<span class="keyword">true</span>);<span class="comment">//可以输出</span></span><br><span class="line">http.setDoInput(<span class="keyword">true</span>);<span class="comment">//可以输入</span></span><br><span class="line">http.connect();</span><br><span class="line"></span><br><span class="line">OutputStream os = http.getOutputStream();<span class="comment">//Returns an output stream that writes to this connection.</span></span><br><span class="line">os.write(paramStr.getBytes(encode));<span class="comment">// 传入参数，encode为参数在字节流中的编码</span></span><br><span class="line">os.flush();</span><br><span class="line">os.close();</span><br><span class="line"></span><br><span class="line">String message = <span class="keyword">null</span>;</span><br><span class="line">InputStream is = http.getInputStream();<span class="comment">//Returns an input stream that reads from this open connection.</span></span><br><span class="line"><span class="keyword">int</span> size = is.available();</span><br><span class="line"><span class="keyword">byte</span>[] jsonBytes = <span class="keyword">new</span> <span class="keyword">byte</span>[size];</span><br><span class="line">is.read(jsonBytes);</span><br><span class="line">message = <span class="keyword">new</span> String(jsonBytes, encode);<span class="comment">//jsonBytes为字节</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="HttpClient-链接"><a href="#HttpClient-链接" class="headerlink" title="HttpClient 链接"></a>HttpClient 链接</h3><p>code：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">ca验证：</span><br><span class="line"><span class="comment">// 指定读取证书格式为PKCS12</span></span><br><span class="line">KeyStore keyStore = KeyStore.getInstance(<span class="string">"PKCS12"</span>);</span><br><span class="line"><span class="comment">// 读取本机存放的PKCS12证书文件</span></span><br><span class="line">FileInputStream instream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"D:\\java\\lib\\weixin\\cert\\apiclient_cert.p12"</span>));</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="comment">// 指定PKCS12的密码(商户ID)</span></span><br><span class="line">	keyStore.load(instream, <span class="string">"1315688001"</span>.toCharArray());</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">	instream.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Trust own CA and all self-signed certs</span></span><br><span class="line">SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, <span class="string">"1315688001"</span>.toCharArray()).build();</span><br><span class="line"><span class="comment">// Allow TLSv1 protocol only 指定TLS版本</span></span><br><span class="line">SSLConnectionSocketFactory sslsf = <span class="keyword">new</span> SSLConnectionSocketFactory(sslcontext, <span class="keyword">new</span> String[] &#123; <span class="string">"TLSv1"</span> &#125;, <span class="keyword">null</span>, SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);</span><br><span class="line">CloseableHttpClient httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();</span><br><span class="line"><span class="comment">// httpclient.getParams().setParameter(HttpEntity,"utf-8");</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">	HttpPost httpPost = <span class="keyword">new</span> HttpPost(<span class="string">"https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack"</span>);</span><br><span class="line">	httpPost.addHeader(<span class="string">"Content-Type"</span>, <span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//System.out.println(params.getBytes().);</span></span><br><span class="line">	<span class="comment">//StringEntity s = new StringEntity(new String(params.getBytes("gb18030"),"utf-8"));</span></span><br><span class="line">	ByteArrayEntity b = <span class="keyword">new</span> ByteArrayEntity(params.getBytes(<span class="string">"utf-8"</span>));</span><br><span class="line">	<span class="comment">// s.setContentEncoding("UTF-8");</span></span><br><span class="line">	httpPost.setEntity(b);</span><br><span class="line">	<span class="comment">// 设置httpclient的SSLSocketFactory,发送请求</span></span><br><span class="line">	System.out.println(<span class="string">"executing request"</span> + httpPost.getRequestLine());</span><br><span class="line"></span><br><span class="line">	System.out.println(<span class="string">"executing request"</span> + httpPost.getEntity().getContentEncoding());</span><br><span class="line">	CloseableHttpResponse response = httpclient.execute(httpPost);</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		HttpEntity entity = response.getEntity();</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">"----------------------------------------"</span>);</span><br><span class="line">		System.out.println(response.getStatusLine());</span><br><span class="line">		<span class="keyword">if</span> (entity != <span class="keyword">null</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">"Response content length: "</span> + entity.getContentLength());</span><br><span class="line">			BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(entity.getContent()));</span><br><span class="line">			String text;</span><br><span class="line">			<span class="keyword">while</span> ((text = bufferedReader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">				System.out.println(text);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		EntityUtils.consume(entity);</span><br><span class="line">	&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">		response.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">	httpclient.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
-String message = null;
-InputStream is = http.getInputStream();//Returns an input stream that reads from this open connection.
-int size = is.available();
-byte[] jsonBytes = new byte[size];
-is.read(jsonBytes);
-message = new String(jsonBytes, encode);//jsonBytes为字节
-</code></pre><p>#HttpClient 链接<br>code：<br>    ca验证：<br>    // 指定读取证书格式为PKCS12<br>    KeyStore keyStore = KeyStore.getInstance(“PKCS12”);<br>    // 读取本机存放的PKCS12证书文件<br>    FileInputStream instream = new FileInputStream(new File(“D:\java\lib\weixin\cert\apiclient_cert.p12”));<br>    try {<br>        // 指定PKCS12的密码(商户ID)<br>        keyStore.load(instream, “1315688001”.toCharArray());<br>    } finally {<br>        instream.close();<br>    }</p>
-<pre><code>// Trust own CA and all self-signed certs
-SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, &quot;1315688001&quot;.toCharArray()).build();
-// Allow TLSv1 protocol only 指定TLS版本
-SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext, new String[] { &quot;TLSv1&quot; }, null, SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
-CloseableHttpClient httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();
-// httpclient.getParams().setParameter(HttpEntity,&quot;utf-8&quot;);
-try {
-
-    HttpPost httpPost = new HttpPost(&quot;https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack&quot;);
-    httpPost.addHeader(&quot;Content-Type&quot;, &quot;application/x-www-form-urlencoded&quot;);
-
-    //System.out.println(params.getBytes().);
-    //StringEntity s = new StringEntity(new String(params.getBytes(&quot;gb18030&quot;),&quot;utf-8&quot;));
-    ByteArrayEntity b = new ByteArrayEntity(params.getBytes(&quot;utf-8&quot;));
-    // s.setContentEncoding(&quot;UTF-8&quot;);
-    httpPost.setEntity(b);
-    // 设置httpclient的SSLSocketFactory,发送请求
-    System.out.println(&quot;executing request&quot; + httpPost.getRequestLine());
-
-    System.out.println(&quot;executing request&quot; + httpPost.getEntity().getContentEncoding());
-    CloseableHttpResponse response = httpclient.execute(httpPost);
-    try {
-        HttpEntity entity = response.getEntity();
-
-        System.out.println(&quot;----------------------------------------&quot;);
-        System.out.println(response.getStatusLine());
-        if (entity != null) {
-            System.out.println(&quot;Response content length: &quot; + entity.getContentLength());
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(entity.getContent()));
-            String text;
-            while ((text = bufferedReader.readLine()) != null) {
-                System.out.println(text);
-            }
-
-        }
-        EntityUtils.consume(entity);
-    } finally {
-        response.close();
-    }
-} finally {
-    httpclient.close();
-}
-</code></pre>
       
     </div>
     
@@ -368,6 +338,14 @@ try {
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java-处理http/" rel="tag"># java 处理http</a>
+          
+            <a href="/tags/java-处理ssl/" rel="tag"># java 处理ssl</a>
+          
+        </div>
       
 
       
@@ -388,8 +366,8 @@ try {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/11/jenkins/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/11/jenkins/" rel="prev" title="jenkins">
+                jenkins <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -442,8 +420,17 @@ try {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -458,7 +445,7 @@ try {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -469,7 +456,7 @@ try {
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -480,7 +467,7 @@ try {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">71</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -503,6 +490,22 @@ try {
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#java-http-链接"><span class="nav-number">1.</span> <span class="nav-text">java http 链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HttpClient-链接"><span class="nav-number">2.</span> <span class="nav-text">HttpClient 链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
