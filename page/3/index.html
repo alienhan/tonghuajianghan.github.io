@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/json_xml_数据格式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/Oricle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -251,7 +251,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/11/json_xml_数据格式/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/06/12/Oricle/" itemprop="url">oricle</a></h1>
         
 
         <div class="post-meta">
@@ -263,840 +263,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="json"><a href="#json" class="headerlink" title="json"></a>json</h1><p>JSON (JavaScript Object Notation) javascript对象封装.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/jquery_plujin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/jquery_plujin/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#js 插件            </p>
-<hr>
-<p>#autocomplete<br>定义：<br>AutoComplete控件就是在用户在文本框输入前几个字母或是汉字的时候,<br>该控件就能从存放数据的文本或是数据库里将所有以这些字母开头的数据提示给用户            </p>
-<p>eclipse中默认的浏览器不兼容autocomplete            </p>
-<p>autocomplete不能集成到同一个文本框中            </p>
-<p>最简格式：html            </p>
-<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;styles.css&quot; /&gt;本地包            
-&lt;script src=&quot;http://code.jquery.com/jquery-1.8.2.min.js&quot;&gt;&lt;/script&gt;            
-&lt;script src=&quot;http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js&quot;&gt;&lt;/script&gt;            
-&lt;script src=&quot;jqm.autoComplete-1.5.2.js&quot;&gt;&lt;/script&gt;            
-
-&lt;input autocomplete=&quot;off&quot; id=&quot;searchField&quot; class=&quot;searchField&quot; placeholder=&quot;Categories&quot; /&gt;            
-&lt;div id=&quot;suggestions&quot; data-role=&quot;listview&quot; data-inset=&quot;true&quot;&gt;&lt;/div&gt;            
-
-
-&lt;script&gt;            
-    $(&quot;#mainPage&quot;).bind(&quot;pageshow&quot;, function(e) {            
-        var data = [&apos;姜晗&apos;,&apos;C&apos;, &apos;Clojure&apos;, &apos;Java&apos;, &apos;Scala&apos;, &apos;Objective-C&apos;, &apos;C++&apos;, &apos;PHP&apos;, &apos;C#&apos;, &apos;(Visual) Basic&apos;,                    
-                    &apos;Python&apos;, &apos;Perl&apos;, &apos;JavaScript&apos;, &apos;Ruby&apos;, &apos;Visual Basic .NET&apos;, &apos;Transact-SQL&apos;, &apos;Lisp&apos;, &apos;Pascal&apos;,                    
-                    &apos;Bash&apos;, &apos;PL/SQL&apos;, &apos;Delphi/Object Pascal&apos;, &apos;Ada&apos;, &apos;MATLAB&apos;];            
-        $(&quot;#searchField&quot;).autocomplete({            
-            target: $(&apos;#suggestions&apos;),            
-            source: data,            
-            link: &apos;target.html?term=&apos;,            
-            minLength: 1,            
-            matchFromStart: false,                                
-        });            
-    });             
-&lt;/script&gt;            
-</code></pre><hr>
-<p>#Flexigrid<br>*安装<br>/Flexigrid/WebContent/page/test/main_busic.jsp                </p>
-<p>2012.12.14初步实现了flexigrid的安装实现                </p>
-<p>将flexigrid.js<br>flexigrid.css<br>jquery-1.8.2.js<br>导入到项目中的前台文件<br>初始化必须的两个方法<br>$(“#flex1”).flexigrid<br>function addFormData()            </p>
-<p><em>Flexigrid功能：<br>    重量轻，但丰富的数据网格，可调整大小的列和滚动数据相匹配的标题，<br>    再加上连接到一个XML或JSON数据源使用Ajax加载的内容的能力。<br>    类似的概念与外部电网唯一的纯的jQuery的爱，这使得它重量轻，最少的配置与运行如下的jQuery的口头禅。            
-</em>特点<br>    可调整大小的列<br>    可调高度和宽度<br>    可排序的列标题<br>    酷主题<br>    可以将一个普通的表<br>    能够连接到一个Ajax数据源（XML和JSON）<br>    分页<br>    显示/隐藏列<br>    工具栏（新）<br>    搜索（新）<br>    可访问API<br>    可调整大小的宽度<br>    JSON支持<br>    工具栏<br>    表切换按钮<br>    显示/隐藏列控制移动的列标题，（尝试它通过一个头mouseovering，点击右边的黑色三角形）<br>    固定分页问题上的多个实例<br>    Mootools和固定的原型noConflict（）的兼容性问题<br>    onError事件Ajax交互，（它会通过一个变量调用数据的服务器），让你来处理服务器的问题<br>    新的$（）。flexAddData方法，可以让你直接添加新的数据到网格中使用自己的数据源。<br>    新预处理API，允许您修改或处理由服务器发送数据之前将它传递给Flexigrid，例如允许你使用自己的JSON格式。<br>    单排选择使用{singleSelect：真正}中的选项<br>    快速搜索<br>    还有更多的<br>    我来添加一个可编辑和Resortable的的行功能，??以及其他很酷的GUI功能。<br>    我的主要目标的插件，最终还是保持它的重量轻！<br>*ajax<br>    flexigrid表格中的数据——&gt;自动生成xml格式——&gt;添加到新建的.xml文件中<br>    支持ajax跨域：<br>        url中加callback=?<br>        后台获得callback函数的名字<br>        返回json数据格式为:print(callbackName+”(“+jsonString+”)”);              </p>
-<pre><code>flexigrid生成的xml保存在一个.xml文件中            
-  url: &apos;grid_lock.xml&apos;,             
-  dataType: &apos;xml&apos;,             
-</code></pre><hr>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/html/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="html"><a href="#html" class="headerlink" title="#html"></a>#html</h2><p>button from���������⣺<br>��button ��һ��type=button�Ϳ����ˡ�<br>��Ϊbutton�ڷ�ie�������Ĭ��������submit��  </p>
-<hr>
-<p>w3c֧�����⣺<br>ie�Ͱ汾��֧��w3c��׼  </p>
-<hr>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/extjs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/extjs/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>常用的编译app sencha命令：<br>sencha package build 打包命令<br>sencha ant clean //清除编译制品<br>sencha app build development //构建为开发环境项目<br>sencha app build production //构建为生成环境项目<br>sencha app refresh //可在添加类、删除类或更改类名后运行。它会通过Ext.Loader来更新bootstrap文件，方便开发模式的调试<br>sencha ant sass //该命令会根据Sass源代码重新生成CSS文件。它可在任何scss文件改变后运行。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> ...</span><br><span class="line">   "env": "$&#123;build.environment&#125;", </span><br><span class="line">   "serviceUrl":"$&#123;app.url&#125;", //定义Ext下的全局变量，可直接引用workspace中添加的属性配置</span><br><span class="line">   "theme": "theme-test", //可在此处指定app所需的主题</span><br><span class="line">   "requires":[</span><br><span class="line">         "font-awesome", //字体图标</span><br><span class="line">         "commonWidget", //上方创建的公共包</span><br><span class="line">         "ext-locale", //国际化</span><br><span class="line">         ...</span><br><span class="line">     ]</span><br><span class="line"> ...</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/dom/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/dom/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="dom"><a href="#dom" class="headerlink" title="#dom            "></a>#dom            </h2><p>*dom����            </p>
-<pre><code>1���壺            
-ͨ�� JavaScript��            
-�������ع����� HTML �ĵ���            
-��������ӡ��Ƴ����ı������ҳ���ϵ���Ŀ��            
-Ҫ�ı�ҳ���ĳ��������            
-JavaScript ����Ҫ��ö� HTML �ĵ�������Ԫ�ؽ��з��ʵ���ڡ�            
-�����ڣ�            
-��ͬ�� HTML Ԫ�ؽ�����ӡ��ƶ����ı���Ƴ��ķ���������            
-����ͨ���ĵ�����ģ������õģ�DOM��            
-</code></pre><p>*����            </p>
-<pre><code>html dom            
-HTML �ĵ��е�ÿ���ɷֶ���һ���ڵ㡣            
-�ڵ�            
-���� DOM��HTML �ĵ��е�ÿ���ɷֶ���һ���ڵ㡣            
-DOM �������涨�ģ�            
-�����ĵ���һ���ĵ��ڵ�            
-ÿ�� HTML ��ǩ��һ��Ԫ�ؽڵ�            
-������ HTML Ԫ���е��ı����ı��ڵ�            
-ÿһ�� HTML ������һ�����Խڵ�            
-ע������ע�ͽڵ�            
-
-html dom�ڵ����            
-
-getElementById() �� getElementsByTagName()            
-
-getElementById() �� getElementsByTagName() �����ַ�����            
-�ɲ������� HTML �ĵ��е��κ� HTML Ԫ�ء�            
-�����ַ���������ĵ��Ľṹ��            
-������ϣ�������ĵ������е� &lt;p&gt; Ԫ�أ�            
-getElementsByTagName() �������ȫ���ҵ���            
-���� &lt;p&gt; Ԫ�ش����ĵ��е��ĸ���Ρ�ͬʱ��            
-getElementById() ����Ҳ�᷵����ȷ��Ԫ�أ�            
-���������������ĵ��ṹ�е�ʲôλ�á�            
-�����ַ����������ṩ�κ�������Ҫ�� HTML Ԫ�أ�            
-�����������ĵ���������λ�ã�            
-
-getElementById() ��ͨ��ָ���� ID ������Ԫ�أ�            
-
-getElementById() �﷨            
-document.getElementById(&quot;ID&quot;);             
-ע�ͣ�getElementById() �޷������� XML �С��� XML �ĵ��У�            
-������ͨ��ӵ������ id �������������������������ͱ����� XML DTD �н�            
-��������            
-getElementsByTagName() ������ʹ��ָ���ı�ǩ���������е�Ԫ�أ���Ϊһ���ڵ��б���            
-��ЩԪ��������ʹ�ô˷���ʱ������Ԫ�صĺ��            
-��            
-getElementsByTagName() �ɱ������κε� HTML Ԫ�أ�            
-getElementsByTagName() �﷨            
-document.getElementsByTagName(&quot;��ǩ����&quot;);             
-���ߣ�            
-document.getElementById(&apos;ID&apos;).getElementsByTagName(&quot;��ǩ����&quot;);             
-
-����������ӻ᷵������ &lt;p&gt; Ԫ�ص�һ���ڵ��б�            
-����Щ &lt;p&gt; Ԫ�ر����� id Ϊ &quot;maindiv&quot; ��Ԫ�صĺ����            
-document.getElementById(&apos;maindiv&apos;).getElementsByTagName(&quot;p&quot;);             
-</code></pre><p>*�ڵ��б�nodeList��            </p>
-<hr>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/ajax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/ajax/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#ajax            </p>
-<hr>
-<p>说明：<br>    如果需要像 HTML 表单那样 POST 数据，<br>    请使用 setRequestHeader() 来添加 HTTP 头。<br>    然后在 send() 方法中规定您希望发送的数据：<br>    xmlhttp.open(“POST”,”ajax_test.asp”,true);<br>    xmlhttp.setRequestHeader<br>    (“Content-type”,”application/x-www-form-urlencoded”);<br>    xmlhttp.send(“fname=Bill&amp;lname=Gates”);            </p>
-<hr>
-<p>js submit file</p>
-<p>#gameIcon 为<input type="file" name="gameIcon"><br>$(“#gameIcon”).change(function(){<br>        var file = this.files[0];<br>        console.log(file);<br>        var reader = new FileReader();<br>        reader.readAsDataURL(file);<br>        reader.onload = function(e){<br>            var form = new FormData();// ??只有form格式可以传数据<br>            form.append(“uploadFile”, file);<br>            var settings = {<br>              “async”: true,<br>              “crossDomain”: true,<br>              “url”: ctx + “/fileAction/commonFileUpLoad.action”,<br>              “method”: “POST”,<br>              “headers”: {<br>                “cache-control”: “no-cache”,<br>              },<br>              “processData”: false,<br>              “contentType”: false,<br>              “mimeType”: “multipart/form-data”,<br>              “data”: form<br>            }</p>
-<pre><code>        $.ajax(settings).done(function (response) {
-          console.log(response);
-        });
-
-    }; 
-});
-</code></pre><hr>
-<p>spring js 序列化传参 serialize</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/idea/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/idea/" itemprop="url">idea使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
               </time>
             
 
@@ -1118,8 +286,8 @@ document.getElementById(&apos;maindiv&apos;).getElementsByTagName(&quot;p&quot;)
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tools/" itemprop="url" rel="index">
-                    <span itemprop="name">tools</span>
+                  <a href="/categories/oricle/" itemprop="url" rel="index">
+                    <span itemprop="name">oricle</span>
                   </a>
                 </span>
 
@@ -1157,521 +325,1678 @@ document.getElementById(&apos;maindiv&apos;).getElementsByTagName(&quot;p&quot;)
       
         
           
-            <p>ctrl + alt + l 格式化<br>ctrl + shift + enter 一行对齐  </p>
-<p>mark derectory as excluded 后 tomcat无法加载对应文件夹下的文件  </p>
-<p>ctrl + alt + l 格式化<br>ctrl + shift + enter 一行对齐<br>alt + F7 查询方法被调用位置<br>alt + enter 自动导入包<br>F11 行前打 √<br>Structure  Alt + 7 显示当前类的所有方法  </p>
-<h3 id="版本控制工具"><a href="#版本控制工具" class="headerlink" title="版本控制工具"></a>版本控制工具</h3><p>绿色，已经加入控制暂未提交<br>红色，未加入版本控制<br>蓝色，加入，已提交，有改动<br>白色，加入，已提交，无改动<br>灰色：版本控制已忽略文件。  </p>
-<h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><h4 id="去除自动补全的大小写敏感："><a href="#去除自动补全的大小写敏感：" class="headerlink" title="去除自动补全的大小写敏感："></a>去除自动补全的大小写敏感：</h4><p>不知道多少童鞋和我一样被Eclipse惯坏了，使用自动补全完全不注意大小写的，IntelliJ默认区分大小写，很是让人难过。不过在Editor=&gt;Code Completion里把Case sensitive completion设置为None就可以了。  </p>
-<h4 id="plujin-jrebel"><a href="#plujin-jrebel" class="headerlink" title="plujin jrebel"></a>plujin jrebel</h4><p>#active code<br>ks7u6sCdw4AKnRX/LKIE3+/tWTIVrDa5skvaBnYKhQaroFkFMecKO1OcpDZCs/rlAKfoiSyM3/nqKI8sxBOiZnKqf9rN+473BRfutfkoduYfAd3sUF0q6i19X5QN4EH6W9I0pQ==  </p>
-<h4 id="junit"><a href="#junit" class="headerlink" title="junit"></a>junit</h4><p>安装:<br>plugin 收搜 junit generator<br>配置代理<br>IntelliJ IDEA JUnit Generator自动创建测试用例到指定(maven)test目录  </p>
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/mysql/" itemprop="url">mysql基础\配置\安装\基础mysql sql</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="mysql配置"><a href="#mysql配置" class="headerlink" title="mysql配置"></a>mysql配置</h3><ul>
+<li><p>安装 mysql 5.7：<br>  下载地址: <a href="http://dev.mysql.com/downloads/mysql/5.1.html" target="_blank" rel="noopener">http://dev.mysql.com/downloads/mysql/5.1.html</a></p>
+</li>
+<li><p>解压版安装:    </p>
 <ol>
-<li>打开File-&gt;Settings  </li>
-<li>搜索junit，找到JUnit Generator  </li>
-<li>Properties选项卡里的Output Path为测试用例生成的目录，修改为test目录：<br>${SOURCEPATH}/../../test/java/${PACKAGE}/${FILENAME}  </li>
-<li>切换到JUnit 4选项卡，可以修改生成测试用例的模板，比如类名、包名等  </li>
-</ol>
-<h3 id="IntelliJ-Idea-常用快捷键列表"><a href="#IntelliJ-Idea-常用快捷键列表" class="headerlink" title="IntelliJ Idea 常用快捷键列表"></a>IntelliJ Idea 常用快捷键列表</h3><p><a href="http://wiki.jikexueyuan.com/project/intellij-idea-tutorial/keymap-introduce.html" target="_blank" rel="noopener">http://wiki.jikexueyuan.com/project/intellij-idea-tutorial/keymap-introduce.html</a></p>
-<p>Ctrl+Shift + Enter，语句完成<br>“！”，否定完成，输入表达式时按 “！”键<br>Ctrl+E，最近的文件<br>Ctrl+Shift+E，最近更改的文件<br>Shift+Click，可以关闭文件<br>Ctrl+[ OR ]，可以跑到大括号的开头与结尾<br>Ctrl+F12，可以显示当前文件的结构<br>Ctrl+F7，可以查询当前元素在当前文件中的引用，然后按 F3 可以选择<br>Ctrl+N，可以快速打开类<br>Ctrl+Shift+N，可以快速打开文件<br>Alt+Q，可以看到当前方法的声明<br>Ctrl+P，可以显示参数信息<br>Ctrl+Shift+Insert，可以选择剪贴板内容并插入<br>Alt+Insert，可以生成构造器/Getter/Setter等<br>Ctrl+Alt+V，可以引入变量。例如：new String(); 自动导入变量定义<br>Ctrl+Alt+T，可以把代码包在一个块内，例如：try/catch<br>Ctrl+Enter，导入包，自动修正<br>Ctrl+Alt+L，格式化代码<br>Ctrl+Alt+I，将选中的代码进行自动缩进编排，这个功能在编辑 JSP 文 件时也可以工作<br>Ctrl+Alt+O，优化导入的类和包<br>Ctrl+R，替换文本<br>Ctrl+F，查找文本<br>Ctrl+Shift+Space，自动补全代码<br>Ctrl+空格，代码提示（与系统输入法快捷键冲突）<br>Ctrl+Shift+Alt+N，查找类中的方法或变量<br>Alt+Shift+C，最近的更改<br>Alt+Shift+Up/Down，上/下移一行<br>Shift+F6，重构 – 重命名<br>Ctrl+X，删除行<br>Ctrl+D，复制行<br>Ctrl+/或Ctrl+Shift+/，注释（//或者/**/）<br>Ctrl+J，自动代码（例如：serr）<br>Ctrl+Alt+J，用动态模板环绕<br>Ctrl+H，显示类结构图（类的继承层次）<br>Ctrl+Q，显示注释文档<br>Alt+F1，查找代码所在位置<br>Alt+1，快速打开或隐藏工程面板<br>Ctrl+Alt+left/right，返回至上次浏览的位置<br>Alt+left/right，切换代码视图<br>Alt+Up/Down，在方法间快速移动定位<br>Ctrl+Shift+Up/Down，向上/下移动语句<br>F2 或 Shift+F2，高亮错误或警告快速定位<br>Tab，代码标签输入完成后，按 Tab，生成代码<br>Ctrl+Shift+F7，高亮显示所有该文本，按 Esc 高亮消失<br>Alt+F3，逐个往下查找相同文本，并高亮显示<br>Ctrl+Up/Down，光标中转到第一行或最后一行下<br>Ctrl+B/Ctrl+Click，快速打开光标处的类或方法（跳转到定义处）<br>Ctrl+Alt+B，跳转到方法实现处<br>Ctrl+Shift+Backspace，跳转到上次编辑的地方<br>Ctrl+O，重写方法<br>Ctrl+Alt+Space，类名自动完成<br>Ctrl+Alt+Up/Down，快速跳转搜索结果<br>Ctrl+Shift+J，整合两行<br>Alt+F8，计算变量值<br>Ctrl+Shift+V，可以将最近使用的剪贴板内容选择插入到文本<br>Ctrl+Alt+Shift+V，简单粘贴<br>Shift+Esc，不仅可以把焦点移到编辑器上，而且还可以隐藏当前（或最后活动的）工具窗口<br>F12，把焦点从编辑器移到最近使用的工具窗口<br>Shift+F1，要打开编辑器光标字符处使用的类或者方法 Java 文档的浏览器<br>Ctrl+W，可以选择单词继而语句继而行继而函数<br>Ctrl+Shift+W，取消选择光标所在词<br>Alt+F7，查找整个工程中使用地某一个类、方法或者变量的位置<br>Ctrl+I，实现方法<br>Ctrl+Shift+U，大小写转化<br>Ctrl+Y，删除当前行  </p>
-<p>Shift+Enter，向下插入新行<br>psvm/sout，main/System.out.println(); Ctrl+J，查看更多<br>Ctrl+Shift+F，全局查找<br>Ctrl+F，查找/Shift+F3，向上查找/F3，向下查找<br>Ctrl+Shift+S，高级搜索<br>Ctrl+U，转到父类<br>Ctrl+Alt+S，打开设置对话框<br>Alt+Shift+Inert，开启/关闭列选择模式<br>Ctrl+Alt+Shift+S，打开当前项目/模块属性<br>Ctrl+G，定位行<br>Alt+Home，跳转到导航栏<br>Ctrl+Enter，上插一行<br>Ctrl+Backspace，按单词删除<br>Ctrl+”+/-”，当前方法展开、折叠<br>Ctrl+Shift+”+/-”，全部展开、折叠<br>【调试部分、编译】<br>Ctrl+F2，停止<br>Alt+Shift+F9，选择 Debug<br>Ctrl+Shift+F9，编译<br>Ctrl+Shift+F10，运行<br>Ctrl+Shift+F8，查看断点<br>F8，步过<br>F7，步入<br>Shift+F7，智能步入<br>Shift+F8，步出<br>Alt+Shift+F8，强制步过<br>Alt+Shift+F7，强制步入<br>Alt+F9，运行至光标处<br>Ctrl+Alt+F9，强制运行至光标处<br>F9，恢复程序<br>Alt+F10，定位到断点<br>Ctrl+F8，切换行断点<br>Ctrl+F9，生成项目<br>Alt+1，项目<br>Alt+2，收藏<br>Alt+6，TODO<br>Alt+7，结构<br>Ctrl+Shift+C，复制路径<br>Ctrl+Alt+Shift+C，复制引用，必须选择类名<br>Ctrl+Alt+Y，同步<br>Ctrl+~，快速切换方案（界面外观、代码风格、快捷键映射等菜单）<br>Shift+F12，还原默认布局<br>Ctrl+Shift+F12，隐藏/恢复所有窗口<br>Ctrl+F4，关闭<br>Ctrl+Shift+F4，关闭活动选项卡<br>Ctrl+Tab，转到下一个拆分器<br>Ctrl+Shift+Tab，转到上一个拆分器<br>【重构】<br>Ctrl+Alt+Shift+T，弹出重构菜单<br>Shift+F6，重命名<br>F6，移动<br>F5，复制<br>Alt+Delete，安全删除<br>Ctrl+Alt+N，内联<br>【查找】<br>Ctrl+F，查找<br>Ctrl+R，替换<br>F3，查找下一个<br>Shift+F3，查找上一个<br>Ctrl+Shift+F，在路径中查找<br>Ctrl+Shift+R，在路径中替换<br>Ctrl+Shift+S，搜索结构<br>Ctrl+Shift+M，替换结构<br>Alt+F7，查找用法<br>Ctrl+Alt+F7，显示用法<br>Ctrl+F7，在文件中查找用法<br>Ctrl+Shift+F7，在文件中高亮显示用法  </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/hexo/" itemprop="url">hexo使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tools/" itemprop="url" rel="index">
-                    <span itemprop="name">tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/Atom/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/Atom/" itemprop="url">Atom使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tools/" itemprop="url" rel="index">
-                    <span itemprop="name">tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>预览: ctrl + shift + m  </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/thread/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/thread/" itemprop="url">多线程线程状态 \ 线程池优化/监控 \ jvm线程监控</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/thread/" itemprop="url" rel="index">
-                    <span itemprop="name">thread</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="java多线程"><a href="#java多线程" class="headerlink" title="java多线程"></a>java多线程</h3><pre><code>http://penghb.com
-</code></pre><h3 id="jvm线程监控"><a href="#jvm线程监控" class="headerlink" title="jvm线程监控"></a>jvm线程监控</h3><h4 id="线程-dump"><a href="#线程-dump" class="headerlink" title="线程 dump"></a>线程 dump</h4><ol>
-<li><p>执行<code>jps</code>命令，列出正在运行的java程序的进程ID</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">D:\gitrepo\thread-test&gt;jps</span><br><span class="line">5056 RemoteMavenServer (pid 对应线程名字)</span><br><span class="line">7264 Launcher</span><br><span class="line">10644 Jps</span><br><span class="line">7636</span><br></pre></td></tr></table></figure>
+<li>配置环境变量</li>
+<li>cd到mysql的bin下面<br> mysqld –initialize<br> mysqld -install<br> net start mysql</li>
+<li><p>然后登入,第一次登入是没有密码的<br>  mysql -u root<br>有密码则设置不用密码访问:<br>  在mysql.ini文件最后添加(默认没有mysql.ini要自己手动新建)</p>
+<pre><code>skip-grant-tables (注意末尾空格)
+</code></pre></li>
+<li><p>登入之后进行密码修改:  </p>
+<ul>
+<li>mysql 5.7以前的做法:(新版本没有password字段)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use mysql;</span><br><span class="line">mysql&gt; update user set password=password(&quot;新密码&quot;) where user=&quot;root&quot;;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>执行<code>jstack pid</code></p>
+</ul>
 </li>
 </ol>
-<h3 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h3><ol>
-<li>new: 创建了,还没有启动</li>
-<li>runable: 正在Java虚拟机下跑任务的线程的状态。在RUNNABLE状态下的线程可能<br>会处于等待状态， 因为它正在等待一些系统资源的释放，比如IO</li>
-<li>BLOCKED: 阻塞状态，等待锁的释放，比如线程A进入了一个<code>synchronized</code>方法，线程B也想进入这个方法，但是这个方法的锁已经被线程A获取了，这个时候线程B就处于BLOCKED状态<ol>
-<li>分析:线程处于BLOCKED状态，这个时候可以分析一下是不是lock加锁的时候忘记释放了，或者释放的时机不对。导致另外的线程一直处于BLOCKED状态。</li>
-</ol>
 </li>
-<li>WAITING: 等待状态，处于等待状态的线程是由于执行了3个方法中的任意方法。<ol>
-<li>Object的wait方法，并且没有使用timeout参数;</li>
-<li>Thread的join方法，没有使用timeout参数</li>
-<li>LockSupport的park方法。 处于waiting状态的线程会等待另外一个线程处理特殊的行为。 再举个例子，如果一个线程调用了一个对象的wait方法，那么这个线程就会处于waiting状态直到另外一个线程调用这个对象的notify或者notifyAll方法后才会解除这个状态</li>
-</ol>
-</li>
-<li>TIMED_WAITING: 有等待时间的等待状态，比如调用了以下几个方法中的任意方法，并且指定了等待时间，线程就会处于这个状态。<ol>
-<li>Thread.sleep方法</li>
-<li>Object的wait方法，带有时间</li>
-<li>Thread.join方法，带有时间</li>
-<li>LockSupport的parkNanos方法，带有时间</li>
-<li>LockSupport的parkUntil方法，带有时间</li>
-</ol>
-</li>
-<li>TERMINATED: 线程中止的状态，这个线程已经完整地执行了它的任务(jstack 看不到线程了)</li>
-</ol>
-<p>在Thread.java 下的 enum State下</p>
-<h3 id="Dump文件中的线程状态"><a href="#Dump文件中的线程状态" class="headerlink" title="Dump文件中的线程状态"></a>Dump文件中的线程状态</h3><ol>
-<li>Deadlock</li>
-<li>Runnable</li>
-<li>Waiting on condition</li>
-<li>Blocked</li>
-<li>Waiting for monitor entry 和 in Object.wait()</li>
-</ol>
-<h3 id="Thread-java分析"><a href="#Thread-java分析" class="headerlink" title="Thread.java分析"></a>Thread.java分析</h3><ol>
-<li>exit()<br> exit( )是由系统调用的，用于线程在真正的退出前进行一些清理的操作。看看里面进行的操作是什么吧，可以看出，里面执行的是group 赋值为null了， 将target引用进行释放，同时释放了threadLocals所占用的资源，等等属性都赋值为null。</li>
-<li>sleep()<br> 这个方法的作用使得当前线程休眠一定的时间，但是这个期间是不释放持有的锁的。这个方法里面首先进行的是休眠时间的判断，然后又是调用本地方法。</li>
-<li>join()方法<br> join方法是等待该线程执行，直到超时或者终止，可以作为线程通信的一种方式，A线程调用B线程的join（阻塞），等待B完成后再往下执行。 join（）方法中重载了多个方法，但是主要的方法是下面的方法。</li>
-<li>interrupt()方法<br>中断当前的线程<ol>
-<li>阻塞状态:<br>阻塞函数,如Thread.sleep、Thread.join、Object.wait等在检查到线程的中断状态的时候，<br>会抛出InteruptedExeption, 同时会清除线程的中断状态。<br>对于InterruptedException的处理，可以有两种情况：<ol>
-<li>外层代码处理异常，直接抛出这个异常即可</li>
-<li>不能抛出这个异常，比如在run()方法内，因为在得到这个异常的同时，线程的中断状态已经被清除了，需要保留线程的中断状态，则需要调    用Thread.currentThread().interrupt()</li>
-</ol>
-</li>
-<li>运行状态:<br>将该线程的中断标志设置为 true，仅此而已。被设置中断标志的线程将继续正常运行，不受影响。</li>
-</ol>
-</li>
-</ol>
-<h3 id="终止线程"><a href="#终止线程" class="headerlink" title="终止线程"></a>终止线程</h3><p>首先，一个线程不应该由其他线程来强制中断或停止，而是应该由线程自己自行停止。<br>所以，Thread.stop, Thread.suspend, Thread.resume 都已经被废弃了。<br>而 Thread.interrupt 的作用其实也不是中断线程，而是「通知线程应该中断了」，<br>具体到底中断还是继续运行，应该由被通知的线程自己处理。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//“中断”方式终止处于“阻塞状态”的线程。</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 执行任务...</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException ie) &#123;</span><br><span class="line">        <span class="comment">// 由于产生InterruptedException异常，退出while(true)循环，线程终止！</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//终止处于“运行状态”的线程</span></span><br><span class="line">    <span class="keyword">if</span> (!isInterrupted()) &#123;</span><br><span class="line">        <span class="comment">// 执行任务...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="合理的配置线程池"><a href="#合理的配置线程池" class="headerlink" title="合理的配置线程池"></a>合理的配置线程池</h3><p>要想合理的配置线程池，就必须首先分析任务特性，可以从以下几个角度来进行分析：</p>
+</ul>
+<pre><code>- mysql 5.7 password字段被替换成authentication_string
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update `User` SET   authentication_string=PASSWORD(&quot;root&quot;) where USER=&apos;root&apos;;</span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">mysql&gt; quit;</span><br></pre></td></tr></table></figure>
+</code></pre><p>ERROR 1045 (28000): Access denied for user ‘root‘@’localhost’ (using password: YES)<br>如果遇到第一次安装mysql的时候密码不为空,问题解决如下:</p>
 <ol>
-<li>任务的性质：CPU密集型任务，IO密集型任务和混合型任务。</li>
-<li>任务的优先级：高，中和低。</li>
-<li>任务的执行时间：长，中和短。</li>
-<li>任务的依赖性：是否依赖其他系统资源，如数据库连接。</li>
+<li>编辑mysql配置文件my.ini在[mysqld]这个条目下加入skip-grant-tables</li>
+<li>保存退出后重启mysql</li>
+<li>点击“开始”-&gt;“运行”(快捷键Win+R)。</li>
+<li>启动：输入 net stop mysql</li>
+<li>停止：输入 net start mysql</li>
+<li>在cmd里面输入mysql -u root -p就可以不用密码登录了，出现password：的时候直接回车可以进入</li>
+<li>mysql&gt; use mysql;</li>
+<li>mysql&gt; update user set password=password(“新密码”) where user=”root”;<br>(如果是user表中没有password字段的时候,如下所示,否则直接跳过)  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update `User` SET authentication_string=PASSWORD(&quot;0000&quot;)  </span><br><span class="line">where USER=&apos;root&apos;;  </span><br><span class="line">mysql&gt; flush privileges;  </span><br><span class="line">mysql&gt; quit;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<p>任务性质不同的任务可以用不同规模的线程池分开处理。CPU密集型任务配置尽可能少的线程数量，如配置Ncpu+1个线程的线程池。<br>IO密集型任务则由于需要等待IO操作，线程并不是一直在执行任务，则配置尽可能多的线程，如2*Ncpu。<br>混合型的任务，如果可以拆分，则将其拆分成一个CPU密集型任务和一个IO密集型任务，只要这两个任务执行的时间相差不是太大，那么分解后执行的吞吐率要高于串行执行的吞吐率，如果这两个任务执行时间相差太大，则没必要进行分解。<br>可以通过<br>    <code>Runtime.getRuntime().availableProcessors()</code>方法获得当前设备的CPU个数。</p>
-<p>优先级不同的任务可以使用优先级队列PriorityBlockingQueue来处理。它可以让优先级高的任务先得到执行，需要注意的是如果一直有优先级高的任务提交到队列里，那么优先级低的任务可能永远不能执行。</p>
-<p>执行时间不同的任务可以交给不同规模的线程池来处理，或者也可以使用优先级队列，让执行时间短的任务先执行。</p>
-<p>依赖数据库连接池的任务，因为线程提交SQL后需要等待数据库返回结果，如果等待的时间越长CPU空闲时间就越长，那么线程数应该设置越大，这样才能更好的利用CPU。</p>
-<p>建议使用有界队列<br>    有界队列能增加系统的稳定性和预警能力，可以根据需要设大一点，比如几千。有一次我们组使用的后台任务线程池的队列和线程池全满了，不断的抛出抛弃任务的异常，通过排查发现是数据库出现了问题，导致执行SQL变得非常缓慢，因为后台任务线程池里的任务全是需要向数据库查询和插入数据的，所以导致线程池里的工作线程全部阻塞住，任务积压在线程池里。如果当时我们设置成无界队列，线程池的队列就会越来越多，有可能会撑满内存，导致整个系统不可用，而不只是后台任务出现问题。当然我们的系统所有的任务是用的单独的服务器部署的，而我们使用不同规模的线程池跑不同类型的任务，但是出现这样问题时也会影响到其他任务。</p>
-<h3 id="线程池的监控"><a href="#线程池的监控" class="headerlink" title="线程池的监控"></a>线程池的监控</h3><p>通过线程池提供的参数进行监控。线程池里有一些属性在监控线程池的时候可以使用</p>
+<p>在第一个登入之后,还需要重新设置密码,否则会提示没有权限操作:<br>step 1: SET PASSWORD = PASSWORD(‘your new password‘);<br>step 2: ALTER USER ‘root‘@‘localhost‘ PASSWORD EXPIRE NEVER;<br>step 3: flush privileges;  </p>
+<p>在my.ini中设置如下,解决数据库乱码问题:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[mysql]  </span><br><span class="line">default-character-set=utf8  </span><br><span class="line">[mysqld]  </span><br><span class="line">character-set-server=utf8</span><br></pre></td></tr></table></figure></p>
+<h3 id="mysql命令"><a href="#mysql命令" class="headerlink" title="mysql命令"></a>mysql命令</h3><ol start="0">
+<li><p>建库</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> xxx;</span><br><span class="line">mysql&gt; Create TABLE MYTABLE (name VARCHAR(20), sex CHAR(1));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>建表<br>命令：create table &lt;表名&gt; ( &lt;字段名1&gt; &lt;类型1&gt; [,..&lt;字段名n&gt; &lt;类型n&gt;]);   </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table MyClass(</span><br><span class="line">&gt; id int(4) not null primary key auto_increment,</span><br><span class="line">&gt; name char(20) not null,</span><br><span class="line">&gt; sex int(4) not null default '0',</span><br><span class="line">&gt; degree double(16,2));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取表结构<br>命令： desc 表名，或者show columns from 表名  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;DESCRIBE MyClass</span><br><span class="line">mysql&gt; desc MyClass; </span><br><span class="line">mysql&gt; show columns from MyClass;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除表<br>命令：drop table &lt;表名&gt;<br>mysql&gt; drop table MyClass;  </p>
+</li>
+<li><p>插入数据<br>命令：insert into &lt;表名&gt; [( &lt;字段名1&gt;[,..&lt;字段名n &gt; ])] values ( 值1 )[, ( 值n )]  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; insert into MyClass   values(1,'Tom',96.45),(2,'Joan',82.99), (2,'Wang', 96.59);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询表中的数据  </p>
 <ol>
-<li>taskCount：线程池需要执行的任务数量。</li>
-<li>completedTaskCount：线程池在运行过程中已完成的任务数量。小于或等于taskCount。</li>
-<li>largestPoolSize：线程池曾经创建过的最大线程数量。通过这个数据可以知道线程池是否满过。<br> 如等于线程池的最大大小，则表示线程池曾经满了。</li>
-<li>getPoolSize:线程池的线程数量。如果线程池不销毁的话，池里的线程不会自动销毁，所以这个大小只增不减。</li>
-<li>getActiveCount：获取活动的线程数。<br>通过扩展线程池进行监控。通过继承线程池并重写线程池的beforeExecute，afterExecute和terminated方法，我们可以在任务执行前，执行后和线程池关闭前干一些事情。如监控任务的平均执行时间，最大执行时间和最小执行时间等。这几个方法在线程池里是空方法。</li>
+<li>查询所有行<br>命令： select &lt;字段1，字段2，…&gt; from &lt; 表名 &gt; where &lt; 表达式 &gt;<br>例如：查看表 MyClass 中所有数据<br>mysql&gt; select * from MyClass;    </li>
+<li>查询前几行数据<br>例如：查看表 MyClass 中前2行数据<br>mysql&gt; select <em> from MyClass order by id limit 0,2;<br>或者：<br>mysql&gt; select </em> from MyClass limit 0,2;  </li>
 </ol>
-<h3 id="Spring-线程池应用"><a href="#Spring-线程池应用" class="headerlink" title="Spring 线程池应用"></a>Spring 线程池应用</h3><p>org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor</p>
+</li>
+<li><p>删除表中数据<br>命令：delete from 表名 where 表达式<br>例如：删除表 MyClass中编号为1 的记录</p>
+<ul>
+<li>mysql&gt; delete from MyClass where id=1;</li>
+</ul>
+</li>
+<li>修改表中数据：update 表名 set 字段=新值,… where 条件<ul>
+<li>mysql&gt; update MyClass set name=’Mary’ where id=1;</li>
+</ul>
+</li>
+<li><p>在表中增加字段：<br>命令：alter table 表名 add字段 类型 其他;<br>例如：在表MyClass中添加了一个字段passtest，类型为int(4)，默认值为0  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; alter table MyClass add passtest int(4) default '0'</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更改表名：<br>命令：rename table 原表名 to 新表名;<br>例如：在表MyClass名字更改为YouClass<br>mysql&gt; rename table MyClass to YouClass; </p>
+</li>
+<li><p>更新字段内容<br>update 表名 set 字段名 = 新内容<br>update 表名 set 字段名 = replace(字段名,’旧内容’,’新内容’);<br>文章前面加入4个空格<br>update article set content=concat(‘　　‘,content); </p>
+</li>
+</ol>
+<h3 id="mysql-分页"><a href="#mysql-分页" class="headerlink" title="mysql 分页"></a>mysql 分页</h3><ul>
+<li><p>最常见MYSQL最基本的分页方式：<br>–0是查询开始的行数（查询起点），10是查询数量（分页的大小）（需要的行数）<br>select * from person order by id desc limit 0, 10</p>
+</li>
+<li><p>特殊：<br>select * from persons limit 10;<br>意思是，起点为0，开始查询，返回10条记录。</p>
+</li>
+</ul>
+<h3 id="mysql-dump"><a href="#mysql-dump" class="headerlink" title="mysql dump"></a>mysql dump</h3><p>这个命令是和mysql命令一样的,运行在cmd窗口下<br>参考:<br>    <a href="http://www.cnblogs.com/feichexia/p/MysqlDataBackup.html" target="_blank" rel="noopener">http://www.cnblogs.com/feichexia/p/MysqlDataBackup.html</a></p>
+<blockquote>
+<p>mysqldump -u root -p ams &gt;d:\hh.sql</p>
+</blockquote>
+<p>–opt<br>     如果加上–opt参数则生成的dump文件中稍有不同：<br>     建表语句包含drop table if exists tableName<br>     insert之前包含一个锁表语句lock tables tableName write，insert之后包含unlock tables  </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/mysql-索引 慢查询优化 锁 事物/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/mysql-索引 慢查询优化 锁 事物/" itemprop="url">mysql-索引 慢查询优化 锁 事物</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="index"><a href="#index" class="headerlink" title="index"></a>index</h3><ol>
+<li><p>index type  </p>
+<ul>
+<li>聚集index  == 主键  <ul>
+<li>根据这个来组织数据存储(InnoDB)<br>按照每张表的主键来构建一颗b+树,叶子节点存放整张表的行记录</li>
+</ul>
+</li>
+<li><p>辅助索引(sencondary index,也称 非聚集索引)  </p>
+<ul>
+<li>叶子节点包括{<br>对应行记录,<br>指针 (告诉存储引擎那可以找到对应的行记录,因此InnoDB的指针指向就是聚集索引键,<br>查找是两次查找,辅助找一次,聚集找一次)<br>}  </li>
+</ul>
+</li>
+<li><p>联合索引</p>
+<ul>
+<li>根据查询条件判断是新建联合索引,还是新建单一索引</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>新建索引的原则 </p>
+<ol>
+<li>最左前缀匹配原则</li>
+<li>=和in可以乱序</li>
+<li>尽量选择区分度高的列作为索引</li>
+<li>索引列不能参与计算</li>
+<li>尽量的扩展索引，不要新建索引</li>
+</ol>
+</li>
+<li><p>sql select 使用索引的情况</p>
+<ol>
+<li>左前缀原则</li>
+<li>= in 换原则</li>
+<li>索引位数</li>
+<li><p>覆盖索引与排序<br> 当索引中的列包含所有查询中需要使用到的列的时候,mysql就可以使用索引返回需要的数据,而无需查询对应的行<br> 在数据库中，如果无法利用索引完成排序，随着过滤数据的数据量的上升，排序的成本会越来越大，即使是采用了limit，但是数据库是会选择将结果集进行全部排序，再取排序后的limit 记录，而且MySQL 针对可以用索引完成排序的limit 有优化，更能减少成本  </p>
+<p> 查找遇到排序的时候总是先排序,order by中的字段一定要在最左前缀字段,这样索引构建的顺序<br> 才是依赖它构建的,排序的时候才不会用到filesort(若order by 字段使用索引,则直接检索出来的数据就是排序的,不用再使用filesort对已经检索出来的数据再次排序)  </p>
+</li>
+<li><p>包含 &gt; , &lt; , between and ,like 回中断使用索引.后面的where查询列不会使用索引  </p>
+</li>
+<li>like “%abc” 不使用索引, like “abc%” 使用索引   </li>
+</ol>
+</li>
+<li><p>优化器不使用索引的情况  </p>
+</li>
+<li><p>explain分析使用索引</p>
+</li>
+</ol>
+<h3 id="slow-select"><a href="#slow-select" class="headerlink" title="slow select"></a>slow select</h3><ol>
+<li>查询慢原因:   <ul>
+<li>分析查询生命周期  </li>
+</ul>
+</li>
+<li><p>基础优化  </p>
+<ul>
+<li>是否向服务器请求了不需要的数据   <ul>
+<li>eg: * 请求不需要的列,列优化   </li>
+</ul>
+</li>
+<li>是否扫描了额外的数据<br>  explain type 显示: 主要使用索引优化  <ul>
+<li>聚集索引中使用where过滤–存储引擎完成  </li>
+<li>索引覆盖扫描(extra using index)<br>  返回需要的记录(解释:从索引树种取数据,无需回表中查询)–服务层执行  </li>
+<li>从数据表中查询(extra using where),查询完才过滤数据–服务层执行  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>重构查询  </p>
+<ul>
+<li>切分查询  </li>
+<li>分解关联查询  </li>
+</ul>
+</li>
+<li><p>生命周期<br> sql  </p>
+<ul>
+<li><p>client—-&gt;查询缓存–&gt;(解析器–&gt;预处理器)–&gt;优化器–&gt;存储引擎–&gt;数据  </p>
+</li>
+<li><p>client:show full processlist  </p>
+</li>
+<li>optimize:<br>  show status like ‘last_query_cost’  优化器认为大约1024个数据页的随机查询才能完成上一条语句的查询  </li>
+</ul>
+</li>
+</ol>
+<h3 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h3><p>实现事物隔离性要求</p>
+<p>innoDB存储引擎中的锁  </p>
+<ul>
+<li>类型(行):  <ul>
+<li>共享锁  </li>
+<li>排他锁  </li>
+</ul>
+</li>
+<li>多粒度(granular)锁:  <ul>
+<li>行级锁  <ul>
+<li>record lock:单个行上锁  </li>
+<li>gap lock  </li>
+<li>next-key lock  </li>
+</ul>
+</li>
+<li>表级锁<br>(行间锁属于行锁的一种)  <ul>
+<li>支持方式:<ul>
+<li>意向锁(intention lock)<br>多层上锁机制,若想对一行进行上锁,要先对对应的数据库上锁,表上锁(对行上排他锁,对数据库和表也上排他锁),<br>意向锁之间不进行相互阻塞,即使都是意向排他锁.  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实现锁:<br>  一致性非锁定读,是指innodb通过多版本控制的方式(MVCC)读取当前执行时间的数据.</li>
+</ul>
+<h3 id="事物"><a href="#事物" class="headerlink" title="事物"></a>事物</h3><h4 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h4><p>phantom(幻像) 问题  </p>
+<ul>
+<li>phantom problem 是指在同一事物下,连续两次执行同样的sql,导致不同的结果,<br>  第二次sql可能返回之前不存在的结果  </li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/mybatis-基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/mybatis-基础/" itemprop="url">mybatis 基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="init-mybatis"><a href="#init-mybatis" class="headerlink" title="init mybatis"></a>init mybatis</h3><p> pom.xml添加MyBatis依赖<br> 在resource/下添加mybatis-config.xml<br> 在resource/下添加sqlserver.properties  </p>
+<ul>
+<li>建实体类<br>建接口<br>映射接口.xml<br>创建factory类<br>建dao类，具体调用类。<br>测试  </li>
+</ul>
+<h4 id="新建mvn项目"><a href="#新建mvn项目" class="headerlink" title="新建mvn项目"></a>新建mvn项目</h4><pre><code>第一次创建的时候可能有些慢，需要引入很多工具包  
+    注意：  
+        mvn 引用不到链接sqllserver的jar包  
+设置gitignore  
+可以在项目下设置gitignore，这个可以和总的gitignore并行使用  
+</code></pre><ol>
+<li><p>mvn 需要引入的包  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 用于jsp使用的jar包 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- mybatis --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- mysql 驱动包 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.21<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建 src/main/resourse 包<br> 在包下新建mybatis-config.xml文件<br> 配置文件  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE configuration</span></span><br><span class="line"><span class="meta">  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line"><span class="meta">  "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost:3306/test"</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"root"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- mapping 文件路径配置 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com/jh/mapping/Users.xml"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建实体类<br>新建sql语句实现的mapper.xml文件，<br>  实现mapper接口<br>  error:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">org.apache.ibatis.binding（捆绑）.BindingException: </span><br><span class="line"> Type interface com.jh.dao.UsersMapper is not known to the MapperRegistry（注册）.</span><br></pre></td></tr></table></figure>
+<p>do:      </p>
+<ul>
+<li>mapper.xml namespace与mapper接口名字应该一样。<br> 新建mapper接口，<br> 新建调用sqlsessionfactory资源类  </li>
+</ul>
+</li>
+</ol>
+<h3 id="建立整个mybatis项目的架构体系"><a href="#建立整个mybatis项目的架构体系" class="headerlink" title="建立整个mybatis项目的架构体系"></a>建立整个mybatis项目的架构体系</h3><ol>
+<li><p>创建单例工厂  </p>
+<ul>
+<li>新建一个同步锁锁定的工厂实现方法</li>
+</ul>
+</li>
+<li><p>新建service接口，service实现类<br> error：@Overread报错<br> do:    </p>
+<ul>
+<li>改变本项目的编译环境，因为mvn项目默认的<br>编译环境为1.5，不支持@Overread<br>right click-&gt;Properties-&gt;Java Compiler<br>改成现有jdk版本  </li>
+</ul>
+</li>
+</ol>
+<h4 id="mybatis-sql-insert-update-delete"><a href="#mybatis-sql-insert-update-delete" class="headerlink" title="mybatis sql insert update delete"></a>mybatis sql insert update delete</h4><h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertUsers"</span> <span class="attr">parameterType</span>=<span class="string">"com.jh.vo.Users"</span>&gt;</span></span><br><span class="line">	insert into users (id,name,age) values (#&#123;id&#125;,#&#123;name&#125;,#&#123;age&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  error:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">### Cause: org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. </span><br><span class="line">		  Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. </span><br><span class="line">		  Cause: org.apache.ibatis.builder.BuilderException: Error resolving <span class="class"><span class="keyword">class</span>. </span></span><br><span class="line">		  Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'Users'.  </span><br><span class="line">		  Cause: java.lang.ClassNotFoundException: Cannot find class: Users</span><br></pre></td></tr></table></figure></p>
+<p>  解决: </p>
+<ul>
+<li><p>没有使用类的全名作为参数写入到parameterType中，出现读不到参数类型的错误，也就是找不到类，<br>将类的全名写入就ok  </p>
+<p>error:insert 无效，数据库中没有结果<br>解决: </p>
+<ul>
+<li>sqlSession 没有提交操作<br>加语句sqlSession.commit();<br>  所有影响数据库数据的操作都要commit  </li>
+</ul>
+</li>
+</ul>
+<h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"updateUsers"</span> <span class="attr">parameterType</span>=<span class="string">"com.jh.vo.Users"</span>&gt;</span></span><br><span class="line">	update users set </span><br><span class="line">		name = #&#123;name&#125;,</span><br><span class="line">		age = #&#123;age&#125;</span><br><span class="line">	where id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>自动生成id策略</p>
+<pre><code>自动生成的id 最好是int类型 timestamp时间戳可以
+当使用uuid生成策略的时候，生成的id是string类型，检索的时候效率慢。（uuid 100万年会重复）
+</code></pre><p>mysql 自动生成id时，默认最大id为AUTO_INCREMENT=41，属于自动生成</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/mybatis-原理与源码分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/mybatis-原理与源码分析/" itemprop="url">mybatis 原理与源码分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="mybatis执行过程-方法的调用过程"><a href="#mybatis执行过程-方法的调用过程" class="headerlink" title="mybatis执行过程\方法的调用过程"></a>mybatis执行过程\方法的调用过程</h3><pre><code>SqlSession
+SqlSessionFactoryBuilder-&gt;SqlSessionFactory
+sql 查询-&gt;SqlSession-&gt;DeFaultSqlSession(implements)
+
+Executor
+-&gt;CachingExecutor--&gt;delegate(委派)
+-&gt;SimpleExecutor(通过delegate机制完成) ,执行query方法的时候先调用BaseExecutor中的query函数,base中的query再调用simple中的doQuery函数
+
+-&gt;doQuery通过StatementHandler组装jdbc的statement,connnection...
+
+StatementHandler
+-&gt;RoutingStatementHandler--&gt;delegate
+--&gt;PreparedStatementHandler(负责对数据库执行statement,返回结果)
+</code></pre><h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><pre><code>一级缓存
+    开启:mybaits-settings中设置&lt;setting name=&quot;localCacheScope&quot; value=&quot;SESSION&quot;/&gt;
+
+    一级缓存只在数据库会话内部共享
+
+二级缓存
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/mybatis-代码生成工具/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/mybatis-代码生成工具/" itemprop="url">mybatis 自动代码生成工具包介绍</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="mybatis-generator-简介："><a href="#mybatis-generator-简介：" class="headerlink" title="mybatis-generator 简介："></a>mybatis-generator 简介：</h3><pre><code>官网： http://www.mybatis.org/generator/index.html
+</code></pre><h3 id="mybatis-generator安装"><a href="#mybatis-generator安装" class="headerlink" title="mybatis-generator安装:"></a>mybatis-generator安装:</h3><ol>
+<li><p>以maven插件安装：  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.generator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-generator-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">verbose</span>&gt;</span>true<span class="tag">&lt;/<span class="name">verbose</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">overwrite</span>&gt;</span>true<span class="tag">&lt;/<span class="name">overwrite</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置文件：  </p>
+<ul>
+<li>位置：插件默认会读到src/main/resources目录  下的generatorConfig.xml 文件.</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE generatorConfiguration</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">generatorConfiguration</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--数据库驱动jar --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">classPathEntry</span> <span class="attr">location</span>=<span class="string">"D:\maven\repository\mysql\mysql-connector-java\5.1.8\mysql-connector-java-5.1.8.jar"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">context</span> <span class="attr">id</span>=<span class="string">"DB2Tables"</span> <span class="attr">targetRuntime</span>=<span class="string">"Ibatis2Java5"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--去除注释 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">commentGenerator</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suppressAllComments"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">commentGenerator</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">&lt;!--数据库连接 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">jdbcConnection</span> <span class="attr">driverClass</span>=<span class="string">"com.mysql.jdbc.Driver"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">connectionURL</span>=<span class="string">"jdbc:mysql://localhost:3306/test"</span> <span class="attr">userId</span>=<span class="string">"root"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">password</span>=<span class="string">"root"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">jdbcConnection</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--默认false Java type resolver will always use java.math.BigDecimal if </span></span><br><span class="line"><span class="comment">			the database column is of type DECIMAL or NUMERIC. --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">javaTypeResolver</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"forceBigDecimals"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">javaTypeResolver</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">&lt;!--生成实体类 指定包名 以及生成的地址 （可以自定义地址，但是路径不存在不会自动创建 使用Maven生成在target目录下，会自动创建） --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">javaModelGenerator</span> <span class="attr">targetPackage</span>=<span class="string">"jh.test.socketTest.mybatis.gen"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">targetProject</span>=<span class="string">"MAVEN"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"enableSubPackages"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"trimStrings"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">javaModelGenerator</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--生成SQLMAP文件 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">sqlMapGenerator</span> <span class="attr">targetPackage</span>=<span class="string">"jh.test.socketTest.mybatis.gen"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">targetProject</span>=<span class="string">"MAVEN"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"enableSubPackages"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">sqlMapGenerator</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--生成Dao文件 可以配置 type="XMLMAPPER"生成xml的dao实现 context id="DB2Tables" 修改targetRuntime="MyBatis3" --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">javaClientGenerator</span> <span class="attr">type</span>=<span class="string">"SPRING"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">targetPackage</span>=<span class="string">"jh.test.socketTest.mybatis.gen"</span> <span class="attr">targetProject</span>=<span class="string">"MAVEN"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"enableSubPackages"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">javaClientGenerator</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">&lt;!--对应数据库表 mysql可以加入主键自增 字段命名 忽略某字段等 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">table</span> <span class="attr">tableName</span>=<span class="string">"user"</span> <span class="attr">domainObjectName</span>=<span class="string">"User"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;/<span class="name">context</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">generatorConfiguration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>生成代码  </p>
+<ul>
+<li><p>选择pom.xml文件，击右键先择Run AS——&gt;Maven Build… ——&gt;在Goals框中输入：<br>mybatis-generator:generate </p>
+</li>
+<li><p>如果在命令行输入Maven命令即可，注意：一定是当前项目目录下运行该命令：<br>mvn mybatis-generator:generate</p>
+</li>
+</ul>
+</li>
+<li><p>生成代码位置：<br> 在项目target/generated-sources下</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/Struts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/Struts/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>struts1, struts2</p>
+<ol>
+<li>引用包</li>
+<li>struts基础</li>
+<li>传参</li>
+<li>OGNL</li>
+<li>demo</li>
+<li>ActionForm struts1</li>
+<li>ActionMapping </li>
+<li>struts1 配置</li>
+<li>action 功能</li>
+</ol>
+<p>………………………………………………………</p>
+<ol>
+<li>引用包</li>
+</ol>
+<p>1).引入核心（core）包<br>    struts-2.3.4.1<br>        asm-3.3.jar<br>        asm-commons-3.3.jar<br>        asm-tree-3.3.jar<br>        commons-fileupload-1.2.2.jar<br>        commons-io-2.0.1.jar<br>        commons-lang3-3.1.jar<br>        freemarker-2.3.19.jar<br>        javassist-3.11.0.GA.jar<br>        ognl-3.0.5.jar<br>        struts2-core-2.3.4.1.jar<br>        xwork-core-2.3.4.1.jar</p>
+<p>2).引入所有包<br>struts-2.3.15.2<br>错误：Unload….   struts2-gxp-plugin-2.3.15.2.jar </p>
+<p>………………………………………………………………….</p>
+<ol start="2">
+<li>struts基础</li>
+</ol>
+<p>structs2.0是一种v—o的框架<br>  2.1package<br>        <package name="defult" extends="struts-default"><br>        <action name="ahello"><br>           <result>/helloworld.jsp</result><br>        </action><br>        </package></p>
+<pre><code>namespace 
+namespace可以为空
+namespace决定了action的访问路径
+namespace默认为&quot;&quot; ，可以接受所有路径的action
+namespace可以写为/ ，
+或者 /xxx ，对应的action为 /index.action 
+或 /xxx/index.action
+namespace最好也用模块进行命名
+
+extends（延伸；扩充）
+extends表示引用structs.cfg.xml
+</code></pre><p>  2.2Eclipes 中的位置 程序中的入口<br>        右击project名 -&gt; properties -&gt; properties for struts<br>        -&gt;Web Project Settings -&gt; Context root</p>
+<p>  2.3constant(常数)<br>        <constant name="struts.enable.DynamicMethodInvocation" value="false"></constant></p>
+<pre><code>&lt;constant name=&quot;struts.devMode&quot; value=&quot;true&quot; /&gt;
+    表示是不是开发模式
+    开发模式：更改配置可以立即体现在浏览器中
+
+
+&lt;constant name=&quot;struts.i18n.encoding&quot; value=&quot;UTF-8&quot; /&gt; 
+    &lt;!-- 指定Web应用的默认编码集，
+    相当于调用 HttpServletRequest的 
+    setCharacterEncoding方法 --&gt;    
+    &lt;!-- 
+    该属性指定需要Struts 2处理的请求后缀，
+    该属性的默认值是action，
+    即所有匹配*.action的请求都由Struts 2处理。 
+    如果用户需要指定多个请求后缀，
+    则多个后缀之间以英文逗号（，）隔开。 
+    --&gt; 
+
+&lt;constant name=&quot;struts.devMode&quot; value=&quot;true&quot; /&gt; 
+&lt;!-- 开发模式下使用，这样可以打印出更详细的错误信息 --&gt; 
+</code></pre><p>  2.4定义当前xml文档语法的位置<br>    &lt;!DOCTYPE struts PUBLIC<br>      “-//Apache Software Foundation//DTD Struts Configuration 2.3//EN”<br>      “<a href="http://struts.apache.org/dtds/struts-2.3.dtd&quot;&gt;//定义当前xml文档语法的位置" target="_blank" rel="noopener">http://struts.apache.org/dtds/struts-2.3.dtd&quot;&gt;//定义当前xml文档语法的位置</a></p>
+<p>  2.5 xml中 自动显示提示的操作<br>      1)windows -&gt;properties-&gt;XML-&gt;XML Catalog-&gt;Add<br>      2)解压structs.core任意一个jar文件后<br>      3)location:文件绝对路径<br>        Key Type:URL<br>        Key:解压structs。core任意一个jar文件后</p>
+<p>  2.6Action<br>        <action name="ahello" class="com.excute.action.NumberManagerAction"><br>            <result>/helloworld.jsp</result><br>            <result name="afirst">/first.jsp</result><br>            <result name="asecond">/second.jsp</result><br>        </action></p>
+<pre><code>action中的class的引用类要用.连接，没有.java后缀
+name关联地址名  http://../../ahello.action
+</code></pre><p>  2.7Result<br>        凡是name为success的result的那么都可以省略<br>        result关联的是具体的jsp文件地址，用相对路劲</p>
+<p>  2.8action相关联的类</p>
+<p>  2.9jsp页面得到自己的绝对路径名<br>        structs2.0_0020_getpath<br>        &lt;%<br>          String path = request.getContextPath();//拿到/structs2.0_0020<br>          String basepath = request.getScheme() + “://“ + request.getServerName() + request.getServerPort() + path + “/“;<br>          //                http                   ://     localhost/               8080:<br>        %&gt;<br>  2.10actionmethod<br>            动态传参动态转向页面出错？</p>
+<p>  2.11  /structs2.0_0110_param   2012.12.9<br>        以后复制可以以/structs2.0_0110_param为基础<br>        重新更改了/structs2.0_0110_param_note<br>        structs.xml添加标注<br>        使之更易读<br>        将permissionpage移到page目录下<br>        将first ，second移到page新建的math下，添加标注（基础）<br>        为完成：permissionindex.jsp<br>            mvc传参<br>……………………………………………………………………..</p>
+<ol start="3">
+<li>传参</li>
+</ol>
+<p>传的参数与action中的属性一一对应<br>从页面传到后台<br>接收参数 - 附到对象上 - 存到数据库中</p>
+<p>………………………………………………………………</p>
+<ol start="4">
+<li>OGNL</li>
+</ol>
+<p>OGNL - 简介<br>OGNL是Object-Graph Navigation Language的缩写，<br>它是一种功能强大的表达式语言（Expression Language，简称为EL）<br>通过它简单一致的表达式语法，可以存取对象的任意属性，<br>调用对象的方法，遍历整个对象的结构图，<br>实现字段类型转化等功能。<br>它使用相同的表达式去存取对象的属性。<br>webwork2和现在的Struts2.x中<br>使用OGNL取代原来的EL来做界面数据绑定，<br>所谓界面数据绑定，<br>也就是把界面元素（例如一个textfield,hidden)<br>和对象层某个类的某个属性绑定在一起，修改和显示自动同步。</p>
+<p>………………………………………………………………</p>
+<ol start="5">
+<li>demo</li>
+</ol>
+<p>………………………………………………………………</p>
+<ol start="6">
+<li><p>ActionForm struts1</p>
+<p>struts1中的属性，struts2中不用配置<br>struts2的优点之一就是与struts1API解耦</p>
+<p>ActionForm本质上是一种JavaBean，<br>是专门用来传递表单数据的DTO(Data Transfer Object,数据传递对象)<br>Struts框架利用ActionForm对象来临时存放视图页面中的表单数据。</p>
+<p>Struts将输入域的数据自动填充到相应的ActionForm对象中，<br>然后控制层可以从该ActionForm对象中读取用户输入的表单数据，<br>也可以把来自模型层的数据存放到ActionForm中，然后返回给视图显示。</p>
+<p>配置<br>struts-config.xml<br><form-beans><br> <form-bean name="dataQueryForm" type="com.wondersgroup.sabic.corp.dataquery.form.DataQueryForm"><br></form-bean></form-beans></p>
+<p>后台接受<br>public ActionForward queryList(ActionForm form)</p>
+</li>
+</ol>
+<p>………………………………………………………………………..</p>
+<ol start="7">
+<li>ActionMapping </li>
+</ol>
+<p>首先明白ActionMapping一个实例对应了struts-config.xml文件中的一个<action>标签</action></p>
+<p>………………………………………………………………………….</p>
+<ol start="8">
+<li>struts1 配置</li>
+</ol>
+<p>………………………………………………………………………….</p>
+<ol start="9">
+<li>action 功能</li>
+</ol>
+<p>action主要就做3件事，接受前台参数，调用业务层方法，封装数据返回给前台，<br>一般用异步json ，返回的对象要规范，基本属性要有，如，是否成功，失败原因，数据等，<br>这些都应该是公司类库有的，action 里东西不多，主要是调用，顺便补充下，<br>action是多例，这个要记住；</p>
+<p>…………………………………………………………………………</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/h2database/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/h2database/" itemprop="url">h2数据库</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sql/" itemprop="url" rel="index">
+                    <span itemprop="name">sql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="h2配置：maven-引入配置"><a href="#h2配置：maven-引入配置" class="headerlink" title="h2配置：maven 引入配置"></a>h2配置：maven 引入配置</h3><p>pom.xml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.h2database<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>h2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.146<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>spring.xml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- h2 database --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 初始化数据表结构 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"org.h2.jdbcx.JdbcConnectionPool"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">destroy-method</span>=<span class="string">"dispose"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.h2.jdbcx.JdbcDataSource"</span>&gt;</span></span><br><span class="line">			<span class="comment">&lt;!-- 内存模式 --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"URL"</span></span></span><br><span class="line"><span class="tag">				<span class="attr">value</span>=<span class="string">"jdbc:h2:mem:csiqcssit1;MODE=MYSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;INIT=RUNSCRIPT FROM 'target/test-classes/database/h2/csiqcssit1.sql'\;RUNSCRIPT FROM 'target/test-classes/database/h2/csiqcssit1-data.sql'"</span> /&gt;</span></span><br><span class="line">			<span class="comment">&lt;!-- 文件模式 --&gt;</span></span><br><span class="line">			<span class="comment">&lt;!-- &lt;property name="URL" value="jdbc:h2:testRestDB" /&gt; --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">value</span>=<span class="string">"sa"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"sa"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="jenkins打包错误："><a href="#jenkins打包错误：" class="headerlink" title="jenkins打包错误："></a>jenkins打包错误：</h4><pre><code>jenkins打包时jdk版本1.7，使用h2-1.4时候：  
+报版本冲突，使用h2-1.3就好了  
+</code></pre><h4 id="h2-1-3-init-sql使用classpath报错："><a href="#h2-1-3-init-sql使用classpath报错：" class="headerlink" title="h2-1.3 init sql使用classpath报错："></a>h2-1.3 init sql使用classpath报错：</h4><pre><code>h2-1.4才能使用classpath   
+h2-1.3使用sql文件，项目根路径的相对路径   
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/spring-遇到的问题及解决/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/spring-遇到的问题及解决/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>title: Spring遇到的问题及解决<br>date:<br>categories:</p>
+<ul>
+<li>spring<br>tags:</li>
+<li>Spring遇到的问题及解决</li>
+</ul>
+<hr>
+<h3 id="progress-loading-spring-xsd"><a href="#progress-loading-spring-xsd" class="headerlink" title="progress loading spring xsd"></a>progress loading spring xsd</h3><pre><code>最常见的导致这一问题的原因其实与使用了一个名为“assembly”的maven打包插件有关。  
+</code></pre><p>很多项目需要将工程连同其所依赖的所有jar包打包成一个jar包，maven的assembly插件就是用来完成这个任务的。<br>但是由于工程往往依赖很多的jar包，而被依赖的jar又会依赖其他的jar包，这样，当工程中依赖到不同的版本的spring时，<br>在使用assembly进行打包时，只能将某一个版本jar包下的spring.schemas文件放入最终打出的jar包里，这就有可能遗漏了<br>一些版本的xsd的本地映射，进而出现了文章开始提到的错误。如果你的项目是打成单一jar的，你可以通过检查最终生成的<br>jar里的spring.schemas文件来确认是不是这种情况。而关于这种情况，解决的方法一般是推荐使用另外一种打包插件shade,<br>它确实是一款比assembly更加优秀的工具，在对spring.schemas文件处理上，shade能够将所有jar里的spring.schemas文件<br>进行合并，在最终生成的单一jar包里，spring.schemas包含了所有出现过的版本的集合！  </p>
+<h3 id="org-springframework-web-servlet-PageNotFound-noHandlerFound"><a href="#org-springframework-web-servlet-PageNotFound-noHandlerFound" class="headerlink" title="org.springframework.web.servlet.PageNotFound noHandlerFound"></a>org.springframework.web.servlet.PageNotFound noHandlerFound</h3><p>No mapping found for HTTP request with URI [/spring_test_002/userContoller/userManager]<br>in DispatcherServlet with name ‘dispatcher’</p>
+<pre><code>do: p:prefix=&quot;/page/&quot; 默认开始寻找的文件位置，找不到页面。
+    return &quot;userpage/userManager&quot;; 
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/spring-基础与使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/spring-基础与使用/" itemprop="url">Spring基础与使用案例与场景</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="官方文档："><a href="#官方文档：" class="headerlink" title="官方文档："></a>官方文档：</h3><p><a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/index.html" target="_blank" rel="noopener">http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/index.html</a></p>
+<h3 id="Spring-MVC-annocation-spring-mvc注解"><a href="#Spring-MVC-annocation-spring-mvc注解" class="headerlink" title="Spring MVC annocation / spring mvc注解"></a>Spring MVC annocation / spring mvc注解</h3><p>@Controller  </p>
+<ul>
+<li>注释类，成为请求分发器</li>
+</ul>
+<p>@RequestMapping  </p>
+<ul>
+<li>@RequestMapping(“user/login56”)<br>不能把控制器的注释名 + 方法的注释名与包含前台页面的的相同<br>   redirect:在user这个下面搜寻RequestMappering<br>   会报错，没有这个文件</li>
+</ul>
+<h3 id="Spring-MVC-前后台传参"><a href="#Spring-MVC-前后台传参" class="headerlink" title="Spring MVC  前后台传参"></a>Spring MVC  前后台传参</h3><ol>
+<li><p>form表单传参  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">前台传后台</span><br><span class="line">	&lt;form action=&quot;robot/getAnswer&quot; method=&quot;get&quot;&gt;</span><br><span class="line">	  &lt;input name=&quot;tagDesc&quot; type=&quot;text&quot;&gt;</span><br><span class="line">	&lt;/form&gt;</span><br><span class="line">	&lt;div&gt;$&#123;qaCont&#125;&lt;/div&gt;</span><br><span class="line">	&lt;div&gt;$&#123;pq.qaCont&#125;&lt;/div&gt;</span><br><span class="line">	name与实体类属性名一样</span><br><span class="line">	action与spring mvc controller @RequestMapping value相同 </span><br><span class="line"></span><br><span class="line">	&lt;form:form commandName=&quot;account&quot;&gt;</span><br><span class="line">	指定form默认自动绑定的是Model的command属性值，那么当我的form对象对应的属性名称不是command的时候，</span><br><span class="line">	应该怎么办呢？对于这种情况，Spring给我们提供了一个commandName属性，</span><br><span class="line">	我们可以通过该属性来指定我们将使用Model中的哪个属性作为form需要绑定的command对象。</span><br><span class="line">	除了commandName属性外，指定modelAttribute属性也可以达到相同的效果。</span><br><span class="line">	但是在spring controller中要new</span><br><span class="line">		request.setAttribute(&quot;accout&quot;, new Account());	</span><br><span class="line"></span><br><span class="line">后台传前台</span><br><span class="line">   获取对象,对象属性</span><br><span class="line">		model.addAttribute(&quot;qaCont&quot;, qaCont);</span><br><span class="line">		model.addAttribute(&quot;pq&quot;,pq);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ajax 传参</p>
+</li>
+</ol>
+<h3 id="Spring-初始化启动方法"><a href="#Spring-初始化启动方法" class="headerlink" title="Spring 初始化启动方法"></a>Spring 初始化启动方法</h3><ol>
+<li><p>初始化回调 InitializingBean  </p>
+<ul>
+<li>InitializingBean接口为bean提供了初始化方法的方式，<br>它只包括afterPropertiesSet方法，凡是继承该接口的类，在初始化bean的时候会执行该方法。</li>
+</ul>
+</li>
+<li><p>通常避免使用InitializingBean 接口，因为这样会将代码与spring 耦合起开，可以在Bean中指定一个普通的初始化方法，<br>然后在xml文件配置中，指定初始化：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"initBean"</span> <span class="attr">class</span>=<span class="string">"com.jh.InitBean"</span> <span class="attr">init-method</span>=<span class="string">"init"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InitBean</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="comment">//do some initialization work</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//效果相同</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">initBean</span> <span class="keyword">implements</span> <span class="title">InitializingBean</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterPropertiesSet</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Spring-task-spring-定时任务"><a href="#Spring-task-spring-定时任务" class="headerlink" title="Spring task spring 定时任务"></a>Spring task spring 定时任务</h3><p>xml配置<br>application.xml引入spring-tasks配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:util</span>=<span class="string">"http://www.springframework.org/schema/util"</span> <span class="attr">xmlns:task</span>=<span class="string">"http://www.springframework.org/schema/task"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:p</span>=<span class="string">"http://www.springframework.org/schema/p"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">          http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">          http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- default thread pool will only have a single thread. --&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 调度线程池的大小，调度线程在被调度任务完成前不会空闲 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">task:scheduler</span> <span class="attr">id</span>=<span class="string">"myScheduler"</span> <span class="attr">pool-size</span>=<span class="string">"1"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">task:scheduled-tasks</span> <span class="attr">scheduler</span>=<span class="string">"myScheduler"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 刷新客服在线状态,通过任务管理器调用,时间间隔10分钟 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">task:scheduled</span> <span class="attr">ref</span>=<span class="string">"scheduledTaskManager"</span> <span class="attr">method</span>=<span class="string">"checkCustomerServiceOnLineStatus"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">fixed-rate</span>=<span class="string">"600000"</span> <span class="attr">cron</span>=<span class="string">"0 * * * * ?"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;/<span class="name">task:scheduled-tasks</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>ref ： bean   例子：</p>
+<pre><code>@Component(value=&quot;scheduledTaskManager&quot;)
+public class ScheduledTaskManager 
+    fixed-rate ：下一次的间隔时间
+    initial-delay：初始延迟
+</code></pre><p>方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.mendian.component;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"><span class="keyword">import</span> com.mendian.config.ServerUtil;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 预约任务管理</span></span><br><span class="line"><span class="comment"> * 定时任务工具</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>: JobManager</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> jh</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2016-5-26 下午2:52:54</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span>(value=<span class="string">"scheduledTaskManager"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScheduledTaskManager</span>  </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Logger LOG = LoggerFactory.getLogger(ScheduledTaskManager.class);</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkCustomerServiceOnLineStatus</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		LOG.info(<span class="string">"checkCustomerServiceOnLineStatus start"</span>);</span><br><span class="line">		ServerUtil.refreshCustomerServiceOnLineStatus();</span><br><span class="line">		LOG.info(<span class="string">"checkCustomerServiceOnLineStatus end"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Spring-ehcache"><a href="#Spring-ehcache" class="headerlink" title="Spring ehcache"></a>Spring ehcache</h3><h3 id="Spring-拦截"><a href="#Spring-拦截" class="headerlink" title="Spring 拦截"></a>Spring 拦截</h3><p>preHandle( )<br>拦截器页面跳转<br>request.getRequestDispatcher(“/WEB-INF/view/test.jsp”).forward(request,response);</p>
 
           
         
@@ -1757,7 +2082,7 @@ document.getElementById(&apos;maindiv&apos;).getElementsByTagName(&quot;p&quot;)
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1768,7 +2093,7 @@ document.getElementById(&apos;maindiv&apos;).getElementsByTagName(&quot;p&quot;)
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1779,7 +2104,7 @@ document.getElementById(&apos;maindiv&apos;).getElementsByTagName(&quot;p&quot;)
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

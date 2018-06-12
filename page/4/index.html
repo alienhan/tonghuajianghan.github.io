@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/thread-lock/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/spring-原理与源码分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -251,7 +251,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/11/thread-lock/" itemprop="url">多线程--锁</a></h1>
+                <a class="post-title-link" href="/2018/06/12/spring-原理与源码分析/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -263,589 +263,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/thread/" itemprop="url" rel="index">
-                    <span itemprop="name">thread</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="死锁前提"><a href="#死锁前提" class="headerlink" title="死锁前提"></a>死锁前提</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/thread source read/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/thread source read/" itemprop="url">多线程源码阅读 \ Current/Collection/Thread</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/thread/" itemprop="url" rel="index">
-                    <span itemprop="name">thread</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="HashMap-source-read"><a href="#HashMap-source-read" class="headerlink" title="HashMap source read"></a>HashMap source read</h3><p>参考:<br>  <a href="http://penghb.com/2017/10/15/java/hashMap/" target="_blank" rel="noopener">http://penghb.com/2017/10/15/java/hashMap/</a></p>
-<ol>
-<li><p>hashtable区别<br> 不同步<br> 允许使用null</p>
-</li>
-<li><p>1.8改进<br> 数据存储结构引进了<code>红黑树</code>，使得查询更加的快捷.</p>
-</li>
-</ol>
-<h3 id="ConcurrentHashMap-source-read"><a href="#ConcurrentHashMap-source-read" class="headerlink" title="ConcurrentHashMap source read"></a>ConcurrentHashMap source read</h3><p>参考:<br><a href="http://penghb.com/2017/10/27/java/concurrentHashMap/" target="_blank" rel="noopener">http://penghb.com/2017/10/27/java/concurrentHashMap/</a></p>
-<p>JDK1.8改进</p>
-<ol>
-<li><code>取消segments字段</code>，（Segment虽保留，但已经简化属性，仅仅是为了兼容旧版本。）<br>直接采用transient volatile HashEntry table保存数据，采用table数组元素作为锁，从而实现了对每一行数据进行加锁，进一步减少并发冲突的概率。</li>
-<li>将原先table数组＋单向链表的数据结构，变更为table数组＋单向链表＋红黑树的结构。（这点和HashMap是一样的）</li>
-</ol>
-<h3 id="Threadlocal-source-read"><a href="#Threadlocal-source-read" class="headerlink" title="Threadlocal source read"></a>Threadlocal source read</h3><p>参考:<br><a href="http://penghb.com/2017/10/18/java/threadLocal/" target="_blank" rel="noopener">http://penghb.com/2017/10/18/java/threadLocal/</a></p>
-<p>该类提供线程本地变量。这些变量与一般的变量不同，每个线程访问一个线程（通过get或set方法）有自己独立的变量初始化副本。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/mybatis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/mybatis/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#执行过程</p>
-<pre><code>SqlSession
-SqlSessionFactoryBuilder-&gt;SqlSessionFactory
-sql 查询-&gt;SqlSession-&gt;DeFaultSqlSession(implements)
-
-Executor
--&gt;CachingExecutor--&gt;delegate(委派)
--&gt;SimpleExecutor(通过delegate机制完成) ,执行query方法的时候先调用BaseExecutor中的query函数,base中的query再调用simple中的doQuery函数
-
--&gt;doQuery通过StatementHandler组装jdbc的statement,connnection...
-
-StatementHandler
--&gt;RoutingStatementHandler--&gt;delegate
---&gt;PreparedStatementHandler(负责对数据库执行statement,返回结果)
-</code></pre><hr>
-<p>#缓存</p>
-<pre><code>一级缓存
-    开启:mybaits-settings中设置&lt;setting name=&quot;localCacheScope&quot; value=&quot;SESSION&quot;/&gt;
-
-    一级缓存只在数据库会话内部共享
-
-二级缓存
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/mybatis-generator/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/mybatis-generator/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="mybatis-自动代码生成"><a href="#mybatis-自动代码生成" class="headerlink" title="mybatis 自动代码生成"></a>mybatis 自动代码生成</h1><p>mybatis-generator 简介：<br>    官网： <a href="http://www.mybatis.org/generator/index.html" target="_blank" rel="noopener">http://www.mybatis.org/generator/index.html</a></p>
-<hr>
-<h2 id="mybatis-generator安装"><a href="#mybatis-generator安装" class="headerlink" title="mybatis-generator安装:"></a>mybatis-generator安装:</h2><ol>
-<li><p>以maven插件安装：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis-generator-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.3.2&lt;/version&gt;</span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">        &lt;verbose&gt;true&lt;/verbose&gt;</span><br><span class="line">        &lt;overwrite&gt;true&lt;/overwrite&gt;</span><br><span class="line">    &lt;/configuration&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置文件：<br>位置：插件默认会读到src/main/resources目录下的generatorConfig.xml 文件。</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE generatorConfiguration</span><br><span class="line">        PUBLIC &quot;-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN&quot;</span><br><span class="line">        &quot;http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;generatorConfiguration&gt;</span><br><span class="line">	&lt;!--数据库驱动jar --&gt;</span><br><span class="line">	&lt;classPathEntry location=&quot;D:\maven\repository\mysql\mysql-connector-java\5.1.8\mysql-connector-java-5.1.8.jar&quot; /&gt;</span><br><span class="line"></span><br><span class="line">	&lt;context id=&quot;DB2Tables&quot; targetRuntime=&quot;Ibatis2Java5&quot;&gt;</span><br><span class="line">		&lt;!--去除注释 --&gt;</span><br><span class="line">		&lt;commentGenerator&gt;</span><br><span class="line">			&lt;property name=&quot;suppressAllComments&quot; value=&quot;true&quot; /&gt;</span><br><span class="line">		&lt;/commentGenerator&gt;</span><br><span class="line"></span><br><span class="line">		&lt;!--数据库连接 --&gt;</span><br><span class="line">		&lt;jdbcConnection driverClass=&quot;com.mysql.jdbc.Driver&quot;</span><br><span class="line">			connectionURL=&quot;jdbc:mysql://localhost:3306/test&quot; userId=&quot;root&quot;</span><br><span class="line">			password=&quot;root&quot;&gt;</span><br><span class="line">		&lt;/jdbcConnection&gt;</span><br><span class="line">		&lt;!--默认false Java type resolver will always use java.math.BigDecimal if </span><br><span class="line">			the database column is of type DECIMAL or NUMERIC. --&gt;</span><br><span class="line">		&lt;javaTypeResolver&gt;</span><br><span class="line">			&lt;property name=&quot;forceBigDecimals&quot; value=&quot;false&quot; /&gt;</span><br><span class="line">		&lt;/javaTypeResolver&gt;</span><br><span class="line"></span><br><span class="line">		&lt;!--生成实体类 指定包名 以及生成的地址 （可以自定义地址，但是路径不存在不会自动创建 使用Maven生成在target目录下，会自动创建） --&gt;</span><br><span class="line">		&lt;javaModelGenerator targetPackage=&quot;jh.test.socketTest.mybatis.gen&quot;</span><br><span class="line">			targetProject=&quot;MAVEN&quot;&gt;</span><br><span class="line">			&lt;property name=&quot;enableSubPackages&quot; value=&quot;false&quot; /&gt;</span><br><span class="line">			&lt;property name=&quot;trimStrings&quot; value=&quot;true&quot; /&gt;</span><br><span class="line">		&lt;/javaModelGenerator&gt;</span><br><span class="line">		&lt;!--生成SQLMAP文件 --&gt;</span><br><span class="line">		&lt;sqlMapGenerator targetPackage=&quot;jh.test.socketTest.mybatis.gen&quot;</span><br><span class="line">			targetProject=&quot;MAVEN&quot;&gt;</span><br><span class="line">			&lt;property name=&quot;enableSubPackages&quot; value=&quot;false&quot; /&gt;</span><br><span class="line">		&lt;/sqlMapGenerator&gt;</span><br><span class="line">		&lt;!--生成Dao文件 可以配置 type=&quot;XMLMAPPER&quot;生成xml的dao实现 context id=&quot;DB2Tables&quot; 修改targetRuntime=&quot;MyBatis3&quot; --&gt;</span><br><span class="line">		&lt;javaClientGenerator type=&quot;SPRING&quot;</span><br><span class="line">			targetPackage=&quot;jh.test.socketTest.mybatis.gen&quot; targetProject=&quot;MAVEN&quot;&gt;</span><br><span class="line">			&lt;property name=&quot;enableSubPackages&quot; value=&quot;false&quot; /&gt;</span><br><span class="line">		&lt;/javaClientGenerator&gt;</span><br><span class="line"></span><br><span class="line">		&lt;!--对应数据库表 mysql可以加入主键自增 字段命名 忽略某字段等 --&gt;</span><br><span class="line">		&lt;table tableName=&quot;user&quot; domainObjectName=&quot;User&quot;&gt;</span><br><span class="line">		&lt;/table&gt;</span><br><span class="line"></span><br><span class="line">	&lt;/context&gt;</span><br><span class="line">&lt;/generatorConfiguration&gt;</span><br></pre></td></tr></table></figure>
-<hr>
-<ol start="3">
-<li>生成代码</li>
-</ol>
-<ul>
-<li><p>择pom.xml文件，击右键先择Run AS——&gt;Maven Build… ——&gt;在Goals框中输入：mybatis-generator:generate </p>
-</li>
-<li><p>如果在命令行输入Maven命令即可，注意：一定是当前项目目录下运行该命令：<br>mvn mybatis-generator:generate</p>
-</li>
-</ul>
-<hr>
-<ol start="4">
-<li>生成代码位置：<br> 在项目target/generated-sources下</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/function-SQL/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/function-SQL/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
               </time>
             
 
@@ -885,12 +304,112 @@ StatementHandler
         
           
             <hr>
-<p>合并多个列   mysql</p>
-<p>SELECT<br>    uniMark,operateTime,rcsCode,rcsCodeName,quota,<br>    GROUP_CONCAT(type, “:”, quota) AS index_quota<br>FROM<br>    t_quota_cashier_pay_channel_code<br>GROUP BY<br>    <code>rcsCode</code>;</p>
-<p>group_concat(param1,param2,param3)<br>param1:分组字段<br>param2:分割符<br>param3:被分组字段</p>
-<p>根据分组显示合并的字符串<br>eg: type1:quota1,type2:quota2</p>
+<p>title: Spring基础与使用案例与场景<br>date:<br>categories:</p>
+<ul>
+<li>spring<br>tags:</li>
+<li>spring 基础与使用</li>
+</ul>
 <hr>
-
+<h3 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h3><ul>
+<li>构建ioc基本功能</li>
+</ul>
+<h3 id="Aware-感知-bean操作ioc容器"><a href="#Aware-感知-bean操作ioc容器" class="headerlink" title="Aware (感知)    bean操作ioc容器"></a>Aware (感知)    bean操作ioc容器</h3><p>容器管理的Bean一般不需要了解容器的状态和直接使用容器，但是在某些情况下，是需要在Bean中直接对IOC容器进行操作的，  </p>
+<ul>
+<li>这时候，就需要在Bean中设定对容器的感知。<br>spring IOC容器也提供了该功能，它是通过特定的Aware接口来完成的。aware接口有以下这些：   <ul>
+<li>BeanNameAware，可以在Bean中得到它在IOC容器中的Bean的实例的名字。    </li>
+<li>BeanFactoryAware，可以在Bean中得到Bean所在的IOC容器，从而直接在Bean中使用IOC容器的服务。  </li>
+<li>ApplicationContextAware<br>可以在Bean中得到Bean所在的应用上下文，从而直接在Bean中使用上下文的服务。    </li>
+<li>MessageSourceAware，在Bean中可以得到消息源。  </li>
+<li>ApplicationEventPublisherAware:<br>在bean中可以得到应用上下文的事件发布器，从而可以在Bean中发布应用上下文的事件。  </li>
+<li>ResourceLoaderAware:<br>在Bean中可以得到ResourceLoader，从而在bean中使用ResourceLoader加载外部对应的Resource资源。   </li>
+</ul>
+</li>
+</ul>
+<p>在设置Bean的属性之后，调用初始化回调方法之前，Spring会调用aware接口中的setter方法。</p>
+<h3 id="Transaction-Spring-事物"><a href="#Transaction-Spring-事物" class="headerlink" title="Transaction /Spring 事物"></a>Transaction /Spring 事物</h3><p><a href="https://www.ibm.com/developerworks/cn/education/opensource/os-cn-spring-trans/" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/education/opensource/os-cn-spring-trans/</a></p>
+<ol>
+<li><p>本地事务和全局事务</p>
+<ul>
+<li><p>全局事务让你可以和多个事务资源工作在一起，比如，关系型数据库，消息队列</p>
+</li>
+<li><p>本地事务则是与某个指定的事务资源联系在一起，比如，与JDBC连接相关的事务。本地事务相对于全局事务更容易使用，但不能跨多个事务资源。管理JDBC连接所写的事务代码不能够在全局事务中使用。</p>
+</li>
+</ul>
+</li>
+<li><p>settings /事物对应配置</p>
+<ul>
+<li>隔离级别</li>
+<li><p>传播行为</p>
+<ol>
+<li>required<br>  如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。</li>
+<li>requires_new<br> 创建一个新的事务，如果当前存在事务，则把当前事务挂起。</li>
+<li>supports<br> 如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。</li>
+<li>not_supported<br> 非事务方式运行，如果当前存在事务，则把当前事务挂起。</li>
+<li>never<br> 以非事务方式运行，如果当前存在事务，则抛出异常。</li>
+<li>mandatory<br> 如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。 </li>
+<li><p>nested<br> 如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于required</p>
+<p>当前有事物  </p>
+<ul>
+<li>加入  </li>
+<li>挂起,新建  </li>
+<li>抛异常  </li>
+</ul>
+<p>当前没有事物  </p>
+<ul>
+<li>新建  </li>
+<li>非事物运行  </li>
+<li>抛异常  </li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>事务超时</li>
+<li>事务的只读属性</li>
+<li>事务的回滚规则        </li>
+</ol>
+<h3 id="spring结构-bean生成工厂的组成结构"><a href="#spring结构-bean生成工厂的组成结构" class="headerlink" title="spring结构/ bean生成工厂的组成结构"></a>spring结构/ bean生成工厂的组成结构</h3><ol>
+<li><p>具体的ioc实现</p>
+<ul>
+<li>DefaultListableBeanFactory  <ul>
+<li>在spring中,实际上是把DefaultListableBeanFactory作为一个默认的功能完整的Ioc容器来使用的.  </li>
+<li>XmlBeanFactory,ApplicationContect都是在DefaultListableBeanFactory基础上扩展的.  </li>
+<li>AbstractRefreshableApplicationContext中包含DefaultListableBeanFactory的实例  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>BeanFacory<br> BeanFactory的实现是Ioc的基本形式  </p>
+</li>
+<li><p>ApplicationContext<br> ApplicationContext的各种实现是IoC容器的高级表现形式  </p>
+</li>
+</ol>
+<h3 id="spring-容器启动过程"><a href="#spring-容器启动过程" class="headerlink" title="spring 容器启动过程"></a>spring 容器启动过程</h3><p>启动时执行  </p>
+<ol>
+<li>Resource定位  <ul>
+<li>Resource是spring对i/o的封装类.  </li>
+</ul>
+</li>
+<li><p>BeanDefinition载入  </p>
+</li>
+<li><p>注册BeanDefinition</p>
+<ul>
+<li>在IoC容器内部将BeanDefinition注入到HashMap中  </li>
+</ul>
+</li>
+<li><p>Bean依赖注入</p>
+<ul>
+<li><p>时间:发生在应用第一次调用AbstractBeanFactory中的getBean–&gt;doGetBean向容器索取bean的时候</p>
+</li>
+<li><p>AbstractBeanFactory中的doGetBean具体实现<br>DefaultSingletonBeanRegistry含有bean的三级缓存</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Cache of singleton objects: bean name --&gt; bean instance */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; singletonObjects = <span class="keyword">new</span> ConcurrentHashMap&lt;String, Object&gt;(<span class="number">256</span>);</span><br><span class="line"><span class="comment">/** Cache of singleton factories: bean name --&gt; ObjectFactory */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, ObjectFactory&lt;?&gt;&gt; singletonFactories = <span class="keyword">new</span> HashMap&lt;String, ObjectFactory&lt;?&gt;&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">/** Cache of early singleton objects: bean name --&gt; bean instance */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; earlySingletonObjects = <span class="keyword">new</span> HashMap&lt;String, Object&gt;(<span class="number">16</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>- getSingleton是调用
+</code></pre><h4 id="Spring-bean的循环依赖以及解决方式"><a href="#Spring-bean的循环依赖以及解决方式" class="headerlink" title="Spring-bean的循环依赖以及解决方式"></a>Spring-bean的循环依赖以及解决方式</h4>
           
         
       
@@ -938,7 +457,7 @@ StatementHandler
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/spring_read/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/spring-boot-基础与使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -957,7 +476,7 @@ StatementHandler
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/11/spring_read/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/06/12/spring-boot-基础与使用/" itemprop="url">Spring Boot基础与使用案例与场景</a></h1>
         
 
         <div class="post-meta">
@@ -969,8 +488,8 @@ StatementHandler
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
               </time>
             
 
@@ -979,6 +498,28 @@ StatementHandler
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1009,143 +550,9 @@ StatementHandler
       
         
           
-            <p>#BeanFactory<br>    构建ioc基本功能</p>
-<p>#Aware (感知)<br>容器管理的Bean一般不需要了解容器的状态和直接使用容器，但是在某些情况下，是需要在Bean中直接对IOC容器进行操作的，<br>    这时候，就需要在Bean中设定对容器的感知。<br>    spring IOC容器也提供了该功能，它是通过特定的Aware接口来完成的。aware接口有以下这些：<br>        BeanNameAware，可以在Bean中得到它在IOC容器中的Bean的实例的名字。<br>        BeanFactoryAware，可以在Bean中得到Bean所在的IOC容器，从而直接在Bean中使用IOC容器的服务。<br>        ApplicationContextAware，可以在Bean中得到Bean所在的应用上下文，从而直接在Bean中使用上下文的服务。<br>        MessageSourceAware，在Bean中可以得到消息源。<br>        ApplicationEventPublisherAware，在bean中可以得到应用上下文的事件发布器，从而可以在Bean中发布应用上下文的事件。<br>        ResourceLoaderAware，在Bean中可以得到ResourceLoader，从而在bean中使用ResourceLoader加载外部对应的Resource资源。<br>    在设置Bean的属性之后，调用初始化回调方法之前，Spring会调用aware接口中的setter方法。</p>
-<p>#Transaction<br><a href="https://www.ibm.com/developerworks/cn/education/opensource/os-cn-spring-trans/" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/education/opensource/os-cn-spring-trans/</a></p>
-<p>本地事务和全局事务<br>    全局事务让你可以和多个事务资源工作在一起，比如，关系型数据库，消息队列</p>
-<p>而本地事务则是与某个指定的事务资源联系在一起，比如，与JDBC连接相关的事务。本地事务相对于全局事务更容易使用，但不能跨多个事务资源。管理JDBC连接所写的事务代码不能够在全局事务中使用。</p>
-<p>settings<br>    隔离级别<br>    传播行为<br>        required<br>             如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。<br>        requires_new<br>            创建一个新的事务，如果当前存在事务，则把当前事务挂起。<br>        supports<br>            如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。<br>        not_supported<br>            非事务方式运行，如果当前存在事务，则把当前事务挂起。<br>        never<br>            以非事务方式运行，如果当前存在事务，则抛出异常。<br>        mandatory<br>            如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。<br>        nested<br>            如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于required<br>        当前有事物<br>            加入<br>            挂起,新建<br>            抛异常<br>        当前没有事物<br>            新建<br>            非事物运行<br>            抛异常<br>    事务超时<br>    事务的只读属性<br>    事务的回滚规则        </p>
-<p>#spring结构<br>具体的ioc实现<br>DefaultListableBeanFactory<br>    在spring中,实际上是把DefaultListableBeanFactory作为一个默认的功能完整的Ioc容器来使用的.<br>    XmlBeanFactory,ApplicationContect都是在DefaultListableBeanFactory基础上扩展的.</p>
-<pre><code>AbstractRefreshableApplicationContext中包含DefaultListableBeanFactory的实例
-</code></pre><p>BeanFacory<br>    BeanFactory的实现是Ioc的基本形式</p>
-<p>ApplicationContext<br>    ApplicationContext的各种实现是IoC容器的高级表现形式</p>
-<p>#spring 容器启动过程<br>启动时执行<br>1.Resource定位<br>    Resource是spring对i/o的封装类.<br>2.BeanDefinition载入<br>3.注册BeanDefinition<br>    在IoC容器内部将BeanDefinition注入到HashMap中</p>
-<p>4.Bean依赖注入<br>    时间:发生在应用第一次调用AbstractBeanFactory中的getBean–&gt;doGetBean向容器索取bean的时候<br>    AbstractBeanFactory中的doGetBean具体实现<br>DefaultSingletonBeanRegistry含有bean的三级缓存<br>    /<strong> Cache of singleton objects: bean name –&gt; bean instance */<br>    private final Map&lt;String, Object&gt; singletonObjects = new ConcurrentHashMap&lt;String, Object&gt;(256);<br>    /</strong> Cache of singleton factories: bean name –&gt; ObjectFactory <em>/<br>    private final Map&lt;String, ObjectFactory&lt;?&gt;&gt; singletonFactories = new HashMap&lt;String, ObjectFactory&lt;?&gt;&gt;(16);<br>    /** Cache of early singleton objects: bean name –&gt; bean instance </em>/<br>    private final Map&lt;String, Object&gt; earlySingletonObjects = new HashMap&lt;String, Object&gt;(16);</p>
-<pre><code>getSingleton是调用
-</code></pre><p>Spring-bean的循环依赖以及解决方式</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/spring-boot/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/spring-boot/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#_# spring boot</p>
-<p>#init<br>1 搭建<br>  下载sts使用spring start project搭建</p>
-<ol start="2">
-<li>运行<br>直接运行main函数</li>
+            <h3 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h3><ol>
+<li>搭建<br>下载sts使用spring start project搭建  </li>
+<li>运行<br>直接运行main函数  </li>
 <li>启动注意:<br>默认tomcat:8080<br>没有项目名直接访问具体位置<br><a href="http://localhost:8080/dog" target="_blank" rel="noopener">http://localhost:8080/dog</a></li>
 </ol>
 
@@ -1196,7 +603,7 @@ StatementHandler
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/servlet/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/Websphere/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -1215,7 +622,7 @@ StatementHandler
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/11/servlet/" itemprop="url">Servlet</a></h1>
+                <a class="post-title-link" href="/2018/06/12/Websphere/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -1227,8 +634,127 @@ StatementHandler
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/servlet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/servlet/" itemprop="url">Servlet</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
               </time>
             
 
@@ -1370,7 +896,7 @@ StatementHandler
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/Net-Protocol/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/Net-Protocol-网络协议/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -1389,7 +915,7 @@ StatementHandler
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/11/Net-Protocol/" itemprop="url">网络协议</a></h1>
+                <a class="post-title-link" href="/2018/06/12/Net-Protocol-网络协议/" itemprop="url">网络协议</a></h1>
         
 
         <div class="post-meta">
@@ -1401,8 +927,8 @@ StatementHandler
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
               </time>
             
 
@@ -1545,7 +1071,7 @@ StatementHandler
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/jboss/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/jboss/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -1564,7 +1090,7 @@ StatementHandler
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/11/jboss/" itemprop="url">jboss</a></h1>
+                <a class="post-title-link" href="/2018/06/12/jboss/" itemprop="url">jboss</a></h1>
         
 
         <div class="post-meta">
@@ -1576,8 +1102,8 @@ StatementHandler
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T11:50:02+08:00">
-                2018-06-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
               </time>
             
 
@@ -1599,8 +1125,8 @@ StatementHandler
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Servlet/" itemprop="url" rel="index">
-                    <span itemprop="name">Servlet</span>
+                  <a href="/categories/jboss/" itemprop="url" rel="index">
+                    <span itemprop="name">jboss</span>
                   </a>
                 </span>
 
@@ -1650,6 +1176,685 @@ StatementHandler
 </li>
 </ol>
 <h3 id="jboss-post-提交中文乱码"><a href="#jboss-post-提交中文乱码" class="headerlink" title="jboss post 提交中文乱码"></a>jboss post 提交中文乱码</h3><p>  在HTTP的POST请求中，如果是这种情况<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">，若没有设置charset=utf-8，这时可能会出现请求参数中文乱码的情况  </span><br><span class="line">do:</span><br><span class="line">1. 改成get提交  </span><br><span class="line">2. Headers改    ```Content-Type:application/x-www-form-urlencoded;charset=UTF-8</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/http_SSL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/http_SSL/" itemprop="url">java处理网络协议</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络协议/" itemprop="url" rel="index">
+                    <span itemprop="name">网络协议</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="java-http-链接"><a href="#java-http-链接" class="headerlink" title="java http 链接"></a>java http 链接</h3><p>code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">String urlStr = <span class="string">"www.baidu.com"</span>;</span><br><span class="line">URL url = <span class="keyword">new</span> URL(urlStr);</span><br><span class="line">HttpURLConnection http = (HttpURLConnection) url.openConnection();</span><br><span class="line">http.setRequestMethod(<span class="string">"POST"</span>);<span class="comment">//get,post 请求方法</span></span><br><span class="line">http.setRequestProperty(<span class="string">"Content-Type"</span>, <span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line">http.setDoOutput(<span class="keyword">true</span>);<span class="comment">//可以输出</span></span><br><span class="line">http.setDoInput(<span class="keyword">true</span>);<span class="comment">//可以输入</span></span><br><span class="line">http.connect();</span><br><span class="line"></span><br><span class="line">OutputStream os = http.getOutputStream();<span class="comment">//Returns an output stream that writes to this connection.</span></span><br><span class="line">os.write(paramStr.getBytes(encode));<span class="comment">// 传入参数，encode为参数在字节流中的编码</span></span><br><span class="line">os.flush();</span><br><span class="line">os.close();</span><br><span class="line"></span><br><span class="line">String message = <span class="keyword">null</span>;</span><br><span class="line">InputStream is = http.getInputStream();<span class="comment">//Returns an input stream that reads from this open connection.</span></span><br><span class="line"><span class="keyword">int</span> size = is.available();</span><br><span class="line"><span class="keyword">byte</span>[] jsonBytes = <span class="keyword">new</span> <span class="keyword">byte</span>[size];</span><br><span class="line">is.read(jsonBytes);</span><br><span class="line">message = <span class="keyword">new</span> String(jsonBytes, encode);<span class="comment">//jsonBytes为字节</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="HttpClient-链接"><a href="#HttpClient-链接" class="headerlink" title="HttpClient 链接"></a>HttpClient 链接</h3><p>code：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">ca验证：</span><br><span class="line"><span class="comment">// 指定读取证书格式为PKCS12</span></span><br><span class="line">KeyStore keyStore = KeyStore.getInstance(<span class="string">"PKCS12"</span>);</span><br><span class="line"><span class="comment">// 读取本机存放的PKCS12证书文件</span></span><br><span class="line">FileInputStream instream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"D:\\java\\lib\\weixin\\cert\\apiclient_cert.p12"</span>));</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="comment">// 指定PKCS12的密码(商户ID)</span></span><br><span class="line">	keyStore.load(instream, <span class="string">"1315688001"</span>.toCharArray());</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">	instream.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Trust own CA and all self-signed certs</span></span><br><span class="line">SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, <span class="string">"1315688001"</span>.toCharArray()).build();</span><br><span class="line"><span class="comment">// Allow TLSv1 protocol only 指定TLS版本</span></span><br><span class="line">SSLConnectionSocketFactory sslsf = <span class="keyword">new</span> SSLConnectionSocketFactory(sslcontext, <span class="keyword">new</span> String[] &#123; <span class="string">"TLSv1"</span> &#125;, <span class="keyword">null</span>, SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);</span><br><span class="line">CloseableHttpClient httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();</span><br><span class="line"><span class="comment">// httpclient.getParams().setParameter(HttpEntity,"utf-8");</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">	HttpPost httpPost = <span class="keyword">new</span> HttpPost(<span class="string">"https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack"</span>);</span><br><span class="line">	httpPost.addHeader(<span class="string">"Content-Type"</span>, <span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//System.out.println(params.getBytes().);</span></span><br><span class="line">	<span class="comment">//StringEntity s = new StringEntity(new String(params.getBytes("gb18030"),"utf-8"));</span></span><br><span class="line">	ByteArrayEntity b = <span class="keyword">new</span> ByteArrayEntity(params.getBytes(<span class="string">"utf-8"</span>));</span><br><span class="line">	<span class="comment">// s.setContentEncoding("UTF-8");</span></span><br><span class="line">	httpPost.setEntity(b);</span><br><span class="line">	<span class="comment">// 设置httpclient的SSLSocketFactory,发送请求</span></span><br><span class="line">	System.out.println(<span class="string">"executing request"</span> + httpPost.getRequestLine());</span><br><span class="line"></span><br><span class="line">	System.out.println(<span class="string">"executing request"</span> + httpPost.getEntity().getContentEncoding());</span><br><span class="line">	CloseableHttpResponse response = httpclient.execute(httpPost);</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		HttpEntity entity = response.getEntity();</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">"----------------------------------------"</span>);</span><br><span class="line">		System.out.println(response.getStatusLine());</span><br><span class="line">		<span class="keyword">if</span> (entity != <span class="keyword">null</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">"Response content length: "</span> + entity.getContentLength());</span><br><span class="line">			BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(entity.getContent()));</span><br><span class="line">			String text;</span><br><span class="line">			<span class="keyword">while</span> ((text = bufferedReader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">				System.out.println(text);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		EntityUtils.consume(entity);</span><br><span class="line">	&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">		response.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">	httpclient.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/README/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/README/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>1.这是我整理的文档<br>2.保存我的电脑下的Note内容<br>3.可能保存project</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/jvm_code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/jvm_code/" itemprop="url">jvm</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jvm/" itemprop="url" rel="index">
+                    <span itemprop="name">jvm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="JAVA虚拟机关闭钩子-Shutdown-Hook"><a href="#JAVA虚拟机关闭钩子-Shutdown-Hook" class="headerlink" title="JAVA虚拟机关闭钩子(Shutdown Hook)"></a>JAVA虚拟机关闭钩子(Shutdown Hook)</h3><p>JDK提供了Java.Runtime.addShutdownHook(Thread hook)方法，可以注册一个JVM关闭的钩子，这个钩子可以在一下几种场景中被调用： </p>
+<ol>
+<li>程序正常退出</li>
+<li>使用System.exit()</li>
+<li>终端使用Ctrl+C触发的中断</li>
+<li>系统关闭</li>
+<li>OutOfMemory宕机</li>
+<li>使用Kill pid命令干掉进程（注：在使用kill -9 pid时，是不会被调用的）</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/jvm-分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/jvm-分析/" itemprop="url">jvm 加载/执行/GC算法/GC收集器/jvm调试命令/内存分配</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jvm/" itemprop="url" rel="index">
+                    <span itemprop="name">jvm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><ol>
+<li>编译成class文件(.class 文件结构)<br> 查看字节码: <pre><code>`javac 编译`
+`javap -verbose Class`
+</code></pre></li>
+<li><p>类(Class对象)加载到虚拟机内存过程(<br> 所谓的类加载就是把.class文件加载到内存成为Class对象) </p>
+<p> loading-&gt;linking(verification-&gt;preparation-&gt;resolution)<br> -&gt;initialization-&gt;using-&gt;unloading  </p>
+<p> preparation(准备): 类变量分配内存,设置初始值<br> resolution(解析):虚拟机将<code>常量池内</code>的符号引用替换成<code>直接引用</code>的过程.<br> initialization:执行<clinit>()方法的过程<br>   <code>&lt;clinit&gt;</code>()方法是编译器自动收集类变量,静态语句{}合成的.  </clinit></p>
+</li>
+<li><p>类加载器(双亲委派机制,树状结构):  </p>
+<ol>
+<li>启动类加载器(bootstrap ClassLoader c++实现)  </li>
+<li>扩展类加载器(Extension ClassLoader)  </li>
+<li>应用程序类加载器(Application ClassLoader)  </li>
+<li>自定义类加载器(User ClassLoader)  </li>
+<li>过程 : 类加载器收到一个类加载请求,先请求委派给父加载器完成加载  </li>
+<li>OSGi 非树状结构   </li>
+</ol>
+</li>
+<li>初始化前提:<ol>
+<li>遇到 <code>new getstatic putstatic invokestatic</code>这4条字节码(java 代码场景 使用new 实例化对象,读取或设置一个类的静态字段(final 除外))  </li>
+<li>反射调用时  </li>
+<li>初始化类的时候要先初始化父类  </li>
+<li>main  </li>
+<li>动态语言支持  </li>
+</ol>
+</li>
+</ol>
+<h3 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h3><p>main-&gt;启动线程-&gt;调用方法-&gt;线程结束  </p>
+<p>运行时栈帧结构(一个栈帧对应一个方法)  </p>
+<ul>
+<li>局部变量表  </li>
+<li>操作数栈  </li>
+<li>动态链接  </li>
+<li>方法返回地址  </li>
+<li>附加信息  </li>
+</ul>
+<h3 id="垃圾收集-Garbage-Collection"><a href="#垃圾收集-Garbage-Collection" class="headerlink" title="垃圾收集 Garbage Collection"></a>垃圾收集 Garbage Collection</h3><h4 id="GC目的"><a href="#GC目的" class="headerlink" title="GC目的:"></a>GC目的:</h4><ul>
+<li>那些内存需要回收  </li>
+<li>什么时候回收  </li>
+<li>如何回收 </li>
+</ul>
+<h4 id="判断对象死亡"><a href="#判断对象死亡" class="headerlink" title="判断对象死亡"></a>判断对象死亡</h4><ol>
+<li>引用计数算法(java中不用)  </li>
+<li>可达性分析算法<br> GC Roots:  <ul>
+<li>虚拟机栈中本地变量表中的引用对象(reference)  </li>
+<li>方法区中类静态属性引用的对象  </li>
+<li>方法区中常量引用的对象  </li>
+<li>本地方法栈(JNI)引用对象(native)  </li>
+</ul>
+</li>
+<li>引用种类<br> 强 strong 1,弱 weak 3,软 soft 2,虚 phantom 4  </li>
+</ol>
+<h4 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h4><ul>
+<li>种类<br>  标记-清除算法 Mark-Sweep<br>  标记-整理算法 Mark-Compact<br>  复制算法<br>  分代收集算法  <ul>
+<li>新生代 young generation–&gt;复制算法 Minor GC  </li>
+<li>老生代 tenured generation–&gt;标记 清理\整理 算法</li>
+<li>Major GC  </li>
+</ul>
+</li>
+<li>算法实现  <ul>
+<li>枚举根节点-&gt;停顿  </li>
+<li>安全点/区域  <ul>
+<li>发生GC时,要求所有线程处在安全域内  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h4><ul>
+<li>并行:多条GC线程同时工作,用户线程处于等待状态  </li>
+<li>并发:用户线程与GC线程同时执行(但不一定是并行的,可能会交替执行)</li>
+<li>serial(串行) 暂停其他所有工作线程  <ul>
+<li>serial new 复制算法  <code>新生代</code>  </li>
+<li>serial old 标记-整理算法 <code>老年代</code>  </li>
+</ul>
+</li>
+<li>parnew  <code>新生代</code><br>  多线程版serial  </li>
+<li>parallel(并行)  <ul>
+<li>目标:达到一个可控的吞吐量  <ul>
+<li>吞吐量= 用户代码运行时间/(用户代码运行时间 + GC时间)  </li>
+</ul>
+</li>
+<li>parallel scavenge(打扫) <code>新生代</code>  </li>
+<li>parallel old <code>老年代</code>  </li>
+</ul>
+</li>
+<li>CMS concunrrent mark sweep(打扫) <code>老年代</code><br>  目标:获取最短回收停顿时间  </li>
+<li>G1 garbage first  <ul>
+<li>其他收集器区别: 将整个java堆划分成多个大小相等的区 域(Region)  </li>
+<li>region包含有 新/老代  </li>
+</ul>
+</li>
+</ul>
+<h3 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h3><ul>
+<li>young generation<ul>
+<li>Eden space 8(比例)<br>  当Eden区内存不够的时候就会触发MinorGC，对新生代区进行一次垃圾回收。</li>
+<li>survivor space 2  <ul>
+<li>form space 1<br>  上一次GC的幸存者，作为这一次GC的被扫描者。  </li>
+<li>to space 1<br>  保留了一次MinorGC过程中的幸存者。  </li>
+</ul>
+</li>
+<li>gc:MinorGC  <ul>
+<li>MinorGC的过程：  <ul>
+<li>MinorGC采用复制算法。  </li>
+<li>首先，把Eden和ServivorFrom区域中存活的对象复制到ServicorTo区域（如果有对象的年龄以及达到了老年的标准，则赋值到老年代区），同时把这些对象的年龄+1（如果ServicorTo不够位置了就放到老年区）；  </li>
+<li>然后，清空Eden和ServicorFrom中的对象；最后，ServicorTo和ServicorFrom互换，原ServicorTo成为下一次GC时的ServicorFrom区。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>tenured generation<ul>
+<li>gc:MajorGC</li>
+<li>进入条件<br>  survivor对象每经历一次GC,年龄+1,默认年龄15时,对象进入老年代<br>  大对象(很长的字符串/数组)直接进入老年代  </li>
+</ul>
+</li>
+<li>permanent generation<br>  PermGen PermGen space的全称是Permanent Generation space,是指内存的永久保存区域<br>  主要存放Class和Meta（元数据）的信息,Class在被加载的时候被放入永久区域.它和存放实例的区域不同,GC不会在主程序运行期对永久区域进行清理。所这也导致了永久代的区域会随着加载的Class的增多而胀满，最终抛出OOM异常。<br>  在Java8中，永久代已经被移除，被一个称为“元数据区”（元空间）的区域所取代。<br>  元空间的本质和永久代类似，都是对JVM规范中方法区的实现。不过元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。因此，默认情况下，元空间的大小仅受本地内存限制。类的元数据放入 native memory, 字符串池和类的静态变量放入java堆中. 这样可以加载多少类的元数据就不再由MaxPermSize控制, 而由系统的实际可用空间来控制.</li>
+</ul>
+<h3 id="命令-调试"><a href="#命令-调试" class="headerlink" title="命令 调试"></a>命令 调试</h3><h4 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h4><ul>
+<li>jps jvm process status  <ul>
+<li>列出正在运行的虚拟机进程</li>
+</ul>
+</li>
+</ul>
 
           
         
@@ -1735,7 +1940,7 @@ StatementHandler
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1746,7 +1951,7 @@ StatementHandler
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1757,7 +1962,7 @@ StatementHandler
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
