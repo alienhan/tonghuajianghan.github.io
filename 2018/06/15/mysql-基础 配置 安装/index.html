@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="mysql基础,mysql配置\安装," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="mysql配置 安装 mysql 5.7：  下载地址: http://dev.mysql.com/downloads/mysql/5.1.html  解压版安装:      配置环境变量 cd到mysql的bin下面 mysqld –initialize mysqld -install net start mysql 然后登入,第一次登入是没有密码的  mysql -u root有密码则设置不用">
+<meta name="keywords" content="mysql基础,mysql配置\安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql基础\配置\安装\基础mysql sql">
+<meta property="og:url" content="http://yoursite.com/2018/06/15/mysql-基础 配置 安装/index.html">
+<meta property="og:site_name" content="大东山下">
+<meta property="og:description" content="mysql配置 安装 mysql 5.7：  下载地址: http://dev.mysql.com/downloads/mysql/5.1.html  解压版安装:      配置环境变量 cd到mysql的bin下面 mysqld –initialize mysqld -install net start mysql 然后登入,第一次登入是没有密码的  mysql -u root有密码则设置不用">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-15T07:09:04.451Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql基础\配置\安装\基础mysql sql">
+<meta name="twitter:description" content="mysql配置 安装 mysql 5.7：  下载地址: http://dev.mysql.com/downloads/mysql/5.1.html  解压版安装:      配置环境变量 cd到mysql的bin下面 mysqld –initialize mysqld -install net start mysql 然后登入,第一次登入是没有密码的  mysql -u root有密码则设置不用">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/15/mysql-基础 配置 安装/"/>
+
+
+
+
+
+  <title>mysql基础\配置\安装\基础mysql sql | 大东山下</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">大东山下</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/mysql-基础 配置 安装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mysql基础\配置\安装\基础mysql sql</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="mysql配置"><a href="#mysql配置" class="headerlink" title="mysql配置"></a>mysql配置</h3><ul>
+<li><p>安装 mysql 5.7：<br>  下载地址: <a href="http://dev.mysql.com/downloads/mysql/5.1.html" target="_blank" rel="noopener">http://dev.mysql.com/downloads/mysql/5.1.html</a></p>
+</li>
+<li><p>解压版安装:    </p>
+<ol>
+<li>配置环境变量</li>
+<li>cd到mysql的bin下面<br> mysqld –initialize<br> mysqld -install<br> net start mysql</li>
+<li><p>然后登入,第一次登入是没有密码的<br>  mysql -u root<br>有密码则设置不用密码访问:<br>  在mysql.ini文件最后添加(默认没有mysql.ini要自己手动新建)</p>
+<pre><code>skip-grant-tables (注意末尾空格)
+</code></pre></li>
+<li><p>登入之后进行密码修改:  </p>
+<ul>
+<li>mysql 5.7以前的做法:(新版本没有password字段)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use mysql;</span><br><span class="line">mysql&gt; update user set password=password(&quot;新密码&quot;) where user=&quot;root&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<pre><code>- mysql 5.7 password字段被替换成authentication_string
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update `User` SET   authentication_string=PASSWORD(&quot;root&quot;) where USER=&apos;root&apos;;</span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">mysql&gt; quit;</span><br></pre></td></tr></table></figure>
+</code></pre><p>ERROR 1045 (28000): Access denied for user ‘root‘@’localhost’ (using password: YES)<br>如果遇到第一次安装mysql的时候密码不为空,问题解决如下:</p>
+<ol>
+<li>编辑mysql配置文件my.ini在[mysqld]这个条目下加入skip-grant-tables</li>
+<li>保存退出后重启mysql</li>
+<li>点击“开始”-&gt;“运行”(快捷键Win+R)。</li>
+<li>启动：输入 net stop mysql</li>
+<li>停止：输入 net start mysql</li>
+<li>在cmd里面输入mysql -u root -p就可以不用密码登录了，出现password：的时候直接回车可以进入</li>
+<li>mysql&gt; use mysql;</li>
+<li>mysql&gt; update user set password=password(“新密码”) where user=”root”;<br>(如果是user表中没有password字段的时候,如下所示,否则直接跳过)  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update `User` SET authentication_string=PASSWORD(&quot;0000&quot;)  </span><br><span class="line">where USER=&apos;root&apos;;  </span><br><span class="line">mysql&gt; flush privileges;  </span><br><span class="line">mysql&gt; quit;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在第一个登入之后,还需要重新设置密码,否则会提示没有权限操作:<br>step 1: SET PASSWORD = PASSWORD(‘your new password‘);<br>step 2: ALTER USER ‘root‘@‘localhost‘ PASSWORD EXPIRE NEVER;<br>step 3: flush privileges;  </p>
+<p>在my.ini中设置如下,解决数据库乱码问题:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[mysql]  </span><br><span class="line">default-character-set=utf8  </span><br><span class="line">[mysqld]  </span><br><span class="line">character-set-server=utf8</span><br></pre></td></tr></table></figure></p>
+<h3 id="mysql命令"><a href="#mysql命令" class="headerlink" title="mysql命令"></a>mysql命令</h3><ol start="0">
+<li><p>建库</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> xxx;</span><br><span class="line">mysql&gt; Create TABLE MYTABLE (name VARCHAR(20), sex CHAR(1));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>建表<br>命令：create table &lt;表名&gt; ( &lt;字段名1&gt; &lt;类型1&gt; [,..&lt;字段名n&gt; &lt;类型n&gt;]);   </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table MyClass(</span><br><span class="line">&gt; id int(4) not null primary key auto_increment,</span><br><span class="line">&gt; name char(20) not null,</span><br><span class="line">&gt; sex int(4) not null default '0',</span><br><span class="line">&gt; degree double(16,2));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取表结构<br>命令： desc 表名，或者show columns from 表名  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;DESCRIBE MyClass</span><br><span class="line">mysql&gt; desc MyClass; </span><br><span class="line">mysql&gt; show columns from MyClass;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除表<br>命令：drop table &lt;表名&gt;<br>mysql&gt; drop table MyClass;  </p>
+</li>
+<li><p>插入数据<br>命令：insert into &lt;表名&gt; [( &lt;字段名1&gt;[,..&lt;字段名n &gt; ])] values ( 值1 )[, ( 值n )]  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; insert into MyClass   values(1,'Tom',96.45),(2,'Joan',82.99), (2,'Wang', 96.59);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询表中的数据  </p>
+<ol>
+<li>查询所有行<br>命令： select &lt;字段1，字段2，…&gt; from &lt; 表名 &gt; where &lt; 表达式 &gt;<br>例如：查看表 MyClass 中所有数据<br>mysql&gt; select * from MyClass;    </li>
+<li>查询前几行数据<br>例如：查看表 MyClass 中前2行数据<br>mysql&gt; select <em> from MyClass order by id limit 0,2;<br>或者：<br>mysql&gt; select </em> from MyClass limit 0,2;  </li>
+</ol>
+</li>
+<li><p>删除表中数据<br>命令：delete from 表名 where 表达式<br>例如：删除表 MyClass中编号为1 的记录</p>
+<ul>
+<li>mysql&gt; delete from MyClass where id=1;</li>
+</ul>
+</li>
+<li>修改表中数据：update 表名 set 字段=新值,… where 条件<ul>
+<li>mysql&gt; update MyClass set name=’Mary’ where id=1;</li>
+</ul>
+</li>
+<li><p>在表中增加字段：<br>命令：alter table 表名 add字段 类型 其他;<br>例如：在表MyClass中添加了一个字段passtest，类型为int(4)，默认值为0  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; alter table MyClass add passtest int(4) default '0'</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更改表名：<br>命令：rename table 原表名 to 新表名;<br>例如：在表MyClass名字更改为YouClass<br>mysql&gt; rename table MyClass to YouClass; </p>
+</li>
+<li><p>更新字段内容<br>update 表名 set 字段名 = 新内容<br>update 表名 set 字段名 = replace(字段名,’旧内容’,’新内容’);<br>文章前面加入4个空格<br>update article set content=concat(‘　　‘,content); </p>
+</li>
+</ol>
+<h3 id="mysql-分页"><a href="#mysql-分页" class="headerlink" title="mysql 分页"></a>mysql 分页</h3><ul>
+<li><p>最常见MYSQL最基本的分页方式：<br>–0是查询开始的行数（查询起点），10是查询数量（分页的大小）（需要的行数）<br>select * from person order by id desc limit 0, 10</p>
+</li>
+<li><p>特殊：<br>select * from persons limit 10;<br>意思是，起点为0，开始查询，返回10条记录。</p>
+</li>
+</ul>
+<h3 id="mysql-dump"><a href="#mysql-dump" class="headerlink" title="mysql dump"></a>mysql dump</h3><p>这个命令是和mysql命令一样的,运行在cmd窗口下<br>参考:<br>    <a href="http://www.cnblogs.com/feichexia/p/MysqlDataBackup.html" target="_blank" rel="noopener">http://www.cnblogs.com/feichexia/p/MysqlDataBackup.html</a></p>
+<blockquote>
+<p>mysqldump -u root -p ams &gt;d:\hh.sql</p>
+</blockquote>
+<p>–opt<br>     如果加上–opt参数则生成的dump文件中稍有不同：<br>     建表语句包含drop table if exists tableName<br>     insert之前包含一个锁表语句lock tables tableName write，insert之后包含unlock tables  </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql基础/" rel="tag"># mysql基础</a>
+          
+            <a href="/tags/mysql配置-安装/" rel="tag"># mysql配置\安装</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/15/mybatis-基础/" rel="next" title="mybatis 基础">
+                <i class="fa fa-chevron-left"></i> mybatis 基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/15/mysql-索引 慢查询优化 锁 事物/" rel="prev" title="mysql-索引 慢查询优化 锁 事物">
+                mysql-索引 慢查询优化 锁 事物 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">落叶</p>
+              <p class="site-description motion-element" itemprop="description">java redis mysql mybatis</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">116</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql配置"><span class="nav-number">1.</span> <span class="nav-text">mysql配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql命令"><span class="nav-number">2.</span> <span class="nav-text">mysql命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql-分页"><span class="nav-number">3.</span> <span class="nav-text">mysql 分页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql-dump"><span class="nav-number">4.</span> <span class="nav-text">mysql dump</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">落叶</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

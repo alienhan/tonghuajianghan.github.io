@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java 基础知识," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Arraylist 、LinkedList、 vector的区别List接口下一共实现了三个类：ArrayList，Vector，LinkedList   LinkedList ：主要用在保持数据的插入顺序   ArrayList和Vector都是用数组实现的，主要有这么三个区别：  Vector是多线程安全的，而ArrayList不是，这个可以从源码中看出，Vector类中的方法很多有synch">
+<meta name="keywords" content="java 基础知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java 基础知识">
+<meta property="og:url" content="http://yoursite.com/2018/06/15/java-基础/index.html">
+<meta property="og:site_name" content="大东山下">
+<meta property="og:description" content="Arraylist 、LinkedList、 vector的区别List接口下一共实现了三个类：ArrayList，Vector，LinkedList   LinkedList ：主要用在保持数据的插入顺序   ArrayList和Vector都是用数组实现的，主要有这么三个区别：  Vector是多线程安全的，而ArrayList不是，这个可以从源码中看出，Vector类中的方法很多有synch">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-15T07:09:04.329Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java 基础知识">
+<meta name="twitter:description" content="Arraylist 、LinkedList、 vector的区别List接口下一共实现了三个类：ArrayList，Vector，LinkedList   LinkedList ：主要用在保持数据的插入顺序   ArrayList和Vector都是用数组实现的，主要有这么三个区别：  Vector是多线程安全的，而ArrayList不是，这个可以从源码中看出，Vector类中的方法很多有synch">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/15/java-基础/"/>
+
+
+
+
+
+  <title>java 基础知识 | 大东山下</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">大东山下</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/java-基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">java 基础知识</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java基础/" itemprop="url" rel="index">
+                    <span itemprop="name">java基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Arraylist-、LinkedList、-vector的区别"><a href="#Arraylist-、LinkedList、-vector的区别" class="headerlink" title="Arraylist 、LinkedList、 vector的区别"></a>Arraylist 、LinkedList、 vector的区别</h3><p>List接口下一共实现了三个类：ArrayList，Vector，LinkedList  </p>
+<p>LinkedList ：<br>主要用在保持数据的插入顺序  </p>
+<p>ArrayList和Vector都是用数组实现的，主要有这么三个区别：</p>
+<ol>
+<li>Vector是多线程安全的，而ArrayList不是，<br>这个可以从源码中看出，Vector类中的方法很多有synchronized进行修饰，<br>这样就导致了Vector在效率上无法与ArrayList相比；  </li>
+<li>两个都是采用的线性连续空间存储元素，但是当空间不足的时候，两个类的增加方式是不同的，<br>Vector增加原来空间的一倍，ArrayList增加原来空间的50%。  </li>
+<li>Vector可以设置增长因子，而ArrayList不可以。 </li>
+</ol>
+<h3 id="HashMap-Hashtable-区别"><a href="#HashMap-Hashtable-区别" class="headerlink" title="HashMap Hashtable 区别"></a>HashMap Hashtable 区别</h3><p>HashMap put元素：<br> 当我们往hashmap中put元素的时候，先根据key的hash值得到这个元素在数组中的位置（即下标），<br> 然后就可以把这个元素放到对应的位置中了。如果这个元素所在的位子上已经存放有其他元素了，<br> 那么在同一个位子上的元素将以链表的形式存放，新加入的放在链头，最先加入的放在链尾。  </p>
+<p><strong><em>区别</em></strong><br>第一，继承不同。<br>public class Hashtable extends Dictionary implements Map<br>public class HashMap  extends AbstractMap implements Map</p>
+<p>第二<br>Hashtable 中的方法是同步的，而HashMap中的方法在缺省情况下是非同步的。<br>在多线程并发的环境下，可以直接使用Hashtable，但是要使用HashMap的话就要自己增加同步处理了。  </p>
+<p>第三<br>Hashtable 中，key和value都不允许出现null值。<br>在 HashMap 中，null可以作为键，这样的键只有一个；可以有一个或多个键所对应的值为null。当<br>get()方法返回null值时，即可以表示 HashMap中没有该键，也可以表示该键所对应的值为null。因此，<br>在HashMap中不能由get()方法来判断HashMap中是否存在某个键， 而应该用containsKey()方法来判断。  </p>
+<p>第四<br>两个遍历方式的内部实现上不同。<br>Hashtable 、HashMap 都使用了 Iterator 。而由于历史原因，Hashtable还使用了Enumeration的方式 。  </p>
+<p>第五<br>哈希值的使用不同，HashTable直接使用对象的hashCode。而HashMap重新计算hash值。  </p>
+<p>第六<br>Hashtable 和HashMap 它们两个内部实现方式的数组的初始大小和扩容的方式。<br>HashTable中hash数组默认大小是11，增加的方式是 old*2+1。HashMap中hash数组的默认大小是16，<br>而且一定是2的指数。   </p>
+<h3 id="String-StringBuffer-StringBuilder-区别"><a href="#String-StringBuffer-StringBuilder-区别" class="headerlink" title="String StringBuffer StringBuilder 区别"></a>String StringBuffer StringBuilder 区别</h3><p>String 字符串常量<br>StringBuffer 字符串变量（线程安全）<br>StringBuilder 字符串变量（非线程安全）  </p>
+<ol>
+<li><p>三者在执行速度方面的比较： StringBuilder &gt;  StringBuffer  &gt;  String<br>原因：  </p>
+<ul>
+<li>当用String操作字符串时，实际上是在不断的创建新的对象，而原来的对象就会变为垃圾被ＧＣ回收掉，<br>因此执行效率降低  </li>
+</ul>
+</li>
+<li><p>区别：  </p>
+<ul>
+<li>StringBuilder ：线程非安全的  </li>
+<li>StringBuffer ：线程安全的  </li>
+</ul>
+</li>
+</ol>
+<h3 id="对象克隆"><a href="#对象克隆" class="headerlink" title="对象克隆"></a>对象克隆</h3><p>Java中所有的对象都是保存在堆中，而堆是供全局共享的。也就是说，<br>如果同一个Java程序的不同方法，只要能拿到某个对象的引用，  </p>
+<p>引用者就可以随意的修改对象的内部数据（前提是这个对象的内部数据通过get/set方法曝露出来）。<br>有的时候，我们编写的代码想让调用者只获得该对象的一个拷贝<br>（也就是一个内容完全相同的对象，但是在内存中存在两个这样的对象）  </p>
+<p>继承Cloneable<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ByteArrayEntity</span> <span class="keyword">extends</span> <span class="title">AbstractHttpEntity</span> <span class="keyword">implements</span> <span class="title">Cloneable</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">super</span>.clone();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line">User u1 = <span class="keyword">new</span> User(<span class="string">"Kent"</span>, <span class="string">"123456"</span>, <span class="keyword">new</span> Date());</span><br><span class="line">User u2 = u1;</span><br><span class="line">User u3 = (User) u1.clone();</span><br><span class="line"></span><br><span class="line">System.out.println(u1 == u2);		<span class="comment">// true</span></span><br><span class="line">System.out.println(u1.equals(u2));	<span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">System.out.println(u1 == u3);		<span class="comment">// false</span></span><br><span class="line">System.out.println(u1.equals(u3));	<span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="error"><a href="#error" class="headerlink" title="error"></a>error</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java.io.IOException: failed to decrypt safe contents entry:   javax.crypto.BadPaddingException:  </span><br><span class="line">Given <span class="keyword">final</span> block not properly padded  </span><br><span class="line"></span><br><span class="line">Sometimes <span class="keyword">this</span> error is symptomatic of using an incorrect   password <span class="keyword">for</span> the p12 key.</span><br></pre></td></tr></table></figure>
+<h3 id="list-java-util-List"><a href="#list-java-util-List" class="headerlink" title="list java.util.List"></a>list java.util.List</h3><p>list使用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list&lt;<span class="class"><span class="keyword">class</span>&gt;  </span></span><br><span class="line"><span class="class"><span class="title">List</span>&lt;<span class="title">String</span>&gt; <span class="title">l</span> </span>= <span class="keyword">new</span> ArrayList&lt;String&gt;();  </span><br><span class="line">List&lt;String&gt; l2 = <span class="keyword">new</span> LinkedList&lt;String&gt;();</span><br></pre></td></tr></table></figure></p>
+<p>List接口的常用实现类有ArrayList和LinkedList，<br>在使用List集合时，通常情况下声明为List类型，<br>实例化时根据实际情况的需要，实例化为ArrayList或LinkedList，<br>例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; l = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"><span class="comment">// 利用ArrayList类实例化List集合</span></span><br><span class="line">List&lt;String&gt; l2 = <span class="keyword">new</span> LinkedList&lt;String&gt;();</span><br><span class="line"><span class="comment">// 利用LinkedList类实例化List集合</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="java泛型"><a href="#java泛型" class="headerlink" title="java泛型"></a>java泛型</h3><p><a href="http://www.w3cschool.cc/" target="_blank" rel="noopener">http://www.w3cschool.cc/</a></p>
+<p>泛型（Generic type 或者 generics）是对<br>Java 语言的类型系统的一种扩展，以支持创建可以按类型进行参数化的类。  </p>
+<p>example:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(Integer i, Integer[] ia)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(Double  d, Double[] da)</span></span>;</span><br><span class="line"><span class="comment">//范型版本为</span></span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(T t, T[] ta)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<h3 id="实参个数可变"><a href="#实参个数可变" class="headerlink" title="实参个数可变"></a>实参个数可变</h3><p>定义实参个数可变的方法:  </p>
+<ul>
+<li>只要在一个形参的“类型”与“参数名”之间加上三个<br>连续的“.”（即“…”，英文里的句中省略号），就可以让它和不确定个实参相匹配。而一个带有这样的形参的方法，就是一个实参个数可变的方法。  </li>
+</ul>
+<p>一个实参个数可变的方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sumUp</span><span class="params">(<span class="keyword">int</span>... values)</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">Object... params</span><br><span class="line"><span class="keyword">new</span> Object[]&#123;para1, para2, para3 &#125;等同于这样的形式。</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sumUp</span><span class="params">(<span class="keyword">int</span>... values)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; values.length; i++) &#123;</span><br><span class="line">        sum += values[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">generalUse</span><span class="params">(<span class="keyword">int</span> []args)</span></span>&#123;  </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; args.length ; i++ )&#123;  </span><br><span class="line">                System.out.println(args[i]);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;   </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">newBehaviour</span><span class="params">(<span class="keyword">int</span>... args)</span></span>&#123;  </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; args.length ; i++ )&#123;  </span><br><span class="line">                System.out.println(args[i]);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java-基础知识/" rel="tag"># java 基础知识</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/15/java-xml/" rel="next" title="java XML 处理">
+                <i class="fa fa-chevron-left"></i> java XML 处理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/15/java-基础安装配置/" rel="prev" title="java配置\安装">
+                java配置\安装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">落叶</p>
+              <p class="site-description motion-element" itemprop="description">java redis mysql mybatis</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">116</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Arraylist-、LinkedList、-vector的区别"><span class="nav-number">1.</span> <span class="nav-text">Arraylist 、LinkedList、 vector的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap-Hashtable-区别"><span class="nav-number">2.</span> <span class="nav-text">HashMap Hashtable 区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-StringBuffer-StringBuilder-区别"><span class="nav-number">3.</span> <span class="nav-text">String StringBuffer StringBuilder 区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象克隆"><span class="nav-number">4.</span> <span class="nav-text">对象克隆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#error"><span class="nav-number">5.</span> <span class="nav-text">error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#list-java-util-List"><span class="nav-number">6.</span> <span class="nav-text">list java.util.List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java泛型"><span class="nav-number">7.</span> <span class="nav-text">java泛型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实参个数可变"><span class="nav-number">8.</span> <span class="nav-text">实参个数可变</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">落叶</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

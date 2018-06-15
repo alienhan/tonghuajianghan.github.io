@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/spring-原理与源码分析/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/servlet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -251,7 +251,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/12/spring-原理与源码分析/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/06/15/servlet/" itemprop="url">Servlet</a></h1>
         
 
         <div class="post-meta">
@@ -263,498 +263,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p>title: Spring基础与使用案例与场景<br>date:<br>categories:</p>
-<ul>
-<li>spring<br>tags:</li>
-<li>spring 基础与使用</li>
-</ul>
-<hr>
-<h3 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h3><ul>
-<li>构建ioc基本功能</li>
-</ul>
-<h3 id="Aware-感知-bean操作ioc容器"><a href="#Aware-感知-bean操作ioc容器" class="headerlink" title="Aware (感知)    bean操作ioc容器"></a>Aware (感知)    bean操作ioc容器</h3><p>容器管理的Bean一般不需要了解容器的状态和直接使用容器，但是在某些情况下，是需要在Bean中直接对IOC容器进行操作的，  </p>
-<ul>
-<li>这时候，就需要在Bean中设定对容器的感知。<br>spring IOC容器也提供了该功能，它是通过特定的Aware接口来完成的。aware接口有以下这些：   <ul>
-<li>BeanNameAware，可以在Bean中得到它在IOC容器中的Bean的实例的名字。    </li>
-<li>BeanFactoryAware，可以在Bean中得到Bean所在的IOC容器，从而直接在Bean中使用IOC容器的服务。  </li>
-<li>ApplicationContextAware<br>可以在Bean中得到Bean所在的应用上下文，从而直接在Bean中使用上下文的服务。    </li>
-<li>MessageSourceAware，在Bean中可以得到消息源。  </li>
-<li>ApplicationEventPublisherAware:<br>在bean中可以得到应用上下文的事件发布器，从而可以在Bean中发布应用上下文的事件。  </li>
-<li>ResourceLoaderAware:<br>在Bean中可以得到ResourceLoader，从而在bean中使用ResourceLoader加载外部对应的Resource资源。   </li>
-</ul>
-</li>
-</ul>
-<p>在设置Bean的属性之后，调用初始化回调方法之前，Spring会调用aware接口中的setter方法。</p>
-<h3 id="Transaction-Spring-事物"><a href="#Transaction-Spring-事物" class="headerlink" title="Transaction /Spring 事物"></a>Transaction /Spring 事物</h3><p><a href="https://www.ibm.com/developerworks/cn/education/opensource/os-cn-spring-trans/" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/education/opensource/os-cn-spring-trans/</a></p>
-<ol>
-<li><p>本地事务和全局事务</p>
-<ul>
-<li><p>全局事务让你可以和多个事务资源工作在一起，比如，关系型数据库，消息队列</p>
-</li>
-<li><p>本地事务则是与某个指定的事务资源联系在一起，比如，与JDBC连接相关的事务。本地事务相对于全局事务更容易使用，但不能跨多个事务资源。管理JDBC连接所写的事务代码不能够在全局事务中使用。</p>
-</li>
-</ul>
-</li>
-<li><p>settings /事物对应配置</p>
-<ul>
-<li>隔离级别</li>
-<li><p>传播行为</p>
-<ol>
-<li>required<br>  如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。</li>
-<li>requires_new<br> 创建一个新的事务，如果当前存在事务，则把当前事务挂起。</li>
-<li>supports<br> 如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。</li>
-<li>not_supported<br> 非事务方式运行，如果当前存在事务，则把当前事务挂起。</li>
-<li>never<br> 以非事务方式运行，如果当前存在事务，则抛出异常。</li>
-<li>mandatory<br> 如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。 </li>
-<li><p>nested<br> 如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于required</p>
-<p>当前有事物  </p>
-<ul>
-<li>加入  </li>
-<li>挂起,新建  </li>
-<li>抛异常  </li>
-</ul>
-<p>当前没有事物  </p>
-<ul>
-<li>新建  </li>
-<li>非事物运行  </li>
-<li>抛异常  </li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>事务超时</li>
-<li>事务的只读属性</li>
-<li>事务的回滚规则        </li>
-</ol>
-<h3 id="spring结构-bean生成工厂的组成结构"><a href="#spring结构-bean生成工厂的组成结构" class="headerlink" title="spring结构/ bean生成工厂的组成结构"></a>spring结构/ bean生成工厂的组成结构</h3><ol>
-<li><p>具体的ioc实现</p>
-<ul>
-<li>DefaultListableBeanFactory  <ul>
-<li>在spring中,实际上是把DefaultListableBeanFactory作为一个默认的功能完整的Ioc容器来使用的.  </li>
-<li>XmlBeanFactory,ApplicationContect都是在DefaultListableBeanFactory基础上扩展的.  </li>
-<li>AbstractRefreshableApplicationContext中包含DefaultListableBeanFactory的实例  </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>BeanFacory<br> BeanFactory的实现是Ioc的基本形式  </p>
-</li>
-<li><p>ApplicationContext<br> ApplicationContext的各种实现是IoC容器的高级表现形式  </p>
-</li>
-</ol>
-<h3 id="spring-容器启动过程"><a href="#spring-容器启动过程" class="headerlink" title="spring 容器启动过程"></a>spring 容器启动过程</h3><p>启动时执行  </p>
-<ol>
-<li>Resource定位  <ul>
-<li>Resource是spring对i/o的封装类.  </li>
-</ul>
-</li>
-<li><p>BeanDefinition载入  </p>
-</li>
-<li><p>注册BeanDefinition</p>
-<ul>
-<li>在IoC容器内部将BeanDefinition注入到HashMap中  </li>
-</ul>
-</li>
-<li><p>Bean依赖注入</p>
-<ul>
-<li><p>时间:发生在应用第一次调用AbstractBeanFactory中的getBean–&gt;doGetBean向容器索取bean的时候</p>
-</li>
-<li><p>AbstractBeanFactory中的doGetBean具体实现<br>DefaultSingletonBeanRegistry含有bean的三级缓存</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Cache of singleton objects: bean name --&gt; bean instance */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; singletonObjects = <span class="keyword">new</span> ConcurrentHashMap&lt;String, Object&gt;(<span class="number">256</span>);</span><br><span class="line"><span class="comment">/** Cache of singleton factories: bean name --&gt; ObjectFactory */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, ObjectFactory&lt;?&gt;&gt; singletonFactories = <span class="keyword">new</span> HashMap&lt;String, ObjectFactory&lt;?&gt;&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">/** Cache of early singleton objects: bean name --&gt; bean instance */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; earlySingletonObjects = <span class="keyword">new</span> HashMap&lt;String, Object&gt;(<span class="number">16</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ol>
-<pre><code>- getSingleton是调用
-</code></pre><h4 id="Spring-bean的循环依赖以及解决方式"><a href="#Spring-bean的循环依赖以及解决方式" class="headerlink" title="Spring-bean的循环依赖以及解决方式"></a>Spring-bean的循环依赖以及解决方式</h4>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/spring-boot-基础与使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/12/spring-boot-基础与使用/" itemprop="url">Spring Boot基础与使用案例与场景</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spring/" itemprop="url" rel="index">
-                    <span itemprop="name">spring</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h3><ol>
-<li>搭建<br>下载sts使用spring start project搭建  </li>
-<li>运行<br>直接运行main函数  </li>
-<li>启动注意:<br>默认tomcat:8080<br>没有项目名直接访问具体位置<br><a href="http://localhost:8080/dog" target="_blank" rel="noopener">http://localhost:8080/dog</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/Websphere/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/12/Websphere/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/servlet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/12/servlet/" itemprop="url">Servlet</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
               </time>
             
 
@@ -896,7 +406,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/Net-Protocol-网络协议/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/Net-Protocol-网络协议/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -915,7 +425,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/12/Net-Protocol-网络协议/" itemprop="url">网络协议</a></h1>
+                <a class="post-title-link" href="/2018/06/15/Net-Protocol-网络协议/" itemprop="url">网络协议</a></h1>
         
 
         <div class="post-meta">
@@ -927,8 +437,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
               </time>
             
 
@@ -1071,7 +581,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/jboss/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/Net-Protocol-java处理网络协议/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -1090,7 +600,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/12/jboss/" itemprop="url">jboss</a></h1>
+                <a class="post-title-link" href="/2018/06/15/Net-Protocol-java处理网络协议/" itemprop="url">java处理网络协议</a></h1>
         
 
         <div class="post-meta">
@@ -1102,8 +612,151 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络协议/" itemprop="url" rel="index">
+                    <span itemprop="name">网络协议</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="java-http-链接"><a href="#java-http-链接" class="headerlink" title="java http 链接"></a>java http 链接</h3><p>code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">String urlStr = <span class="string">"www.baidu.com"</span>;</span><br><span class="line">URL url = <span class="keyword">new</span> URL(urlStr);</span><br><span class="line">HttpURLConnection http = (HttpURLConnection) url.openConnection();</span><br><span class="line">http.setRequestMethod(<span class="string">"POST"</span>);<span class="comment">//get,post 请求方法</span></span><br><span class="line">http.setRequestProperty(<span class="string">"Content-Type"</span>, <span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line">http.setDoOutput(<span class="keyword">true</span>);<span class="comment">//可以输出</span></span><br><span class="line">http.setDoInput(<span class="keyword">true</span>);<span class="comment">//可以输入</span></span><br><span class="line">http.connect();</span><br><span class="line"></span><br><span class="line">OutputStream os = http.getOutputStream();<span class="comment">//Returns an output stream that writes to this connection.</span></span><br><span class="line">os.write(paramStr.getBytes(encode));<span class="comment">// 传入参数，encode为参数在字节流中的编码</span></span><br><span class="line">os.flush();</span><br><span class="line">os.close();</span><br><span class="line"></span><br><span class="line">String message = <span class="keyword">null</span>;</span><br><span class="line">InputStream is = http.getInputStream();<span class="comment">//Returns an input stream that reads from this open connection.</span></span><br><span class="line"><span class="keyword">int</span> size = is.available();</span><br><span class="line"><span class="keyword">byte</span>[] jsonBytes = <span class="keyword">new</span> <span class="keyword">byte</span>[size];</span><br><span class="line">is.read(jsonBytes);</span><br><span class="line">message = <span class="keyword">new</span> String(jsonBytes, encode);<span class="comment">//jsonBytes为字节</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="HttpClient-链接"><a href="#HttpClient-链接" class="headerlink" title="HttpClient 链接"></a>HttpClient 链接</h3><p>code：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">ca验证：</span><br><span class="line"><span class="comment">// 指定读取证书格式为PKCS12</span></span><br><span class="line">KeyStore keyStore = KeyStore.getInstance(<span class="string">"PKCS12"</span>);</span><br><span class="line"><span class="comment">// 读取本机存放的PKCS12证书文件</span></span><br><span class="line">FileInputStream instream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"D:\\java\\lib\\weixin\\cert\\apiclient_cert.p12"</span>));</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="comment">// 指定PKCS12的密码(商户ID)</span></span><br><span class="line">	keyStore.load(instream, <span class="string">"1315688001"</span>.toCharArray());</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">	instream.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Trust own CA and all self-signed certs</span></span><br><span class="line">SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, <span class="string">"1315688001"</span>.toCharArray()).build();</span><br><span class="line"><span class="comment">// Allow TLSv1 protocol only 指定TLS版本</span></span><br><span class="line">SSLConnectionSocketFactory sslsf = <span class="keyword">new</span> SSLConnectionSocketFactory(sslcontext, <span class="keyword">new</span> String[] &#123; <span class="string">"TLSv1"</span> &#125;, <span class="keyword">null</span>, SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);</span><br><span class="line">CloseableHttpClient httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();</span><br><span class="line"><span class="comment">// httpclient.getParams().setParameter(HttpEntity,"utf-8");</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">	HttpPost httpPost = <span class="keyword">new</span> HttpPost(<span class="string">"https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack"</span>);</span><br><span class="line">	httpPost.addHeader(<span class="string">"Content-Type"</span>, <span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//System.out.println(params.getBytes().);</span></span><br><span class="line">	<span class="comment">//StringEntity s = new StringEntity(new String(params.getBytes("gb18030"),"utf-8"));</span></span><br><span class="line">	ByteArrayEntity b = <span class="keyword">new</span> ByteArrayEntity(params.getBytes(<span class="string">"utf-8"</span>));</span><br><span class="line">	<span class="comment">// s.setContentEncoding("UTF-8");</span></span><br><span class="line">	httpPost.setEntity(b);</span><br><span class="line">	<span class="comment">// 设置httpclient的SSLSocketFactory,发送请求</span></span><br><span class="line">	System.out.println(<span class="string">"executing request"</span> + httpPost.getRequestLine());</span><br><span class="line"></span><br><span class="line">	System.out.println(<span class="string">"executing request"</span> + httpPost.getEntity().getContentEncoding());</span><br><span class="line">	CloseableHttpResponse response = httpclient.execute(httpPost);</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		HttpEntity entity = response.getEntity();</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">"----------------------------------------"</span>);</span><br><span class="line">		System.out.println(response.getStatusLine());</span><br><span class="line">		<span class="keyword">if</span> (entity != <span class="keyword">null</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">"Response content length: "</span> + entity.getContentLength());</span><br><span class="line">			BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(entity.getContent()));</span><br><span class="line">			String text;</span><br><span class="line">			<span class="keyword">while</span> ((text = bufferedReader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">				System.out.println(text);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		EntityUtils.consume(entity);</span><br><span class="line">	&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">		response.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">	httpclient.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/jboss/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/15/jboss/" itemprop="url">jboss</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
               </time>
             
 
@@ -1224,7 +877,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/http_SSL/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/java监控servlet,server/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -1243,7 +896,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/12/http_SSL/" itemprop="url">java处理网络协议</a></h1>
+                <a class="post-title-link" href="/2018/06/15/java监控servlet,server/" itemprop="url">java监听Servlet对象</a></h1>
         
 
         <div class="post-meta">
@@ -1255,8 +908,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
               </time>
             
 
@@ -1278,8 +931,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络协议/" itemprop="url" rel="index">
-                    <span itemprop="name">网络协议</span>
+                  <a href="/categories/servlet/" itemprop="url" rel="index">
+                    <span itemprop="name">servlet</span>
                   </a>
                 </span>
 
@@ -1317,8 +970,52 @@
       
         
           
-            <h3 id="java-http-链接"><a href="#java-http-链接" class="headerlink" title="java http 链接"></a>java http 链接</h3><p>code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">String urlStr = <span class="string">"www.baidu.com"</span>;</span><br><span class="line">URL url = <span class="keyword">new</span> URL(urlStr);</span><br><span class="line">HttpURLConnection http = (HttpURLConnection) url.openConnection();</span><br><span class="line">http.setRequestMethod(<span class="string">"POST"</span>);<span class="comment">//get,post 请求方法</span></span><br><span class="line">http.setRequestProperty(<span class="string">"Content-Type"</span>, <span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line">http.setDoOutput(<span class="keyword">true</span>);<span class="comment">//可以输出</span></span><br><span class="line">http.setDoInput(<span class="keyword">true</span>);<span class="comment">//可以输入</span></span><br><span class="line">http.connect();</span><br><span class="line"></span><br><span class="line">OutputStream os = http.getOutputStream();<span class="comment">//Returns an output stream that writes to this connection.</span></span><br><span class="line">os.write(paramStr.getBytes(encode));<span class="comment">// 传入参数，encode为参数在字节流中的编码</span></span><br><span class="line">os.flush();</span><br><span class="line">os.close();</span><br><span class="line"></span><br><span class="line">String message = <span class="keyword">null</span>;</span><br><span class="line">InputStream is = http.getInputStream();<span class="comment">//Returns an input stream that reads from this open connection.</span></span><br><span class="line"><span class="keyword">int</span> size = is.available();</span><br><span class="line"><span class="keyword">byte</span>[] jsonBytes = <span class="keyword">new</span> <span class="keyword">byte</span>[size];</span><br><span class="line">is.read(jsonBytes);</span><br><span class="line">message = <span class="keyword">new</span> String(jsonBytes, encode);<span class="comment">//jsonBytes为字节</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="HttpClient-链接"><a href="#HttpClient-链接" class="headerlink" title="HttpClient 链接"></a>HttpClient 链接</h3><p>code：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">ca验证：</span><br><span class="line"><span class="comment">// 指定读取证书格式为PKCS12</span></span><br><span class="line">KeyStore keyStore = KeyStore.getInstance(<span class="string">"PKCS12"</span>);</span><br><span class="line"><span class="comment">// 读取本机存放的PKCS12证书文件</span></span><br><span class="line">FileInputStream instream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"D:\\java\\lib\\weixin\\cert\\apiclient_cert.p12"</span>));</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="comment">// 指定PKCS12的密码(商户ID)</span></span><br><span class="line">	keyStore.load(instream, <span class="string">"1315688001"</span>.toCharArray());</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">	instream.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Trust own CA and all self-signed certs</span></span><br><span class="line">SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, <span class="string">"1315688001"</span>.toCharArray()).build();</span><br><span class="line"><span class="comment">// Allow TLSv1 protocol only 指定TLS版本</span></span><br><span class="line">SSLConnectionSocketFactory sslsf = <span class="keyword">new</span> SSLConnectionSocketFactory(sslcontext, <span class="keyword">new</span> String[] &#123; <span class="string">"TLSv1"</span> &#125;, <span class="keyword">null</span>, SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);</span><br><span class="line">CloseableHttpClient httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();</span><br><span class="line"><span class="comment">// httpclient.getParams().setParameter(HttpEntity,"utf-8");</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">	HttpPost httpPost = <span class="keyword">new</span> HttpPost(<span class="string">"https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack"</span>);</span><br><span class="line">	httpPost.addHeader(<span class="string">"Content-Type"</span>, <span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//System.out.println(params.getBytes().);</span></span><br><span class="line">	<span class="comment">//StringEntity s = new StringEntity(new String(params.getBytes("gb18030"),"utf-8"));</span></span><br><span class="line">	ByteArrayEntity b = <span class="keyword">new</span> ByteArrayEntity(params.getBytes(<span class="string">"utf-8"</span>));</span><br><span class="line">	<span class="comment">// s.setContentEncoding("UTF-8");</span></span><br><span class="line">	httpPost.setEntity(b);</span><br><span class="line">	<span class="comment">// 设置httpclient的SSLSocketFactory,发送请求</span></span><br><span class="line">	System.out.println(<span class="string">"executing request"</span> + httpPost.getRequestLine());</span><br><span class="line"></span><br><span class="line">	System.out.println(<span class="string">"executing request"</span> + httpPost.getEntity().getContentEncoding());</span><br><span class="line">	CloseableHttpResponse response = httpclient.execute(httpPost);</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		HttpEntity entity = response.getEntity();</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">"----------------------------------------"</span>);</span><br><span class="line">		System.out.println(response.getStatusLine());</span><br><span class="line">		<span class="keyword">if</span> (entity != <span class="keyword">null</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">"Response content length: "</span> + entity.getContentLength());</span><br><span class="line">			BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(entity.getContent()));</span><br><span class="line">			String text;</span><br><span class="line">			<span class="keyword">while</span> ((text = bufferedReader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">				System.out.println(text);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		EntityUtils.consume(entity);</span><br><span class="line">	&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">		response.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">	httpclient.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+            <h3 id="java-servlet监听"><a href="#java-servlet监听" class="headerlink" title="java servlet监听"></a>java servlet监听</h3><p>在JavaWeb被监听的事件源为： </p>
+<ul>
+<li>ServletContext、<ul>
+<li>ServletContext 对象是一个为整个 web 应用提供共享的内存，任何请求都可以访问里面的内容  </li>
+<li>ServletContext,是一个全局的储存信息的空间，服务器开始，其就存在，服务器关闭，其才释放。  <ul>
+<li>request，一个用户可有多个；</li>
+<li>session，一个用户一个；</li>
+</ul>
+</li>
+<li>而servletContext，所有用户共用一个。所以，为了节省空间，提高效率，ServletContext中，要放必须的、重要的、所有用户需要共享的线程又是安全的一些信息。</li>
+</ul>
+</li>
+<li>HttpSession、</li>
+<li>ServletRequest，  </li>
+</ul>
+<p>即三大域对象。</p>
+<p>类型:</p>
+<ul>
+<li>监听域对象“创建”与“销毁”的监听器；</li>
+<li>监听域对象“操作域属性”的监听器；</li>
+<li>监听HttpSession的监听器。</li>
+</ul>
+<p>创建与销毁监听器一共有三个：</p>
+<ul>
+<li><p>ServletContextListener：<br>Tomcat启动和关闭时调用下面两个方法<br>  public void contextInitialized(ServletContextEvent evt)：ServletContext对象被创建后调用；<br>  public void contextDestroyed(ServletContextEvent evt)：ServletContext对象被销毁前调用；  </p>
+</li>
+<li><p>HttpSessionListener：<br>开始会话和结束会话时调用下面两个方法<br>  public void sessionCreated(HttpSessionEvent evt)：HttpSession对象被创建后调用；<br>  public void sessionDestroyed(HttpSessionEvent evt)：HttpSession对象被销毁前调用；  </p>
+</li>
+<li><p>ServletRequestListener：<br>  开始请求和结束请求时调用下面两个方法<br>  public void requestInitiallized(ServletRequestEvent evt)：ServletRequest对象被创建后调用；<br>  public void requestDestroyed(ServletRequestEvent evt)：ServletRequest对象被销毁前调用。</p>
+</li>
+</ul>
+<p>事件对象:  </p>
+<ul>
+<li>ServletContextEvent：ServletContextgetServletContext()；</li>
+<li>HttpSeessionEvent：HttpSessiongetSession()；</li>
+<li>ServletRequestEvent：</li>
+</ul>
+<p>操作域属性的监听器  </p>
+<pre><code>- ServletContextAttributeEvent  
+- HttpSessionBindingEvent  
+- ServletRequestAttributeEvent   
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ServletContextAttributeEvent</span></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContextAttributeEvent;  </span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContextAttributeListener;  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyServletContextAttributeListener</span> <span class="keyword">implements</span>   <span class="title">ServletContextAttributeListener</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeAdded</span><span class="params">(ServletContextAttributeEvent arg0)</span> </span>&#123;</span><br><span class="line">        System.out.println(attributeAdded:+arg0.getName()+,+arg0.getValue());</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeRemoved</span><span class="params">(ServletContextAttributeEvent arg0)</span> </span>&#123;</span><br><span class="line">        System.out.println(attributeRemoved:+arg0.getName()+,+arg0.getValue());</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeReplaced</span><span class="params">(ServletContextAttributeEvent arg0)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//arg0.getValue()为替代之前的值</span></span><br><span class="line">        <span class="comment">//arg0.getServletContext().getAttribute(arg0.getName())为替代之后的值</span></span><br><span class="line">        System.out.println(attributeReplaced:+arg0.getName()+,+arg0.getValue()</span><br><span class="line">                +,+arg0.getServletContext().getAttribute(arg0.getName()));</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ServletContext对象"><a href="#ServletContext对象" class="headerlink" title="ServletContext对象"></a>ServletContext对象</h3><p>ServletContext对象代表了一个应用，他是一个Context域对象，它里面的方法主要是一些全局性的方法，可以用来存储各个Servlet之间的共享数据。<br>ServletContext对象的应用场景，主要用于Servlet之间数据共享(可以用来做聊天室)，获取web应用的初始化参数，实现Servlet转发，读取资源文件。    </p>
+<h3 id="监听tomcat"><a href="#监听tomcat" class="headerlink" title="监听tomcat"></a>监听tomcat</h3><p>ServletContextListener使用（监听Tomcat启动、关闭）<br>自定义一个监听器类，并实现ServletContextListener，<br>重写里面的contextDestroyed和contextInitialized，将需要进行的操作写在这两个方  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TomcatListener</span> <span class="keyword">implements</span> <span class="title">ServletContextListener</span></span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">/* (non-Javadoc) </span></span><br><span class="line"><span class="comment">     * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent) </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextDestroyed</span><span class="params">(ServletContextEvent arg0)</span> </span>&#123;  </span><br><span class="line">          </span><br><span class="line">        System.out.println(<span class="string">"tomcat关闭了.........."</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">/* (non-Javadoc) </span></span><br><span class="line"><span class="comment">     * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent) </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextInitialized</span><span class="params">(ServletContextEvent arg0)</span> </span>&#123;  </span><br><span class="line">          </span><br><span class="line">        System.out.println(<span class="string">"tomcate启动了.............."</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">listener</span>&gt;</span>  </span><br><span class="line">	<span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>cn.caculate.web.action.TomcatListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
           
         
@@ -1367,7 +1064,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/README/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/README/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -1386,7 +1083,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/12/README/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/06/15/README/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -1398,8 +1095,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
               </time>
             
 
@@ -1487,7 +1184,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/jvm_code/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/weixin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -1506,7 +1203,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/12/jvm_code/" itemprop="url">jvm</a></h1>
+                <a class="post-title-link" href="/2018/06/15/weixin/" itemprop="url">微信公众号开发</a></h1>
         
 
         <div class="post-meta">
@@ -1518,8 +1215,463 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/微信公众号开发/" itemprop="url" rel="index">
+                    <span itemprop="name">微信公众号开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="微信-mysql-nickname-乱码问题"><a href="#微信-mysql-nickname-乱码问题" class="headerlink" title="微信 mysql nickname 乱码问题:"></a>微信 mysql nickname 乱码问题:</h3><pre><code>java.sql.SQLException: Incorrect string value: &apos;\xF0\x9F\x92\x94&apos; for column &apos;nickname&apos; at row 1
+
+1.mysql在5.5.3版本中引入新的编码格式，取名为utf8mb4，
+所以如果电脑上的版本低于此版本，请先更新电脑中的Mysql版本
+
+2.mysql.ini
+添加编码格式配置：
+[client]
+default-character-set = utf8mb4
+
+[mysql]
+default-character-set = utf8mb4
+
+[mysqld]
+character-set-client-handshake = FALSE
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+
+3.mysql-connector-java
+    没有问题的mysql-connector-java-5.1.39-bin.jar
+4.数据库连接池配置:
+    jdbc.url=jdbc\:mysql\://localhost\:3306/ams?autoReconnect\=true&amp;amp;failOverReadOnly\=false
+    #jdbc.url=jdbc\:mysql\://localhost\:3306/ams?useUnicode\=true&amp;amp;characterEncoding\=utf-8&amp;amp;autoReconnect\=true&amp;amp;failOverReadOnly\=false
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/windows/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/15/windows/" itemprop="url">windows</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/windows/" itemprop="url" rel="index">
+                    <span itemprop="name">windows</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>dos</li>
+<li>winpe</li>
+<li>win +</li>
+<li>win徽标+R</li>
+</ol>
+<p>……………………………………………</p>
+<ol>
+<li>dos</li>
+</ol>
+<p>..代表当前路径</p>
+<p>net start mssqlserver</p>
+<p>……………………………………………</p>
+<ol start="2">
+<li>winpe</li>
+</ol>
+<p>winPE u盘 重装系统</p>
+<p>ghost 备份 </p>
+<p>开始键 + r  运行界面<br>……………………………………………</p>
+<ol start="3">
+<li>win +</li>
+</ol>
+<p>win + r 切换用户<br>win + x windows移动中心<br>win + e 资源管理器<br>win + d 显示桌面<br>win +<br>资源管理器 shift + 右键 打开资源管理器</p>
+<p>………………………………………………………..</p>
+<ol start="4">
+<li>win徽标+R</li>
+</ol>
+<p>执行lusrmgr.msc命令<br>打开 本地用户管理界面</p>
+<p>mstsc 远程连接<br>regedit 注册表管理器<br>…………………………………………………………</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/C_study_base/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/15/C_study_base/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>c++学习笔记：</p>
+<h3 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h3><p>1.VC++6.0<br>2.VA10<br>3.VS2013(未用)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/jvm_code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/15/jvm_code/" itemprop="url">jvm 编程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
               </time>
             
 
@@ -1589,272 +1741,8 @@
 <li>OutOfMemory宕机</li>
 <li>使用Kill pid命令干掉进程（注：在使用kill -9 pid时，是不会被调用的）</li>
 </ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/jvm-分析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/12/jvm-分析/" itemprop="url">jvm 加载/执行/GC算法/GC收集器/jvm调试命令/内存分配</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/jvm/" itemprop="url" rel="index">
-                    <span itemprop="name">jvm</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><ol>
-<li>编译成class文件(.class 文件结构)<br> 查看字节码: <pre><code>`javac 编译`
-`javap -verbose Class`
-</code></pre></li>
-<li><p>类(Class对象)加载到虚拟机内存过程(<br> 所谓的类加载就是把.class文件加载到内存成为Class对象) </p>
-<p> loading-&gt;linking(verification-&gt;preparation-&gt;resolution)<br> -&gt;initialization-&gt;using-&gt;unloading  </p>
-<p> preparation(准备): 类变量分配内存,设置初始值<br> resolution(解析):虚拟机将<code>常量池内</code>的符号引用替换成<code>直接引用</code>的过程.<br> initialization:执行<clinit>()方法的过程<br>   <code>&lt;clinit&gt;</code>()方法是编译器自动收集类变量,静态语句{}合成的.  </clinit></p>
-</li>
-<li><p>类加载器(双亲委派机制,树状结构):  </p>
-<ol>
-<li>启动类加载器(bootstrap ClassLoader c++实现)  </li>
-<li>扩展类加载器(Extension ClassLoader)  </li>
-<li>应用程序类加载器(Application ClassLoader)  </li>
-<li>自定义类加载器(User ClassLoader)  </li>
-<li>过程 : 类加载器收到一个类加载请求,先请求委派给父加载器完成加载  </li>
-<li>OSGi 非树状结构   </li>
-</ol>
-</li>
-<li>初始化前提:<ol>
-<li>遇到 <code>new getstatic putstatic invokestatic</code>这4条字节码(java 代码场景 使用new 实例化对象,读取或设置一个类的静态字段(final 除外))  </li>
-<li>反射调用时  </li>
-<li>初始化类的时候要先初始化父类  </li>
-<li>main  </li>
-<li>动态语言支持  </li>
-</ol>
-</li>
-</ol>
-<h3 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h3><p>main-&gt;启动线程-&gt;调用方法-&gt;线程结束  </p>
-<p>运行时栈帧结构(一个栈帧对应一个方法)  </p>
-<ul>
-<li>局部变量表  </li>
-<li>操作数栈  </li>
-<li>动态链接  </li>
-<li>方法返回地址  </li>
-<li>附加信息  </li>
-</ul>
-<h3 id="垃圾收集-Garbage-Collection"><a href="#垃圾收集-Garbage-Collection" class="headerlink" title="垃圾收集 Garbage Collection"></a>垃圾收集 Garbage Collection</h3><h4 id="GC目的"><a href="#GC目的" class="headerlink" title="GC目的:"></a>GC目的:</h4><ul>
-<li>那些内存需要回收  </li>
-<li>什么时候回收  </li>
-<li>如何回收 </li>
-</ul>
-<h4 id="判断对象死亡"><a href="#判断对象死亡" class="headerlink" title="判断对象死亡"></a>判断对象死亡</h4><ol>
-<li>引用计数算法(java中不用)  </li>
-<li>可达性分析算法<br> GC Roots:  <ul>
-<li>虚拟机栈中本地变量表中的引用对象(reference)  </li>
-<li>方法区中类静态属性引用的对象  </li>
-<li>方法区中常量引用的对象  </li>
-<li>本地方法栈(JNI)引用对象(native)  </li>
-</ul>
-</li>
-<li>引用种类<br> 强 strong 1,弱 weak 3,软 soft 2,虚 phantom 4  </li>
-</ol>
-<h4 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h4><ul>
-<li>种类<br>  标记-清除算法 Mark-Sweep<br>  标记-整理算法 Mark-Compact<br>  复制算法<br>  分代收集算法  <ul>
-<li>新生代 young generation–&gt;复制算法 Minor GC  </li>
-<li>老生代 tenured generation–&gt;标记 清理\整理 算法</li>
-<li>Major GC  </li>
-</ul>
-</li>
-<li>算法实现  <ul>
-<li>枚举根节点-&gt;停顿  </li>
-<li>安全点/区域  <ul>
-<li>发生GC时,要求所有线程处在安全域内  </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h4><ul>
-<li>并行:多条GC线程同时工作,用户线程处于等待状态  </li>
-<li>并发:用户线程与GC线程同时执行(但不一定是并行的,可能会交替执行)</li>
-<li>serial(串行) 暂停其他所有工作线程  <ul>
-<li>serial new 复制算法  <code>新生代</code>  </li>
-<li>serial old 标记-整理算法 <code>老年代</code>  </li>
-</ul>
-</li>
-<li>parnew  <code>新生代</code><br>  多线程版serial  </li>
-<li>parallel(并行)  <ul>
-<li>目标:达到一个可控的吞吐量  <ul>
-<li>吞吐量= 用户代码运行时间/(用户代码运行时间 + GC时间)  </li>
-</ul>
-</li>
-<li>parallel scavenge(打扫) <code>新生代</code>  </li>
-<li>parallel old <code>老年代</code>  </li>
-</ul>
-</li>
-<li>CMS concunrrent mark sweep(打扫) <code>老年代</code><br>  目标:获取最短回收停顿时间  </li>
-<li>G1 garbage first  <ul>
-<li>其他收集器区别: 将整个java堆划分成多个大小相等的区 域(Region)  </li>
-<li>region包含有 新/老代  </li>
-</ul>
-</li>
-</ul>
-<h3 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h3><ul>
-<li>young generation<ul>
-<li>Eden space 8(比例)<br>  当Eden区内存不够的时候就会触发MinorGC，对新生代区进行一次垃圾回收。</li>
-<li>survivor space 2  <ul>
-<li>form space 1<br>  上一次GC的幸存者，作为这一次GC的被扫描者。  </li>
-<li>to space 1<br>  保留了一次MinorGC过程中的幸存者。  </li>
-</ul>
-</li>
-<li>gc:MinorGC  <ul>
-<li>MinorGC的过程：  <ul>
-<li>MinorGC采用复制算法。  </li>
-<li>首先，把Eden和ServivorFrom区域中存活的对象复制到ServicorTo区域（如果有对象的年龄以及达到了老年的标准，则赋值到老年代区），同时把这些对象的年龄+1（如果ServicorTo不够位置了就放到老年区）；  </li>
-<li>然后，清空Eden和ServicorFrom中的对象；最后，ServicorTo和ServicorFrom互换，原ServicorTo成为下一次GC时的ServicorFrom区。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>tenured generation<ul>
-<li>gc:MajorGC</li>
-<li>进入条件<br>  survivor对象每经历一次GC,年龄+1,默认年龄15时,对象进入老年代<br>  大对象(很长的字符串/数组)直接进入老年代  </li>
-</ul>
-</li>
-<li>permanent generation<br>  PermGen PermGen space的全称是Permanent Generation space,是指内存的永久保存区域<br>  主要存放Class和Meta（元数据）的信息,Class在被加载的时候被放入永久区域.它和存放实例的区域不同,GC不会在主程序运行期对永久区域进行清理。所这也导致了永久代的区域会随着加载的Class的增多而胀满，最终抛出OOM异常。<br>  在Java8中，永久代已经被移除，被一个称为“元数据区”（元空间）的区域所取代。<br>  元空间的本质和永久代类似，都是对JVM规范中方法区的实现。不过元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。因此，默认情况下，元空间的大小仅受本地内存限制。类的元数据放入 native memory, 字符串池和类的静态变量放入java堆中. 这样可以加载多少类的元数据就不再由MaxPermSize控制, 而由系统的实际可用空间来控制.</li>
-</ul>
-<h3 id="命令-调试"><a href="#命令-调试" class="headerlink" title="命令 调试"></a>命令 调试</h3><h4 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h4><ul>
-<li>jps jvm process status  <ul>
-<li>列出正在运行的虚拟机进程</li>
-</ul>
-</li>
-</ul>
+<h3 id="Runtime"><a href="#Runtime" class="headerlink" title="Runtime"></a>Runtime</h3><p>Runtime 封装着java程序的运行时环境。通过Runtime实例，java应用能够与其运行的环境连接。Runtime在jvm中保持一个单例，<br>所以不能通过Runtime类的构造函数。只能通过Runtime.getRuntime()来获的当前Runtime的一个实例。<br>获得Runtime实例后，就可以通过Runtime的exec()方法在当前jvm进程外启动其他进程了。<br>很常见的一个应用就是，启动浏览器进程来显示一个程序的帮助页面。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Runtime rt = Runtime.getRuntime();</span><br><span class="line">Process child = rt.exec();</span><br><span class="line">writer = <span class="keyword">new</span> OutputStreamWriter(child.getOutputStream(), <span class="string">"utf8"</span>);<span class="comment">// 控制台的输入信息作为输出流</span></span><br><span class="line">writer.write(sb.toString());</span><br></pre></td></tr></table></figure></p>
+<h4 id="在Runtime类中存在四个exec-重载方法"><a href="#在Runtime类中存在四个exec-重载方法" class="headerlink" title="在Runtime类中存在四个exec()重载方法."></a>在Runtime类中存在四个exec()重载方法.</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Process <span class="title">exec</span><span class="params">(String command)</span></span>;  </span><br><span class="line"><span class="function"><span class="keyword">public</span> Process <span class="title">exec</span><span class="params">(String [] cmdArray)</span></span>;  </span><br><span class="line"><span class="function"><span class="keyword">public</span> Process <span class="title">exec</span><span class="params">(String command, String [] envp)</span></span>;  </span><br><span class="line"><span class="function"><span class="keyword">public</span> Process <span class="title">exec</span><span class="params">(String [] cmdArray, String [] envp)</span></span>;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1894,7 +1782,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1940,7 +1828,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1951,7 +1839,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1962,7 +1850,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-count">116</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

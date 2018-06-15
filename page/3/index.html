@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/Oricle/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/mybatis-原理与源码分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -251,7 +251,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/12/Oricle/" itemprop="url">oricle</a></h1>
+                <a class="post-title-link" href="/2018/06/15/mybatis-原理与源码分析/" itemprop="url">mybatis 原理与源码分析</a></h1>
         
 
         <div class="post-meta">
@@ -263,820 +263,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/oricle/" itemprop="url" rel="index">
-                    <span itemprop="name">oricle</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/mysql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/12/mysql/" itemprop="url">mysql基础\配置\安装\基础mysql sql</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="mysql配置"><a href="#mysql配置" class="headerlink" title="mysql配置"></a>mysql配置</h3><ul>
-<li><p>安装 mysql 5.7：<br>  下载地址: <a href="http://dev.mysql.com/downloads/mysql/5.1.html" target="_blank" rel="noopener">http://dev.mysql.com/downloads/mysql/5.1.html</a></p>
-</li>
-<li><p>解压版安装:    </p>
-<ol>
-<li>配置环境变量</li>
-<li>cd到mysql的bin下面<br> mysqld –initialize<br> mysqld -install<br> net start mysql</li>
-<li><p>然后登入,第一次登入是没有密码的<br>  mysql -u root<br>有密码则设置不用密码访问:<br>  在mysql.ini文件最后添加(默认没有mysql.ini要自己手动新建)</p>
-<pre><code>skip-grant-tables (注意末尾空格)
-</code></pre></li>
-<li><p>登入之后进行密码修改:  </p>
-<ul>
-<li>mysql 5.7以前的做法:(新版本没有password字段)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use mysql;</span><br><span class="line">mysql&gt; update user set password=password(&quot;新密码&quot;) where user=&quot;root&quot;;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<pre><code>- mysql 5.7 password字段被替换成authentication_string
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update `User` SET   authentication_string=PASSWORD(&quot;root&quot;) where USER=&apos;root&apos;;</span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">mysql&gt; quit;</span><br></pre></td></tr></table></figure>
-</code></pre><p>ERROR 1045 (28000): Access denied for user ‘root‘@’localhost’ (using password: YES)<br>如果遇到第一次安装mysql的时候密码不为空,问题解决如下:</p>
-<ol>
-<li>编辑mysql配置文件my.ini在[mysqld]这个条目下加入skip-grant-tables</li>
-<li>保存退出后重启mysql</li>
-<li>点击“开始”-&gt;“运行”(快捷键Win+R)。</li>
-<li>启动：输入 net stop mysql</li>
-<li>停止：输入 net start mysql</li>
-<li>在cmd里面输入mysql -u root -p就可以不用密码登录了，出现password：的时候直接回车可以进入</li>
-<li>mysql&gt; use mysql;</li>
-<li>mysql&gt; update user set password=password(“新密码”) where user=”root”;<br>(如果是user表中没有password字段的时候,如下所示,否则直接跳过)  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update `User` SET authentication_string=PASSWORD(&quot;0000&quot;)  </span><br><span class="line">where USER=&apos;root&apos;;  </span><br><span class="line">mysql&gt; flush privileges;  </span><br><span class="line">mysql&gt; quit;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>在第一个登入之后,还需要重新设置密码,否则会提示没有权限操作:<br>step 1: SET PASSWORD = PASSWORD(‘your new password‘);<br>step 2: ALTER USER ‘root‘@‘localhost‘ PASSWORD EXPIRE NEVER;<br>step 3: flush privileges;  </p>
-<p>在my.ini中设置如下,解决数据库乱码问题:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[mysql]  </span><br><span class="line">default-character-set=utf8  </span><br><span class="line">[mysqld]  </span><br><span class="line">character-set-server=utf8</span><br></pre></td></tr></table></figure></p>
-<h3 id="mysql命令"><a href="#mysql命令" class="headerlink" title="mysql命令"></a>mysql命令</h3><ol start="0">
-<li><p>建库</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> xxx;</span><br><span class="line">mysql&gt; Create TABLE MYTABLE (name VARCHAR(20), sex CHAR(1));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>建表<br>命令：create table &lt;表名&gt; ( &lt;字段名1&gt; &lt;类型1&gt; [,..&lt;字段名n&gt; &lt;类型n&gt;]);   </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table MyClass(</span><br><span class="line">&gt; id int(4) not null primary key auto_increment,</span><br><span class="line">&gt; name char(20) not null,</span><br><span class="line">&gt; sex int(4) not null default '0',</span><br><span class="line">&gt; degree double(16,2));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取表结构<br>命令： desc 表名，或者show columns from 表名  </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;DESCRIBE MyClass</span><br><span class="line">mysql&gt; desc MyClass; </span><br><span class="line">mysql&gt; show columns from MyClass;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除表<br>命令：drop table &lt;表名&gt;<br>mysql&gt; drop table MyClass;  </p>
-</li>
-<li><p>插入数据<br>命令：insert into &lt;表名&gt; [( &lt;字段名1&gt;[,..&lt;字段名n &gt; ])] values ( 值1 )[, ( 值n )]  </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; insert into MyClass   values(1,'Tom',96.45),(2,'Joan',82.99), (2,'Wang', 96.59);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查询表中的数据  </p>
-<ol>
-<li>查询所有行<br>命令： select &lt;字段1，字段2，…&gt; from &lt; 表名 &gt; where &lt; 表达式 &gt;<br>例如：查看表 MyClass 中所有数据<br>mysql&gt; select * from MyClass;    </li>
-<li>查询前几行数据<br>例如：查看表 MyClass 中前2行数据<br>mysql&gt; select <em> from MyClass order by id limit 0,2;<br>或者：<br>mysql&gt; select </em> from MyClass limit 0,2;  </li>
-</ol>
-</li>
-<li><p>删除表中数据<br>命令：delete from 表名 where 表达式<br>例如：删除表 MyClass中编号为1 的记录</p>
-<ul>
-<li>mysql&gt; delete from MyClass where id=1;</li>
-</ul>
-</li>
-<li>修改表中数据：update 表名 set 字段=新值,… where 条件<ul>
-<li>mysql&gt; update MyClass set name=’Mary’ where id=1;</li>
-</ul>
-</li>
-<li><p>在表中增加字段：<br>命令：alter table 表名 add字段 类型 其他;<br>例如：在表MyClass中添加了一个字段passtest，类型为int(4)，默认值为0  </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; alter table MyClass add passtest int(4) default '0'</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>更改表名：<br>命令：rename table 原表名 to 新表名;<br>例如：在表MyClass名字更改为YouClass<br>mysql&gt; rename table MyClass to YouClass; </p>
-</li>
-<li><p>更新字段内容<br>update 表名 set 字段名 = 新内容<br>update 表名 set 字段名 = replace(字段名,’旧内容’,’新内容’);<br>文章前面加入4个空格<br>update article set content=concat(‘　　‘,content); </p>
-</li>
-</ol>
-<h3 id="mysql-分页"><a href="#mysql-分页" class="headerlink" title="mysql 分页"></a>mysql 分页</h3><ul>
-<li><p>最常见MYSQL最基本的分页方式：<br>–0是查询开始的行数（查询起点），10是查询数量（分页的大小）（需要的行数）<br>select * from person order by id desc limit 0, 10</p>
-</li>
-<li><p>特殊：<br>select * from persons limit 10;<br>意思是，起点为0，开始查询，返回10条记录。</p>
-</li>
-</ul>
-<h3 id="mysql-dump"><a href="#mysql-dump" class="headerlink" title="mysql dump"></a>mysql dump</h3><p>这个命令是和mysql命令一样的,运行在cmd窗口下<br>参考:<br>    <a href="http://www.cnblogs.com/feichexia/p/MysqlDataBackup.html" target="_blank" rel="noopener">http://www.cnblogs.com/feichexia/p/MysqlDataBackup.html</a></p>
-<blockquote>
-<p>mysqldump -u root -p ams &gt;d:\hh.sql</p>
-</blockquote>
-<p>–opt<br>     如果加上–opt参数则生成的dump文件中稍有不同：<br>     建表语句包含drop table if exists tableName<br>     insert之前包含一个锁表语句lock tables tableName write，insert之后包含unlock tables  </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/mysql-索引 慢查询优化 锁 事物/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/12/mysql-索引 慢查询优化 锁 事物/" itemprop="url">mysql-索引 慢查询优化 锁 事物</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="index"><a href="#index" class="headerlink" title="index"></a>index</h3><ol>
-<li><p>index type  </p>
-<ul>
-<li>聚集index  == 主键  <ul>
-<li>根据这个来组织数据存储(InnoDB)<br>按照每张表的主键来构建一颗b+树,叶子节点存放整张表的行记录</li>
-</ul>
-</li>
-<li><p>辅助索引(sencondary index,也称 非聚集索引)  </p>
-<ul>
-<li>叶子节点包括{<br>对应行记录,<br>指针 (告诉存储引擎那可以找到对应的行记录,因此InnoDB的指针指向就是聚集索引键,<br>查找是两次查找,辅助找一次,聚集找一次)<br>}  </li>
-</ul>
-</li>
-<li><p>联合索引</p>
-<ul>
-<li>根据查询条件判断是新建联合索引,还是新建单一索引</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>新建索引的原则 </p>
-<ol>
-<li>最左前缀匹配原则</li>
-<li>=和in可以乱序</li>
-<li>尽量选择区分度高的列作为索引</li>
-<li>索引列不能参与计算</li>
-<li>尽量的扩展索引，不要新建索引</li>
-</ol>
-</li>
-<li><p>sql select 使用索引的情况</p>
-<ol>
-<li>左前缀原则</li>
-<li>= in 换原则</li>
-<li>索引位数</li>
-<li><p>覆盖索引与排序<br> 当索引中的列包含所有查询中需要使用到的列的时候,mysql就可以使用索引返回需要的数据,而无需查询对应的行<br> 在数据库中，如果无法利用索引完成排序，随着过滤数据的数据量的上升，排序的成本会越来越大，即使是采用了limit，但是数据库是会选择将结果集进行全部排序，再取排序后的limit 记录，而且MySQL 针对可以用索引完成排序的limit 有优化，更能减少成本  </p>
-<p> 查找遇到排序的时候总是先排序,order by中的字段一定要在最左前缀字段,这样索引构建的顺序<br> 才是依赖它构建的,排序的时候才不会用到filesort(若order by 字段使用索引,则直接检索出来的数据就是排序的,不用再使用filesort对已经检索出来的数据再次排序)  </p>
-</li>
-<li><p>包含 &gt; , &lt; , between and ,like 回中断使用索引.后面的where查询列不会使用索引  </p>
-</li>
-<li>like “%abc” 不使用索引, like “abc%” 使用索引   </li>
-</ol>
-</li>
-<li><p>优化器不使用索引的情况  </p>
-</li>
-<li><p>explain分析使用索引</p>
-</li>
-</ol>
-<h3 id="slow-select"><a href="#slow-select" class="headerlink" title="slow select"></a>slow select</h3><ol>
-<li>查询慢原因:   <ul>
-<li>分析查询生命周期  </li>
-</ul>
-</li>
-<li><p>基础优化  </p>
-<ul>
-<li>是否向服务器请求了不需要的数据   <ul>
-<li>eg: * 请求不需要的列,列优化   </li>
-</ul>
-</li>
-<li>是否扫描了额外的数据<br>  explain type 显示: 主要使用索引优化  <ul>
-<li>聚集索引中使用where过滤–存储引擎完成  </li>
-<li>索引覆盖扫描(extra using index)<br>  返回需要的记录(解释:从索引树种取数据,无需回表中查询)–服务层执行  </li>
-<li>从数据表中查询(extra using where),查询完才过滤数据–服务层执行  </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>重构查询  </p>
-<ul>
-<li>切分查询  </li>
-<li>分解关联查询  </li>
-</ul>
-</li>
-<li><p>生命周期<br> sql  </p>
-<ul>
-<li><p>client—-&gt;查询缓存–&gt;(解析器–&gt;预处理器)–&gt;优化器–&gt;存储引擎–&gt;数据  </p>
-</li>
-<li><p>client:show full processlist  </p>
-</li>
-<li>optimize:<br>  show status like ‘last_query_cost’  优化器认为大约1024个数据页的随机查询才能完成上一条语句的查询  </li>
-</ul>
-</li>
-</ol>
-<h3 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h3><p>实现事物隔离性要求</p>
-<p>innoDB存储引擎中的锁  </p>
-<ul>
-<li>类型(行):  <ul>
-<li>共享锁  </li>
-<li>排他锁  </li>
-</ul>
-</li>
-<li>多粒度(granular)锁:  <ul>
-<li>行级锁  <ul>
-<li>record lock:单个行上锁  </li>
-<li>gap lock  </li>
-<li>next-key lock  </li>
-</ul>
-</li>
-<li>表级锁<br>(行间锁属于行锁的一种)  <ul>
-<li>支持方式:<ul>
-<li>意向锁(intention lock)<br>多层上锁机制,若想对一行进行上锁,要先对对应的数据库上锁,表上锁(对行上排他锁,对数据库和表也上排他锁),<br>意向锁之间不进行相互阻塞,即使都是意向排他锁.  </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>实现锁:<br>  一致性非锁定读,是指innodb通过多版本控制的方式(MVCC)读取当前执行时间的数据.</li>
-</ul>
-<h3 id="事物"><a href="#事物" class="headerlink" title="事物"></a>事物</h3><h4 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h4><p>phantom(幻像) 问题  </p>
-<ul>
-<li>phantom problem 是指在同一事物下,连续两次执行同样的sql,导致不同的结果,<br>  第二次sql可能返回之前不存在的结果  </li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/mybatis-基础/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/12/mybatis-基础/" itemprop="url">mybatis 基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index">
-                    <span itemprop="name">mybatis</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="init-mybatis"><a href="#init-mybatis" class="headerlink" title="init mybatis"></a>init mybatis</h3><p> pom.xml添加MyBatis依赖<br> 在resource/下添加mybatis-config.xml<br> 在resource/下添加sqlserver.properties  </p>
-<ul>
-<li>建实体类<br>建接口<br>映射接口.xml<br>创建factory类<br>建dao类，具体调用类。<br>测试  </li>
-</ul>
-<h4 id="新建mvn项目"><a href="#新建mvn项目" class="headerlink" title="新建mvn项目"></a>新建mvn项目</h4><pre><code>第一次创建的时候可能有些慢，需要引入很多工具包  
-    注意：  
-        mvn 引用不到链接sqllserver的jar包  
-设置gitignore  
-可以在项目下设置gitignore，这个可以和总的gitignore并行使用  
-</code></pre><ol>
-<li><p>mvn 需要引入的包  </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 用于jsp使用的jar包 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- mybatis --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- mysql 驱动包 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.21<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>新建 src/main/resourse 包<br> 在包下新建mybatis-config.xml文件<br> 配置文件  </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE configuration</span></span><br><span class="line"><span class="meta">  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line"><span class="meta">  "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost:3306/test"</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"root"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- mapping 文件路径配置 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com/jh/mapping/Users.xml"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>新建实体类<br>新建sql语句实现的mapper.xml文件，<br>  实现mapper接口<br>  error:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">org.apache.ibatis.binding（捆绑）.BindingException: </span><br><span class="line"> Type interface com.jh.dao.UsersMapper is not known to the MapperRegistry（注册）.</span><br></pre></td></tr></table></figure>
-<p>do:      </p>
-<ul>
-<li>mapper.xml namespace与mapper接口名字应该一样。<br> 新建mapper接口，<br> 新建调用sqlsessionfactory资源类  </li>
-</ul>
-</li>
-</ol>
-<h3 id="建立整个mybatis项目的架构体系"><a href="#建立整个mybatis项目的架构体系" class="headerlink" title="建立整个mybatis项目的架构体系"></a>建立整个mybatis项目的架构体系</h3><ol>
-<li><p>创建单例工厂  </p>
-<ul>
-<li>新建一个同步锁锁定的工厂实现方法</li>
-</ul>
-</li>
-<li><p>新建service接口，service实现类<br> error：@Overread报错<br> do:    </p>
-<ul>
-<li>改变本项目的编译环境，因为mvn项目默认的<br>编译环境为1.5，不支持@Overread<br>right click-&gt;Properties-&gt;Java Compiler<br>改成现有jdk版本  </li>
-</ul>
-</li>
-</ol>
-<h4 id="mybatis-sql-insert-update-delete"><a href="#mybatis-sql-insert-update-delete" class="headerlink" title="mybatis sql insert update delete"></a>mybatis sql insert update delete</h4><h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertUsers"</span> <span class="attr">parameterType</span>=<span class="string">"com.jh.vo.Users"</span>&gt;</span></span><br><span class="line">	insert into users (id,name,age) values (#&#123;id&#125;,#&#123;name&#125;,#&#123;age&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>  error:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">### Cause: org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. </span><br><span class="line">		  Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. </span><br><span class="line">		  Cause: org.apache.ibatis.builder.BuilderException: Error resolving <span class="class"><span class="keyword">class</span>. </span></span><br><span class="line">		  Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'Users'.  </span><br><span class="line">		  Cause: java.lang.ClassNotFoundException: Cannot find class: Users</span><br></pre></td></tr></table></figure></p>
-<p>  解决: </p>
-<ul>
-<li><p>没有使用类的全名作为参数写入到parameterType中，出现读不到参数类型的错误，也就是找不到类，<br>将类的全名写入就ok  </p>
-<p>error:insert 无效，数据库中没有结果<br>解决: </p>
-<ul>
-<li>sqlSession 没有提交操作<br>加语句sqlSession.commit();<br>  所有影响数据库数据的操作都要commit  </li>
-</ul>
-</li>
-</ul>
-<h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"updateUsers"</span> <span class="attr">parameterType</span>=<span class="string">"com.jh.vo.Users"</span>&gt;</span></span><br><span class="line">	update users set </span><br><span class="line">		name = #&#123;name&#125;,</span><br><span class="line">		age = #&#123;age&#125;</span><br><span class="line">	where id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>自动生成id策略</p>
-<pre><code>自动生成的id 最好是int类型 timestamp时间戳可以
-当使用uuid生成策略的时候，生成的id是string类型，检索的时候效率慢。（uuid 100万年会重复）
-</code></pre><p>mysql 自动生成id时，默认最大id为AUTO_INCREMENT=41，属于自动生成</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/mybatis-原理与源码分析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/12/mybatis-原理与源码分析/" itemprop="url">mybatis 原理与源码分析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
               </time>
             
 
@@ -1204,7 +392,7 @@ StatementHandler
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/mybatis-代码生成工具/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/mybatis-代码生成工具/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -1223,7 +411,7 @@ StatementHandler
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/12/mybatis-代码生成工具/" itemprop="url">mybatis 自动代码生成工具包介绍</a></h1>
+                <a class="post-title-link" href="/2018/06/15/mybatis-代码生成工具/" itemprop="url">mybatis 自动代码生成工具包介绍</a></h1>
         
 
         <div class="post-meta">
@@ -1235,8 +423,8 @@ StatementHandler
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
               </time>
             
 
@@ -1369,7 +557,7 @@ StatementHandler
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/Struts/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/Struts/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -1388,7 +576,7 @@ StatementHandler
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/12/Struts/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/06/15/Struts/" itemprop="url">struts</a></h1>
         
 
         <div class="post-meta">
@@ -1400,8 +588,8 @@ StatementHandler
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
               </time>
             
 
@@ -1410,6 +598,28 @@ StatementHandler
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/struts/" itemprop="url" rel="index">
+                    <span itemprop="name">struts</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1440,7 +650,7 @@ StatementHandler
       
         
           
-            <p>struts1, struts2</p>
+            <p>struts1, struts2  </p>
 <ol>
 <li>引用包</li>
 <li>struts基础</li>
@@ -1452,96 +662,69 @@ StatementHandler
 <li>struts1 配置</li>
 <li>action 功能</li>
 </ol>
-<p>………………………………………………………</p>
+<h3 id="引用包"><a href="#引用包" class="headerlink" title="引用包"></a>引用包</h3><h4 id="引入核心（core）包"><a href="#引入核心（core）包" class="headerlink" title="引入核心（core）包"></a>引入核心（core）包</h4><pre><code>struts-2.3.4.1
+    asm-3.3.jar
+    asm-commons-3.3.jar
+    asm-tree-3.3.jar
+    commons-fileupload-1.2.2.jar
+    commons-io-2.0.1.jar
+    commons-lang3-3.1.jar
+    freemarker-2.3.19.jar
+    javassist-3.11.0.GA.jar
+    ognl-3.0.5.jar
+    struts2-core-2.3.4.1.jar
+    xwork-core-2.3.4.1.jar
+</code></pre><h4 id="引入所有包"><a href="#引入所有包" class="headerlink" title="引入所有包"></a>引入所有包</h4><p>struts-2.3.15.2<br>        错误：Unload….   struts2-gxp-plugin-2.3.15.2.jar   </p>
+<h3 id="struts基础"><a href="#struts基础" class="headerlink" title="struts基础"></a>struts基础</h3><p>structs2.0是一种v—o的框架</p>
 <ol>
-<li>引用包</li>
-</ol>
-<p>1).引入核心（core）包<br>    struts-2.3.4.1<br>        asm-3.3.jar<br>        asm-commons-3.3.jar<br>        asm-tree-3.3.jar<br>        commons-fileupload-1.2.2.jar<br>        commons-io-2.0.1.jar<br>        commons-lang3-3.1.jar<br>        freemarker-2.3.19.jar<br>        javassist-3.11.0.GA.jar<br>        ognl-3.0.5.jar<br>        struts2-core-2.3.4.1.jar<br>        xwork-core-2.3.4.1.jar</p>
-<p>2).引入所有包<br>struts-2.3.15.2<br>错误：Unload….   struts2-gxp-plugin-2.3.15.2.jar </p>
-<p>………………………………………………………………….</p>
-<ol start="2">
-<li>struts基础</li>
-</ol>
-<p>structs2.0是一种v—o的框架<br>  2.1package<br>        <package name="defult" extends="struts-default"><br>        <action name="ahello"><br>           <result>/helloworld.jsp</result><br>        </action><br>        </package></p>
-<pre><code>namespace 
-namespace可以为空
-namespace决定了action的访问路径
-namespace默认为&quot;&quot; ，可以接受所有路径的action
-namespace可以写为/ ，
-或者 /xxx ，对应的action为 /index.action 
-或 /xxx/index.action
-namespace最好也用模块进行命名
-
-extends（延伸；扩充）
-extends表示引用structs.cfg.xml
-</code></pre><p>  2.2Eclipes 中的位置 程序中的入口<br>        右击project名 -&gt; properties -&gt; properties for struts<br>        -&gt;Web Project Settings -&gt; Context root</p>
-<p>  2.3constant(常数)<br>        <constant name="struts.enable.DynamicMethodInvocation" value="false"></constant></p>
-<pre><code>&lt;constant name=&quot;struts.devMode&quot; value=&quot;true&quot; /&gt;
-    表示是不是开发模式
-    开发模式：更改配置可以立即体现在浏览器中
-
-
-&lt;constant name=&quot;struts.i18n.encoding&quot; value=&quot;UTF-8&quot; /&gt; 
-    &lt;!-- 指定Web应用的默认编码集，
-    相当于调用 HttpServletRequest的 
-    setCharacterEncoding方法 --&gt;    
-    &lt;!-- 
-    该属性指定需要Struts 2处理的请求后缀，
-    该属性的默认值是action，
-    即所有匹配*.action的请求都由Struts 2处理。 
-    如果用户需要指定多个请求后缀，
-    则多个后缀之间以英文逗号（，）隔开。 
-    --&gt; 
-
-&lt;constant name=&quot;struts.devMode&quot; value=&quot;true&quot; /&gt; 
-&lt;!-- 开发模式下使用，这样可以打印出更详细的错误信息 --&gt; 
-</code></pre><p>  2.4定义当前xml文档语法的位置<br>    &lt;!DOCTYPE struts PUBLIC<br>      “-//Apache Software Foundation//DTD Struts Configuration 2.3//EN”<br>      “<a href="http://struts.apache.org/dtds/struts-2.3.dtd&quot;&gt;//定义当前xml文档语法的位置" target="_blank" rel="noopener">http://struts.apache.org/dtds/struts-2.3.dtd&quot;&gt;//定义当前xml文档语法的位置</a></p>
-<p>  2.5 xml中 自动显示提示的操作<br>      1)windows -&gt;properties-&gt;XML-&gt;XML Catalog-&gt;Add<br>      2)解压structs.core任意一个jar文件后<br>      3)location:文件绝对路径<br>        Key Type:URL<br>        Key:解压structs。core任意一个jar文件后</p>
-<p>  2.6Action<br>        <action name="ahello" class="com.excute.action.NumberManagerAction"><br>            <result>/helloworld.jsp</result><br>            <result name="afirst">/first.jsp</result><br>            <result name="asecond">/second.jsp</result><br>        </action></p>
+<li><p>package    </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"defult"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span>      </span><br><span class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"ahello"</span>&gt;</span></span><br><span class="line">	   <span class="tag">&lt;<span class="name">result</span>&gt;</span>/helloworld.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span>        </span><br><span class="line">	<span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br><span class="line">```		  </span><br><span class="line">	    namespace </span><br><span class="line">	    namespace可以为空</span><br><span class="line">	    namespace决定了action的访问路径</span><br><span class="line">	    namespace默认为"" ，可以接受所有路径的action</span><br><span class="line">	    namespace可以写为/ ，</span><br><span class="line">		或者 /xxx ，对应的action为 /index.action </span><br><span class="line">		或 /xxx/index.action</span><br><span class="line">	    namespace最好也用模块进行命名</span><br><span class="line"></span><br><span class="line">	    extends（延伸；扩充）</span><br><span class="line">	    extends表示引用structs.cfg.xml</span><br><span class="line"></span><br><span class="line">2. Eclipes 中的位置 程序中的入口  </span><br><span class="line">	    右击project名 -&gt; properties -&gt; properties for struts</span><br><span class="line">	    -&gt;Web Project Settings -&gt; Context root</span><br><span class="line"></span><br><span class="line">3. constant(常数)</span><br><span class="line"></span><br><span class="line">```xml</span><br><span class="line">  <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.enable.DynamicMethodInvocation"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.devMode"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">    表示是不是开发模式</span><br><span class="line">    开发模式：更改配置可以立即体现在浏览器中</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.i18n.encoding"</span> <span class="attr">value</span>=<span class="string">"UTF-8"</span> /&gt;</span> </span><br><span class="line">    <span class="comment">&lt;!-- 指定Web应用的默认编码集，</span></span><br><span class="line"><span class="comment">    相当于调用 HttpServletRequest的 </span></span><br><span class="line"><span class="comment">    setCharacterEncoding方法 --&gt;</span>    </span><br><span class="line">    <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">    该属性指定需要Struts 2处理的请求后缀，</span></span><br><span class="line"><span class="comment">    该属性的默认值是action，</span></span><br><span class="line"><span class="comment">    即所有匹配*.action的请求都由Struts 2处理。 </span></span><br><span class="line"><span class="comment">    如果用户需要指定多个请求后缀，</span></span><br><span class="line"><span class="comment">    则多个后缀之间以英文逗号（，）隔开。 </span></span><br><span class="line"><span class="comment">    --&gt;</span> </span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.devMode"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span> </span><br><span class="line">  <span class="comment">&lt;!-- 开发模式下使用，这样可以打印出更详细的错误信息 --&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义当前xml文档语法的位置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">		<span class="meta">&lt;!DOCTYPE struts PUBLIC</span></span><br><span class="line"><span class="meta">	  "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"</span></span><br><span class="line"><span class="meta">	  "http://struts.apache.org/dtds/struts-2.3.dtd"&gt;</span>//定义当前xml文档语法的位置</span><br><span class="line">```  </span><br><span class="line">5. xml中 自动显示提示的操作   </span><br><span class="line">	  1. windows -&gt;properties-&gt;XML-&gt;XML Catalog-&gt;Add  </span><br><span class="line">	  2. 解压structs.core任意一个jar文件后  </span><br><span class="line">	  3. location:文件绝对路径  </span><br><span class="line">	    Key Type:URL  </span><br><span class="line">	    Key:解压structs。core任意一个jar文件后  </span><br><span class="line"></span><br><span class="line">6. Action</span><br><span class="line">```xml</span><br><span class="line">  <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"ahello"</span> </span></span><br><span class="line"><span class="tag"><span class="attr">class</span>=<span class="string">"com.excute.action.NumberManagerAction"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span>&gt;</span>/helloworld.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"afirst"</span>&gt;</span>/first.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span>   </span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"asecond"</span>&gt;</span>/second.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span>   		</span><br><span class="line">  <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <pre><code>action中的class的引用类要用.连接，没有.java后缀
 name关联地址名  http://../../ahello.action
-</code></pre><p>  2.7Result<br>        凡是name为success的result的那么都可以省略<br>        result关联的是具体的jsp文件地址，用相对路劲</p>
-<p>  2.8action相关联的类</p>
-<p>  2.9jsp页面得到自己的绝对路径名<br>        structs2.0_0020_getpath<br>        &lt;%<br>          String path = request.getContextPath();//拿到/structs2.0_0020<br>          String basepath = request.getScheme() + “://“ + request.getServerName() + request.getServerPort() + path + “/“;<br>          //                http                   ://     localhost/               8080:<br>        %&gt;<br>  2.10actionmethod<br>            动态传参动态转向页面出错？</p>
-<p>  2.11  /structs2.0_0110_param   2012.12.9<br>        以后复制可以以/structs2.0_0110_param为基础<br>        重新更改了/structs2.0_0110_param_note<br>        structs.xml添加标注<br>        使之更易读<br>        将permissionpage移到page目录下<br>        将first ，second移到page新建的math下，添加标注（基础）<br>        为完成：permissionindex.jsp<br>            mvc传参<br>……………………………………………………………………..</p>
-<ol start="3">
-<li>传参</li>
-</ol>
-<p>传的参数与action中的属性一一对应<br>从页面传到后台<br>接收参数 - 附到对象上 - 存到数据库中</p>
-<p>………………………………………………………………</p>
-<ol start="4">
-<li>OGNL</li>
-</ol>
-<p>OGNL - 简介<br>OGNL是Object-Graph Navigation Language的缩写，<br>它是一种功能强大的表达式语言（Expression Language，简称为EL）<br>通过它简单一致的表达式语法，可以存取对象的任意属性，<br>调用对象的方法，遍历整个对象的结构图，<br>实现字段类型转化等功能。<br>它使用相同的表达式去存取对象的属性。<br>webwork2和现在的Struts2.x中<br>使用OGNL取代原来的EL来做界面数据绑定，<br>所谓界面数据绑定，<br>也就是把界面元素（例如一个textfield,hidden)<br>和对象层某个类的某个属性绑定在一起，修改和显示自动同步。</p>
-<p>………………………………………………………………</p>
-<ol start="5">
-<li>demo</li>
-</ol>
-<p>………………………………………………………………</p>
-<ol start="6">
-<li><p>ActionForm struts1</p>
-<p>struts1中的属性，struts2中不用配置<br>struts2的优点之一就是与struts1API解耦</p>
-<p>ActionForm本质上是一种JavaBean，<br>是专门用来传递表单数据的DTO(Data Transfer Object,数据传递对象)<br>Struts框架利用ActionForm对象来临时存放视图页面中的表单数据。</p>
-<p>Struts将输入域的数据自动填充到相应的ActionForm对象中，<br>然后控制层可以从该ActionForm对象中读取用户输入的表单数据，<br>也可以把来自模型层的数据存放到ActionForm中，然后返回给视图显示。</p>
-<p>配置<br>struts-config.xml<br><form-beans><br> <form-bean name="dataQueryForm" type="com.wondersgroup.sabic.corp.dataquery.form.DataQueryForm"><br></form-bean></form-beans></p>
-<p>后台接受<br>public ActionForward queryList(ActionForm form)</p>
+</code></pre></li>
+<li><p>Result</p>
+<pre><code>凡是name为success的result的那么都可以省略
+result关联的是具体的jsp文件地址，用相对路劲
+</code></pre></li>
+<li><p>action相关联的类</p>
 </li>
+<li><p>jsp页面得到自己的绝对路径名</p>
+<pre><code>//structs2.0_0020_getpath
+&lt;% 
+  String path = request.getContextPath();//拿到/structs2.0_0020
+  String basepath = request.getScheme() + &quot;://&quot; + request.getServerName() + request.getServerPort() + path + &quot;/&quot;;
+  //                http                   ://     localhost/               8080:   
+%&gt;
+</code></pre></li>
 </ol>
-<p>………………………………………………………………………..</p>
-<ol start="7">
-<li>ActionMapping </li>
+<ol start="10">
+<li><p>actionmethod</p>
+<pre><code>动态传参动态转向页面出错？
+</code></pre></li>
+<li><p>/structs2.0_0110_param   2012.12.9<br>   以后复制可以以/structs2.0_0110_param为基础<br>   重新更改了/structs2.0_0110_param_note<br>   structs.xml添加标注<br>   使之更易读<br>   将permissionpage移到page目录下<br>   将first ，second移到page新建的math下，添加标注（基础）<br>   为完成：permissionindex.jsp  </p>
+<pre><code>mvc传参  
+</code></pre></li>
 </ol>
-<p>首先明白ActionMapping一个实例对应了struts-config.xml文件中的一个<action>标签</action></p>
-<p>………………………………………………………………………….</p>
-<ol start="8">
-<li>struts1 配置</li>
-</ol>
-<p>………………………………………………………………………….</p>
-<ol start="9">
-<li>action 功能</li>
-</ol>
-<p>action主要就做3件事，接受前台参数，调用业务层方法，封装数据返回给前台，<br>一般用异步json ，返回的对象要规范，基本属性要有，如，是否成功，失败原因，数据等，<br>这些都应该是公司类库有的，action 里东西不多，主要是调用，顺便补充下，<br>action是多例，这个要记住；</p>
-<p>…………………………………………………………………………</p>
+<h3 id="传参"><a href="#传参" class="headerlink" title="传参"></a>传参</h3><p>传的参数与action中的属性一一对应<br>从页面传到后台<br>接收参数 - 附到对象上 - 存到数据库中  </p>
+<h3 id="OGNL"><a href="#OGNL" class="headerlink" title="OGNL"></a>OGNL</h3><p>OGNL - 简介<br>OGNL是Object-Graph Navigation Language的缩写，<br>它是一种功能强大的表达式语言（Expression Language，简称为EL）<br>通过它简单一致的表达式语法，可以存取对象的任意属性，<br>调用对象的方法，遍历整个对象的结构图，<br>实现字段类型转化等功能。<br>它使用相同的表达式去存取对象的属性。<br>webwork2和现在的Struts2.x中<br>使用OGNL取代原来的EL来做界面数据绑定，<br>所谓界面数据绑定，<br>也就是把界面元素（例如一个textfield,hidden)<br>和对象层某个类的某个属性绑定在一起，修改和显示自动同步。  </p>
+<h3 id="ActionForm-struts1"><a href="#ActionForm-struts1" class="headerlink" title="ActionForm struts1"></a>ActionForm struts1</h3><p>   struts1中的属性，struts2中不用配置<br>   struts2的优点之一就是与struts1API解耦  </p>
+<p>   ActionForm本质上是一种JavaBean，<br>   是专门用来传递表单数据的DTO(Data Transfer Object,数据传递对象)<br>   Struts框架利用ActionForm对象来临时存放视图页面中的表单数据。  </p>
+<p>   Struts将输入域的数据自动填充到相应的ActionForm对象中，<br>   然后控制层可以从该ActionForm对象中读取用户输入的表单数据，<br>   也可以把来自模型层的数据存放到ActionForm中，然后返回给视图显示。  </p>
+<p>   配置<br>   struts-config.xml</p>
+<pre><code>&lt;form-beans&gt;        
+ &lt;form-bean name=&quot;dataQueryForm&quot; type=&quot;com.wondersgroup.sabic.corp.dataquery.form.DataQueryForm&quot; /&gt;    
+&lt;/form-beans&gt;
+</code></pre><p>   后台接受<br>   public ActionForward queryList(ActionForm form)</p>
+<h3 id="ActionMapping"><a href="#ActionMapping" class="headerlink" title="ActionMapping"></a>ActionMapping</h3><pre><code>首先明白ActionMapping一个实例对应了struts-config.xml文件中的一个&lt;action&gt;标签
+</code></pre><h3 id="struts1-配置"><a href="#struts1-配置" class="headerlink" title="struts1 配置"></a>struts1 配置</h3><h3 id="action-功能"><a href="#action-功能" class="headerlink" title="action 功能"></a>action 功能</h3><ul>
+<li>action主要就做3件事，接受前台参数，调用业务层方法，封装数据返回给前台，  </li>
+<li>一般用异步json ，返回的对象要规范，基本属性要有，如，是否成功，失败原因，数据等，   </li>
+<li>这些都应该是公司类库有的，action 里东西不多，主要是调用，顺便补充下，   </li>
+<li>action是多例，这个要记住；  </li>
+</ul>
 
           
         
@@ -1590,7 +773,7 @@ name关联地址名  http://../../ahello.action
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/h2database/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/Hibernate_jpa/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -1609,7 +792,7 @@ name关联地址名  http://../../ahello.action
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/12/h2database/" itemprop="url">h2数据库</a></h1>
+                <a class="post-title-link" href="/2018/06/15/Hibernate_jpa/" itemprop="url">hibernate JPA</a></h1>
         
 
         <div class="post-meta">
@@ -1621,8 +804,226 @@ name关联地址名  http://../../ahello.action
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hibernate-JPA/" itemprop="url" rel="index">
+                    <span itemprop="name">hibernate JPA</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="hibernate基础配置"><a href="#hibernate基础配置" class="headerlink" title="hibernate基础配置"></a>hibernate基础配置</h3><pre><code> 例子：hibernnate_0100 // hibernate_0100_HelloWorld
+ 引入必须jar包
+hibernate3.jar
+hibernate-testing.jar
+antlr-2.7.6.jar
+commons-collections-3.1.jar
+javassist-3.9.0.jar
+jta-1.1.jar
+slf4j-api-1.5.8.jar
+slf4j-log4j12-1.5.8.jar
+log4j-1.2.17.jar
+sqljdbc.jar
+</code></pre><p>配置hibernate.cfg.xml文件   </p>
+<ul>
+<li>Hibernate.cfg.xml路径  </li>
+<li>Hibernate.cfg.xml路径默认的是在src下   </li>
+<li>修改默认路径  </li>
+<li>代码：  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sessionFactory = <span class="keyword">new</span> Configuration().</span><br><span class="line">configure(<span class="string">"WEB-INF/hibernate.cfg.xml"</span>).buildSessionFactory();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>hibernate-mapping配置：   </p>
+<ol>
+<li>建立数据库连接时注意connection.url<br>默认的使用jdbc连接   </li>
+<li>连接池：先主要是建立连接<br>然后当需要连接时<br>直接从连接池取就行<br>缺点：消耗内存<br>优点:不用每次都建立连接      </li>
+<li>xxx.hbm.xml作用主要是将class与table映射起来  </li>
+<li>先建表，后建类  </li>
+<li>配置报错： 没有dbcp时不要用   <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;property name=<span class="string">"connection.url"</span>&gt;</span><br><span class="line">	jdbc:jtds:sqlserver:<span class="comment">//localhost:1433;DatabaseName=kyc2</span></span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="annocation"><a href="#annocation" class="headerlink" title="annocation"></a>annocation</h3><p>  例：hibernate_0101_annotation<br>  hibernate3以后开始支持annocation  </p>
+<p>  annocation的jar包已经被包含在hibernate中，不用再次引用<br>  hibernate-annocation.jar的包已经被包含在hibernate3.jar中<br>  所以找不到  </p>
+<h3 id="jpql"><a href="#jpql" class="headerlink" title="jpql"></a>jpql</h3><ul>
+<li><p>JPQL是EJB2使用的查询语言EJB QL的扩展，它继承了EJB QL并对其做了一些改变。  </p>
+</li>
+<li><p>JPQL全称Java Persistence Query Language Java持久化查询语言<br>特点：<br>  其特征与原生SQL语句类似，并且完全面向对象，通过类名和属性访问，<br>  而不是表名和表的属性。</p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> ,age <span class="keyword">from</span> <span class="keyword">user</span>; //原生SQL语句</span><br><span class="line"><span class="keyword">select</span> u.name,u.age <span class="keyword">from</span> <span class="keyword">User</span> u;  //JPQL语句</span><br><span class="line"><span class="keyword">select</span> u <span class="keyword">from</span> <span class="keyword">User</span> u;  //JPQL语句</span><br></pre></td></tr></table></figure>
+<p>SQL语句是在数据库空间中对字段，列，行进行操作<br>JPQL语句是在EJB实体空间中面向对象,属性进行操作<br>JPQL必须由JPA的JPQL解析器解析为SQL才能执行，必须先获取Query对象  </p>
+<p>error:    不能使用 <em><br>        unexpected token: </em>  </p>
+<h3 id="JPA"><a href="#JPA" class="headerlink" title="JPA"></a>JPA</h3><p><a href="http://blog.csdn.net/hmk2011/article/details/6289151" target="_blank" rel="noopener">http://blog.csdn.net/hmk2011/article/details/6289151</a><br><a href="http://docs.oracle.com/javaee/5/api/javax/persistence/Query.html#getResultList%28%29" target="_blank" rel="noopener">http://docs.oracle.com/javaee/5/api/javax/persistence/Query.html#getResultList%28%29</a></p>
+<ul>
+<li><p>JPA全称Java Persistence API.<br>  JPA通过JDK 5.0注解或XML描述对象－关系表的映射关系，<br>  并将运行期的实体对象持久化到数据库中。  </p>
+</li>
+<li><p>JPQL:<br>  JPA的查询语言是面向对象而非面向数据库的，<br>  它以面向对象的自然语法构造查询语句，<br>  可以看成是Hibernate HQL的等价物。<br>  JPA定义了独特的JPQL（Java Persistence Query Language），<br>  JPQL是EJB QL的一种扩展，它是针对实体的一种查询语言，<br>  操作对象是实体，而不是关系数据库的表，<br>  而且能够支持批量更新和修改、JOIN、GROUP BY、HAVING 等通常只有<br>  SQL 才能够提供的高级查询特性，甚至还能够支持子查询。  </p>
+</li>
+<li><p>hibernate and JPA<br>  JPA是需要Provider来实现其功能的，Hibernate就是JPA Provider中很强的一个，<br>  应该说无人能出其右。从功能上来说，  </p>
+<ul>
+<li>JPA就是Hibernate功能的一个子集。<br>Hibernate 从3.2开始，就开始兼容JPA。<br>JPA本身是一套接口和标准，我们可以使用hibernate的EntityManager模块来作为JPA的引擎  </li>
+</ul>
+</li>
+</ul>
+<h3 id="Spring-and-JPA"><a href="#Spring-and-JPA" class="headerlink" title="Spring  and JPA"></a>Spring  and JPA</h3><pre><code>Spring 2.0.1中，正式提供对JPA的支持  
+</code></pre><p>通过将@PersistenceContext注解标注在EntityManager类型的字段上，<br>这样得到的EntityManager就是容器管理的EntityManager。<br>由于是容器管理的，所以我们不需要也不应该显式关闭注  入的EntityManager实例。  </p>
+<p>persistence.xml 配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;   </span><br><span class="line"><span class="tag">&lt;<span class="name">persistence</span> <span class="attr">version</span>=<span class="string">"1.0"</span>  </span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:persistence</span>=<span class="string">"http://java.sun.com/xml/ns/persistence"</span>  </span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span>  </span></span><br><span class="line"><span class="tag"><span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/persistence persistence_1_0.xsd "</span>&gt;</span>    </span><br><span class="line"><span class="comment">&lt;!--    </span></span><br><span class="line"><span class="comment">     Name属性用于定义持久化单元的名字 (name必选,空值也合法);   </span></span><br><span class="line"><span class="comment">     transaction-type 指定事务类型(可选)    </span></span><br><span class="line"><span class="comment">--&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">persistence-unit</span> <span class="attr">name</span>=<span class="string">"unitName"</span> <span class="attr">transaction-type</span>=<span class="string">"JTA"</span>&gt;</span>    </span><br><span class="line">   <span class="comment">&lt;!-- 描述信息.(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">description</span>&gt;</span> <span class="tag">&lt;/<span class="name">description</span>&gt;</span>    </span><br><span class="line">   <span class="comment">&lt;!-- javax.persistence.PersistenceProvider接口的一个实现类(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">provider</span>&gt;</span>   <span class="tag">&lt;/<span class="name">provider</span>&gt;</span>    </span><br><span class="line">   <span class="comment">&lt;!-- Jta-data-source和 non-jta-data-source用于分别指定持久化提供商使用的JTA和/或non-JTA数据源的全局JNDI名称(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">jta-data-source</span>&gt;</span>java:/MySqlDS<span class="tag">&lt;/<span class="name">jta-data-source</span>&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">non-jta-data-source</span>&gt;</span> <span class="tag">&lt;/<span class="name">non-jta-data-source</span>&gt;</span>    </span><br><span class="line">   <span class="comment">&lt;!-- 声明orm.xml所在位置.(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">mapping-file</span>&gt;</span>product.xml<span class="tag">&lt;/<span class="name">mapping-file</span>&gt;</span>    </span><br><span class="line">   <span class="comment">&lt;!-- 以包含persistence.xml的jar文件为基准的相对路径,添加额外的jar文件.(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">jar-file</span>&gt;</span>../lib/model.jar<span class="tag">&lt;/<span class="name">jar-file</span>&gt;</span>    </span><br><span class="line">   <span class="comment">&lt;!-- 显式列出实体类,在Java SE 环境中应该显式列出.(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">class</span>&gt;</span>com.domain.User<span class="tag">&lt;/<span class="name">class</span>&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">class</span>&gt;</span>com.domain.Product<span class="tag">&lt;/<span class="name">class</span>&gt;</span>   </span><br><span class="line">   <span class="comment">&lt;!-- 声明是否扫描jar文件中标注了@Enity类加入到上下文.若不扫描,则如下:(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">exclude-unlisted-classes</span>/&gt;</span>   </span><br><span class="line">   <span class="comment">&lt;!--   厂商专有属性(可选)   --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">properties</span>&gt;</span>  </span><br><span class="line">    <span class="comment">&lt;!-- hibernate.hbm2ddl.auto= create-drop / create / update --&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.hbm2ddl.auto"</span> <span class="attr">value</span>=<span class="string">"update"</span> /&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.show_sql"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;/<span class="name">properties</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">persistence-unit</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">persistence</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="ORM-是Object-Relation-Mapping"><a href="#ORM-是Object-Relation-Mapping" class="headerlink" title="ORM 是Object-Relation-Mapping"></a>ORM 是Object-Relation-Mapping</h3><p>即对象关系影射技术，是对象持久化的核心。<br>ORM是对JDBC的封装，从而解决了JDBC的各种存在问题  </p>
+<h4 id="EntityManager"><a href="#EntityManager" class="headerlink" title="EntityManager"></a>EntityManager</h4><p>EntityManager 是用来对实体Bean 进行操作的辅助类。<br>他可以用来产生/删除持久化的实体Bean，<br>通过主键查找实体bean，也可以通过EJB3 QL 语言查找满足条件的实体Bean。<br>实体Bean 被EntityManager 管理时，<br>EntityManager跟踪他的状态改变，<br>在任何决定更新实体Bean 的时候便会把发生改变的值同步到数据库中。<br>当实体Bean 从EntityManager 分离后，他是不受管理的，<br>EntityManager 无法跟踪他的任何状态改变。<br>EntityManager 的获取前面已经介绍过，<br>可以通过@PersistenceContext 注释由EJB 容器动态注入.  </p>
+<ul>
+<li>Entity的获取：<br>find(<em>.class,ID) :若实体Bean不存在,则返回null<br>  getReference(</em>,class,ID) :若实体Bean不存在,<br>  则抛出javax.persistence.EntityNotFoundException<br>persist() :添加实体Bean<br>merge () :是在实体Bean 已经脱离了EntityManager 的管理时使用， <ul>
+<li>当容器决定flush 时，数据将会同步到数据库中.<br>Remove() :删除对象  <ul>
+<li>createQuery() 返回Query对象,以执行JPQL语句  </li>
+<li>createNativeQuery() 返回Query对象,以执行SQL语句  </li>
+<li>refresh() 刷新实体Bean,以得到对新对象  </li>
+<li>contains() 检测实体当前是否被管理  </li>
+<li>flush() 将实体的改变立刻刷新到数据库中  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong><em>error:</em></strong>  </p>
+<pre><code>javax.persistence.PersistenceException: [PersistenceUnit: itcast] class or package not found
+</code></pre><p>persistences.xml不在编译路径下，mvn update 后，build project</p>
+<h3 id="mvn-hibernate"><a href="#mvn-hibernate" class="headerlink" title="mvn hibernate"></a>mvn hibernate</h3><p>mvnsearch:<br>Hibernate Core Aggregator<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.7.ga<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.transaction<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jta<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate.javax.persistence<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate-jpa-2.0-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.1.Final<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate-annotations<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.1.ga<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate-entitymanager<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.1.ga<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.14<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><pre><code>@OneToMany(mappedBy=&quot;&quot;,cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+//拥有mappedBy注解的实体类为关系被维护端
+//mappedBy=&quot;&quot;中的为多对一方中的对应属性
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/h2database/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/15/h2database/" itemprop="url">h2数据库</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
               </time>
             
 
@@ -1737,7 +1138,7 @@ h2-1.3使用sql文件，项目根路径的相对路径
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/spring-遇到的问题及解决/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/spring-遇到的问题及解决/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -1756,7 +1157,7 @@ h2-1.3使用sql文件，项目根路径的相对路径
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/12/spring-遇到的问题及解决/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/06/15/spring-遇到的问题及解决/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -1768,8 +1169,8 @@ h2-1.3使用sql文件，项目根路径的相对路径
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
               </time>
             
 
@@ -1868,7 +1269,7 @@ h2-1.3使用sql文件，项目根路径的相对路径
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/spring-基础与使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/spring-基础与使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -1887,7 +1288,7 @@ h2-1.3使用sql文件，项目根路径的相对路径
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/12/spring-基础与使用/" itemprop="url">Spring基础与使用案例与场景</a></h1>
+                <a class="post-title-link" href="/2018/06/15/spring-基础与使用/" itemprop="url">Spring基础与使用案例与场景</a></h1>
         
 
         <div class="post-meta">
@@ -1899,8 +1300,8 @@ h2-1.3使用sql文件，项目根路径的相对路径
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-12T12:01:16+08:00">
-                2018-06-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
               </time>
             
 
@@ -2032,11 +1433,501 @@ public class ScheduledTaskManager
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/spring-原理与源码分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/15/spring-原理与源码分析/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>title: Spring基础与使用案例与场景<br>date:<br>categories:</p>
+<ul>
+<li>spring<br>tags:</li>
+<li>spring 基础与使用</li>
+</ul>
+<hr>
+<h3 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h3><ul>
+<li>构建ioc基本功能</li>
+</ul>
+<h3 id="Aware-感知-bean操作ioc容器"><a href="#Aware-感知-bean操作ioc容器" class="headerlink" title="Aware (感知)    bean操作ioc容器"></a>Aware (感知)    bean操作ioc容器</h3><p>容器管理的Bean一般不需要了解容器的状态和直接使用容器，但是在某些情况下，是需要在Bean中直接对IOC容器进行操作的，  </p>
+<ul>
+<li>这时候，就需要在Bean中设定对容器的感知。<br>spring IOC容器也提供了该功能，它是通过特定的Aware接口来完成的。aware接口有以下这些：   <ul>
+<li>BeanNameAware，可以在Bean中得到它在IOC容器中的Bean的实例的名字。    </li>
+<li>BeanFactoryAware，可以在Bean中得到Bean所在的IOC容器，从而直接在Bean中使用IOC容器的服务。  </li>
+<li>ApplicationContextAware<br>可以在Bean中得到Bean所在的应用上下文，从而直接在Bean中使用上下文的服务。    </li>
+<li>MessageSourceAware，在Bean中可以得到消息源。  </li>
+<li>ApplicationEventPublisherAware:<br>在bean中可以得到应用上下文的事件发布器，从而可以在Bean中发布应用上下文的事件。  </li>
+<li>ResourceLoaderAware:<br>在Bean中可以得到ResourceLoader，从而在bean中使用ResourceLoader加载外部对应的Resource资源。   </li>
+</ul>
+</li>
+</ul>
+<p>在设置Bean的属性之后，调用初始化回调方法之前，Spring会调用aware接口中的setter方法。</p>
+<h3 id="Transaction-Spring-事物"><a href="#Transaction-Spring-事物" class="headerlink" title="Transaction /Spring 事物"></a>Transaction /Spring 事物</h3><p><a href="https://www.ibm.com/developerworks/cn/education/opensource/os-cn-spring-trans/" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/education/opensource/os-cn-spring-trans/</a></p>
+<ol>
+<li><p>本地事务和全局事务</p>
+<ul>
+<li><p>全局事务让你可以和多个事务资源工作在一起，比如，关系型数据库，消息队列</p>
+</li>
+<li><p>本地事务则是与某个指定的事务资源联系在一起，比如，与JDBC连接相关的事务。本地事务相对于全局事务更容易使用，但不能跨多个事务资源。管理JDBC连接所写的事务代码不能够在全局事务中使用。</p>
+</li>
+</ul>
+</li>
+<li><p>settings /事物对应配置</p>
+<ul>
+<li>隔离级别</li>
+<li><p>传播行为</p>
+<ol>
+<li>required<br>  如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。</li>
+<li>requires_new<br> 创建一个新的事务，如果当前存在事务，则把当前事务挂起。</li>
+<li>supports<br> 如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。</li>
+<li>not_supported<br> 非事务方式运行，如果当前存在事务，则把当前事务挂起。</li>
+<li>never<br> 以非事务方式运行，如果当前存在事务，则抛出异常。</li>
+<li>mandatory<br> 如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。 </li>
+<li><p>nested<br> 如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于required</p>
+<p>当前有事物  </p>
+<ul>
+<li>加入  </li>
+<li>挂起,新建  </li>
+<li>抛异常  </li>
+</ul>
+<p>当前没有事物  </p>
+<ul>
+<li>新建  </li>
+<li>非事物运行  </li>
+<li>抛异常  </li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>事务超时</li>
+<li>事务的只读属性</li>
+<li>事务的回滚规则        </li>
+</ol>
+<h3 id="spring结构-bean生成工厂的组成结构"><a href="#spring结构-bean生成工厂的组成结构" class="headerlink" title="spring结构/ bean生成工厂的组成结构"></a>spring结构/ bean生成工厂的组成结构</h3><ol>
+<li><p>具体的ioc实现</p>
+<ul>
+<li>DefaultListableBeanFactory  <ul>
+<li>在spring中,实际上是把DefaultListableBeanFactory作为一个默认的功能完整的Ioc容器来使用的.  </li>
+<li>XmlBeanFactory,ApplicationContect都是在DefaultListableBeanFactory基础上扩展的.  </li>
+<li>AbstractRefreshableApplicationContext中包含DefaultListableBeanFactory的实例  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>BeanFacory<br> BeanFactory的实现是Ioc的基本形式  </p>
+</li>
+<li><p>ApplicationContext<br> ApplicationContext的各种实现是IoC容器的高级表现形式  </p>
+</li>
+</ol>
+<h3 id="spring-容器启动过程"><a href="#spring-容器启动过程" class="headerlink" title="spring 容器启动过程"></a>spring 容器启动过程</h3><p>启动时执行  </p>
+<ol>
+<li>Resource定位  <ul>
+<li>Resource是spring对i/o的封装类.  </li>
+</ul>
+</li>
+<li><p>BeanDefinition载入  </p>
+</li>
+<li><p>注册BeanDefinition</p>
+<ul>
+<li>在IoC容器内部将BeanDefinition注入到HashMap中  </li>
+</ul>
+</li>
+<li><p>Bean依赖注入</p>
+<ul>
+<li><p>时间:发生在应用第一次调用AbstractBeanFactory中的getBean–&gt;doGetBean向容器索取bean的时候</p>
+</li>
+<li><p>AbstractBeanFactory中的doGetBean具体实现<br>DefaultSingletonBeanRegistry含有bean的三级缓存</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Cache of singleton objects: bean name --&gt; bean instance */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; singletonObjects = <span class="keyword">new</span> ConcurrentHashMap&lt;String, Object&gt;(<span class="number">256</span>);</span><br><span class="line"><span class="comment">/** Cache of singleton factories: bean name --&gt; ObjectFactory */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, ObjectFactory&lt;?&gt;&gt; singletonFactories = <span class="keyword">new</span> HashMap&lt;String, ObjectFactory&lt;?&gt;&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">/** Cache of early singleton objects: bean name --&gt; bean instance */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; earlySingletonObjects = <span class="keyword">new</span> HashMap&lt;String, Object&gt;(<span class="number">16</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>- getSingleton是调用
+</code></pre><h4 id="Spring-bean的循环依赖以及解决方式"><a href="#Spring-bean的循环依赖以及解决方式" class="headerlink" title="Spring-bean的循环依赖以及解决方式"></a>Spring-bean的循环依赖以及解决方式</h4>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/spring-boot-基础与使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/15/spring-boot-基础与使用/" itemprop="url">Spring Boot基础与使用案例与场景</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h3><ol>
+<li>搭建<br>下载sts使用spring start project搭建  </li>
+<li>运行<br>直接运行main函数  </li>
+<li>启动注意:<br>默认tomcat:8080<br>没有项目名直接访问具体位置<br><a href="http://localhost:8080/dog" target="_blank" rel="noopener">http://localhost:8080/dog</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/Websphere/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/15/Websphere/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2082,7 +1973,7 @@ public class ScheduledTaskManager
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2093,7 +1984,7 @@ public class ScheduledTaskManager
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -2104,7 +1995,7 @@ public class ScheduledTaskManager
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-count">116</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

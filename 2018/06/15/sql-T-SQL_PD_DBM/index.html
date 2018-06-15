@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="t-sql,简单sql,sql," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="使用数据库,创建数据库,删除数据库 创建一个表，删除表 增删改查 从一个表中copy数据打另一个表中 引号的使用 where order by 分号 sql语句拼接到string字符串传产问题 exists    使用数据库,创建数据库,删除数据库use kyc2create database animaildrop database animail      创建一个表，删除表CREATE T">
+<meta name="keywords" content="t-sql,简单sql,sql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="t-sql 简单sql语句整理,数据类型,约束">
+<meta property="og:url" content="http://yoursite.com/2018/06/15/sql-T-SQL_PD_DBM/index.html">
+<meta property="og:site_name" content="大东山下">
+<meta property="og:description" content="使用数据库,创建数据库,删除数据库 创建一个表，删除表 增删改查 从一个表中copy数据打另一个表中 引号的使用 where order by 分号 sql语句拼接到string字符串传产问题 exists    使用数据库,创建数据库,删除数据库use kyc2create database animaildrop database animail      创建一个表，删除表CREATE T">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-15T07:09:04.488Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="t-sql 简单sql语句整理,数据类型,约束">
+<meta name="twitter:description" content="使用数据库,创建数据库,删除数据库 创建一个表，删除表 增删改查 从一个表中copy数据打另一个表中 引号的使用 where order by 分号 sql语句拼接到string字符串传产问题 exists    使用数据库,创建数据库,删除数据库use kyc2create database animaildrop database animail      创建一个表，删除表CREATE T">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/15/sql-T-SQL_PD_DBM/"/>
+
+
+
+
+
+  <title>t-sql 简单sql语句整理,数据类型,约束 | 大东山下</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">大东山下</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/sql-T-SQL_PD_DBM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">t-sql 简单sql语句整理,数据类型,约束</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-15T15:09:04+08:00">
+                2018-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/h2/" itemprop="url" rel="index">
+                    <span itemprop="name">h2</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li>使用数据库,创建数据库,删除数据库</li>
+<li>创建一个表，删除表</li>
+<li>增删改查</li>
+<li>从一个表中copy数据打另一个表中</li>
+<li>引号的使用</li>
+<li>where</li>
+<li>order by</li>
+<li>分号</li>
+<li>sql语句拼接到string字符串传产问题</li>
+<li>exists</li>
+</ol>
+<hr>
+<ol>
+<li>使用数据库,创建数据库,删除数据库<br>use kyc2<br>create database animail<br>drop database animail  </li>
+</ol>
+<hr>
+<ol start="2">
+<li>创建一个表，删除表<br>CREATE TABLE 表名称<br>(<br>列名称1 数据类型,<br>列名称2 数据类型,<br>列名称3 数据类型,<br>….<br>)  </li>
+</ol>
+<p>例：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> dog(</span><br><span class="line">      <span class="keyword">id</span> <span class="built_in">int</span> primary <span class="keyword">key</span>,</span><br><span class="line">      <span class="keyword">name</span> <span class="built_in">text</span> </span><br><span class="line">   )</span><br><span class="line"></span><br><span class="line">   <span class="keyword">drop</span> <span class="keyword">table</span> dog</span><br></pre></td></tr></table></figure></p>
+<p><code>数据类型（data_type）</code><br>规定了列可容纳何种数据类型。<br>下面的表格包含了SQL中最常用的数据类型<br>数据类型  </p>
+<p>仅容纳整数。在括号内规定数字的最大位数。<br>integer(size)<br>int(size)<br>smallint(size)<br>tinyint(size)  </p>
+<p>容纳带有小数的数字。<br>“size” 规定数字的最大位数。<br>“d” 规定小数点右侧的最大位数。<br>decimal(size,d)<br>numeric(size,d)  </p>
+<p>容纳固定长度的字符串（可容纳字母、数字以及特殊字符）。<br>在括号中规定字符串的长度。<br>char(size)  </p>
+<p>容纳可变长度的字符串（可容纳字母、数字以及特殊的字符）。<br>在括号中规定字符串的最大长度。<br>varchar(size)      </p>
+<p>容纳日期。<br>date(yyyymmdd)    </p>
+<figure class="highlight sql"><figcaption><span>约束 (Constraints)```  </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">  约束用于限制加入表的数据的类型    </span><br><span class="line">可以在创建表时规定约束（通过 <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 语句），    </span><br><span class="line">或者在表创建之后也可以（通过 <span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 语句）。    </span><br><span class="line"></span><br><span class="line"><span class="number">1</span>）<span class="keyword">SQL</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> 约束   </span><br><span class="line"><span class="keyword">NOT</span> <span class="literal">NULL</span> 约束强制列不接受 <span class="literal">NULL</span> 值。  </span><br><span class="line"><span class="keyword">NOT</span> <span class="literal">NULL</span> 约束强制字段始终包含值。  </span><br><span class="line">这意味着，如果不向字段添加值，  </span><br><span class="line">就无法插入新记录或者更新记录。  </span><br><span class="line">下面的 <span class="keyword">SQL</span> 语句强制 <span class="string">"Id_P"</span> 列和 <span class="string">"LastName"</span> 列不接受 <span class="literal">NULL</span>值：  </span><br><span class="line"><span class="string">``</span><span class="string">`sql</span></span><br><span class="line"><span class="string">CREATE TABLE Persons  </span></span><br><span class="line"><span class="string">(</span></span><br><span class="line"><span class="string">Id_P int NOT NULL,</span></span><br><span class="line"><span class="string">LastName varchar(255) NOT NULL,</span></span><br><span class="line"><span class="string">FirstName varchar(255),</span></span><br><span class="line"><span class="string">Address varchar(255),</span></span><br><span class="line"><span class="string">City varchar(255)</span></span><br><span class="line"><span class="string">)</span></span><br></pre></td></tr></table></figure>
+<p>2）UNIQUE 约束唯一标识数据库表中的每条记录。<br>UNIQUE 和 PRIMARY KEY 约束均为列或列集合<br>提供了唯一性的保证。<br>PRIMARY KEY 拥有自动定义的 UNIQUE 约束。<br>请注意，每个表可以有多个 UNIQUE 约束，<br>但是每个表只能有一个 PRIMARY KEY 约束。  </p>
+<p>MySQL:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line">(</span><br><span class="line">  <span class="keyword">UNIQUE</span> (Id_P)</span><br><span class="line">)</span><br><span class="line"><span class="keyword">SQL</span> <span class="keyword">Server</span> / <span class="keyword">Oracle</span> / MS <span class="keyword">Access</span>:</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line">(</span><br><span class="line">Id_P <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">UNIQUE</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>如果需要命名 UNIQUE 约束，以及为多个列定义 UNIQUE 约束：<br>MySQL / SQL Server / Oracle / MS Access:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line">(</span><br><span class="line">Id_P <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">LastName <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">FirstName <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">Address <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">City <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line"><span class="keyword">CONSTRAINT</span> uc_PersonID <span class="keyword">UNIQUE</span> (Id_P,LastName)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>撤销 UNIQUE 约束<br>MySQL:<br>ALTER TABLE Persons<br>DROP INDEX uc_PersonID  </p>
+<p>SQL Server / Oracle / MS Access:<br>ALTER TABLE Persons<br>DROP CONSTRAINT uc_PersonID  </p>
+<p><code>3）primary key</code><br>PRIMARY KEY 约束唯一标识数据库表中的每条记录。<br>主键必须包含唯一的值。<br>主键列不能包含 NULL 值。<br>每个表都应该有一个主键，并且每个表只能有一个主键。  </p>
+<p>MySQL:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line">(</span><br><span class="line">PRIMARY <span class="keyword">KEY</span> (Id_P)</span><br><span class="line">)</span><br><span class="line"><span class="keyword">SQL</span> <span class="keyword">Server</span> / <span class="keyword">Oracle</span> / MS <span class="keyword">Access</span>:</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line">(</span><br><span class="line">Id_P <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<hr>
+<ol start="3">
+<li><p>增删改查  </p>
+<p>/<em>增加一行记录 </em>/<br>insert into dog values(12,’helloworld’)<br>可以指定所要插入数据的列：<br>INSERT INTO table_name (列1, 列2,…) VALUES (值1,   值2,….)  </p>
+<p>更改表中的现有数据<br>/<em> 改变一行记录</em>/<br>UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值<br>update dog set name = ‘jjjjj’ where id = ‘12’  </p>
+<p>/<em>查询一列记录</em>/<br>SELECT 列名称,列名称 FROM 表名称<br>select id from dog   </p>
+<p>/<em>删除一行记录</em>/<br>delete id=1 from dog  </p>
+</li>
+</ol>
+<hr>
+<ol start="4">
+<li><p>从一个表中copy数据打另一个表中  </p>
+<p>insert into cat(id) select id from dog;  </p>
+</li>
+</ol>
+<hr>
+<ol start="5">
+<li>引号的使用  </li>
+</ol>
+<p>条件值周围使用的是单引号。<br>SQL 使用单引号来环绕文本值（大部分数据库系统也接受双引号)<br>如果是数值，请不要使用引号。  </p>
+<hr>
+<ol start="6">
+<li>where  </li>
+</ol>
+<p>where指定查询返回行的条件。<br>SELECT 列名称 FROM 表名称 WHERE 列 运算符 值<br>select id from dog where id=1  </p>
+<p>  AND 和 OR 运算符用于基于一个以上的条件对记录进行过滤。<br>    1AND 和 OR 可在 WHERE 子语句中把两个或多个条件结合起来。<br>    2如果第一个条件和第二个条件都成立，<br>    则 AND 运算符显示一条记录。<br>    3如果第一个条件和第二个条件中只要有一个成立，<br>    则 OR 运算符显示一条记录。   </p>
+<pre><code>SELECT * FROM Persons WHERE  
+(FirstName=&apos;Thomas&apos; OR FirstName=&apos;William&apos;)  
+AND LastName=&apos;Carter&apos;  
+</code></pre><hr>
+<ol start="7">
+<li>order by  </li>
+</ol>
+<p>ORDER BY 语句用于对结果集进行排序。<br>ORDER BY 语句用于根据指定的列对结果集进行排序。<br>ORDER BY 语句默认按照升序对记录进行排序。<br>按照降序对记录进行排序，可以使用 DESC 关键字。   </p>
+<p>以字母顺序显示公司名称（Company），<br>并以数字顺序显示顺序号（OrderNumber）<br>SELECT Company, OrderNumber FROM<br>Orders ORDER BY Company, OrderNumber<br>先看公司，公司相同，再看字母  </p>
+<hr>
+<ol start="8">
+<li>分号<br>SQL 语句后面的分号？<br>某些数据库系统要求在每条 SQL 命令的末端使用分号。<br>在此不使用分号。<br>分号是在数据库系统中分隔每条 SQL 语句的标准方法，<br>这样就可以在对服务器的相同请求中执行一条以上的语句。<br>如果您使用的是 MS Access 和 SQL Server 2000，则不必在每条<br>SQL 语句之后使用分号，<br>不过某些数据库软件要求必须使用分号。   </li>
+</ol>
+<hr>
+<ol start="9">
+<li>sql语句拼接到string字符串传产问题<br> 1.sql注入<br> 2.内存浪费（多次sql）  </li>
+</ol>
+<hr>
+<ol start="11">
+<li>exists<br>指定一个子查询，检测行的存在。返回 true or false  </li>
+</ol>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/t-sql/" rel="tag"># t-sql</a>
+          
+            <a href="/tags/简单sql/" rel="tag"># 简单sql</a>
+          
+            <a href="/tags/sql/" rel="tag"># sql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/15/sql-function/" rel="next" title="sql">
+                <i class="fa fa-chevron-left"></i> sql
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/15/sql-tools/" rel="prev" title="sql管理客户端工具">
+                sql管理客户端工具 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">落叶</p>
+              <p class="site-description motion-element" itemprop="description">java redis mysql mybatis</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">116</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">落叶</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
