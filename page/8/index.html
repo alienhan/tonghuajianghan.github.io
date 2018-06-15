@@ -180,22 +180,42 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
+        <li class="menu-item menu-item-首页">
           <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-标签页">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类页">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档页">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档页
           </a>
         </li>
       
@@ -218,441 +238,6 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/10/10/js-jquery/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/10/10/js-jquery/" itemprop="url">jquery</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-10T00:00:00+08:00">
-                2015-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="jquery-td-遍历"><a href="#jquery-td-遍历" class="headerlink" title="jquery td 遍历"></a>jquery td 遍历</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过遍历来取得所有的td  </span></span><br><span class="line"><span class="keyword">var</span> tr=$(<span class="string">".result .checkFlag"</span>);  </span><br><span class="line">tr.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">	<span class="keyword">var</span> checkFlag = $(<span class="keyword">this</span>).attr(<span class="string">"id"</span>);  </span><br><span class="line">	alert(checkFlag);  </span><br><span class="line">	<span class="keyword">if</span>(<span class="string">"1"</span> == checkFlag)&#123;  </span><br><span class="line">		$(<span class="keyword">this</span>).attr(<span class="string">"style"</span>,<span class="string">"color:green"</span>);  </span><br><span class="line">		$(<span class="keyword">this</span>).parent().find(<span class="string">".check"</span>).html(<span class="string">""</span>);  </span><br><span class="line">	&#125;   </span><br><span class="line">	<span class="keyword">if</span>(<span class="string">"2"</span> == checkFlag)&#123;  </span><br><span class="line">		$(<span class="keyword">this</span>).attr(<span class="string">"style"</span>,<span class="string">"color:red"</span>);  </span><br><span class="line">		$(<span class="keyword">this</span>).parent().find(<span class="string">".check"</span>).html(<span class="string">""</span>);  </span><br><span class="line">	&#125;   </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h3><pre><code>//获取这个input的最近父form表单  
-var $form = $(this).closest(&apos;form&apos;);  
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/10/10/tiles/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/10/10/tiles/" itemprop="url">tiles SiteMesh</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-10T00:00:00+08:00">
-                2015-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="tiles-SiteMesh"><a href="#tiles-SiteMesh" class="headerlink" title="tiles SiteMesh"></a>tiles SiteMesh</h3><p>Tiles 是一种JSP布局框架，主要目的是为了将复数的jsp页面作为一个<br>的页面的部分机能，然后用来组合成一个最终表示用页面用的</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/10/10/ajax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/10/10/ajax/" itemprop="url">ajax</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-10T00:00:00+08:00">
-                2015-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="ajax-说明："><a href="#ajax-说明：" class="headerlink" title="ajax 说明："></a>ajax 说明：</h3><pre><code>如果需要像 HTML 表单那样 POST 数据，            
-请使用 setRequestHeader() 来添加 HTTP 头。            
-然后在 send() 方法中规定您希望发送的数据：            
-xmlhttp.open(&quot;POST&quot;,&quot;ajax_test.asp&quot;,true);            
-xmlhttp.setRequestHeader            
-(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);            
-xmlhttp.send(&quot;fname=Bill&amp;lname=Gates&quot;);            
-</code></pre><h3 id="js-submit-file"><a href="#js-submit-file" class="headerlink" title="js submit file"></a>js submit file</h3><p>gameIcon<br>  为<figure class="highlight plain"><figcaption><span>type</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">```js</span><br><span class="line">$(&quot;#gameIcon&quot;).change(function()&#123;</span><br><span class="line">        var file = this.files[0];</span><br><span class="line">        console.log(file);</span><br><span class="line">        var reader = new FileReader();</span><br><span class="line">        reader.readAsDataURL(file); </span><br><span class="line">        reader.onload = function(e)&#123; </span><br><span class="line">        	var form = new FormData();// ??只有form格式可以传数据</span><br><span class="line">        	form.append(&quot;uploadFile&quot;, file);</span><br><span class="line">        	var settings = &#123;</span><br><span class="line">        	  &quot;async&quot;: true,</span><br><span class="line">        	  &quot;crossDomain&quot;: true,</span><br><span class="line">        	  &quot;url&quot;: ctx + &quot;/fileAction/commonFileUpLoad.action&quot;,</span><br><span class="line">        	  &quot;method&quot;: &quot;POST&quot;,</span><br><span class="line">        	  &quot;headers&quot;: &#123;</span><br><span class="line">        	    &quot;cache-control&quot;: &quot;no-cache&quot;,</span><br><span class="line">        	  &#125;,</span><br><span class="line">        	  &quot;processData&quot;: false,</span><br><span class="line">        	  &quot;contentType&quot;: false,</span><br><span class="line">        	  &quot;mimeType&quot;: &quot;multipart/form-data&quot;,</span><br><span class="line">        	  &quot;data&quot;: form</span><br><span class="line">        	&#125;</span><br><span class="line"></span><br><span class="line">        	$.ajax(settings).done(function (response) &#123;</span><br><span class="line">        	  console.log(response);</span><br><span class="line">        	&#125;);</span><br><span class="line">        </span><br><span class="line">        &#125;; </span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure></p>
-<h3 id="spring-js-序列化传参-serialize"><a href="#spring-js-序列化传参-serialize" class="headerlink" title="spring js 序列化传参 serialize"></a>spring js 序列化传参 serialize</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
     
       
 
@@ -760,17 +345,19 @@ xmlhttp.send(&quot;fname=Bill&amp;lname=Gates&quot;);
       
         
           
-            <h3 id="常用的编译app-sencha命令："><a href="#常用的编译app-sencha命令：" class="headerlink" title="常用的编译app sencha命令："></a>常用的编译app sencha命令：</h3><ul>
-<li>sencha package build 打包命令</li>
-<li>sencha ant clean //清除编译制品</li>
-<li>sencha app build development //构建为开发环境项目</li>
-<li>sencha app build production //构建为生成环境项目</li>
-<li>sencha app refresh //可在添加类、删除类或更改类名后运行。它会通过Ext.Loader来更新bootstrap文件，方便开发模式的调试</li>
-<li>sencha ant sass //该命令会根据Sass源代码重新生成CSS文件。它可在任何scss文件改变后运行。</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> ...</span><br><span class="line">   "env": "$&#123;build.environment&#125;", </span><br><span class="line">   "serviceUrl":"$&#123;app.url&#125;", //定义Ext下的全局变量，可直接引用workspace中添加的属性配置</span><br><span class="line">   "theme": "theme-test", //可在此处指定app所需的主题</span><br><span class="line">   "requires":[</span><br><span class="line">         "font-awesome", //字体图标</span><br><span class="line">         "commonWidget", //上方创建的公共包</span><br><span class="line">         "ext-locale", //国际化</span><br><span class="line">         ...</span><br><span class="line">     ]</span><br><span class="line"> ...</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-          
+          常用的编译app sencha命令：
+sencha package build 打包命令
+sencha ant clean //清除编译制品
+sencha app build development //构建为开发环境项目
+sencha app build production //构建为生成环境项
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/10/10/js-extjs/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -910,56 +497,469 @@ xmlhttp.send(&quot;fname=Bill&amp;lname=Gates&quot;);
       
         
           
-            <h3 id="dom基础"><a href="#dom基础" class="headerlink" title="dom基础"></a>dom基础</h3><ol>
-<li><p>定义：<br> 通过 JavaScript，            </p>
-<ul>
-<li>可以重构整个 HTML 文档。            </li>
-<li>可以添加、移除、改变或重排页面上的项目。            </li>
-</ul>
-<p>要改变页面的某个东西，<br> JavaScript 就需要获得对 HTML 文档中所有元素进行访问的入口       </p>
-<ul>
-<li>入口            </li>
-<li>HTML 元素进行添加、移动、改变或移除的方法和属性           </li>
-</ul>
-<p>通过文档对象模型来获得的（DOM）      </p>
-</li>
-<li><p>分类                        </p>
-<ul>
-<li><p>html dom<br>HTML 文档中的每个成分都是一个节点。  </p>
-</li>
-<li><p>节点            </p>
-<ul>
-<li>根据 DOM，HTML 文档中的每个成分都是一个节点。            </li>
-<li>DOM 是这样规定的：            </li>
-<li>整个文档是一个文档节点            </li>
-<li>每个 HTML 标签是一个元素节点            </li>
-<li>包含在 HTML 元素中的文本是文本节点            </li>
-<li>每一个 HTML 属性是一个属性节点            </li>
-<li>注释属于注释节点            </li>
-</ul>
-</li>
-<li><p>html dom节点访问                      </p>
-<ul>
-<li>getElementById()和getElementsByTagName()可查找整个 HTML 文档中的任何 HTML 元素。                    </li>
-<li>getElementById()<br>可通过指定的 ID 来返回元素：<br>document.getElementById(“ID”);<br>注释：getElementById() 无法工作在 XML 中。在 XML 文档中，  您必须通过拥有类型 id 的属性来进行搜索，而此类型必须在 XML DTD 中进行声明。            </li>
-<li>getElementsByTagName()<br>方法会使用指定的标签名返回所有的元素（作为一个节点列表），这些元素是您在使用此方法时所处的元素的后代<br>。            </li>
-</ul>
-</li>
-<li><p>getElementsByTagName() 可被用于任何的 HTML 元：    </p>
-<ul>
-<li>document.getElementsByTagName(“标签名称”);              </li>
-<li><p>document.getElementById(‘ID’).getElementsByTagName(“标签名称”);       </p>
-<pre><code>返回所有&lt;p&gt;元素的一个节点列表，            
-  且这些&lt;p&gt;元素必须是 id 为 &quot;maindiv&quot; 的元素：  
-document.getElementById(&apos;maindiv&apos;).getElementsByTagName(&quot;p&quot;);             
-</code></pre></li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="节点列表（nodeList）"><a href="#节点列表（nodeList）" class="headerlink" title="节点列表（nodeList）"></a>节点列表（nodeList）</h3>
+          dom基础
+定义： 通过 JavaScript，            
+
+可以重构整个 HTML 文档。            
+可以添加、移除、改变或重排页面上的项目。            
+
+要改变页面的某个东西， JavaScript 就需要获得对 HTML 文档中所有元素进行访问的入口 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/10/10/dom/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/10/10/js-jquery/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/10/10/js-jquery/" itemprop="url">jquery</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-10T00:00:00+08:00">
+                2015-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          jquery td 遍历1234567891011121314//通过遍历来取得所有的td  var tr=$(".result .checkFlag");  tr.each(function()&#123;  	var checkFlag = $(this).attr("id");  	alert
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/10/10/js-jquery/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/10/10/tiles/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/10/10/tiles/" itemprop="url">tiles SiteMesh</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-10T00:00:00+08:00">
+                2015-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          tiles SiteMeshTiles 是一种JSP布局框架，主要目的是为了将复数的jsp页面作为一个的页面的部分机能，然后用来组合成一个最终表示用页面用的
+
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/10/10/tiles/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/10/10/ajax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/10/10/ajax/" itemprop="url">ajax</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-10T00:00:00+08:00">
+                2015-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          ajax 说明：如果需要像 HTML 表单那样 POST 数据，            
+请使用 setRequestHeader() 来添加 HTTP 头。            
+然后在 send() 方法中规定您希望发送的数据：            
+xmlhttp.open(&quot;P
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/10/10/ajax/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1099,160 +1099,17 @@ document.getElementById(&apos;maindiv&apos;).getElementsByTagName(&quot;p&quot;)
       
         
           
-            <h3 id="autocomplete"><a href="#autocomplete" class="headerlink" title="autocomplete"></a>autocomplete</h3><p>定义：<br>AutoComplete控件就是在用户在文本框输入前几个字母或是汉字的时候,<br>该控件就能从存放数据的文本或是数据库里将所有以这些字母开头的数据提示给用户            </p>
-<p>eclipse中默认的浏览器不兼容autocomplete            </p>
-<p>autocomplete不能集成到同一个文本框中            </p>
-<p>最简格式：html          </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"styles.css"</span> /&gt;</span>本地包            </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://code.jquery.com/jquery-1.8.2.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>            </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>            </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"jqm.autoComplete-1.5.2.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>            </span><br><span class="line">           </span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">autocomplete</span>=<span class="string">"off"</span> <span class="attr">id</span>=<span class="string">"searchField"</span> <span class="attr">class</span>=<span class="string">"searchField"</span> <span class="attr">placeholder</span>=<span class="string">"Categories"</span> /&gt;</span>            </span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"suggestions"</span> <span class="attr">data-role</span>=<span class="string">"listview"</span> <span class="attr">data-inset</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>            </span><br><span class="line">           </span><br><span class="line">           </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">            </span></span><br><span class="line"><span class="undefined">	$("#mainPage").bind("pageshow", function(e) &#123;            </span></span><br><span class="line"><span class="undefined">		var data = ['姜晗','C', 'Clojure', 'Java', 'Scala', 'Objective-C', 'C++', 'PHP', 'C#', '(Visual) Basic',		            </span></span><br><span class="line"><span class="undefined">					'Python', 'Perl', 'JavaScript', 'Ruby', 'Visual Basic .NET', 'Transact-SQL', 'Lisp', 'Pascal',		            </span></span><br><span class="line"><span class="undefined">					'Bash', 'PL/SQL', 'Delphi/Object Pascal', 'Ada', 'MATLAB'];            </span></span><br><span class="line"><span class="undefined">		$("#searchField").autocomplete(&#123;            </span></span><br><span class="line"><span class="undefined">			target: $('#suggestions'),            </span></span><br><span class="line"><span class="undefined">			source: data,            </span></span><br><span class="line"><span class="undefined">			link: 'target.html?term=',            </span></span><br><span class="line"><span class="undefined">			minLength: 1,            </span></span><br><span class="line"><span class="undefined">			matchFromStart: false,					            </span></span><br><span class="line"><span class="undefined">		&#125;);            </span></span><br><span class="line"><span class="undefined">	&#125;);             </span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="Flexigrid"><a href="#Flexigrid" class="headerlink" title="Flexigrid"></a>Flexigrid</h3><p><em>安装</em><br>/Flexigrid/WebContent/page/test/main_busic.jsp                </p>
-<p>2012.12.14初步实现了flexigrid的安装实现                </p>
-<p>将flexigrid.js<br>flexigrid.css<br>jquery-1.8.2.js<br>导入到项目中的前台文件<br>初始化必须的两个方法<br>$(“#flex1”).flexigrid<br>function addFormData()            </p>
-<p><em>Flexigrid功能</em><br>    重量轻，但丰富的数据网格，可调整大小的列和滚动数据相匹配的标题，<br>    再加上连接到一个XML或JSON数据源使用Ajax加载的内容的能力。<br>    类似的概念与外部电网唯一的纯的jQuery的爱，这使得它重量轻，最少的配置与运行如下的jQuery的口头禅。<br><strong><em>特点</em></strong><br>    可调整大小的列<br>    可调高度和宽度<br>    可排序的列标题<br>    酷主题<br>    可以将一个普通的表<br>    能够连接到一个Ajax数据源（XML和JSON）<br>    分页<br>    显示/隐藏列<br>    工具栏（新）<br>    搜索（新）<br>    可访问API<br>    可调整大小的宽度<br>    JSON支持<br>    工具栏<br>    表切换按钮<br>    显示/隐藏列控制移动的列标题，（尝试它通过一个头mouseovering，点击右边的黑色三角形）<br>    固定分页问题上的多个实例<br>    Mootools和固定的原型noConflict（）的兼容性问题<br>    onError事件Ajax交互，（它会通过一个变量调用数据的服务器），让你来处理服务器的问题<br>    新的$（）。flexAddData方法，可以让你直接添加新的数据到网格中使用自己的数据源。<br>    新预处理API，允许您修改或处理由服务器发送数据之前将它传递给Flexigrid，例如允许你使用自己的JSON格式。<br>    单排选择使用{singleSelect：真正}中的选项<br>    快速搜索<br>    还有更多的<br>    我来添加一个可编辑和Resortable的的行功能，??以及其他很酷的GUI功能。<br>    我的主要目标的插件，最终还是保持它的重量轻！<br><strong><em>ajax</em></strong><br>    flexigrid表格中的数据——&gt;自动生成xml格式——&gt;添加到新建的.xml文件中<br>    支持ajax跨域：<br>        url中加callback=?<br>        后台获得callback函数的名字<br>        返回json数据格式为:print(callbackName+”(“+jsonString+”)”);<br>    flexigrid生成的xml保存在一个.xml文件中<br>      url: ‘grid_lock.xml’,<br>      dataType: ‘xml’,             </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/10/10/html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/10/10/html/" itemprop="url">html</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-10T00:00:00+08:00">
-                2015-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="button-from表单兼容问题："><a href="#button-from表单兼容问题：" class="headerlink" title="button from表单兼容问题："></a>button from表单兼容问题：</h3><p>给button 加一个type=button就可以了。<br>因为button在非ie浏览器下默认类型是submit。  </p>
-<h3 id="w3c支持问题："><a href="#w3c支持问题：" class="headerlink" title="w3c支持问题："></a>w3c支持问题：</h3><p>ie低版本不支持w3c标准  </p>
-
-          
+          autocomplete定义：AutoComplete控件就是在用户在文本框输入前几个字母或是汉字的时候,该控件就能从存放数据的文本或是数据库里将所有以这些字母开头的数据提示给用户            
+eclipse中默认的浏览器不兼容autocomplete            
+autoc
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/10/10/js-jquery_plujin/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1392,41 +1249,166 @@ document.getElementById(&apos;maindiv&apos;).getElementsByTagName(&quot;p&quot;)
       
         
           
-            <h3 id="定义JavaScript-通常用于操作-HTML-元素"><a href="#定义JavaScript-通常用于操作-HTML-元素" class="headerlink" title="定义JavaScript 通常用于操作 HTML 元素"></a>定义JavaScript 通常用于操作 HTML 元素</h3><pre><code>JavaScript 语句     
+          定义JavaScript 通常用于操作 HTML 元素JavaScript 语句     
 JavaScript 语句向浏览器发出的命令。      
 语句的作用是告诉浏览器该做什么。      
-</code></pre><h3 id="document操作"><a href="#document操作" class="headerlink" title="document操作"></a>document操作</h3><p>使用 document.write() 仅仅向文档输出写内容。<br>如果在文档已完成加载后执行 document.write，整个 HTML 页面将被覆盖：<br>  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>  </span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">		<span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"myFunction()"</span>&gt;</span>点击这里<span class="tag">&lt;/<span class="name">button</span>&gt;</span>  </span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">  </span></span><br><span class="line"><span class="javascript">		<span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params"></span>)  </span></span></span><br><span class="line"><span class="undefined">		&#123;  </span></span><br><span class="line"><span class="javascript">		<span class="built_in">document</span>.write(<span class="string">"糟糕！文档消失了。"</span>);  </span></span><br><span class="line"><span class="undefined">		&#125;  </span></span><br><span class="line"><span class="undefined">		</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>  </span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>JavaScript 语句向 id=”demo”<br>的HTML元素输出文本 “Hello World”:<br>document.getElementById(“demo”).innerHTML=”Hello World”;  </p>
-<h3 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h3><p>  JavaScript 会忽略多余的空格。<br>    您可以向脚本添加空格，来提高其可读性。<br>    下面的两行代码是等效的    </p>
-<h3 id="cookie-js操作cookie"><a href="#cookie-js操作cookie" class="headerlink" title="cookie  js操作cookie"></a>cookie  js操作cookie</h3><p>添加：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie = <span class="string">"agentMerNo="</span> + $(<span class="string">"#agentMerNo"</span>).val();</span><br></pre></td></tr></table></figure></p>
-<p>获取：  </p>
-<pre><code class="js">$(<span class="string">"#agentMerNo option[value='"</span> + getCookie(<span class="string">"agentMerNo"</span>) + <span class="string">"']"</span>).attr(<span class="string">"selected"</span>, <span class="string">"selected"</span>);          
+document操作使用 document.write() 仅仅向文档输出写内容。如果在文档已完成加载
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/10/10/js/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
 
-<span class="function"><span class="keyword">function</span> <span class="title">getCookieVal</span>(<span class="params">offset</span>) </span>{ <span class="comment">//取得项名称为offset的cookie值           </span>
-    <span class="keyword">var</span> endstr = <span class="built_in">document</span>.cookie.indexOf(<span class="string">";"</span>, offset);<span class="comment">//获取字符串长度          </span>
-    <span class="keyword">if</span> (endstr == <span class="number">-1</span>)          
-        endstr = <span class="built_in">document</span>.cookie.length;          
-    <span class="keyword">return</span> <span class="built_in">unescape</span>(<span class="built_in">document</span>.cookie.substring(offset, endstr));          
-}          
+    
 
-<span class="function"><span class="keyword">function</span> <span class="title">getCookie</span>(<span class="params">name</span>) </span>{ <span class="comment">//取得名称为name的cookie值           </span>
-    <span class="keyword">var</span> arg = name + <span class="string">"="</span>;          
-    <span class="keyword">var</span> alen = arg.length;          
-    <span class="keyword">var</span> clen = <span class="built_in">document</span>.cookie.length;          
-    <span class="keyword">var</span> i = <span class="number">0</span>;          
-    <span class="keyword">while</span> (i &lt; clen) {          
-        <span class="keyword">var</span> j = i + alen;          
-        <span class="keyword">if</span> (<span class="built_in">document</span>.cookie.substring(i, j) == arg)          
-            <span class="keyword">return</span> getCookieVal(j);          
-        i = <span class="built_in">document</span>.cookie.indexOf(<span class="string">" "</span>, i) + <span class="number">1</span>;          
-        <span class="keyword">if</span> (i == <span class="number">0</span>)          
-            <span class="keyword">break</span>;          
-    }          
-    <span class="keyword">return</span> <span class="string">""</span>;          
-}          
-</code></pre>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/10/10/jsp-JSTL_EL_Tag/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/10/10/jsp-JSTL_EL_Tag/" itemprop="url">jsp基础 操作JSTL EL Tag</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-10T00:00:00+08:00">
+                2015-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          前后台交互语言JSTL123&lt;c:if&gt; if and else          &lt;c:if var="flag" test=""&gt;&lt;/c:if&gt;          &lt;c:if test="$&#123;!flag&#125;"&gt;&lt;/c:if&
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/10/10/jsp-JSTL_EL_Tag/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1500,7 +1482,7 @@ JavaScript 语句向浏览器发出的命令。
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">落叶</p>
-              <p class="site-description motion-element" itemprop="description">java redis mysql mybatis</p>
+              <p class="site-description motion-element" itemprop="description">高山仰止</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -1508,7 +1490,7 @@ JavaScript 语句向浏览器发出的命令。
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives">
               
                   <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">posts</span>
@@ -1521,7 +1503,7 @@ JavaScript 语句向浏览器发出的命令。
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

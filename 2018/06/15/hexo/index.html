@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="java redis mysql mybatis">
+<meta name="description" content="安装 安装node.jsnpm -v 验证安装是否成功  安装hexonpm install -g hexo-cli    关联git 新建git Repositoriestonghuajianghan.github.io 必须为这种形式,和git的名字相同    配置_config.yml 注意格式   123456# Deployment## Docs: https://hexo.io/doc">
 <meta name="keywords" content="hexo使用,hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo使用">
 <meta property="og:url" content="http://yoursite.com/2018/06/15/hexo/index.html">
 <meta property="og:site_name" content="大东山下">
-<meta property="og:description" content="java redis mysql mybatis">
+<meta property="og:description" content="安装 安装node.jsnpm -v 验证安装是否成功  安装hexonpm install -g hexo-cli    关联git 新建git Repositoriestonghuajianghan.github.io 必须为这种形式,和git的名字相同    配置_config.yml 注意格式   123456# Deployment## Docs: https://hexo.io/doc">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-15T07:09:04.531Z">
+<meta property="og:updated_time" content="2018-06-15T10:02:48.449Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo使用">
-<meta name="twitter:description" content="java redis mysql mybatis">
+<meta name="twitter:description" content="安装 安装node.jsnpm -v 验证安装是否成功  安装hexonpm install -g hexo-cli    关联git 新建git Repositoriestonghuajianghan.github.io 必须为这种形式,和git的名字相同    配置_config.yml 注意格式   123456# Deployment## Docs: https://hexo.io/doc">
 
 
 
@@ -181,22 +181,42 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
+        <li class="menu-item menu-item-首页">
           <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-标签页">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类页">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档页">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档页
           </a>
         </li>
       
@@ -322,7 +342,36 @@
       
 
       
-        
+        <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol>
+<li>安装node.js<pre><code>npm -v 验证安装是否成功
+</code></pre></li>
+<li>安装hexo<pre><code>npm install -g hexo-cli 
+</code></pre></li>
+</ol>
+<h3 id="关联git"><a href="#关联git" class="headerlink" title="关联git"></a>关联git</h3><ol>
+<li><p>新建git Repositories<br>tonghuajianghan.github.io 必须为这种形式,和git的名字相同  </p>
+</li>
+<li><p>配置_config.yml 注意格式  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:tonghuajianghan/tonghuajianghan.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>repo 必须为ssl地址,https连接不上</p>
+<h3 id="设置主体"><a href="#设置主体" class="headerlink" title="设置主体"></a>设置主体</h3><p><a href="https://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">https://theme-next.iissnan.com/getting-started.html</a></p>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><ol>
+<li>hexo init blog 新建(只需执行一次)</li>
+<li>hexo clean</li>
+<li>hexo g</li>
+<li>hexo d</li>
+</ol>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置:"></a>配置:</h3><p>  <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a></p>
+<h4 id="NexT-主页不显示全文"><a href="#NexT-主页不显示全文" class="headerlink" title="NexT 主页不显示全文"></a>NexT 主页不显示全文</h4><p>next主体配置_config.yml配置</p>
+<pre><code>auto_excerpt:
+  enable: true
+  length: 150
+</code></pre><hr>
+<h3 id="命令简写"><a href="#命令简写" class="headerlink" title="命令简写"></a>命令简写</h3><p>hexo n “我的博客” == hexo new “我的博客” #新建文章<br>hexo g == hexo generate #生成<br>hexo s == hexo server #启动服务预览<br>hexo d == hexo deploy #部署  </p>
+<p>hexo server #Hexo会监视文件变动并自动更新，无须重启服务器<br>hexo server -s #静态模式<br>hexo server -p 5000 #更改端口<br>hexo server -i 192.168.1.1 #自定义 IP<br>hexo clean #清除缓存，若是网页正常情况下可以忽略这条命令  </p>
+
       
     </div>
     
@@ -418,13 +467,22 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">落叶</p>
-              <p class="site-description motion-element" itemprop="description">java redis mysql mybatis</p>
+              <p class="site-description motion-element" itemprop="description">高山仰止</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -432,7 +490,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives">
               
                   <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">posts</span>
@@ -445,7 +503,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -479,6 +537,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关联git"><span class="nav-number">2.</span> <span class="nav-text">关联git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置主体"><span class="nav-number">3.</span> <span class="nav-text">设置主体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行"><span class="nav-number">4.</span> <span class="nav-text">运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">5.</span> <span class="nav-text">配置:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NexT-主页不显示全文"><span class="nav-number">5.1.</span> <span class="nav-text">NexT 主页不显示全文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令简写"><span class="nav-number">6.</span> <span class="nav-text">命令简写</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

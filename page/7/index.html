@@ -180,22 +180,42 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
+        <li class="menu-item menu-item-首页">
           <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-标签页">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类页">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档页">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档页
           </a>
         </li>
       
@@ -325,40 +345,24 @@
       
         
           
-            <p>kafka<br>  官网：<a href="http://kafka.apache.org" target="_blank" rel="noopener">http://kafka.apache.org</a></p>
-<hr>
-<h3 id="安装启动"><a href="#安装启动" class="headerlink" title="安装启动"></a>安装启动</h3><ol>
-<li>前提条件：<blockquote>
-<p>jdk<br>zookeeper(详细在zookeeper.txt中)  </p>
-</blockquote>
-</li>
-</ol>
-<h4 id="安装kafka"><a href="#安装kafka" class="headerlink" title="安装kafka"></a>安装kafka</h4><p>下载地址</p>
-<p><a href="https://www.apache.org/dyn/closer.cgi?path=/kafka/0.10.2.0/kafka_2.10-0.10.2.0.tgz" target="_blank" rel="noopener">https://www.apache.org/dyn/closer.cgi?path=/kafka/0.10.2.0/kafka_2.10-0.10.2.0.tgz</a></p>
-<blockquote>
-<p>注意：<br>kafka 2.10-0.10,kafka_2.10-0.9.0.0   对应java8  </p>
-</blockquote>
-<p><strong>windows 安装问题</strong>  </p>
-<ol>
-<li>编辑config/serer.properties  </li>
-<li>找到并编辑“log.dirs=/tmp/kafka-logs” to   “log.dir=D:\java\kafka\kafka\kafka-logs”  </li>
-<li><p>如果Zookeeper在某些其他的机器或集群上运行，可以将“zookeeper.connect:2181”修改为自定义IP与端口。<br>在这个演示中我们使用了同一个机器，因此没必要做修改。文件中的Kafka端口和broker.id也是可以配置的。其他设置不变。  </p>
-</li>
-<li><p>Kafka会按照默认，在9092端口上运行，并连接zookeeper的默认端口：2181。  </p>
-</li>
-</ol>
-<p><strong>linux 安装问题</strong><br>Unrecognized VM option ‘+UseCompressedOops’ when running   kafka from my ubuntu in vmware<br>解决:<br>vi bin/kafka-run-class.sh  </p>
-<p>before removing :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">KAFKA_JVM_PERFORMANCE_OPTS=&quot;-server -XX:+UseCompressedOops </span><br><span class="line">  -XX:+UseParNewGC -XX:+UseConcMarkSweepGC   </span><br><span class="line">  -XX:+CMSClassUnloadingEnabled </span><br><span class="line">  -XX:+CMSScavengeBeforeRemark</span><br><span class="line">  -XX:+DisableExplicitGC </span><br><span class="line">  -Djava.awt.headless=true&quot;</span><br></pre></td></tr></table></figure></p>
-<p>after removing :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">KAFKA_JVM_PERFORMANCE_OPTS=&quot;</span><br><span class="line"> -server </span><br><span class="line"> -XX:+UseParNewGC</span><br><span class="line"> -XX:+UseConcMarkSweepGC </span><br><span class="line"> -XX:+CMSClassUnloadingEnabled</span><br><span class="line"> -XX:+CMSScavengeBeforeRemark </span><br><span class="line"> -XX:+DisableExplicitGC</span><br><span class="line"> -Djava.awt.headless=true&quot;</span><br></pre></td></tr></table></figure></p>
-<h3 id="运行kafka"><a href="#运行kafka" class="headerlink" title="运行kafka"></a>运行kafka</h3><p>重要：确保在启动Kafka服务器前，Zookeeper实例已经准备好并开始运行。  </p>
-<p>window启动:  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\bin\windows\kafka-server-start.bat .\config\server.properties</span><br></pre></td></tr></table></figure>
-<p>linux 启动:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sh bin/kafka-server-start.sh  </span><br><span class="line">config/server.properties</span><br></pre></td></tr></table></figure></p>
-<h3 id="kafka监控工具"><a href="#kafka监控工具" class="headerlink" title="kafka监控工具"></a>kafka监控工具</h3><p><a href="https://github.com/quantifind/KafkaOffsetMonitor/" target="_blank" rel="noopener">https://github.com/quantifind/KafkaOffsetMonitor/</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -cp KafkaOffsetMonitor-assembly-0.2.1.jar com.quantifind.kafka.offsetapp.OffsetGetterWeb --zk 10.200.157.66:2181 --port 8080 --refresh 10.seconds --retain 2.days</span><br></pre></td></tr></table></figure>
-<p>设置代理,因为要访问ajax.google</p>
+          kafka  官网：http://kafka.apache.org
 
-          
+安装启动
+前提条件：
+jdkzookeeper(详细在zookeeper.txt中)  
+
+
+
+安装kafka下载地址
+https://www.apache.org/dyn/closer.cgi?path=/kafka/0.10.
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/kafka-基础运维/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -498,71 +502,17 @@
       
         
           
-            <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://orchome.com" target="_blank" rel="noopener">http://orchome.com</a></p>
-<h3 id="component-组件"><a href="#component-组件" class="headerlink" title="component 组件"></a>component 组件</h3><ol>
-<li>topic<br> topic 是在broker站点上新建的因此 无论生产端,消费端都没有配置的权利,<br> 因此在项目中的关于topic配置,只是单纯的与broker站点上的配置相同,不起任何配置性作用.<br> 项目中只能配置producer,customer的相关配置.  </li>
-<li>partition：分区编号  </li>
-<li>offset：表示该parition已经消费了多少条message  </li>
-<li>logSize：表示该partition已经写了多少条message  </li>
-<li>Lag：表示有多少条message没有被消费。  </li>
-</ol>
-<h3 id="producer-配置"><a href="#producer-配置" class="headerlink" title="producer 配置"></a>producer 配置</h3><ol>
-<li><p>acks<br>数据 durability 的设置；<br>producer希望leader返回的用于确认请求完成的确认数量. 可选值   all, -1, 0 1. 默认值为1  </p>
-<p>acks=0 不需要等待服务器的确认. 这时retries设置无效. 响应里来自服务端的offset总是-1.producer只管发不管发送成功与否。延迟低，容易丢失数据。<br>acks=1 表示leader写入成功（但是并没有刷新到磁盘）后即向producer响应。延迟中等，一旦leader副本挂了，就会丢失数据。  </p>
-<p>acks=all 等待数据完成副本的复制, 等同于-1. 假如需要保证消息不丢失, 需要使用该设置. 同时需要置unclean.leader.election.enable为true, 保证当ISR列表为空时, 选择其他存活的副本作为新的leader.  </p>
-</li>
-<li>producer.type：<br>消息发送类型同步还是异步，默认为同步  </li>
-<li>compression.codec：<br>消息的压缩格式，默认为none不压缩，也可以为gzip, snappy, lz4</li>
-<li>max.in.flight.requests.per.connection=1<br>同一分区消息乱序：假设a,b两条消息，a先发送后由于发送失败重试，这时顺序就会在b的消息后面，可以设置<br>   <code>max.in.flight.requests.per.connection=1</code><br>来避免<br>max.in.flight.requests.per.connection：<br> 限制客户端在单个连接上能够发送的未响应请求的个数。设置此值是1表示kafka broker在响应请求之前client不能再向同一个broker发送请求，但吞吐量会下降  </li>
-</ol>
-<p><strong>异步生产者配置</strong>  </p>
-<ol>
-<li>queue.buffering.max.ms：生产者异步缓存数据的最大时间，单位毫秒  </li>
-<li>queue.buffering.max.messages：生产者异步缓存消息的最大容量</li>
-<li>queue.enqueue.timeout.ms：队列超时事件。0，如果队列满了就放弃；-ve，如果队列满了就会永远阻塞；+ve，如果队列满了会阻塞一段时间。</li>
-<li>batch.num.messages：生产者可以批量处理的消息数</li>
-</ol>
-<h3 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h3><ol>
-<li>auto.commit.enable = true<br>true时，Consumer会在消费消息后将offset同步到zookeeper，这样当Consumer失败后，新的consumer就能从zookeeper获取最新的offset<br>如果设为true，consumer会定时向ZooKeeper发送已经获取到的消息的offset。当consumer进程挂掉时，已经提交的offset可以继续使用，让新的consumer继续工作。  </li>
-<li><p>auto.commit.interval.ms = 60 * 1000<br>consumer向ZooKeeper发送offset的时间间隔。自动提交的时间间隔 interval(时间间隔)</p>
-</li>
-<li><p>rebalance.max.retries 默认值：4<br>当一个新的consumer加入一个consumer group时，会有一个rebalance的操作，导致每一个consumer和partition的关系重新分配。如果这个重分配失败的话，会进行重试，此配置就代表最大的重试次数。</p>
-</li>
-<li>rebalance.backoff.ms = 2000 默认值：2000<br>每次reblance的时间间隔</li>
-<li>refresh.leader.backoff.ms<br>在consumer发现失去某个partition的leader后，在leader选出来前的等待的backoff时间。</li>
-</ol>
-<h3 id="Consumer-Kafka消息消费一致性-重复-丢失-提交失败"><a href="#Consumer-Kafka消息消费一致性-重复-丢失-提交失败" class="headerlink" title="Consumer Kafka消息消费一致性(重复,丢失,提交失败)"></a>Consumer Kafka消息消费一致性(重复,丢失,提交失败)</h3><p>Kafka消费端的offset主要由consumer来控制, Kafka将每个consumer所监听的tocpic的partition的offset保存在__consumer_offsets主题中. consumer需要将处理完成的消息的offset提交到服务端, 主要有ConsumerCoordinator(协调者)完成的.  </p>
-<p><strong>自动提交</strong>:<br>每次从kafka拉取数据之前, 假如是异步提交offset, 会先调用已经完成的offset commit的callBack, 然后检查ConsumerCoordinator的连接状态. 如果设置了自动提交offset, 会继续上次从服务端获取的数据的offset异步提交到服务端. 这里需要注意的是会有几种情况出现:</p>
-<ol>
-<li>消息丢失<br>消息处理耗时较多, 假如处理单条消息的耗时为t, 拉取的消息个数为n. t * n &gt; auto_commit_interval_ms, 会导致没有处理完的消息的offset被commit到服务端. 假如此时消费端挂掉, 没有处理完的数据将会丢失.</li>
-<li>重复消费<br>假如消息处理完成, offset还未commit到服务端的时候<code>消费端挂掉</code>, 已经处理完的消息会被再次消费.<br>影响着数据一致性和性能<br>业务处理:<br> 去重：将消息的唯一标识保存到外部介质中，每次消费处理时判断是否处理过</li>
-<li><p>消息乱序:<br> retry造成的<br> max.in.flight.requests.per.connection = 1<br>  限制客户端在单个连接上能够发送的未响应请求的个数。设置此值是1表示kafka broker在响应请求之前client不能再向同一个broker发送请求<br>  (保证单个partition有序)    </p>
-</li>
-<li><p>enable.auto.commit 默认为true  </p>
-</li>
-<li>auto.commit.interval.ms 默认为5000 ms (5s)(间隔)  </li>
-<li>max.poll.records 默认为500  </li>
-<li>fetch.max.bytes 默认为52428800 bytes (50Mib). (取来)  </li>
-</ol>
-<p><strong><em>解决方案. </em></strong>  </p>
-<ol>
-<li><p>手动提交:<br>把enable.auto.commit设置为false,<br>并在每处理完一条数据后手动提交offset.<br>这里需要注意的是:<br>   提交的offset是对当前消息的offset基础上进行加1.  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">consumer.commitSync(Collections.singletonMap(<span class="keyword">new</span> TopicPartition(record.topic(), record.partition()), <span class="keyword">new</span> OffsetAndMetadata(record.offset() + <span class="number">1</span>)));</span><br></pre></td></tr></table></figure>
-<ul>
-<li>手动提交失败问题:</li>
-<li></li>
-</ul>
-</li>
-<li>新建线程处理消息  </li>
-</ol>
-<h3 id="kafka-partition和consumer数目关系"><a href="#kafka-partition和consumer数目关系" class="headerlink" title="kafka partition和consumer数目关系"></a>kafka partition和consumer数目关系</h3><p>  kafka的设计是在一个partition上是不允许并发<br>  partiton数目是consumer数目的整数倍<br>  kafka只保证在一个partition上数据是有序<br>  增减consumer，broker，partition会导致rebalance，所以rebalance后consumer对应的partition会发生变化  </p>
-<h3 id="kafka副本问题"><a href="#kafka副本问题" class="headerlink" title="kafka副本问题"></a>kafka副本问题</h3><ol>
-<li>发消息过程<br>Producer在发布消息到某个Partition时，先通过ZooKeeper找到该Partition的Leader，然后无论该Topic的Replication Factor为多少（也即该Partition有多少个Replica），Producer只将该消息发送到该Partition的Leader。Leader会将该消息写入其本地Log。每个Follower都从Leader pull数据。这种方式上，Follower存储的数据顺序与Leader保持一致.  </li>
-<li>Kafka分配Replica的算法<br> 将所有Broker（假设共n个Broker）和待分配的Partition排序.<br> 将第i个Partition分配到第（i mod n）个Broker上.<br> 将第i个Partition的第j个Replica分配到第（(i + j) mode n）个Broker上.  </li>
-</ol>
-<h3 id="zookeeper如何管理kafka"><a href="#zookeeper如何管理kafka" class="headerlink" title="zookeeper如何管理kafka"></a>zookeeper如何管理kafka</h3><p>  Producer端使用zookeeper用来”发现”broker列表,以及和Topic下每个partition leader建立socket连接并发送消息.<br>  Broker端使用zookeeper用来注册broker信息,以及监测partition leader存活性.<br>  Consumer端使用zookeeper用来注册consumer信息,其中包括consumer消费的partition列表等,同时也用来发现broker列表,并和partition leader建立socket连接,并获取消息.  </p>
-
-          
+          参考http://orchome.com
+component 组件
+topic topic 是在broker站点上新建的因此 无论生产端,消费端都没有配置的权利, 因此在项目中的关于topic配置,只是单纯的与broker站点上的配置相同,不起任何配置性作用. 项目中只能配置producer,cus
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/kafka-原理与源码分析/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -702,12 +652,16 @@
       
         
           
-            <h3 id="kafka-clients-与-kafka-2-10-的区别-Client-API-vs-Stream-API区别"><a href="#kafka-clients-与-kafka-2-10-的区别-Client-API-vs-Stream-API区别" class="headerlink" title="kafka-clients 与 kafka_2.10 的区别 / Client API vs Stream API区别"></a>kafka-clients 与 kafka_2.10 的区别 / Client API vs Stream API区别</h3><p><a href="http://zqhxuyuan.github.io/2016/02/20/Kafka-Consumer-New/" target="_blank" rel="noopener">http://zqhxuyuan.github.io/2016/02/20/Kafka-Consumer-New/</a>  </p>
-<p>推荐使用kafka-clients,scala实现的api被废弃掉了</p>
-<h4 id="kafka-clients-Client-API"><a href="#kafka-clients-Client-API" class="headerlink" title="kafka-clients  / Client API"></a>kafka-clients  / Client API</h4><p><a href="https://kafka.apache.org/documentation/#api" target="_blank" rel="noopener">https://kafka.apache.org/documentation/#api</a><br>  是使用纯java代码编写的kafka客户端<br>  缺少Stream API调用部分   </p>
-<h4 id="kafka-2-10-Stream-API-scala实现"><a href="#kafka-2-10-Stream-API-scala实现" class="headerlink" title="kafka_2.10 / Stream API(scala实现)"></a>kafka_2.10 / Stream API(scala实现)</h4><p><a href="https://kafka.apache.org/081/documentation.html#producerapi" target="_blank" rel="noopener">https://kafka.apache.org/081/documentation.html#producerapi</a><br>  传统的使用scala实现的客户端  </p>
-
-          
+          kafka-clients 与 kafka_2.10 的区别 / Client API vs Stream API区别http://zqhxuyuan.github.io/2016/02/20/Kafka-Consumer-New/  
+推荐使用kafka-clients,scala实现的api被废
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/kafka-使用/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -847,63 +801,33 @@
       
         
           
-            <h3 id="持续集成jenkins"><a href="#持续集成jenkins" class="headerlink" title="持续集成jenkins"></a>持续集成jenkins</h3><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol>
-<li><p>安装：  </p>
-<ol>
-<li>windows 安装文件  <ul>
-<li>解压，运行</li>
-</ul>
-</li>
-<li>下载war包,不用安装</li>
-</ol>
-</li>
-<li><p>运行：  </p>
-<ul>
-<li>cd jenkins.war目录  </li>
-<li>java -jar jenkins.war  </li>
-</ul>
-</li>
-<li><p>访问jenkins:</p>
-<ul>
-<li><a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a>   (默认端口可以更改)</li>
-</ul>
-</li>
-</ol>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>在系统管理中将jenkins添加到windows服务中才会有jenkins.xml文件<br>在/用户/user/.jenkins/下  </p>
-<ol start="4">
-<li><p>配置端口：<br>jenkins.xml配置  </p>
-</li>
-<li><p>配置系统变量</p>
-</li>
-<li><p>整合tomcat    </p>
-<ol>
-<li>添加插件deploy  <ul>
-<li>可能在线添加不了,需要下载下来插件  </li>
-<li>在添加到jenkins管理插件下  </li>
-</ul>
-</li>
-<li><p>配置tomcat-user.xml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">jenkins有权限操作tomcat</span><br><span class="line">	 &lt;role rolename=&quot;tomcat&quot;/&gt;</span><br><span class="line">		 &lt;role rolename=&quot;role1&quot;/&gt;</span><br><span class="line">			 &lt;role rolename=&quot;manager-script&quot;/&gt;</span><br><span class="line">		 &lt;role rolename=&quot;manager-gui&quot;/&gt;</span><br><span class="line">			 &lt;role rolename=&quot;manager-status&quot;/&gt; </span><br><span class="line">			 &lt;role rolename=&quot;admin-gui&quot;/&gt;</span><br><span class="line">			 &lt;role rolename=&quot;admin-script&quot;/&gt; </span><br><span class="line">			 &lt;user username=&quot;tomcat&quot; password=&quot;tomcat&quot; roles=&quot;manager-gui,manager-script,tomcat,admin-gui,admin-script&quot;/&gt;</span><br><span class="line">		 &lt;user username=&quot;both&quot; password=&quot;tomcat&quot; roles=&quot;tomcat,role1&quot;/&gt;</span><br><span class="line">			 &lt;user username=&quot;role1&quot; password=&quot;tomcat&quot; roles=&quot;role1&quot;/&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置context.xml<br> jenkins可以删除项目<br> <code>&lt;Context antiResourceLocking=&quot;true&quot;&gt;</code></p>
-</li>
-<li>配置catalita.bat 配置缓存  <ul>
-<li>报错 perGerm 问题</li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-<hr>
-<p><em>error</em> :  </p>
-<ul>
-<li><p>配置tomcat属性的时候<br>  <code>&lt;Context antiResourceLocking=&quot;true&quot;&gt;&lt;/Context&gt;</code><br>  可能对tomcat 虚拟路径下的文件上传之后的访问造成影响  </p>
-</li>
-<li><p>tomcat 锁文件问题:</p>
-</li>
-</ul>
+          持续集成jenkins安装
+安装：  
 
-          
+windows 安装文件  
+解压，运行
+
+
+下载war包,不用安装
+
+
+运行：  
+
+cd jenkins.war目录  
+java -jar jenkins.war  
+
+
+访问jenkins:
+
+http://localhost:8080   (默认端
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/jenkins/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1043,66 +967,19 @@
       
         
           
-            <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
-<li>参考:<br>  <a href="http://www.cnblogs.com/wuxun1997/p/6847950.html" target="_blank" rel="noopener">http://www.cnblogs.com/wuxun1997/p/6847950.html</a>  </li>
-<li>windows 需要文件<br>  <a href="https://github.com/steveloughran/winutils" target="_blank" rel="noopener">https://github.com/steveloughran/winutils</a><br>  替换bin下的文件,system32下放入hadoop.dll</li>
-</ul>
-<h3 id="hadoop-启动"><a href="#hadoop-启动" class="headerlink" title="hadoop 启动"></a>hadoop 启动</h3><ol>
-<li><p>先启动zookeeper</p>
-</li>
-<li><p>启动Hadoop集群需要启动HDFS集群和Map/Reduce集群。</p>
-<ol>
-<li><p>格式化一个新的分布式文件系统：(只能格式化一次,多次会造成put时sid错误.)  </p>
-<figure class="highlight plain"><figcaption><span>namenode -format ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2. 在分配的NameNode上，运行下面的命令启动HDFS：  </span><br><span class="line">  ```  sbin&gt;start-all.cmd</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>检验</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">* sbin&gt;jps</span><br><span class="line">     4944 DataNode</span><br><span class="line">     5860 NodeManager</span><br><span class="line">     3532 Jps</span><br><span class="line">     7852 NameNode</span><br><span class="line">     7932 ResourceManager</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-</ol>
-<ol start="3">
-<li>监听端口  <ul>
-<li><code>与外部程序交互端口</code><br><a href="http://localhost:9000/" target="_blank" rel="noopener">http://localhost:9000/</a> </li>
-<li>web 页面访问端口欧<br><a href="http://localhost:50070/" target="_blank" rel="noopener">http://localhost:50070/</a> <code>看hdfs文件</code><br><a href="http://localhost:8088" target="_blank" rel="noopener">http://localhost:8088</a> <code>mapreduce任务</code>  </li>
-</ul>
-</li>
-</ol>
-<h3 id="hadoop-shell"><a href="#hadoop-shell" class="headerlink" title="hadoop shell"></a>hadoop shell</h3><h4 id="put"><a href="#put" class="headerlink" title="put"></a>put</h4><p>使用方法：hadoop fs -put <localsrc> … <dst>  </dst></localsrc></p>
-<ul>
-<li>从本地文件系统中复制单个或多个源路径到目标文件系统。也支持从标准输入中读取输入写入目标文件系统。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">* hadoop fs -put localfile /user/hadoop/hadoopfile  </span><br><span class="line">* hadoop fs -put localfile1 localfile2  </span><br><span class="line"> /user/hadoop/hadoopdir  </span><br><span class="line">* hadoop fs -put localfile  </span><br><span class="line"> hdfs://host:port/hadoop/hadoopfile</span><br><span class="line">* hadoop fs -put - hdfs://host:port/hadoop/hadoopfile</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>从标准输入中读取输入。</p>
-<p>返回值：<br>成功返回0，失败返回-1。(我put的时候没有返回值?)    </p>
-<p>put 的hadoop 的位置的路径下没有其他文件或目录时,直接替换这个路径,而不是在这个路径下新建文集   </p>
-<h4 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h4><p>使用方法：hadoop fs -mkdir <paths>  </paths></p>
-<ul>
-<li><p>接受路径指定的uri作为参数，创建这些目录。其行为类似于Unix  mkdir -p，它会创建路径中的各级父目录。<br>示例：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* hadoop fs -mkdir /user/hadoop/dir1 /user/hadoop/dir2</span><br><span class="line">* hadoop fs -mkdir hdfs://host1:port1/user/hadoop/dir hdfs://host2:port2/user/hadoop/dir</span><br></pre></td></tr></table></figure>
-<p>返回值：<br>成功返回0，失败返回-1。</p>
-</li>
-</ul>
-<p>mkdir多路径的时候(/user/hadoop/dir1) 如果没有父路径则不会新建子目录,会报错</p>
-<h3 id="mapreduce-demo"><a href="#mapreduce-demo" class="headerlink" title="mapreduce demo"></a>mapreduce demo</h3><h4 id="运行hadoop官网给的demo-失败"><a href="#运行hadoop官网给的demo-失败" class="headerlink" title="运行hadoop官网给的demo (失败)"></a>运行hadoop官网给的demo (失败)</h4><pre><code>http://hadoop.apache.org/docs/r1.0.4/cn/mapred_tutorial.html  
-</code></pre><p>运行应用程序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; $ bin/hadoop jar /usr/joe/wordcount.jar org.myorg.WordCount /usr/joe/wordcount/input /usr/joe/wordcount/output</span><br></pre></td></tr></table></figure></p>
-<p>应该为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; hadoop jar D:\java\hadoop-2.8.1\sbin\hh\hadoop-test-1.0.0.jar hadoop.WordCount /usr/joe/wordcount/input /usr/joe/wordcount/output</span><br></pre></td></tr></table></figure></p>
-<p>不用加jar包名称</p>
-<p>运行失败 原因:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">8/01/25 18:41:16 INFO mapreduce.Job: Job job_1516876525498_0002 failed with state FAILED due to: Application application_1516876525498_0002 failed 2 times due to AM Container for appattempt_1516876525498_0002_000</span><br><span class="line">002 exited with  exitCode: 5</span><br><span class="line">Failing this attempt.Diagnostics: Exception from container-launch.</span><br><span class="line">Container id: container_1516876525498_0002_02_000001</span><br><span class="line">Exit code: 5</span><br><span class="line">Exception message: AssignProcessToJobObject error (5): ?????</span><br></pre></td></tr></table></figure></p>
-<p>未解决文档<br>    <a href="https://wiki.apache.org/hadoop/Hadoop2OnWindows" target="_blank" rel="noopener">https://wiki.apache.org/hadoop/Hadoop2OnWindows</a></p>
-<h4 id="运行成功-通过idea运行-成功-demo"><a href="#运行成功-通过idea运行-成功-demo" class="headerlink" title="运行成功 通过idea运行(成功) demo"></a>运行成功 通过idea运行(<code>成功</code>) demo</h4><p><a href="https://www.jianshu.com/p/3e1b398ebfea" target="_blank" rel="noopener">https://www.jianshu.com/p/3e1b398ebfea</a></p>
-<p>error:<br>  版本问题(版本低于hadoop环境)<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Server IPC version 9 cannot communicate with client version 4</span><br></pre></td></tr></table></figure></p>
-<p>8088 没有监控到运行?  </p>
-<ul>
-<li>idea 运行的程序都监测不到  </li>
-</ul>
-<h3 id="map-reduce-计算模型"><a href="#map-reduce-计算模型" class="headerlink" title="map reduce 计算模型"></a>map reduce 计算模型</h3><ul>
-<li>执行任务角色:<br>  jobTracker(跟踪器) 调度工作 <code>一个hadoop集群中只有一个</code><br>  taskTracker 执行工作</li>
-</ul>
-<hr>
-<h3 id="lang-comparable-可比较的"><a href="#lang-comparable-可比较的" class="headerlink" title="lang comparable 可比较的"></a>lang comparable 可比较的</h3><p>Comparable 是排序接口。<br>若一个类实现了Comparable接口，就意味着“该类支持排序”。<br> 即然实现Comparable接口的类支持排序，假设现在存在“实现Comparable接口的类的对象的List列表(或数组)”，则该List列表(或数组)可以通过   Collections.sort（或 Arrays.sort）进行排序。  </p>
+          安装
+参考:  http://www.cnblogs.com/wuxun1997/p/6847950.html  
+windows 需要文件  https://github.com/steveloughran/winutils  替换bin下的文件,system32下放入hadoop.dll
 
-          
+ha
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/hadoop-基础-安装启动-shell命令/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1220,8 +1097,15 @@
       
         
           
-            
           
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/struct/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1361,350 +1245,22 @@
       
         
           
-            <p><a href="http://staff.ustc.edu.cn/~lszhuang/alg/" target="_blank" rel="noopener">http://staff.ustc.edu.cn/~lszhuang/alg/</a>  </p>
-<h3 id="数据有两种搞的方式"><a href="#数据有两种搞的方式" class="headerlink" title="数据有两种搞的方式"></a>数据有两种搞的方式</h3><ul>
-<li>处理(计算)  </li>
-<li>存储<br>算法应该都是围绕这两方面搞的  </li>
-</ul>
-<h3 id="分析方法"><a href="#分析方法" class="headerlink" title="分析方法"></a>分析方法</h3><h3 id="增量法-穷举法-暴力搜寻法"><a href="#增量法-穷举法-暴力搜寻法" class="headerlink" title="增量法(穷举法) 暴力搜寻法"></a>增量法(穷举法) 暴力搜寻法</h3><ol>
-<li>暴力破解</li>
-<li>回溯法 <a href="https://zh.wikipedia.org/wiki/回溯法" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/回溯法</a><br>  对于某些计算问题而言，回溯法是一种可以找出所有（或一部分）解的一般性算法，尤其适用于约束满足问题（在解决约束满足问题时，我们逐步构造更多的候选解，并且在确定某一部分候选解不可能补全成正确解之后放弃继续搜索这个部分候选解本身及其可以拓展出的子候选解，转而测试其他的部分候选解）。</li>
-</ol>
-<h3 id="分治法"><a href="#分治法" class="headerlink" title="分治法"></a>分治法</h3><pre><code>步骤: 分解,解决,合并  
-code: 递归式  
-实现: 分治是把数组按元素分成最小份,切割原有样本  
-在每一层递归上都有三个步骤：  
-    分解：将原问题分解为若干个规模较小，相对独立，与原问题形式相同的子问题。  
-    解决：若子问题规模较小且易于解决时，则直接解。否则，递归地解决各子问题。  
-    合并：将各子问题的解合并为原问题的解。  
-        一般需要辅助数组,层层合并  
-归并排序  
-快速排序  
-</code></pre><h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><pre><code>https://zh.wikipedia.org/wiki/动态规划  
-- 动态规划在查找有很多重叠子问题的情况的最优解时有效。它将问题重新组合成子问题。为了避免多次解决这些子问题，它们的结果都逐渐被计算并被保存，从简单的问题直到整个问题都被解决。因此，动态规划保存递归时的结果，因而不会在解决同样的问题时花费时间。  
-`动态规划只能应用于有最优子结构的问题`。最优子结构的意思是局部最优解能决定全局最优解（对有些问题这个要求并不能完全满足，故有时需要引入一定的近似）。简单地说，问题能够分解成子问题来解决。
-- `NP`  
-非定常多项式（英语：non-deterministic polynomial，缩写：NP）时间复杂性类，或称非确定性多项式时间复杂性类，包含了可以在多项式时间内，对一个判定性算法问题的实例，一个给定的解是否正确的算法问题。  
-- `复杂性类`  
-将计算问题按照在不同计算模型下所需资源的不同予以分类，从而得到一个对算法问题“难度”的类别，就是复杂性理论中复杂性类概念的来源。例如一个问题如果在确定性图灵机上所需时间不会超过一个确定的多项式（以输入的长度为多项式的不定元），那么我们称这类问题的集合为P（polynomial time Turing machine）。而将前述定义中的“确定性图灵机”改为“不确定性图灵机”，那么所得到的问题集合为NP（non-deteministic polynomial time Turing machine）。类似的，设 {\displaystyle n} n为输入的长度，那我们可以定义“在确定性图灵机上所需空间不超 {\displaystyle O(\log n)} O(\log n)的算法问题的集合”（即为 {\displaystyle L} L），“存在深度为 {\displaystyle O(\log n)} O(\log n)，输入的度（fan-in）为 {\displaystyle O(1)} O(1)的电路族（circuit family）的算法问题的集合”（即为NC1）等等复杂性类。  
-NP困难问题和NP完全问题[编辑]  
-要理解这几个概念，首先要明白几件事：  
-对于NP问题是否存在确定的多项式时间的解，目前还不清楚（即有可能有一天可以证明NP问题=P问题，但目前还证明不出来、也不能证明NP问题≠P问题，目前的结论只是NP问题集⊇P问题集  
-问题之间可以规约，即如果某个NP问题存在确定的多项式时间解，那么另一个NP问题也存在确定的多项式时间解。这个过程是可以证明的、并且已经被证明。  
-- NP困难问题（NP-hard problems）  
-是指这样的一类问题，它们本身的复杂度是多少无所谓（但由后面的论述可知至少是NP），但是只要这个问题找到确定的多项式时间的解，那么我们可以证明出所有的NP问题都一定存在确定的多项式时间的解。（简单叙述一下就是，只要有一个NP困难问题找到P解，那么所有NP问题都是P问题）  
-- NP完全问题（NP-complete problems）  
-如果一个问题既是NP困难问题又是NP问题，我们称之为NP完全问题。  
-- `NPC`  
-https://zh.wikipedia.org/wiki/NP完全   
-可归约在此意指对每个问题L，总有一个多项式时间多对一变换，即一个决定性的算法可以将实例l ∈ L转化成实例c ∈ C，并让c回答Yes当且仅当此答案对l也是Yes。为了证明某个NP问题A实际上是NPC问题，证明者必须找出一个已知的NPC问题可以变换成A。  
-  -  布尔可满足性问题  
-  -  N-puzzle问题（华容道问题）  
-  -  背包问题  
-  -  汉弥尔顿循环问题  
-  -  旅行推销员问题  
-  -  子图同构问题：（Subgraph isomorphism problem）  
-  -  子集合加总问题  
-  -  分团问题  
-  -  顶点涵盖问题  
-  -  独立顶点集问题：（Independent set problem）  
-  -  图着色问题  
-  -  扫雷[2]  
+          http://staff.ustc.edu.cn/~lszhuang/alg/  
+数据有两种搞的方式
+处理(计算)  
+存储算法应该都是围绕这两方面搞的  
 
-返回最大连续子数组和  
-返回不含重复最大子字符串  
-    转化成一个循环内的临时最大值currSum(局部最优解),  
-    与所有的最大值maxSum比较问题  
-
-寻找最小的f个数  
-    转化成内部f个数的排序  
-
-返回所有和等于sum的组合  
-    转化成包含,不包含问题  
-</code></pre><h3 id="贪心法"><a href="#贪心法" class="headerlink" title="贪心法"></a>贪心法</h3><ul>
-<li>贪心法是一种在每一步选择中都采取在当前状态下最好或最优（即最有利）的选择，从而希望导致结果是最好或最优的算法。  </li>
-<li>贪心算法与动态规划的不同在于它对每个子问题的解决方案都做出选择，不能回退。动态规划则会保存以前的运算结果，并根据以前的结果对当前进行选择，有回退功能。</li>
-</ul>
-<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><ul>
-<li>是一种存储和组织数据的方式,旨在便于访问和修改</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/22/mvn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="落叶">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大东山下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/22/mvn/" itemprop="url">maven</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-22T00:00:00+08:00">
-                2017-03-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/maven/" itemprop="url" rel="index">
-                    <span itemprop="name">maven</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>maven简介：  </li>
-<li>settings.xml ,pom.xml  </li>
-<li>demo  </li>
-<li>mvn error  </li>
-<li>安装，配置  </li>
-<li>引用框架包配置(<a href="http://mvnrepository.com" target="_blank" rel="noopener">http://mvnrepository.com</a>)  </li>
-<li>配置mirrors ，repository  </li>
-<li>解决Eclipse建立Maven项目后无法建立src/main/java资源文件夹的办法  </li>
-<li>mvn 命令  </li>
-<li>mvn commond build webapp java web project  </li>
-<li>nux Nexus  </li>
-<li>eclipse maven plugin  </li>
-<li>mvn spring   </li>
-<li>mvn update  </li>
-<li>eclipse create mvn project  </li>
-<li>mvn 引用不到链接sqllserver的jar包  </li>
-</ol>
-<hr>
-<p>远程中央仓库的地址为<br><a href="http://repo1.maven.org/" target="_blank" rel="noopener">http://repo1.maven.org/</a><br><a href="http://search.maven.org" target="_blank" rel="noopener">http://search.maven.org</a><br><a href="http://maven.oschina.net/home.html" target="_blank" rel="noopener">http://maven.oschina.net/home.html</a><br><a href="http://mvnrepository.com/" target="_blank" rel="noopener">http://mvnrepository.com/</a>  是mvn官方仓库  </p>
-<h3 id="maven简介："><a href="#maven简介：" class="headerlink" title="maven简介："></a>maven简介：</h3><p>作用：<br>用来帮助实现项目的构建、测试、打包和部署  </p>
-<p>原理：<br>Maven是基于项目对象模型(POM)，<br>可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。<br>可以多个项目中共享JAR  </p>
-<p>生命周期:<br>当你运行 mvn install 的时候被调用。<br>这条命令告诉 Maven 执行一系列的有序的步骤，<br>直到到达你指定的生命周期。遍历生命周期旅途中的一个影响就是，<br>Maven 运行了许多默认的插件目标，这些目标完成了像编译和创建一个 JAR 文件这样的工作。<br>此外，Maven能够很方便的帮你管理项目报告，生成站点，管理JAR文件，等等。  </p>
-<p>优点：<br>在Java项目中,每个项目都有很多依赖的Jar包,<br>我们一般都放在自己项目的lib目录中,<br>这样就会导致同样的Jar包在各个不同的项目中重复出现，<br>时间长了将会浪费很大的硬盘空间。使用Maven对项目进行管理就可以解决以上问题。  </p>
-<p>Maven执行原理：<br>依赖和项目构建的输出都可以由 Maven 的坐标进行唯一的区分，<br>基于这种机制，Maven 将所有项目的构件文件放置在一个统一的位置，<br>也就是 Maven 仓库。<br>所有 Maven 项目可以从同一个 Maven 仓库中获取自己所需要的依赖 JAR，<br>这节省了磁盘资源。实际的 Maven 项目中不需要存储依赖的文件，<br>只需要在 POM 文件中生成依赖关系，在构建的时候 Maven 就会自动去仓库中下载。  </p>
-<p>依靠包查询：<br>我们项目中依赖的 Jar 包可以通过依赖的方式引入<br>maven是单独管理一个项目。的jar包位置，组织形式的。<br>在安装了 Maven 的机器上，会生成一个 ~.m2\repository 目录，<br>这个目录被称为本地仓库，当 Maven 查找需要的依赖时，首先会在本地查找，<br>如果本地仓库中存在，则直接使用，否则 Maven 回去远程仓库查找，<br>查找到后下载到本地进行使用。  </p>
-<h3 id="settings-xml-pom-xml"><a href="#settings-xml-pom-xml" class="headerlink" title="settings.xml ,pom.xml"></a>settings.xml ,pom.xml</h3><p>配置文件作用域：<br>conf/settings.xml  </p>
-<p>修改maven本地仓库的位置：<br>apache-maven-3.1.2/conf/setting.xml  </p>
-<p><localrepository>d:maven2</localrepository><br>当修改过后，不会自动新建/.m2文件  </p>
-<p>settings.xml对于maven来说相当于全局性的配置，用于所有的项目<br>加载的方向正好相反，下级影响上级  </p>
-<p>pom.xml节点的说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;project&gt;　　　　　　pom文件的顶级节点  </span><br><span class="line">　　　　&lt;modelVersion&gt;　　　object model版本，对Maven2和Maven3来说，只能是4.0.0　  </span><br><span class="line">　　　　&lt;groupId&gt;　　　　　　项目创建组织的标识符，一般是域名的倒写  </span><br><span class="line">　　　　&lt;artifactId&gt;　　　　定义了项目在所属组织的标识符下的唯一标识，一个组织下可以有多个项目  </span><br><span class="line">　　　　&lt;packaging&gt;　　　　  打包的方式，有jar、war、ear等  </span><br><span class="line">　　　　&lt;version&gt;　　　　　  当前项目的版本，SNAPSHOT，表示是快照版本，在开发中  </span><br><span class="line">  　　　&lt;name&gt;　　　　　　　 项目的名称  </span><br><span class="line">　　　　&lt;url&gt;　　　　　　　　项目的地址  </span><br><span class="line">　　　　&lt;dependencies&gt;　　 构建项目依赖的jar  </span><br><span class="line">　　　　&lt;description&gt;　　　　项目的描述  </span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">### demo  </span><br><span class="line">  </span><br><span class="line">mvn dependency search查询位置  </span><br><span class="line">  </span><br><span class="line">1. mvn archetype:generate -DarchetypeCatalog=internal  </span><br><span class="line">  或mvn archetype:generate（简单）  </span><br><span class="line">  </span><br><span class="line">2. mvn eclipse:eclipse 在eclipse工作目录下运行  </span><br><span class="line">3. mvn tomcat:run  </span><br><span class="line">4. 指定eclipse中的maven的本地仓库地址,运行命令:   </span><br><span class="line">mvn  -Declipse.workspace= &lt;eclipse   workspace路径&gt;   eclipse:add-maven-repo   </span><br><span class="line">  </span><br><span class="line">创建依赖  </span><br><span class="line">```xml</span><br><span class="line">&lt;dependency&gt;  </span><br><span class="line">   &lt;groupId&gt;javax.servlet&lt;/groupId&gt;  </span><br><span class="line">   &lt;artifactId&gt;servlet-api&lt;/artifactId&gt;  </span><br><span class="line">   &lt;version&gt;2.5&lt;/version&gt;  </span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
-<p><a href="http://www.jarvana.com/jarvana/" target="_blank" rel="noopener">http://www.jarvana.com/jarvana/</a>   </p>
-<h3 id="mvn-error"><a href="#mvn-error" class="headerlink" title="mvn error"></a>mvn error</h3><ol>
-<li><p>出现创建不了mvn project<br>错误：can mot resolve archetype<br>windows - preference - maven -archetype<br>add remote catalog<br><a href="http://repo1.maven.org/maven2/archetype-catalog.xml" target="_blank" rel="noopener">http://repo1.maven.org/maven2/archetype-catalog.xml</a>  </p>
-</li>
-<li><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span>  </span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span>  </span></span><br><span class="line"><span class="tag"><span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0   </span></span></span><br><span class="line"><span class="tag"><span class="string">http://maven.apache.org/maven-v4_0_0.xsd"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>报错：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Description Resource Path Location Type   </span><br><span class="line">Could not calculate build plan:   </span><br><span class="line">Failure to transfer org.apache.maven.plugins:maven-war-plugin:pom:<span class="number">2.1</span>.1 from   </span><br><span class="line">http:<span class="comment">//repo1.maven.org/maven2 was cached in the local repository,  </span></span><br><span class="line">resolution will not be reattempted until the update interval  </span><br><span class="line">of central has elapsed or updates are forced. Original error:  </span><br><span class="line">Could not transfer artifact org.apache.maven.plugins:maven-war-plugin:pom:<span class="number">2.1</span>.1   </span><br><span class="line">from/<span class="function">to <span class="title">central</span> <span class="params">(http://repo1.maven.org/maven2)</span>: ConnectException  </span></span><br><span class="line"><span class="function">first-maven Unknown	Maven Problem</span></span><br></pre></td></tr></table></figure></p>
-<p>解决：<br>应该是连不上<a href="http://repo1.maven.org/maven2" target="_blank" rel="noopener">http://repo1.maven.org/maven2</a><br>这个仓库，在pom.xml文件加一下下面的配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span>    </span><br><span class="line">      <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span>    </span><br><span class="line">      <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span>    </span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span>    </span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>Maven Repository Switchboard<span class="tag">&lt;/<span class="name">name</span>&gt;</span>    </span><br><span class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo2.maven.org/maven2<span class="tag">&lt;/<span class="name">url</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<ol start="3">
-<li><p>分析：<br>./m2/settings 影响默认conf/settiongs的配置<br>java.lang.ClassNotFoundException: org.springframework.web.context.ContextLoaderListener  </p>
-</li>
-<li><p>Failed to execute goal   org.apache.maven.plugins:maven-archetype-plugin错误解决方法<br>解决方法：将命令中的create改为generate：<br>mvn archetype:generate -DgroupId=com.tutorialspoint.test<br>-DartifactId=helloworld -DarchetypeArtifactId=maven-archetype-webapp  </p>
-</li>
-<li><p>Java compiler level does not match the version of the installed<br>Java project facet.SSJ UnknownFaceted Project Problem (Java Version Mismatch)<br>properties-&gt; java complier -&gt; 改成与版本相同的jre  </p>
-</li>
-</ol>
-<h3 id="安装，配置"><a href="#安装，配置" class="headerlink" title="安装，配置"></a>安装，配置</h3><p>1） 解压maven压缩包<br>2） 配置环境变量，添加%MAVEN_HOME%,path中添加%MAVEN_HOME%\bin<br>3） 测试安装是否成功，mvn -v<br>4） 安装eclipse的插件<br>5） eclipse创建maven项目<br>6） eclipse添加maven的配置<br>        进入MyEclipse→window→Preferences→<br>    Maven4MyEclipse→Maven→Installations→User Sittings<br>        点击右侧Browse指向%MAVEN_HOME%\conf\settings.xml<br>7）  </p>
-<h3 id="引用包配置-http-mvnrepository-com"><a href="#引用包配置-http-mvnrepository-com" class="headerlink" title="引用包配置(http://mvnrepository.com)"></a>引用包配置(<a href="http://mvnrepository.com" target="_blank" rel="noopener">http://mvnrepository.com</a>)</h3><p>搜索结果<br>   引用spring mvc<br>   Spring Web MVC  </p>
-<p>   引用hibernate<br>   Hibernate Core Aggregator   </p>
-<p>   引用struts<br>   struts 2<br>   struts-core   </p>
-<h3 id="配置mirrors-，repository"><a href="#配置mirrors-，repository" class="headerlink" title="配置mirrors ，repository"></a>配置mirrors ，repository</h3><p>  覆盖中央仓库的默认地址，<br>  那么这里我们就会使用的镜像了，在setting.xml里面配置<br>  <code>&lt;mirrorOf&gt;</code>,表示只为central仓库做镜像，<br>  如果想为所有的仓库做镜像那么可以改为： <code>&lt;mirrorOf&gt;*&lt;/mirrorOf&gt;</code><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">mirrors</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span>  </span><br><span class="line">	<span class="tag">&lt;<span class="name">id</span>&gt;</span>repo1<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>repo1<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </span><br><span class="line">	<span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo1.maven.org/maven2/spring/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </span><br><span class="line">	<span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>    <span class="comment">&lt;!--表明为central中央仓库配置镜像仓库--&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">profiles</span>&gt;</span>   </span><br><span class="line">    </span><br><span class="line">	<span class="tag">&lt;<span class="name">profile</span>&gt;</span>  </span><br><span class="line">	  <span class="tag">&lt;<span class="name">id</span>&gt;</span>repo<span class="tag">&lt;/<span class="name">id</span>&gt;</span>    </span><br><span class="line">	  <span class="tag">&lt;<span class="name">repositories</span>&gt;</span>  </span><br><span class="line">		   <span class="tag">&lt;<span class="name">repository</span>&gt;</span>    </span><br><span class="line">			  <span class="tag">&lt;<span class="name">id</span>&gt;</span>com.springsource.repository.maven.release<span class="tag">&lt;/<span class="name">id</span>&gt;</span>    </span><br><span class="line">			  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.springframework.org/release/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>    </span><br><span class="line">			  <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span>    </span><br><span class="line">		   <span class="tag">&lt;/<span class="name">repository</span>&gt;</span>   </span><br><span class="line">	  <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;/<span class="name">profile</span>&gt;</span>  </span><br><span class="line"> </span><br><span class="line"> <span class="tag">&lt;/<span class="name">profiles</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">activeProfiles</span>&gt;</span>    </span><br><span class="line"> <span class="tag">&lt;<span class="name">activeProfile</span>&gt;</span>repo<span class="tag">&lt;/<span class="name">activeProfile</span>&gt;</span>  	  </span><br><span class="line"> <span class="tag">&lt;/<span class="name">activeProfiles</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="解决Eclipse建立Maven项目后无法建立src-main-java资源文件夹的办法"><a href="#解决Eclipse建立Maven项目后无法建立src-main-java资源文件夹的办法" class="headerlink" title="解决Eclipse建立Maven项目后无法建立src/main/java资源文件夹的办法"></a>解决Eclipse建立Maven项目后无法建立src/main/java资源文件夹的办法</h3><p>在项目上右键选择properties，<br>然后点击java build path，在Librarys下，<br>编辑JRE System Library，<br>选择workspace default jre就可以了。  </p>
-<h3 id="mvn-命令"><a href="#mvn-命令" class="headerlink" title="mvn 命令"></a>mvn 命令</h3><p>运行mvn command 必须在有pom.xml文件的父文件夹  </p>
-<p>生成清除Eclipse项目结构：<br>mvn eclipse:eclipse<br>mvn eclipse:clean  </p>
-<p>编译项目到target、安装项目到.m2文件夹下的资源库中<br>mvn install  </p>
-<p>清理（删除target目录下编译内容）<br>mvn clean  </p>
-<p>仅打包Web页面文件<br>mvn war:exploded  </p>
-<p>编译项目<br>mvn compile  </p>
-<p>打包发布<br>mvn package  </p>
-<p>打包时跳过测试<br>mvn package -Dmaven.test.skip=ture  </p>
-<p>编译源代码： mvn compile<br>编译测试代码：mvn test-compile<br>运行测试：mvn test    </p>
-<p>安装第三方包<br>经常有第三方包，因为一些原因，在网上repository上没有，需要自己动手安装。<br>比如sun某些版本的jar文件，比如oracle的驱动。<br>已oracle驱动程序为例，比如驱动路径为c:/driver/ojdbc14.jar，<br>是10.2.0.3.0版本<br>在该网址能够查到：<br><a href="http://www.mvnrepository.com/artifact/com.oracle/ojdbc14" target="_blank" rel="noopener">http://www.mvnrepository.com/artifact/com.oracle/ojdbc14</a><br>artifactId和groupId。<br>mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.3.0 -Dpackaging=jar -Dfile=c:/driver/ojdbc14.jar<br>这样就可以在pom中依赖引用了：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.oracle<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ojdbc14<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>10.2.0.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="mvn-commond-build-java-web-project"><a href="#mvn-commond-build-java-web-project" class="headerlink" title="mvn commond build  java web project"></a>mvn commond build  java web project</h3><p>z.    zero<br>    error:        当使用maven-3.1.0时报引用包错误。找不到xxx-2.0.6<br>    selution:    更换3.2.6就可以了，它引用2.1.0 plugin包  </p>
-<p>a. 创建：<br>    mvn archetype:create -DgroupId=com.learn -DartifactId=LearnNew -DarchetypeArtifactId=maven-archetype-webapp<br>    error:        [ERROR] Failed to execute goal org.apache.maven.plugins:maven-archetype-plugin:2<br>            .4:create (default-cli) on project standalone-pom: Unable to parse configuration<br>    solution:    可以将 create 换成 generate  </p>
-<p>b.    生成elipse项目<br>    mvn eclipse:eclipse<br>    待解决：<br>    error :        缺包<br>                Failed to execute goalk org.apache.maven.plugins:maven-eclipse-plugin:2.1.0<br>    solution:    手动添加jar包到本地仓库<br>    mvn install:install-file -Dfile=jar包的位置 -DgroupId=groupId -DartifactId=artifactId -Dversion=version -Dpackaging=jar  </p>
-<p>c.    eclipse 添加maven生成的工程<br>    export-&gt; exists maven project<br>    导入后自动生成 .classpath  .project<br>    但是不能mvn configration file 会报找不到文件错误  </p>
-<pre><code>也可以在myeclipse中创建文件  
-</code></pre><p>d. 运行：<br>    Run -&gt; mvn install -&gt; run as java application<br>    没有mvn intall则找不到.class类文件<br>    mvn install 是将你打好的jar包安装到你的本地库中，一般没有设置过是在 用户目录下的 .m2\下面。<br>    mvn package 只是将你的代码打包到输出目录，一般的是 target下面  </p>
-<p>e. 作为web项目运行<br>   增加MyEclipse的Web Project功能<br>   选择工程–&gt;MyEclipse–&gt;Project Capabilities–&gt;Add Web Project Capabilites，<br>   弹出窗口中设置参数如下，再接下来的弹出窗口中选择yes。<br>   这样我们的工程就是web工程了(注意工程图标有变化，而且MyEclipse自动依赖了JEE的包)。  </p>
-<p>f. 修改根路径名<br>   Myeclipse–&gt;Web<br>   这一个是用来修改设置工程的web特性  </p>
-<p>g. 当页面还是报404 的时候可能是myeclipse的tomcat缓存<br>    删除tomcat路径下的项目，就可以了  </p>
-<h3 id="Nexus"><a href="#Nexus" class="headerlink" title="Nexus"></a>Nexus</h3><p>Synatype Nexus  </p>
-<p>maven 配置依赖nexus<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span>  </span><br><span class="line">	 <span class="tag">&lt;<span class="name">repository</span>&gt;</span>  </span><br><span class="line">		 <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </span><br><span class="line">		 <span class="tag">&lt;<span class="name">name</span>&gt;</span>Team Nexus Repository<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </span><br><span class="line">		 <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://localhost:8081/nexus/content/groups/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </span><br><span class="line">	 <span class="tag">&lt;/<span class="name">repository</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span>  </span><br><span class="line">	 <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span>  </span><br><span class="line">		 <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </span><br><span class="line">		 <span class="tag">&lt;<span class="name">name</span>&gt;</span>Team Nexus Repository<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </span><br><span class="line">		 <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://localhost:8081/nexus/content/groups/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </span><br><span class="line">	 <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="eclipse-maven-plugin"><a href="#eclipse-maven-plugin" class="headerlink" title="eclipse maven plugin"></a>eclipse maven plugin</h3><pre><code>1）下载eclipse maven plugin插件  
-2）在eclipse安装文件夹下创建links文件夹  
-        新建maven.link文件：  
-        内容为：path=D:/java/eclipse/myplugins/maven  
-
-3）在eclipse安装文件夹下创建myplugins文件  
-        将maven插件解压到当前文件夹下  
-
-4）重启eclipse  
-5）配置eclipse maven plugin   
-</code></pre><h3 id="mvn-spring"><a href="#mvn-spring" class="headerlink" title="mvn spring"></a>mvn spring</h3><p>.classpath<br>    error:<br>       mvn java.lang.ClassNotFoundException: org.springframework.web.context.<br>                  ContextLoaderListener<br>        根本原因是eclipse只是添加了类的引用  </p>
-<pre><code>1. solution:  
-
-项目根目录下的.classpath,找到  
-    &lt;classpathentry kind=&quot;con&quot; path=&quot;org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER&quot;/&gt;  
-
-    替换为:  
-    &lt;classpathentry kind=&quot;con&quot; path=&quot;org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER&quot;&gt;  
-         &lt;attributes&gt;  
-             &lt;attribute name=&quot;org.eclipse.jst.component.dependency&quot; value=&quot;/WEB-INF/lib&quot;/&gt;  
-         &lt;/attributes&gt;  
-    &lt;/classpathentry&gt;  
-2.   
-    1.右键点击项目--选择Properties选择Deployment（部署） Assembly（程序集）,  
-    在右边点击Add按钮，在弹出的窗口中选择Java Build Path Entries  
-    2.点击Next，选择Maven Dependencies  
-    3.点击Finish，然后可以看到已经把Maven Dependencies添加到Web应用结构中了  
-</code></pre><p>添加maven库包的引用  </p>
-<pre><code>&lt;classpathentry kind=&quot;con&quot; path=&quot;org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER&quot;/&gt;  
-</code></pre><h3 id="mvn-update"><a href="#mvn-update" class="headerlink" title="mvn update"></a>mvn update</h3><pre><code>1.在eclipse中对项目右键点击 maven --&gt; update dependencies,这样对maven库进行更新。  
-
-2.update Project Configration 会根据maven默认的设置改变项目的配置文件   
-    例：可以改变.classpath文件  
-    （不要轻易使用）  
-</code></pre><h3 id="eclipse-create-mvn-project"><a href="#eclipse-create-mvn-project" class="headerlink" title="eclipse create mvn project"></a>eclipse create mvn project</h3><ol>
-<li>new-&gt;mvn project  </li>
-<li><p>生成web项目 properties-&gt;project facets-&gt;Dynamic Web Module<br>注意添加的web文件的位置  </p>
-</li>
-<li><p>配置build path 新建java ，配置编译文件位置,<br>配置java版本  </p>
-</li>
-<li><p>配置maven引用包编译位置 deployment assembly -&gt;add -&gt; java build enties path  </p>
-</li>
-<li><p>添加tomcat lib jar  </p>
-</li>
-<li><p>创建：<br>mvn archetype:create -DgroupId=com.learn -DartifactId=LearnNew -DarchetypeArtifactId=maven-archetype-webapp<br>若是缺少maven-archetype-plugin:2.4:create 则将create变成generate   </p>
-</li>
-</ol>
-<h3 id="mvn-引用不到链接sqllserver的jar包"><a href="#mvn-引用不到链接sqllserver的jar包" class="headerlink" title="mvn 引用不到链接sqllserver的jar包"></a>mvn 引用不到链接sqllserver的jar包</h3><pre><code>Missing artifact com.microsoft.sqlserver:sqljdbc4:jar:4.0  
-</code></pre><ol>
-<li><p>在这个网站下载jdbc驱动包<br> <a href="https://www.microsoft.com/en-us/download/details.aspx?id=11774" target="_blank" rel="noopener">https://www.microsoft.com/en-us/download/details.aspx?id=11774</a>  </p>
-</li>
-<li><p>手动添加sqlserver jdbc驱动包到mvn仓库中。<br>cd到jar包的路径下  </p>
-<pre><code>mvn install:install-file -Dfile=sqljdbc4.jar -DgroupId=com.microsoft.sqlserver -DartifactId=sqljdbc4 -Dversion=4.0 -Dpackaging=jar
-</code></pre></li>
-</ol>
-<h3 id="新建maven多子项目，想要添加的子项目不在父项目下-与父项目并行"><a href="#新建maven多子项目，想要添加的子项目不在父项目下-与父项目并行" class="headerlink" title="新建maven多子项目，想要添加的子项目不在父项目下(与父项目并行)"></a>新建maven多子项目，想要添加的子项目不在父项目下(与父项目并行)</h3><ol>
-<li>file–&gt;import–&gt;General–&gt;Existing Project into Workspace</li>
-<li>删除掉父项目下的文件夹即可</li>
-</ol>
-
-          
+分析方法增量法(穷举法) 暴力搜寻法
+暴力破解
+回溯法 https://zh.wikipedia.org/wiki/回溯法  对于某些计算
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/algorithm-算法原理,种类,应用分析/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1844,63 +1400,17 @@ https://zh.wikipedia.org/wiki/NP完全
       
         
           
-            <h3 id="strom-安装"><a href="#strom-安装" class="headerlink" title="strom 安装"></a>strom 安装</h3><ol>
-<li><p>安装python<br>这是为了测试安装效果，我们将部署 storm-starter project案例中word coun程序，<br>用的是python写的multi-lang bolt，使用python 2.7.6，  </p>
-<p>安装路径在：<br>   C:\Python27\<br>python好像安装的时候自动就配置了环境变量<br>这个我也不知道为什么要安装，网上教程安装，我也安装了，不过没有测试是否有用     </p>
-</li>
-<li><p>安装并运行zookeeper  </p>
-<p>地址：   </p>
-<blockquote>
-<p><a href="http://zookeeper.apache.org/doc/r3.3.6/zookeeperStarted.html#sc_Download" target="_blank" rel="noopener">http://zookeeper.apache.org/doc/r3.3.6/zookeeperStarted.html#sc_Download</a>  </p>
-</blockquote>
-<p>配置：  </p>
-<blockquote>
-<p>cd zookeeper-3.3.6<br>copy conf\zoo_sample.cfg conf\zoo.cfg<br>.\bin\zkServer.cmd  (启动zookeeper服务)</p>
-</blockquote>
-</li>
-<li><p>安装storm  </p>
-<p>Storm的windows官方版还没有释放，因此网上找了一些个人做的安装包。<br>windows运行版本：  <a href="https://dl.dropboxusercontent.com/s/iglqz73chkul1tu/storm-0.9.1-incubating-SNAPSHOT-12182013.zip" target="_blank" rel="noopener">https://dl.dropboxusercontent.com/s/iglqz73chkul1tu/storm-0.9.1-incubating-SNAPSHOT-12182013.zip</a>  </p>
-<p>source版本：   <a href="https://github.com/ptgoetz/storm/tree/windows-test" target="_blank" rel="noopener">https://github.com/ptgoetz/storm/tree/windows-test</a>   </p>
-</li>
-<li><p>配置storm环境变量<br>   <code>STORM_HOME：D:\java\storm\storm-0.9.1</code><br>   在path中加入： </p>
-<pre><code>`%STORM_HOME%\bin;C:\Python27;C:\Python27\Lib\site-packages\;C:\Python27\Scripts\`  
-</code></pre></li>
-<li><p>启动Storm<br> storm好像是由这三部分组成的，因此需要分别启动storm的三个组件<br> 启动Nimbus<br>  <code>cd %STORM_HOME%  &gt; storm nimbus</code></p>
-<p> 启动Supervisor<br>   <code>cd %STORM_HOME%  &gt; storm supervisor</code></p>
-<p> 启动Storm UI<br>   <code>cd %STORM_HOME%  &gt; storm ui</code></p>
-<p> 验证启动成功：  </p>
-<ul>
-<li>浏览器打开<a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080/</a> 可看到Storm运行。  </li>
-<li>问题：storm ui运行在jetty中第一次启动可能看到jetty页面，刷新一次就好了  </li>
-</ul>
-</li>
-<li><p>部署work count<br> 网上文档给的，不知道是什么  </p>
-<p> 下载地址：<br> <a href="https://dl.dropboxusercontent.com/s/kc933u6vz2crqkb/storm-starter-0.0.1-SNAPSHOTjar-with-dependencies.jar" target="_blank" rel="noopener">https://dl.dropboxusercontent.com/s/kc933u6vz2crqkb/storm-starter-0.0.1-SNAPSHOTjar-with-dependencies.jar</a>   </p>
-<p> 部署这个jar在本地：  </p>
-<blockquote>
-<p>storm jar storm-starter-0.0.1-SNAPSHOT-jar-with-dependencies.jar storm.starter.WordCountTopology WordCount -c nimbus.host=localhost</p>
-</blockquote>
-<pre><code>验证：  
-刷新 Storm UI页面，会看到 “WordCount” topology显示列出，点按链接确认它处理数据。
-</code></pre></li>
-</ol>
-<h3 id="storm-java-链接"><a href="#storm-java-链接" class="headerlink" title="storm java 链接"></a>storm java 链接</h3><p>代码：<br><a href="https://github.com/tonghuajianghan/storm-test/" target="_blank" rel="noopener">https://github.com/tonghuajianghan/storm-test/</a></p>
-<pre><code>error1:
-    java.net.SocketException: Address family not supported by protocol family: connect
-
-    解决方法：
-    ping localhost，如果没有正确回应把hosts文件配置一下试试！  
-    运行main class的时候添加“-Djava.net.preferIPv4Stack=true”参数试试！
-
-error2:  
-    在windows下运行ExclamationTopology或者WordCountTopology时，
-    报“Unable to delete file错误”  
-
-    解决方法：
-    这是storm的一个bug，0.8.2版本还没有解决，这个错误在cluster.shutdown();时候抛出，  
-    没有什么好解决办法，注释掉shutdown()方法程序将不会自己停止，这个错误影响有限，忽略它吧。   
-</code></pre><h3 id="storm-集群"><a href="#storm-集群" class="headerlink" title="storm 集群"></a>storm 集群</h3>
-          
+          strom 安装
+安装python这是为了测试安装效果，我们将部署 storm-starter project案例中word coun程序，用的是python写的multi-lang bolt，使用python 2.7.6，  
+安装路径在：   C:\Python27\python好像安装的时候自
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/22/storm-基础/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1947,7 +1457,7 @@ error2:
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/10/10/jsp-JSTL_EL_Tag/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/22/mvn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="落叶">
@@ -1966,7 +1476,163 @@ error2:
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/10/10/jsp-JSTL_EL_Tag/" itemprop="url">jsp基础 操作JSTL EL Tag</a></h1>
+                <a class="post-title-link" href="/2017/03/22/mvn/" itemprop="url">maven</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-22T00:00:00+08:00">
+                2017-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/maven/" itemprop="url" rel="index">
+                    <span itemprop="name">maven</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+maven简介：  
+settings.xml ,pom.xml  
+demo  
+mvn error  
+安装，配置  
+引用框架包配置(http://mvnrepository.com)  
+配置mirrors ，repository  
+解决Eclipse建立Maven项目后无法建立src/
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/22/mvn/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/10/10/html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/10/10/html/" itemprop="url">html</a></h1>
         
 
         <div class="post-meta">
@@ -2040,171 +1706,17 @@ error2:
       
         
           
-            <h3 id="前后台交互语言"><a href="#前后台交互语言" class="headerlink" title="前后台交互语言"></a>前后台交互语言</h3><h3 id="JSTL"><a href="#JSTL" class="headerlink" title="JSTL"></a>JSTL</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">c:if</span>&gt;</span> if and else          </span><br><span class="line"><span class="tag">&lt;<span class="name">c:if</span> <span class="attr">var</span>=<span class="string">"flag"</span> <span class="attr">test</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">c:if</span>&gt;</span>          </span><br><span class="line"><span class="tag">&lt;<span class="name">c:if</span> <span class="attr">test</span>=<span class="string">"$&#123;!flag&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">c:if</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="EL（Expression-Language）"><a href="#EL（Expression-Language）" class="headerlink" title="EL（Expression Language）"></a>EL（Expression Language）</h3><pre><code>目的：为了使JSP写起来更加简单。          
-</code></pre><ol>
-<li><p>获取变量值<br> ${username} -&gt; 后台返回的参数名称    </p>
-<ul>
-<li>取出某一范围中名称为username的变量。<br>因为没有指定哪一个范围的username，<br>所以它会依序从Page、Request、Session、Application范围查找。<br>假如途中找到username，就直接回传，<br>不再继续找下去，但是假如全部的范围都没有找到时，就回传null。 </li>
-</ul>
-</li>
-<li><p>[]与.运算符<br>  EL 提供.和[]两种运算符来存取数据。<br>  当要存取的属性名称中包含一些特殊字符，<br>  如.或?等并非字母或数字的符号，就一定要使用 []。          </p>
-<ul>
-<li>例如：<br>${user.My-Name}应当改为${user[“My-Name”] }<br>如果要动态取值时，就可以用[]来做，而.无法做到动态取值。<br>${sessionScope.user[data]}中data 是一个变量          </li>
-</ul>
-</li>
-</ol>
-<ol start="3">
-<li><p>等价关系：  </p>
-<pre><code>&lt;%=request. getParameter(“username”)% &gt; 等价于 ${ param. username }          
-&lt;%=request.getAttribute(“userlist”) %&gt; 等价于$ { requestScope.userlist }          
-&lt;%=user.getAddr( ) %&gt; 等价于 ${user.addr}          
-</code></pre></li>
-</ol>
-<h3 id="Tag-创建新tag"><a href="#Tag-创建新tag" class="headerlink" title="Tag  创建新tag"></a>Tag  创建新tag</h3><ol>
-<li><p>jsp引用  </p>
-<pre><code>&lt;%@ taglib uri=&quot;http://www.justtide.com/mytags&quot;prefix=&quot;my&quot;%&gt;    
-</code></pre></li>
-<li><p>mytag.tld<br>位置：  </p>
-<pre><code>WEB-INF\tld\mytag.tld 
-</code></pre><p>code:    </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">	&lt;?xml version="1.0" encoding="UTF-8"?&gt;    </span><br><span class="line">	<span class="tag">&lt;<span class="name">taglib</span> <span class="attr">xmlns</span>=<span class="string">"http://java.sun.com/xml/ns/j2ee"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">version</span>=<span class="string">"2.0"</span>    </span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"</span>&gt;</span>    </span><br><span class="line">	<span class="tag">&lt;<span class="name">description</span>&gt;</span>&lt;![CDATA[自定义标签]]]]&gt;<span class="tag">&lt;/<span class="name">description</span>&gt;</span>    </span><br><span class="line">	<span class="tag">&lt;<span class="name">display-name</span>&gt;</span>my Tags<span class="tag">&lt;/<span class="name">display-name</span>&gt;</span>    </span><br><span class="line">	<span class="tag">&lt;<span class="name">tlib-version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">tlib-version</span>&gt;</span>    </span><br><span class="line">	<span class="tag">&lt;<span class="name">short-name</span>&gt;</span>s<span class="tag">&lt;/<span class="name">short-name</span>&gt;</span>    </span><br><span class="line">	<span class="tag">&lt;<span class="name">uri</span>&gt;</span>http://www.justtide.com/mytags<span class="tag">&lt;/<span class="name">uri</span>&gt;</span>    </span><br><span class="line">	<span class="tag">&lt;<span class="name">tag</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;<span class="name">description</span>&gt;</span>&lt;![CDATA[jsp merchantType Tag]]&gt;<span class="tag">&lt;/<span class="name">description</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>merchantType<span class="tag">&lt;/<span class="name">name</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;<span class="name">tag-class</span>&gt;</span>com.mendian.tag.MerchantTypeTag<span class="tag">&lt;/<span class="name">tag-class</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;<span class="name">body-content</span>&gt;</span>empty<span class="tag">&lt;/<span class="name">body-content</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">description</span>&gt;</span>&lt;![CDATA[prefix ]]&gt;<span class="tag">&lt;/<span class="name">description</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">name</span>&gt;</span>prefix<span class="tag">&lt;/<span class="name">name</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">required</span>&gt;</span>false<span class="tag">&lt;/<span class="name">required</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">rtexprvalue</span>&gt;</span>true<span class="tag">&lt;/<span class="name">rtexprvalue</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;/<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">description</span>&gt;</span>&lt;![CDATA[key ]]&gt;<span class="tag">&lt;/<span class="name">description</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">name</span>&gt;</span>key<span class="tag">&lt;/<span class="name">name</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">required</span>&gt;</span>false<span class="tag">&lt;/<span class="name">required</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">rtexprvalue</span>&gt;</span>true<span class="tag">&lt;/<span class="name">rtexprvalue</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;/<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">	<span class="tag">&lt;/<span class="name">tag</span>&gt;</span>    </span><br><span class="line">	<span class="comment">&lt;!-- problem report type list select --&gt;</span>    </span><br><span class="line">	<span class="tag">&lt;<span class="name">tag</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;<span class="name">description</span>&gt;</span>&lt;![CDATA[jsp problemReportTypeList Tag]]&gt;<span class="tag">&lt;/<span class="name">description</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>problemReportTypeList<span class="tag">&lt;/<span class="name">name</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;<span class="name">tag-class</span>&gt;</span>com.mendian.tag.ProblemReportTypeListTag<span class="tag">&lt;/<span class="name">tag-class</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;<span class="name">body-content</span>&gt;</span>empty<span class="tag">&lt;/<span class="name">body-content</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">description</span>&gt;</span>&lt;![CDATA[html attr]]&gt;<span class="tag">&lt;/<span class="name">description</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">name</span>&gt;</span>id<span class="tag">&lt;/<span class="name">name</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">required</span>&gt;</span>false<span class="tag">&lt;/<span class="name">required</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">rtexprvalue</span>&gt;</span>true<span class="tag">&lt;/<span class="name">rtexprvalue</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;/<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">description</span>&gt;</span>&lt;![CDATA[html attr]]&gt;<span class="tag">&lt;/<span class="name">description</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">name</span>&gt;</span>name<span class="tag">&lt;/<span class="name">name</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">required</span>&gt;</span>false<span class="tag">&lt;/<span class="name">required</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">rtexprvalue</span>&gt;</span>true<span class="tag">&lt;/<span class="name">rtexprvalue</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;/<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">description</span>&gt;</span>&lt;![CDATA[html attr]]&gt;<span class="tag">&lt;/<span class="name">description</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">name</span>&gt;</span>style<span class="tag">&lt;/<span class="name">name</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">required</span>&gt;</span>false<span class="tag">&lt;/<span class="name">required</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">rtexprvalue</span>&gt;</span>true<span class="tag">&lt;/<span class="name">rtexprvalue</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;/<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">description</span>&gt;</span>&lt;![CDATA[html attr]]&gt;<span class="tag">&lt;/<span class="name">description</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">name</span>&gt;</span>cssClass<span class="tag">&lt;/<span class="name">name</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">required</span>&gt;</span>false<span class="tag">&lt;/<span class="name">required</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">rtexprvalue</span>&gt;</span>true<span class="tag">&lt;/<span class="name">rtexprvalue</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;/<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">description</span>&gt;</span>&lt;![CDATA[默认选中值]]&gt;<span class="tag">&lt;/<span class="name">description</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">name</span>&gt;</span>defaultValue<span class="tag">&lt;/<span class="name">name</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">required</span>&gt;</span>false<span class="tag">&lt;/<span class="name">required</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">rtexprvalue</span>&gt;</span>true<span class="tag">&lt;/<span class="name">rtexprvalue</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;/<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">description</span>&gt;</span>&lt;![CDATA[是否包含空选项]]&gt;<span class="tag">&lt;/<span class="name">description</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">name</span>&gt;</span>hasEmpty<span class="tag">&lt;/<span class="name">name</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">required</span>&gt;</span>false<span class="tag">&lt;/<span class="name">required</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">rtexprvalue</span>&gt;</span>true<span class="tag">&lt;/<span class="name">rtexprvalue</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;/<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">description</span>&gt;</span>&lt;![CDATA[是否包含空选项]]&gt;<span class="tag">&lt;/<span class="name">description</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">name</span>&gt;</span>readOnly<span class="tag">&lt;/<span class="name">name</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">required</span>&gt;</span>false<span class="tag">&lt;/<span class="name">required</span>&gt;</span>    </span><br><span class="line">			<span class="tag">&lt;<span class="name">rtexprvalue</span>&gt;</span>true<span class="tag">&lt;/<span class="name">rtexprvalue</span>&gt;</span>    </span><br><span class="line">		<span class="tag">&lt;/<span class="name">attribute</span>&gt;</span>    </span><br><span class="line">	<span class="tag">&lt;/<span class="name">tag</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">taglib</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<pre><code class="java"><span class="keyword">package</span> com.mendian.tag;    
-<span class="keyword">import</span> java.io.IOException;    
-<span class="keyword">import</span> javax.servlet.jsp.JspException;    
-<span class="keyword">import</span> javax.servlet.jsp.JspWriter;      
-<span class="keyword">import</span> javax.servlet.jsp.tagext.TagSupport;      
-<span class="keyword">import</span> com.mendian.common.util.StringUtil;    
-<span class="keyword">import</span> com.mendian.config.Constants;    
-<span class="keyword">import</span> com.mendian.config.ServerUtil;    
-<span class="keyword">import</span> com.mendian.entity.DictCommon;    
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProblemReportTypeListTag</span> <span class="keyword">extends</span> <span class="title">TagSupport</span> </span>{    
-    <span class="keyword">private</span> String id;    
-    <span class="keyword">private</span> String name;    
-    <span class="keyword">private</span> String style;    
-    <span class="keyword">private</span> String cssClass;    
-    <span class="keyword">private</span> String readOnly;    
-    <span class="keyword">private</span> String disabled;    
-    <span class="keyword">private</span> String defaultValue;    
-    <span class="keyword">private</span> <span class="keyword">boolean</span> hasEmpty;    
-
-    <span class="function"><span class="keyword">public</span> String <span class="title">doSomeThing</span><span class="params">()</span> </span>{    
-        StringBuffer sb = <span class="keyword">new</span> StringBuffer(<span class="string">"&lt;select "</span>);    
-        <span class="keyword">if</span> (StringUtil.isNotEmpty(id)) {    
-            sb.append(<span class="string">"id=\""</span>).append(id).append(<span class="string">"\""</span>);    
-        }    
-        <span class="keyword">if</span> (StringUtil.isNotEmpty(name)) {    
-            sb.append(<span class="string">"name=\""</span>).append(name).append(<span class="string">"\""</span>);    
-        }    
-        <span class="keyword">if</span> (StringUtil.isNotEmpty(style)) {    
-            sb.append(<span class="string">"style=\""</span>).append(style).append(<span class="string">"\""</span>);    
-        }    
-        <span class="keyword">if</span> (StringUtil.isNotEmpty(cssClass)) {    
-            sb.append(<span class="string">"class=\""</span>).append(cssClass).append(<span class="string">"\""</span>);    
-        }    
-        <span class="keyword">if</span> (StringUtil.isNotEmpty(readOnly)) {    
-            sb.append(<span class="string">"readOnly=\""</span>).append(readOnly).append(<span class="string">"\""</span>);    
-        }    
-        <span class="keyword">if</span> (StringUtil.isNotEmpty(disabled)) {    
-            sb.append(<span class="string">"disabled=\""</span>).append(disabled).append(<span class="string">"\""</span>);    
-        }    
-        sb.append(<span class="string">"&gt;"</span>);    
-        <span class="keyword">if</span> (hasEmpty) {    
-            sb.append(<span class="string">"&lt;option&gt;&lt;/option&gt;"</span>);    
-        }    
-        <span class="keyword">for</span> (DictCommon dc : ServerUtil.findDictCommonList(Constants.DIC_PROBLEM_REPORT)) {    
-            sb.append(<span class="string">"&lt;option "</span>);    
-            <span class="keyword">if</span> (StringUtil.isNotEmpty(defaultValue) &amp;&amp; String.valueOf(dc.getDKey()).equals(defaultValue)) {    
-                sb.append(<span class="string">"selected=\"selected\" "</span>);    
-            }    
-            sb.append(<span class="string">"value=\""</span>).append(dc.getDKey()).append(<span class="string">"\"&gt;"</span>).append(dc.getDValue()).append(<span class="string">"&lt;/option&gt;"</span>);    
-        }    
-        sb.append(<span class="string">"&lt;/select&gt;"</span>);    
-        <span class="keyword">return</span> sb.toString();    
-    }    
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">doEndTag</span><span class="params">()</span> <span class="keyword">throws</span> JspException </span>{    
-        String result = doSomeThing();    
-        <span class="keyword">if</span> (result != <span class="keyword">null</span>) {    
-            JspWriter out = <span class="keyword">this</span>.pageContext.getOut();    
-            <span class="keyword">try</span> {    
-                out.print(result);    
-            } <span class="keyword">catch</span> (IOException e) {    
-                e.printStackTrace();    
-            }    
-        }    
-        <span class="keyword">return</span> <span class="number">6</span>;    
-    }    
-
-    <span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span> </span>{    
-        <span class="keyword">return</span> id;    
-    }    
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(String id)</span> </span>{    
-        <span class="keyword">this</span>.id = id;    
-    }    
-
-    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>{    
-        <span class="keyword">return</span> name;    
-    }    
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>{    
-        <span class="keyword">this</span>.name = name;    
-    }    
-
-    <span class="function"><span class="keyword">public</span> String <span class="title">getStyle</span><span class="params">()</span> </span>{    
-        <span class="keyword">return</span> style;    
-    }    
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStyle</span><span class="params">(String style)</span> </span>{    
-        <span class="keyword">this</span>.style = style;    
-    }    
-
-    <span class="function"><span class="keyword">public</span> String <span class="title">getCssClass</span><span class="params">()</span> </span>{    
-        <span class="keyword">return</span> cssClass;    
-    }    
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCssClass</span><span class="params">(String cssClass)</span> </span>{    
-        <span class="keyword">this</span>.cssClass = cssClass;    
-    }    
-
-    <span class="function"><span class="keyword">public</span> String <span class="title">getDefaultValue</span><span class="params">()</span> </span>{    
-        <span class="keyword">return</span> defaultValue;    
-    }    
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDefaultValue</span><span class="params">(String defaultValue)</span> </span>{    
-        <span class="keyword">this</span>.defaultValue = defaultValue;    
-    }    
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isHasEmpty</span><span class="params">()</span> </span>{    
-        <span class="keyword">return</span> hasEmpty;    
-    }    
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHasEmpty</span><span class="params">(<span class="keyword">boolean</span> hasEmpty)</span> </span>{    
-        <span class="keyword">this</span>.hasEmpty = hasEmpty;    
-    }    
-
-    <span class="function"><span class="keyword">public</span> String <span class="title">getReadOnly</span><span class="params">()</span> </span>{    
-        <span class="keyword">return</span> readOnly;    
-    }    
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setReadOnly</span><span class="params">(String readOnly)</span> </span>{    
-        <span class="keyword">this</span>.readOnly = readOnly;    
-    }    
-
-    <span class="function"><span class="keyword">public</span> String <span class="title">getDisabled</span><span class="params">()</span> </span>{    
-        <span class="keyword">return</span> disabled;    
-    }    
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDisabled</span><span class="params">(String disabled)</span> </span>{    
-        <span class="keyword">this</span>.disabled = disabled;    
-    }    
-}    
-</code></pre>
+          button from表单兼容问题：给button 加一个type=button就可以了。因为button在非ie浏览器下默认类型是submit。  
+w3c支持问题：ie低版本不支持w3c标准  
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/10/10/html/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2278,7 +1790,7 @@ error2:
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">落叶</p>
-              <p class="site-description motion-element" itemprop="description">java redis mysql mybatis</p>
+              <p class="site-description motion-element" itemprop="description">高山仰止</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -2286,7 +1798,7 @@ error2:
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives">
               
                   <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">posts</span>
@@ -2299,7 +1811,7 @@ error2:
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

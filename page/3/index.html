@@ -180,22 +180,42 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
+        <li class="menu-item menu-item-首页">
           <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-标签页">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类页">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档页">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档页
           </a>
         </li>
       
@@ -325,27 +345,20 @@
       
         
           
-            <h3 id="mybatis执行过程-方法的调用过程"><a href="#mybatis执行过程-方法的调用过程" class="headerlink" title="mybatis执行过程\方法的调用过程"></a>mybatis执行过程\方法的调用过程</h3><pre><code>SqlSession
+          mybatis执行过程\方法的调用过程SqlSession
 SqlSessionFactoryBuilder-&gt;SqlSessionFactory
 sql 查询-&gt;SqlSession-&gt;DeFaultSqlSession(implements)
 
 Executor
--&gt;CachingExecutor--&gt;delegate(委派)
--&gt;SimpleExecutor(通过delegate机制完成) ,执行query方法的时候先调用BaseExecutor中的query函数,base中的query再调用simple中的doQuery函数
-
--&gt;doQuery通过StatementHandler组装jdbc的statement,connnection...
-
-StatementHandler
--&gt;RoutingStatementHandler--&gt;delegate
---&gt;PreparedStatementHandler(负责对数据库执行statement,返回结果)
-</code></pre><h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><pre><code>一级缓存
-    开启:mybaits-settings中设置&lt;setting name=&quot;localCacheScope&quot; value=&quot;SESSION&quot;/&gt;
-
-    一级缓存只在数据库会话内部共享
-
-二级缓存
-</code></pre>
-          
+-&gt;Ca
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/mybatis-原理与源码分析/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -485,32 +498,18 @@ StatementHandler
       
         
           
-            <h3 id="mybatis-generator-简介："><a href="#mybatis-generator-简介：" class="headerlink" title="mybatis-generator 简介："></a>mybatis-generator 简介：</h3><pre><code>官网： http://www.mybatis.org/generator/index.html
-</code></pre><h3 id="mybatis-generator安装"><a href="#mybatis-generator安装" class="headerlink" title="mybatis-generator安装:"></a>mybatis-generator安装:</h3><ol>
-<li><p>以maven插件安装：  </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.generator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-generator-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">verbose</span>&gt;</span>true<span class="tag">&lt;/<span class="name">verbose</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">overwrite</span>&gt;</span>true<span class="tag">&lt;/<span class="name">overwrite</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置文件：  </p>
-<ul>
-<li>位置：插件默认会读到src/main/resources目录  下的generatorConfig.xml 文件.</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE generatorConfiguration</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">generatorConfiguration</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--数据库驱动jar --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">classPathEntry</span> <span class="attr">location</span>=<span class="string">"D:\maven\repository\mysql\mysql-connector-java\5.1.8\mysql-connector-java-5.1.8.jar"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">context</span> <span class="attr">id</span>=<span class="string">"DB2Tables"</span> <span class="attr">targetRuntime</span>=<span class="string">"Ibatis2Java5"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--去除注释 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">commentGenerator</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suppressAllComments"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">commentGenerator</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">&lt;!--数据库连接 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">jdbcConnection</span> <span class="attr">driverClass</span>=<span class="string">"com.mysql.jdbc.Driver"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">connectionURL</span>=<span class="string">"jdbc:mysql://localhost:3306/test"</span> <span class="attr">userId</span>=<span class="string">"root"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">password</span>=<span class="string">"root"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">jdbcConnection</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--默认false Java type resolver will always use java.math.BigDecimal if </span></span><br><span class="line"><span class="comment">			the database column is of type DECIMAL or NUMERIC. --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">javaTypeResolver</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"forceBigDecimals"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">javaTypeResolver</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">&lt;!--生成实体类 指定包名 以及生成的地址 （可以自定义地址，但是路径不存在不会自动创建 使用Maven生成在target目录下，会自动创建） --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">javaModelGenerator</span> <span class="attr">targetPackage</span>=<span class="string">"jh.test.socketTest.mybatis.gen"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">targetProject</span>=<span class="string">"MAVEN"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"enableSubPackages"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"trimStrings"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">javaModelGenerator</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--生成SQLMAP文件 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">sqlMapGenerator</span> <span class="attr">targetPackage</span>=<span class="string">"jh.test.socketTest.mybatis.gen"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">targetProject</span>=<span class="string">"MAVEN"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"enableSubPackages"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">sqlMapGenerator</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--生成Dao文件 可以配置 type="XMLMAPPER"生成xml的dao实现 context id="DB2Tables" 修改targetRuntime="MyBatis3" --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">javaClientGenerator</span> <span class="attr">type</span>=<span class="string">"SPRING"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">targetPackage</span>=<span class="string">"jh.test.socketTest.mybatis.gen"</span> <span class="attr">targetProject</span>=<span class="string">"MAVEN"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"enableSubPackages"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">javaClientGenerator</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">&lt;!--对应数据库表 mysql可以加入主键自增 字段命名 忽略某字段等 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">table</span> <span class="attr">tableName</span>=<span class="string">"user"</span> <span class="attr">domainObjectName</span>=<span class="string">"User"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;/<span class="name">context</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">generatorConfiguration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li><p>生成代码  </p>
-<ul>
-<li><p>选择pom.xml文件，击右键先择Run AS——&gt;Maven Build… ——&gt;在Goals框中输入：<br>mybatis-generator:generate </p>
-</li>
-<li><p>如果在命令行输入Maven命令即可，注意：一定是当前项目目录下运行该命令：<br>mvn mybatis-generator:generate</p>
-</li>
-</ul>
-</li>
-<li><p>生成代码位置：<br> 在项目target/generated-sources下</p>
-</li>
-</ol>
-
-          
+          mybatis-generator 简介：官网： http://www.mybatis.org/generator/index.html
+mybatis-generator安装:
+以maven插件安装：  
+123456789&lt;plugin&gt;    &lt;groupId&gt;org.
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/mybatis-代码生成工具/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -650,83 +649,29 @@ StatementHandler
       
         
           
-            <p>struts1, struts2  </p>
-<ol>
-<li>引用包</li>
-<li>struts基础</li>
-<li>传参</li>
-<li>OGNL</li>
-<li>demo</li>
-<li>ActionForm struts1</li>
-<li>ActionMapping </li>
-<li>struts1 配置</li>
-<li>action 功能</li>
-</ol>
-<h3 id="引用包"><a href="#引用包" class="headerlink" title="引用包"></a>引用包</h3><h4 id="引入核心（core）包"><a href="#引入核心（core）包" class="headerlink" title="引入核心（core）包"></a>引入核心（core）包</h4><pre><code>struts-2.3.4.1
-    asm-3.3.jar
-    asm-commons-3.3.jar
-    asm-tree-3.3.jar
-    commons-fileupload-1.2.2.jar
-    commons-io-2.0.1.jar
-    commons-lang3-3.1.jar
-    freemarker-2.3.19.jar
-    javassist-3.11.0.GA.jar
-    ognl-3.0.5.jar
-    struts2-core-2.3.4.1.jar
-    xwork-core-2.3.4.1.jar
-</code></pre><h4 id="引入所有包"><a href="#引入所有包" class="headerlink" title="引入所有包"></a>引入所有包</h4><p>struts-2.3.15.2<br>        错误：Unload….   struts2-gxp-plugin-2.3.15.2.jar   </p>
-<h3 id="struts基础"><a href="#struts基础" class="headerlink" title="struts基础"></a>struts基础</h3><p>structs2.0是一种v—o的框架</p>
-<ol>
-<li><p>package    </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"defult"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span>      </span><br><span class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"ahello"</span>&gt;</span></span><br><span class="line">	   <span class="tag">&lt;<span class="name">result</span>&gt;</span>/helloworld.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span>        </span><br><span class="line">	<span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br><span class="line">```		  </span><br><span class="line">	    namespace </span><br><span class="line">	    namespace可以为空</span><br><span class="line">	    namespace决定了action的访问路径</span><br><span class="line">	    namespace默认为"" ，可以接受所有路径的action</span><br><span class="line">	    namespace可以写为/ ，</span><br><span class="line">		或者 /xxx ，对应的action为 /index.action </span><br><span class="line">		或 /xxx/index.action</span><br><span class="line">	    namespace最好也用模块进行命名</span><br><span class="line"></span><br><span class="line">	    extends（延伸；扩充）</span><br><span class="line">	    extends表示引用structs.cfg.xml</span><br><span class="line"></span><br><span class="line">2. Eclipes 中的位置 程序中的入口  </span><br><span class="line">	    右击project名 -&gt; properties -&gt; properties for struts</span><br><span class="line">	    -&gt;Web Project Settings -&gt; Context root</span><br><span class="line"></span><br><span class="line">3. constant(常数)</span><br><span class="line"></span><br><span class="line">```xml</span><br><span class="line">  <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.enable.DynamicMethodInvocation"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.devMode"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">    表示是不是开发模式</span><br><span class="line">    开发模式：更改配置可以立即体现在浏览器中</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.i18n.encoding"</span> <span class="attr">value</span>=<span class="string">"UTF-8"</span> /&gt;</span> </span><br><span class="line">    <span class="comment">&lt;!-- 指定Web应用的默认编码集，</span></span><br><span class="line"><span class="comment">    相当于调用 HttpServletRequest的 </span></span><br><span class="line"><span class="comment">    setCharacterEncoding方法 --&gt;</span>    </span><br><span class="line">    <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">    该属性指定需要Struts 2处理的请求后缀，</span></span><br><span class="line"><span class="comment">    该属性的默认值是action，</span></span><br><span class="line"><span class="comment">    即所有匹配*.action的请求都由Struts 2处理。 </span></span><br><span class="line"><span class="comment">    如果用户需要指定多个请求后缀，</span></span><br><span class="line"><span class="comment">    则多个后缀之间以英文逗号（，）隔开。 </span></span><br><span class="line"><span class="comment">    --&gt;</span> </span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.devMode"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span> </span><br><span class="line">  <span class="comment">&lt;!-- 开发模式下使用，这样可以打印出更详细的错误信息 --&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>定义当前xml文档语法的位置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">		<span class="meta">&lt;!DOCTYPE struts PUBLIC</span></span><br><span class="line"><span class="meta">	  "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"</span></span><br><span class="line"><span class="meta">	  "http://struts.apache.org/dtds/struts-2.3.dtd"&gt;</span>//定义当前xml文档语法的位置</span><br><span class="line">```  </span><br><span class="line">5. xml中 自动显示提示的操作   </span><br><span class="line">	  1. windows -&gt;properties-&gt;XML-&gt;XML Catalog-&gt;Add  </span><br><span class="line">	  2. 解压structs.core任意一个jar文件后  </span><br><span class="line">	  3. location:文件绝对路径  </span><br><span class="line">	    Key Type:URL  </span><br><span class="line">	    Key:解压structs。core任意一个jar文件后  </span><br><span class="line"></span><br><span class="line">6. Action</span><br><span class="line">```xml</span><br><span class="line">  <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"ahello"</span> </span></span><br><span class="line"><span class="tag"><span class="attr">class</span>=<span class="string">"com.excute.action.NumberManagerAction"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span>&gt;</span>/helloworld.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"afirst"</span>&gt;</span>/first.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span>   </span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"asecond"</span>&gt;</span>/second.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span>   		</span><br><span class="line">  <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<pre><code>action中的class的引用类要用.连接，没有.java后缀
-name关联地址名  http://../../ahello.action
-</code></pre></li>
-<li><p>Result</p>
-<pre><code>凡是name为success的result的那么都可以省略
-result关联的是具体的jsp文件地址，用相对路劲
-</code></pre></li>
-<li><p>action相关联的类</p>
-</li>
-<li><p>jsp页面得到自己的绝对路径名</p>
-<pre><code>//structs2.0_0020_getpath
-&lt;% 
-  String path = request.getContextPath();//拿到/structs2.0_0020
-  String basepath = request.getScheme() + &quot;://&quot; + request.getServerName() + request.getServerPort() + path + &quot;/&quot;;
-  //                http                   ://     localhost/               8080:   
-%&gt;
-</code></pre></li>
-</ol>
-<ol start="10">
-<li><p>actionmethod</p>
-<pre><code>动态传参动态转向页面出错？
-</code></pre></li>
-<li><p>/structs2.0_0110_param   2012.12.9<br>   以后复制可以以/structs2.0_0110_param为基础<br>   重新更改了/structs2.0_0110_param_note<br>   structs.xml添加标注<br>   使之更易读<br>   将permissionpage移到page目录下<br>   将first ，second移到page新建的math下，添加标注（基础）<br>   为完成：permissionindex.jsp  </p>
-<pre><code>mvc传参  
-</code></pre></li>
-</ol>
-<h3 id="传参"><a href="#传参" class="headerlink" title="传参"></a>传参</h3><p>传的参数与action中的属性一一对应<br>从页面传到后台<br>接收参数 - 附到对象上 - 存到数据库中  </p>
-<h3 id="OGNL"><a href="#OGNL" class="headerlink" title="OGNL"></a>OGNL</h3><p>OGNL - 简介<br>OGNL是Object-Graph Navigation Language的缩写，<br>它是一种功能强大的表达式语言（Expression Language，简称为EL）<br>通过它简单一致的表达式语法，可以存取对象的任意属性，<br>调用对象的方法，遍历整个对象的结构图，<br>实现字段类型转化等功能。<br>它使用相同的表达式去存取对象的属性。<br>webwork2和现在的Struts2.x中<br>使用OGNL取代原来的EL来做界面数据绑定，<br>所谓界面数据绑定，<br>也就是把界面元素（例如一个textfield,hidden)<br>和对象层某个类的某个属性绑定在一起，修改和显示自动同步。  </p>
-<h3 id="ActionForm-struts1"><a href="#ActionForm-struts1" class="headerlink" title="ActionForm struts1"></a>ActionForm struts1</h3><p>   struts1中的属性，struts2中不用配置<br>   struts2的优点之一就是与struts1API解耦  </p>
-<p>   ActionForm本质上是一种JavaBean，<br>   是专门用来传递表单数据的DTO(Data Transfer Object,数据传递对象)<br>   Struts框架利用ActionForm对象来临时存放视图页面中的表单数据。  </p>
-<p>   Struts将输入域的数据自动填充到相应的ActionForm对象中，<br>   然后控制层可以从该ActionForm对象中读取用户输入的表单数据，<br>   也可以把来自模型层的数据存放到ActionForm中，然后返回给视图显示。  </p>
-<p>   配置<br>   struts-config.xml</p>
-<pre><code>&lt;form-beans&gt;        
- &lt;form-bean name=&quot;dataQueryForm&quot; type=&quot;com.wondersgroup.sabic.corp.dataquery.form.DataQueryForm&quot; /&gt;    
-&lt;/form-beans&gt;
-</code></pre><p>   后台接受<br>   public ActionForward queryList(ActionForm form)</p>
-<h3 id="ActionMapping"><a href="#ActionMapping" class="headerlink" title="ActionMapping"></a>ActionMapping</h3><pre><code>首先明白ActionMapping一个实例对应了struts-config.xml文件中的一个&lt;action&gt;标签
-</code></pre><h3 id="struts1-配置"><a href="#struts1-配置" class="headerlink" title="struts1 配置"></a>struts1 配置</h3><h3 id="action-功能"><a href="#action-功能" class="headerlink" title="action 功能"></a>action 功能</h3><ul>
-<li>action主要就做3件事，接受前台参数，调用业务层方法，封装数据返回给前台，  </li>
-<li>一般用异步json ，返回的对象要规范，基本属性要有，如，是否成功，失败原因，数据等，   </li>
-<li>这些都应该是公司类库有的，action 里东西不多，主要是调用，顺便补充下，   </li>
-<li>action是多例，这个要记住；  </li>
-</ul>
+          struts1, struts2  
 
-          
+引用包
+struts基础
+传参
+OGNL
+demo
+ActionForm struts1
+ActionMapping 
+struts1 配置
+action 功能
+
+引用包引入核心（core）包struts-2.3.4.1
+    asm-3.3.jar
+   
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/Struts/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -866,85 +811,20 @@ result关联的是具体的jsp文件地址，用相对路劲
       
         
           
-            <h3 id="hibernate基础配置"><a href="#hibernate基础配置" class="headerlink" title="hibernate基础配置"></a>hibernate基础配置</h3><pre><code> 例子：hibernnate_0100 // hibernate_0100_HelloWorld
+          hibernate基础配置 例子：hibernnate_0100 // hibernate_0100_HelloWorld
  引入必须jar包
 hibernate3.jar
 hibernate-testing.jar
 antlr-2.7.6.jar
-commons-collections-3.1.jar
-javassist-3.9.0.jar
-jta-1.1.jar
-slf4j-api-1.5.8.jar
-slf4j-log4j12-1.5.8.jar
-log4j-1.2.17.jar
-sqljdbc.jar
-</code></pre><p>配置hibernate.cfg.xml文件   </p>
-<ul>
-<li>Hibernate.cfg.xml路径  </li>
-<li>Hibernate.cfg.xml路径默认的是在src下   </li>
-<li>修改默认路径  </li>
-<li>代码：  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sessionFactory = <span class="keyword">new</span> Configuration().</span><br><span class="line">configure(<span class="string">"WEB-INF/hibernate.cfg.xml"</span>).buildSessionFactory();</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>hibernate-mapping配置：   </p>
-<ol>
-<li>建立数据库连接时注意connection.url<br>默认的使用jdbc连接   </li>
-<li>连接池：先主要是建立连接<br>然后当需要连接时<br>直接从连接池取就行<br>缺点：消耗内存<br>优点:不用每次都建立连接      </li>
-<li>xxx.hbm.xml作用主要是将class与table映射起来  </li>
-<li>先建表，后建类  </li>
-<li>配置报错： 没有dbcp时不要用   <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;property name=<span class="string">"connection.url"</span>&gt;</span><br><span class="line">	jdbc:jtds:sqlserver:<span class="comment">//localhost:1433;DatabaseName=kyc2</span></span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="annocation"><a href="#annocation" class="headerlink" title="annocation"></a>annocation</h3><p>  例：hibernate_0101_annotation<br>  hibernate3以后开始支持annocation  </p>
-<p>  annocation的jar包已经被包含在hibernate中，不用再次引用<br>  hibernate-annocation.jar的包已经被包含在hibernate3.jar中<br>  所以找不到  </p>
-<h3 id="jpql"><a href="#jpql" class="headerlink" title="jpql"></a>jpql</h3><ul>
-<li><p>JPQL是EJB2使用的查询语言EJB QL的扩展，它继承了EJB QL并对其做了一些改变。  </p>
-</li>
-<li><p>JPQL全称Java Persistence Query Language Java持久化查询语言<br>特点：<br>  其特征与原生SQL语句类似，并且完全面向对象，通过类名和属性访问，<br>  而不是表名和表的属性。</p>
-</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> ,age <span class="keyword">from</span> <span class="keyword">user</span>; //原生SQL语句</span><br><span class="line"><span class="keyword">select</span> u.name,u.age <span class="keyword">from</span> <span class="keyword">User</span> u;  //JPQL语句</span><br><span class="line"><span class="keyword">select</span> u <span class="keyword">from</span> <span class="keyword">User</span> u;  //JPQL语句</span><br></pre></td></tr></table></figure>
-<p>SQL语句是在数据库空间中对字段，列，行进行操作<br>JPQL语句是在EJB实体空间中面向对象,属性进行操作<br>JPQL必须由JPA的JPQL解析器解析为SQL才能执行，必须先获取Query对象  </p>
-<p>error:    不能使用 <em><br>        unexpected token: </em>  </p>
-<h3 id="JPA"><a href="#JPA" class="headerlink" title="JPA"></a>JPA</h3><p><a href="http://blog.csdn.net/hmk2011/article/details/6289151" target="_blank" rel="noopener">http://blog.csdn.net/hmk2011/article/details/6289151</a><br><a href="http://docs.oracle.com/javaee/5/api/javax/persistence/Query.html#getResultList%28%29" target="_blank" rel="noopener">http://docs.oracle.com/javaee/5/api/javax/persistence/Query.html#getResultList%28%29</a></p>
-<ul>
-<li><p>JPA全称Java Persistence API.<br>  JPA通过JDK 5.0注解或XML描述对象－关系表的映射关系，<br>  并将运行期的实体对象持久化到数据库中。  </p>
-</li>
-<li><p>JPQL:<br>  JPA的查询语言是面向对象而非面向数据库的，<br>  它以面向对象的自然语法构造查询语句，<br>  可以看成是Hibernate HQL的等价物。<br>  JPA定义了独特的JPQL（Java Persistence Query Language），<br>  JPQL是EJB QL的一种扩展，它是针对实体的一种查询语言，<br>  操作对象是实体，而不是关系数据库的表，<br>  而且能够支持批量更新和修改、JOIN、GROUP BY、HAVING 等通常只有<br>  SQL 才能够提供的高级查询特性，甚至还能够支持子查询。  </p>
-</li>
-<li><p>hibernate and JPA<br>  JPA是需要Provider来实现其功能的，Hibernate就是JPA Provider中很强的一个，<br>  应该说无人能出其右。从功能上来说，  </p>
-<ul>
-<li>JPA就是Hibernate功能的一个子集。<br>Hibernate 从3.2开始，就开始兼容JPA。<br>JPA本身是一套接口和标准，我们可以使用hibernate的EntityManager模块来作为JPA的引擎  </li>
-</ul>
-</li>
-</ul>
-<h3 id="Spring-and-JPA"><a href="#Spring-and-JPA" class="headerlink" title="Spring  and JPA"></a>Spring  and JPA</h3><pre><code>Spring 2.0.1中，正式提供对JPA的支持  
-</code></pre><p>通过将@PersistenceContext注解标注在EntityManager类型的字段上，<br>这样得到的EntityManager就是容器管理的EntityManager。<br>由于是容器管理的，所以我们不需要也不应该显式关闭注  入的EntityManager实例。  </p>
-<p>persistence.xml 配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;   </span><br><span class="line"><span class="tag">&lt;<span class="name">persistence</span> <span class="attr">version</span>=<span class="string">"1.0"</span>  </span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:persistence</span>=<span class="string">"http://java.sun.com/xml/ns/persistence"</span>  </span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span>  </span></span><br><span class="line"><span class="tag"><span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/persistence persistence_1_0.xsd "</span>&gt;</span>    </span><br><span class="line"><span class="comment">&lt;!--    </span></span><br><span class="line"><span class="comment">     Name属性用于定义持久化单元的名字 (name必选,空值也合法);   </span></span><br><span class="line"><span class="comment">     transaction-type 指定事务类型(可选)    </span></span><br><span class="line"><span class="comment">--&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">persistence-unit</span> <span class="attr">name</span>=<span class="string">"unitName"</span> <span class="attr">transaction-type</span>=<span class="string">"JTA"</span>&gt;</span>    </span><br><span class="line">   <span class="comment">&lt;!-- 描述信息.(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">description</span>&gt;</span> <span class="tag">&lt;/<span class="name">description</span>&gt;</span>    </span><br><span class="line">   <span class="comment">&lt;!-- javax.persistence.PersistenceProvider接口的一个实现类(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">provider</span>&gt;</span>   <span class="tag">&lt;/<span class="name">provider</span>&gt;</span>    </span><br><span class="line">   <span class="comment">&lt;!-- Jta-data-source和 non-jta-data-source用于分别指定持久化提供商使用的JTA和/或non-JTA数据源的全局JNDI名称(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">jta-data-source</span>&gt;</span>java:/MySqlDS<span class="tag">&lt;/<span class="name">jta-data-source</span>&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">non-jta-data-source</span>&gt;</span> <span class="tag">&lt;/<span class="name">non-jta-data-source</span>&gt;</span>    </span><br><span class="line">   <span class="comment">&lt;!-- 声明orm.xml所在位置.(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">mapping-file</span>&gt;</span>product.xml<span class="tag">&lt;/<span class="name">mapping-file</span>&gt;</span>    </span><br><span class="line">   <span class="comment">&lt;!-- 以包含persistence.xml的jar文件为基准的相对路径,添加额外的jar文件.(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">jar-file</span>&gt;</span>../lib/model.jar<span class="tag">&lt;/<span class="name">jar-file</span>&gt;</span>    </span><br><span class="line">   <span class="comment">&lt;!-- 显式列出实体类,在Java SE 环境中应该显式列出.(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">class</span>&gt;</span>com.domain.User<span class="tag">&lt;/<span class="name">class</span>&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">class</span>&gt;</span>com.domain.Product<span class="tag">&lt;/<span class="name">class</span>&gt;</span>   </span><br><span class="line">   <span class="comment">&lt;!-- 声明是否扫描jar文件中标注了@Enity类加入到上下文.若不扫描,则如下:(可选) --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">exclude-unlisted-classes</span>/&gt;</span>   </span><br><span class="line">   <span class="comment">&lt;!--   厂商专有属性(可选)   --&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">properties</span>&gt;</span>  </span><br><span class="line">    <span class="comment">&lt;!-- hibernate.hbm2ddl.auto= create-drop / create / update --&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.hbm2ddl.auto"</span> <span class="attr">value</span>=<span class="string">"update"</span> /&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.show_sql"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;/<span class="name">properties</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">persistence-unit</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">persistence</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="ORM-是Object-Relation-Mapping"><a href="#ORM-是Object-Relation-Mapping" class="headerlink" title="ORM 是Object-Relation-Mapping"></a>ORM 是Object-Relation-Mapping</h3><p>即对象关系影射技术，是对象持久化的核心。<br>ORM是对JDBC的封装，从而解决了JDBC的各种存在问题  </p>
-<h4 id="EntityManager"><a href="#EntityManager" class="headerlink" title="EntityManager"></a>EntityManager</h4><p>EntityManager 是用来对实体Bean 进行操作的辅助类。<br>他可以用来产生/删除持久化的实体Bean，<br>通过主键查找实体bean，也可以通过EJB3 QL 语言查找满足条件的实体Bean。<br>实体Bean 被EntityManager 管理时，<br>EntityManager跟踪他的状态改变，<br>在任何决定更新实体Bean 的时候便会把发生改变的值同步到数据库中。<br>当实体Bean 从EntityManager 分离后，他是不受管理的，<br>EntityManager 无法跟踪他的任何状态改变。<br>EntityManager 的获取前面已经介绍过，<br>可以通过@PersistenceContext 注释由EJB 容器动态注入.  </p>
-<ul>
-<li>Entity的获取：<br>find(<em>.class,ID) :若实体Bean不存在,则返回null<br>  getReference(</em>,class,ID) :若实体Bean不存在,<br>  则抛出javax.persistence.EntityNotFoundException<br>persist() :添加实体Bean<br>merge () :是在实体Bean 已经脱离了EntityManager 的管理时使用， <ul>
-<li>当容器决定flush 时，数据将会同步到数据库中.<br>Remove() :删除对象  <ul>
-<li>createQuery() 返回Query对象,以执行JPQL语句  </li>
-<li>createNativeQuery() 返回Query对象,以执行SQL语句  </li>
-<li>refresh() 刷新实体Bean,以得到对新对象  </li>
-<li>contains() 检测实体当前是否被管理  </li>
-<li>flush() 将实体的改变立刻刷新到数据库中  </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><strong><em>error:</em></strong>  </p>
-<pre><code>javax.persistence.PersistenceException: [PersistenceUnit: itcast] class or package not found
-</code></pre><p>persistences.xml不在编译路径下，mvn update 后，build project</p>
-<h3 id="mvn-hibernate"><a href="#mvn-hibernate" class="headerlink" title="mvn hibernate"></a>mvn hibernate</h3><p>mvnsearch:<br>Hibernate Core Aggregator<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.7.ga<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.transaction<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jta<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate.javax.persistence<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate-jpa-2.0-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.1.Final<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate-annotations<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.1.ga<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate-entitymanager<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.1.ga<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.14<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><pre><code>@OneToMany(mappedBy=&quot;&quot;,cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-//拥有mappedBy注解的实体类为关系被维护端
-//mappedBy=&quot;&quot;中的为多对一方中的对应属性
-</code></pre>
-          
+commons-collections-3.1.j
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/Hibernate_jpa/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1084,14 +964,15 @@ sqljdbc.jar
       
         
           
-            <h3 id="h2配置：maven-引入配置"><a href="#h2配置：maven-引入配置" class="headerlink" title="h2配置：maven 引入配置"></a>h2配置：maven 引入配置</h3><p>pom.xml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.h2database<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>h2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.146<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>spring.xml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- h2 database --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 初始化数据表结构 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"org.h2.jdbcx.JdbcConnectionPool"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">destroy-method</span>=<span class="string">"dispose"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.h2.jdbcx.JdbcDataSource"</span>&gt;</span></span><br><span class="line">			<span class="comment">&lt;!-- 内存模式 --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"URL"</span></span></span><br><span class="line"><span class="tag">				<span class="attr">value</span>=<span class="string">"jdbc:h2:mem:csiqcssit1;MODE=MYSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;INIT=RUNSCRIPT FROM 'target/test-classes/database/h2/csiqcssit1.sql'\;RUNSCRIPT FROM 'target/test-classes/database/h2/csiqcssit1-data.sql'"</span> /&gt;</span></span><br><span class="line">			<span class="comment">&lt;!-- 文件模式 --&gt;</span></span><br><span class="line">			<span class="comment">&lt;!-- &lt;property name="URL" value="jdbc:h2:testRestDB" /&gt; --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">value</span>=<span class="string">"sa"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"sa"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="jenkins打包错误："><a href="#jenkins打包错误：" class="headerlink" title="jenkins打包错误："></a>jenkins打包错误：</h4><pre><code>jenkins打包时jdk版本1.7，使用h2-1.4时候：  
-报版本冲突，使用h2-1.3就好了  
-</code></pre><h4 id="h2-1-3-init-sql使用classpath报错："><a href="#h2-1-3-init-sql使用classpath报错：" class="headerlink" title="h2-1.3 init sql使用classpath报错："></a>h2-1.3 init sql使用classpath报错：</h4><pre><code>h2-1.4才能使用classpath   
-h2-1.3使用sql文件，项目根路径的相对路径   
-</code></pre>
-          
+          h2配置：maven 引入配置pom.xml12345&lt;dependency&gt;	&lt;groupId&gt;com.h2database&lt;/groupId&gt;	&lt;artifactId&gt;h2&lt;/artifactId&gt;	&lt;version&gt;1.3
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/h2database/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1209,20 +1090,23 @@ h2-1.3使用sql文件，项目根路径的相对路径
       
         
           
-            <hr>
-<p>title: Spring遇到的问题及解决<br>date:<br>categories:</p>
-<ul>
-<li>spring<br>tags:</li>
-<li>Spring遇到的问题及解决</li>
-</ul>
-<hr>
-<h3 id="progress-loading-spring-xsd"><a href="#progress-loading-spring-xsd" class="headerlink" title="progress loading spring xsd"></a>progress loading spring xsd</h3><pre><code>最常见的导致这一问题的原因其实与使用了一个名为“assembly”的maven打包插件有关。  
-</code></pre><p>很多项目需要将工程连同其所依赖的所有jar包打包成一个jar包，maven的assembly插件就是用来完成这个任务的。<br>但是由于工程往往依赖很多的jar包，而被依赖的jar又会依赖其他的jar包，这样，当工程中依赖到不同的版本的spring时，<br>在使用assembly进行打包时，只能将某一个版本jar包下的spring.schemas文件放入最终打出的jar包里，这就有可能遗漏了<br>一些版本的xsd的本地映射，进而出现了文章开始提到的错误。如果你的项目是打成单一jar的，你可以通过检查最终生成的<br>jar里的spring.schemas文件来确认是不是这种情况。而关于这种情况，解决的方法一般是推荐使用另外一种打包插件shade,<br>它确实是一款比assembly更加优秀的工具，在对spring.schemas文件处理上，shade能够将所有jar里的spring.schemas文件<br>进行合并，在最终生成的单一jar包里，spring.schemas包含了所有出现过的版本的集合！  </p>
-<h3 id="org-springframework-web-servlet-PageNotFound-noHandlerFound"><a href="#org-springframework-web-servlet-PageNotFound-noHandlerFound" class="headerlink" title="org.springframework.web.servlet.PageNotFound noHandlerFound"></a>org.springframework.web.servlet.PageNotFound noHandlerFound</h3><p>No mapping found for HTTP request with URI [/spring_test_002/userContoller/userManager]<br>in DispatcherServlet with name ‘dispatcher’</p>
-<pre><code>do: p:prefix=&quot;/page/&quot; 默认开始寻找的文件位置，找不到页面。
-    return &quot;userpage/userManager&quot;; 
-</code></pre>
           
+title: Spring遇到的问题及解决date:categories:
+
+springtags:
+Spring遇到的问题及解决
+
+
+progress loading spring xsd最常见的导致这一问题的原因其实与使用了一个名为“assembly”的maven打包插件有关。  
+很多项目需
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/spring-遇到的问题及解决/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1362,44 +1246,17 @@ h2-1.3使用sql文件，项目根路径的相对路径
       
         
           
-            <h3 id="官方文档："><a href="#官方文档：" class="headerlink" title="官方文档："></a>官方文档：</h3><p><a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/index.html" target="_blank" rel="noopener">http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/index.html</a></p>
-<h3 id="Spring-MVC-annocation-spring-mvc注解"><a href="#Spring-MVC-annocation-spring-mvc注解" class="headerlink" title="Spring MVC annocation / spring mvc注解"></a>Spring MVC annocation / spring mvc注解</h3><p>@Controller  </p>
-<ul>
-<li>注释类，成为请求分发器</li>
-</ul>
-<p>@RequestMapping  </p>
-<ul>
-<li>@RequestMapping(“user/login56”)<br>不能把控制器的注释名 + 方法的注释名与包含前台页面的的相同<br>   redirect:在user这个下面搜寻RequestMappering<br>   会报错，没有这个文件</li>
-</ul>
-<h3 id="Spring-MVC-前后台传参"><a href="#Spring-MVC-前后台传参" class="headerlink" title="Spring MVC  前后台传参"></a>Spring MVC  前后台传参</h3><ol>
-<li><p>form表单传参  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">前台传后台</span><br><span class="line">	&lt;form action=&quot;robot/getAnswer&quot; method=&quot;get&quot;&gt;</span><br><span class="line">	  &lt;input name=&quot;tagDesc&quot; type=&quot;text&quot;&gt;</span><br><span class="line">	&lt;/form&gt;</span><br><span class="line">	&lt;div&gt;$&#123;qaCont&#125;&lt;/div&gt;</span><br><span class="line">	&lt;div&gt;$&#123;pq.qaCont&#125;&lt;/div&gt;</span><br><span class="line">	name与实体类属性名一样</span><br><span class="line">	action与spring mvc controller @RequestMapping value相同 </span><br><span class="line"></span><br><span class="line">	&lt;form:form commandName=&quot;account&quot;&gt;</span><br><span class="line">	指定form默认自动绑定的是Model的command属性值，那么当我的form对象对应的属性名称不是command的时候，</span><br><span class="line">	应该怎么办呢？对于这种情况，Spring给我们提供了一个commandName属性，</span><br><span class="line">	我们可以通过该属性来指定我们将使用Model中的哪个属性作为form需要绑定的command对象。</span><br><span class="line">	除了commandName属性外，指定modelAttribute属性也可以达到相同的效果。</span><br><span class="line">	但是在spring controller中要new</span><br><span class="line">		request.setAttribute(&quot;accout&quot;, new Account());	</span><br><span class="line"></span><br><span class="line">后台传前台</span><br><span class="line">   获取对象,对象属性</span><br><span class="line">		model.addAttribute(&quot;qaCont&quot;, qaCont);</span><br><span class="line">		model.addAttribute(&quot;pq&quot;,pq);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ajax 传参</p>
-</li>
-</ol>
-<h3 id="Spring-初始化启动方法"><a href="#Spring-初始化启动方法" class="headerlink" title="Spring 初始化启动方法"></a>Spring 初始化启动方法</h3><ol>
-<li><p>初始化回调 InitializingBean  </p>
-<ul>
-<li>InitializingBean接口为bean提供了初始化方法的方式，<br>它只包括afterPropertiesSet方法，凡是继承该接口的类，在初始化bean的时候会执行该方法。</li>
-</ul>
-</li>
-<li><p>通常避免使用InitializingBean 接口，因为这样会将代码与spring 耦合起开，可以在Bean中指定一个普通的初始化方法，<br>然后在xml文件配置中，指定初始化：</p>
- <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"initBean"</span> <span class="attr">class</span>=<span class="string">"com.jh.InitBean"</span> <span class="attr">init-method</span>=<span class="string">"init"</span>&gt;</span></span><br></pre></td></tr></table></figure>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InitBean</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="comment">//do some initialization work</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//效果相同</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">initBean</span> <span class="keyword">implements</span> <span class="title">InitializingBean</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterPropertiesSet</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="Spring-task-spring-定时任务"><a href="#Spring-task-spring-定时任务" class="headerlink" title="Spring task spring 定时任务"></a>Spring task spring 定时任务</h3><p>xml配置<br>application.xml引入spring-tasks配置文件</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:util</span>=<span class="string">"http://www.springframework.org/schema/util"</span> <span class="attr">xmlns:task</span>=<span class="string">"http://www.springframework.org/schema/task"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:p</span>=<span class="string">"http://www.springframework.org/schema/p"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">          http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">          http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- default thread pool will only have a single thread. --&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 调度线程池的大小，调度线程在被调度任务完成前不会空闲 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">task:scheduler</span> <span class="attr">id</span>=<span class="string">"myScheduler"</span> <span class="attr">pool-size</span>=<span class="string">"1"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">task:scheduled-tasks</span> <span class="attr">scheduler</span>=<span class="string">"myScheduler"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 刷新客服在线状态,通过任务管理器调用,时间间隔10分钟 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">task:scheduled</span> <span class="attr">ref</span>=<span class="string">"scheduledTaskManager"</span> <span class="attr">method</span>=<span class="string">"checkCustomerServiceOnLineStatus"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">fixed-rate</span>=<span class="string">"600000"</span> <span class="attr">cron</span>=<span class="string">"0 * * * * ?"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;/<span class="name">task:scheduled-tasks</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>ref ： bean   例子：</p>
-<pre><code>@Component(value=&quot;scheduledTaskManager&quot;)
-public class ScheduledTaskManager 
-    fixed-rate ：下一次的间隔时间
-    initial-delay：初始延迟
-</code></pre><p>方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.mendian.component;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"><span class="keyword">import</span> com.mendian.config.ServerUtil;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 预约任务管理</span></span><br><span class="line"><span class="comment"> * 定时任务工具</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>: JobManager</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> jh</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2016-5-26 下午2:52:54</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span>(value=<span class="string">"scheduledTaskManager"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScheduledTaskManager</span>  </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Logger LOG = LoggerFactory.getLogger(ScheduledTaskManager.class);</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkCustomerServiceOnLineStatus</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		LOG.info(<span class="string">"checkCustomerServiceOnLineStatus start"</span>);</span><br><span class="line">		ServerUtil.refreshCustomerServiceOnLineStatus();</span><br><span class="line">		LOG.info(<span class="string">"checkCustomerServiceOnLineStatus end"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="Spring-ehcache"><a href="#Spring-ehcache" class="headerlink" title="Spring ehcache"></a>Spring ehcache</h3><h3 id="Spring-拦截"><a href="#Spring-拦截" class="headerlink" title="Spring 拦截"></a>Spring 拦截</h3><p>preHandle( )<br>拦截器页面跳转<br>request.getRequestDispatcher(“/WEB-INF/view/test.jsp”).forward(request,response);</p>
+          官方文档：http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/index.html
+Spring MVC annocation / spring mvc注解@Controller  
 
-          
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/spring-基础与使用/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1517,114 +1374,25 @@ public class ScheduledTaskManager
       
         
           
-            <hr>
-<p>title: Spring基础与使用案例与场景<br>date:<br>categories:</p>
-<ul>
-<li>spring<br>tags:</li>
-<li>spring 基础与使用</li>
-</ul>
-<hr>
-<h3 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h3><ul>
-<li>构建ioc基本功能</li>
-</ul>
-<h3 id="Aware-感知-bean操作ioc容器"><a href="#Aware-感知-bean操作ioc容器" class="headerlink" title="Aware (感知)    bean操作ioc容器"></a>Aware (感知)    bean操作ioc容器</h3><p>容器管理的Bean一般不需要了解容器的状态和直接使用容器，但是在某些情况下，是需要在Bean中直接对IOC容器进行操作的，  </p>
-<ul>
-<li>这时候，就需要在Bean中设定对容器的感知。<br>spring IOC容器也提供了该功能，它是通过特定的Aware接口来完成的。aware接口有以下这些：   <ul>
-<li>BeanNameAware，可以在Bean中得到它在IOC容器中的Bean的实例的名字。    </li>
-<li>BeanFactoryAware，可以在Bean中得到Bean所在的IOC容器，从而直接在Bean中使用IOC容器的服务。  </li>
-<li>ApplicationContextAware<br>可以在Bean中得到Bean所在的应用上下文，从而直接在Bean中使用上下文的服务。    </li>
-<li>MessageSourceAware，在Bean中可以得到消息源。  </li>
-<li>ApplicationEventPublisherAware:<br>在bean中可以得到应用上下文的事件发布器，从而可以在Bean中发布应用上下文的事件。  </li>
-<li>ResourceLoaderAware:<br>在Bean中可以得到ResourceLoader，从而在bean中使用ResourceLoader加载外部对应的Resource资源。   </li>
-</ul>
-</li>
-</ul>
-<p>在设置Bean的属性之后，调用初始化回调方法之前，Spring会调用aware接口中的setter方法。</p>
-<h3 id="Transaction-Spring-事物"><a href="#Transaction-Spring-事物" class="headerlink" title="Transaction /Spring 事物"></a>Transaction /Spring 事物</h3><p><a href="https://www.ibm.com/developerworks/cn/education/opensource/os-cn-spring-trans/" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/education/opensource/os-cn-spring-trans/</a></p>
-<ol>
-<li><p>本地事务和全局事务</p>
-<ul>
-<li><p>全局事务让你可以和多个事务资源工作在一起，比如，关系型数据库，消息队列</p>
-</li>
-<li><p>本地事务则是与某个指定的事务资源联系在一起，比如，与JDBC连接相关的事务。本地事务相对于全局事务更容易使用，但不能跨多个事务资源。管理JDBC连接所写的事务代码不能够在全局事务中使用。</p>
-</li>
-</ul>
-</li>
-<li><p>settings /事物对应配置</p>
-<ul>
-<li>隔离级别</li>
-<li><p>传播行为</p>
-<ol>
-<li>required<br>  如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。</li>
-<li>requires_new<br> 创建一个新的事务，如果当前存在事务，则把当前事务挂起。</li>
-<li>supports<br> 如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。</li>
-<li>not_supported<br> 非事务方式运行，如果当前存在事务，则把当前事务挂起。</li>
-<li>never<br> 以非事务方式运行，如果当前存在事务，则抛出异常。</li>
-<li>mandatory<br> 如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。 </li>
-<li><p>nested<br> 如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于required</p>
-<p>当前有事物  </p>
-<ul>
-<li>加入  </li>
-<li>挂起,新建  </li>
-<li>抛异常  </li>
-</ul>
-<p>当前没有事物  </p>
-<ul>
-<li>新建  </li>
-<li>非事物运行  </li>
-<li>抛异常  </li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>事务超时</li>
-<li>事务的只读属性</li>
-<li>事务的回滚规则        </li>
-</ol>
-<h3 id="spring结构-bean生成工厂的组成结构"><a href="#spring结构-bean生成工厂的组成结构" class="headerlink" title="spring结构/ bean生成工厂的组成结构"></a>spring结构/ bean生成工厂的组成结构</h3><ol>
-<li><p>具体的ioc实现</p>
-<ul>
-<li>DefaultListableBeanFactory  <ul>
-<li>在spring中,实际上是把DefaultListableBeanFactory作为一个默认的功能完整的Ioc容器来使用的.  </li>
-<li>XmlBeanFactory,ApplicationContect都是在DefaultListableBeanFactory基础上扩展的.  </li>
-<li>AbstractRefreshableApplicationContext中包含DefaultListableBeanFactory的实例  </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>BeanFacory<br> BeanFactory的实现是Ioc的基本形式  </p>
-</li>
-<li><p>ApplicationContext<br> ApplicationContext的各种实现是IoC容器的高级表现形式  </p>
-</li>
-</ol>
-<h3 id="spring-容器启动过程"><a href="#spring-容器启动过程" class="headerlink" title="spring 容器启动过程"></a>spring 容器启动过程</h3><p>启动时执行  </p>
-<ol>
-<li>Resource定位  <ul>
-<li>Resource是spring对i/o的封装类.  </li>
-</ul>
-</li>
-<li><p>BeanDefinition载入  </p>
-</li>
-<li><p>注册BeanDefinition</p>
-<ul>
-<li>在IoC容器内部将BeanDefinition注入到HashMap中  </li>
-</ul>
-</li>
-<li><p>Bean依赖注入</p>
-<ul>
-<li><p>时间:发生在应用第一次调用AbstractBeanFactory中的getBean–&gt;doGetBean向容器索取bean的时候</p>
-</li>
-<li><p>AbstractBeanFactory中的doGetBean具体实现<br>DefaultSingletonBeanRegistry含有bean的三级缓存</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Cache of singleton objects: bean name --&gt; bean instance */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; singletonObjects = <span class="keyword">new</span> ConcurrentHashMap&lt;String, Object&gt;(<span class="number">256</span>);</span><br><span class="line"><span class="comment">/** Cache of singleton factories: bean name --&gt; ObjectFactory */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, ObjectFactory&lt;?&gt;&gt; singletonFactories = <span class="keyword">new</span> HashMap&lt;String, ObjectFactory&lt;?&gt;&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">/** Cache of early singleton objects: bean name --&gt; bean instance */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; earlySingletonObjects = <span class="keyword">new</span> HashMap&lt;String, Object&gt;(<span class="number">16</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ol>
-<pre><code>- getSingleton是调用
-</code></pre><h4 id="Spring-bean的循环依赖以及解决方式"><a href="#Spring-bean的循环依赖以及解决方式" class="headerlink" title="Spring-bean的循环依赖以及解决方式"></a>Spring-bean的循环依赖以及解决方式</h4>
           
+title: Spring基础与使用案例与场景date:categories:
+
+springtags:
+spring 基础与使用
+
+
+BeanFactory
+构建ioc基本功能
+
+Aware (感知)    bean操作ioc容器容器管理的Bean一般不需要了解容器的状态和直接使用容器，但是在某
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/spring-原理与源码分析/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1764,13 +1532,20 @@ public class ScheduledTaskManager
       
         
           
-            <h3 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h3><ol>
-<li>搭建<br>下载sts使用spring start project搭建  </li>
-<li>运行<br>直接运行main函数  </li>
-<li>启动注意:<br>默认tomcat:8080<br>没有项目名直接访问具体位置<br><a href="http://localhost:8080/dog" target="_blank" rel="noopener">http://localhost:8080/dog</a></li>
-</ol>
+          搭建
+搭建下载sts使用spring start project搭建  
+运行直接运行main函数  
+启动注意:默认tomcat:8080没有项目名直接访问具体位置http://localhost:8080/dog
+
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/spring-boot-基础与使用/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1888,8 +1663,15 @@ public class ScheduledTaskManager
       
         
           
-            
           
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/Websphere/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1963,7 +1745,7 @@ public class ScheduledTaskManager
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">落叶</p>
-              <p class="site-description motion-element" itemprop="description">java redis mysql mybatis</p>
+              <p class="site-description motion-element" itemprop="description">高山仰止</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -1971,7 +1753,7 @@ public class ScheduledTaskManager
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives">
               
                   <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">posts</span>
@@ -1984,7 +1766,7 @@ public class ScheduledTaskManager
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

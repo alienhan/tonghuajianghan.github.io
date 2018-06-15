@@ -180,22 +180,42 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
+        <li class="menu-item menu-item-首页">
           <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-标签页">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类页">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档页">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档页
           </a>
         </li>
       
@@ -325,41 +345,17 @@
       
         
           
-            <p>二叉树倒置<br>servlet生命周期<br>rpc 结构,原理<br>kafka原理,保证消息不会丢..<br>mysql性能监控<br>多线程优化<br>高并发处理问题<br>jvm调优,线程监控命令<br>spring 事物的具体实现<br>rpc框架原理,协议,设计  </p>
-<h3 id="Servlet是什么"><a href="#Servlet是什么" class="headerlink" title="Servlet是什么"></a>Servlet是什么</h3><ol>
-<li>Servlet是服务器端运行的一个程序，是一个被编译好的Java类。它不是框架等。  </li>
-<li>Web容器的启动，需要依赖Servlet。当web服务器开始执行时，servlet类就被初始化  </li>
-<li>当用户通过浏览器访问的时候，会输入URI，这个时候，web服务器就通过Servlet来分发请求执行不同的内容。  </li>
-<li>停止服务器或删除web引用调用servlet的destory方法  </li>
-</ol>
-<h3 id="Servlet的生命周期"><a href="#Servlet的生命周期" class="headerlink" title="Servlet的生命周期"></a>Servlet的生命周期</h3><ol>
-<li>init(ServletConfig)方法：负责初始化Servlet对象，在Servlet的生命周期中，该方法执行一次；该方法执行在单线程的环境下，因此开发者不用考虑线程安全的问题；</li>
-<li>service(ServletRequest req,ServletResponse res)方法：负责响应客户的请求；为了提高效率，Servlet规范要求一个Servlet实例必须能够同时服务于多个客户端请求，即service()方法运行在多线程的环下，Servlet开发者必须保证该方法的线程安全性；</li>
-<li>destroy()方法：当Servlet对象退出生命周期时，负责释放占用的资源；<br> 什么时候调用:服务器关闭<br>注意事项<ol>
-<li>当Server Thread线程执行Servlet实例的init()方法时，所有的Client Service Thread线程都不能执行该实例的service()方法，更没有线程能够执行该实例的destroy()方法，因此Servlet的init()方法是工作在单线程的环境下，开发者不必考虑任何线程安全的问题。</li>
-<li>当服务器接收到来自客户端的多个请求时，服务器会在单独的Client Service Thread线程中执行Servlet实例的service()方法服务于每个客户端。此时会有多个线程同时执行同一个Servlet实例的service()方法，因此必须考虑线程安全的问题。</li>
-</ol>
-</li>
-</ol>
-<h3 id="Servlet容器装载Servlet时间"><a href="#Servlet容器装载Servlet时间" class="headerlink" title="Servlet容器装载Servlet时间:"></a>Servlet容器装载Servlet时间:</h3><ol>
-<li>Servlet容器启动时自动装载某些Servlet，实现它只需要在web.XML文件中的<servlet></servlet>之间添加如下代码：<br> <code>&lt;loadon-startup&gt;1&lt;/loadon-startup&gt;</code></li>
-<li>在Servlet容器启动后，客户首次向Servlet发送请求</li>
-<li>Servlet类文件被更新后，重新装载Servlet</li>
-</ol>
-<h3 id="Servlet的单例"><a href="#Servlet的单例" class="headerlink" title="Servlet的单例"></a>Servlet的单例</h3><p>  可以理解为单例在多线程下的行为</p>
-<ol>
-<li>servlet单实例，减少了创建servlet的开销。</li>
-<li>servlet容器通过线程池管理调度线程，提高了请求的响应速度。</li>
-<li>Servlet容器不关心到达的Servlet请求访问的是否是同一个Servlet还是其他Servlet，直接分配给他一个新的线程；如果是同一个Servlet的多个请求，那么Servlet的Service方法将在多线程中兵法执行。</li>
-<li>每一个请求由ServletRequest对象来接收请求，有ServletResponse对象来响应请求。</li>
-</ol>
-<h3 id="Servlet接收和响应客户请求的过程"><a href="#Servlet接收和响应客户请求的过程" class="headerlink" title="Servlet接收和响应客户请求的过程"></a>Servlet接收和响应客户请求的过程</h3><ul>
-<li>当容器收到一个Servlet请求，调度线程从线程池中选出一个工作者线程,将请求传递给该工作者线程，然后由该线程来执行Servlet的service方法。当这个线程正在执行的时候,容器收到另外一个请求,调度线程同样从线程池中选出另一个工作者线程来服务新的请求,容器并不关心这个请求是否访问的是同一个Servlet.当容器同时收到对同一个Servlet的多个请求的时候，那么这个Servlet的service()方法将在多线程中并发执行。   </li>
-<li>Servlet容器默认采用单实例多线程的方式来处理请求，这样减少产生Servlet实例的开销，提升了对请求的响应时间，对于Tomcat可以在server.xml中通过<connector>元素设置线程池中线程的数目。 </connector></li>
-</ul>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>每一个自定义的Servlet都必须实现Servlet的接口，Servlet接口中定义了五个方法，其中比较重要的三个方法涉及到Servlet的生命周期，分别是上文提到的init(),service(),destroy()方法。<br>GenericServlet是一个通用的，不特定于任何协议的Servlet,它实现了Servlet接口。而HttpServlet继承于GenericServlet，因此HttpServlet也实现了Servlet接口。所以我们定义Servlet的时候只需要继承HttpServlet即可。</p>
-
-          
+          二叉树倒置servlet生命周期rpc 结构,原理kafka原理,保证消息不会丢..mysql性能监控多线程优化高并发处理问题jvm调优,线程监控命令spring 事物的具体实现rpc框架原理,协议,设计  
+Servlet是什么
+Servlet是服务器端运行的一个程序，是一个被编译好的Java类。
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/servlet/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -499,42 +495,17 @@
       
         
           
-            <h3 id="http"><a href="#http" class="headerlink" title="http"></a>http</h3><p>  <a href="https://zh.wikipedia.org/wiki/超文本传输协议" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/超文本传输协议</a><br>  <a href="https://tools.ietf.org/html/rfc2616" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc2616</a> http1.1<br>  <a href="https://tools.ietf.org/html/rfc7540" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc7540</a> http2.0  </p>
-<ul>
-<li><p>超文本传输协议（英文：HyperText Transfer Protocol，缩写：HTTP）是一种用于分布式、协作式和超媒体信息系统的应用层协议[1]。HTTP是万维网的数据通信的基础。</p>
-</li>
-<li><p>征求意见稿（英语：Request For Comments，缩写为RFC）<a href="https://zh.wikipedia.org/wiki/RFC" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/RFC</a></p>
-</li>
-</ul>
-<h4 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法:"></a>请求方法:</h4><ul>
-<li>GET  </li>
-<li>HEAD   <ul>
-<li>与GET方法一样，都是向服务器发出指定资源的请求。只不过服务器将不传回资源的本文部分。它的好处在于，使用这个方法可以在不必传输全部内容的情况下，就可以获取其中“关于该资源的信息”（元信息或称元数据）。</li>
-</ul>
-</li>
-<li>POST PUT DELETE   </li>
-<li>TRACE 回显服务器收到的请求，主要用于测试或诊断。</li>
-<li>OPTIONS  <ul>
-<li>这个方法可使服务器传回该资源所支持的所有HTTP请求方法。用’*’来代替资源名称，向Web服务器发送OPTIONS请求，可以测试服务器功能是否正常运作。</li>
-</ul>
-</li>
-<li>CONNECT<br>   HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。通常用于SSL加密服务器的链接（经由非加密的HTTP代理服务器）。</li>
-<li>PATCH<br>   用于将局部修改应用到资源。</li>
-</ul>
-<h4 id="副作用"><a href="#副作用" class="headerlink" title="副作用"></a>副作用</h4><ul>
-<li>若干次请求的副作用与单次请求相同或者根本没有副作用，那么这些请求方法就能够被视作<code>幂等(idempotence)</code></li>
-</ul>
-<h4 id="状态代码的第一个数字代表当前响应的类型："><a href="#状态代码的第一个数字代表当前响应的类型：" class="headerlink" title="状态代码的第一个数字代表当前响应的类型："></a>状态代码的第一个数字代表当前响应的类型：</h4><pre><code>1xx消息——请求已被服务器接收，继续处理
-2xx成功——请求已成功被服务器接收、理解、并接受
-3xx重定向——需要后续操作才能完成这一请求
-4xx请求错误——请求含有词法错误或者无法被执行
-5xx服务器错误——服务器在处理某个正确请求时发生错误
-</code></pre><h4 id="持续连线"><a href="#持续连线" class="headerlink" title="持续连线"></a>持续连线</h4><ul>
-<li>在HTTP 0.9和1.0中，TCP连接在每一次请求/回应对之后关闭。  </li>
-<li>在HTTP 1.1中，引入了保持连接的机制，一个连接可以重复在多个请求/回应使用。持续连接的方式可以大大减少等待时间，因为在发出第一个请求后，双方不需要重新运行TCP交握程序。</li>
-</ul>
+          http  https://zh.wikipedia.org/wiki/超文本传输协议  https://tools.ietf.org/html/rfc2616 http1.1  https://tools.ietf.org/html/rfc7540 http2.0  
 
-          
+超文本传输协议（英文：Hy
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/Net-Protocol-网络协议/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -674,10 +645,15 @@
       
         
           
-            <h3 id="java-http-链接"><a href="#java-http-链接" class="headerlink" title="java http 链接"></a>java http 链接</h3><p>code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">String urlStr = <span class="string">"www.baidu.com"</span>;</span><br><span class="line">URL url = <span class="keyword">new</span> URL(urlStr);</span><br><span class="line">HttpURLConnection http = (HttpURLConnection) url.openConnection();</span><br><span class="line">http.setRequestMethod(<span class="string">"POST"</span>);<span class="comment">//get,post 请求方法</span></span><br><span class="line">http.setRequestProperty(<span class="string">"Content-Type"</span>, <span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line">http.setDoOutput(<span class="keyword">true</span>);<span class="comment">//可以输出</span></span><br><span class="line">http.setDoInput(<span class="keyword">true</span>);<span class="comment">//可以输入</span></span><br><span class="line">http.connect();</span><br><span class="line"></span><br><span class="line">OutputStream os = http.getOutputStream();<span class="comment">//Returns an output stream that writes to this connection.</span></span><br><span class="line">os.write(paramStr.getBytes(encode));<span class="comment">// 传入参数，encode为参数在字节流中的编码</span></span><br><span class="line">os.flush();</span><br><span class="line">os.close();</span><br><span class="line"></span><br><span class="line">String message = <span class="keyword">null</span>;</span><br><span class="line">InputStream is = http.getInputStream();<span class="comment">//Returns an input stream that reads from this open connection.</span></span><br><span class="line"><span class="keyword">int</span> size = is.available();</span><br><span class="line"><span class="keyword">byte</span>[] jsonBytes = <span class="keyword">new</span> <span class="keyword">byte</span>[size];</span><br><span class="line">is.read(jsonBytes);</span><br><span class="line">message = <span class="keyword">new</span> String(jsonBytes, encode);<span class="comment">//jsonBytes为字节</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="HttpClient-链接"><a href="#HttpClient-链接" class="headerlink" title="HttpClient 链接"></a>HttpClient 链接</h3><p>code：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">ca验证：</span><br><span class="line"><span class="comment">// 指定读取证书格式为PKCS12</span></span><br><span class="line">KeyStore keyStore = KeyStore.getInstance(<span class="string">"PKCS12"</span>);</span><br><span class="line"><span class="comment">// 读取本机存放的PKCS12证书文件</span></span><br><span class="line">FileInputStream instream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"D:\\java\\lib\\weixin\\cert\\apiclient_cert.p12"</span>));</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="comment">// 指定PKCS12的密码(商户ID)</span></span><br><span class="line">	keyStore.load(instream, <span class="string">"1315688001"</span>.toCharArray());</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">	instream.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Trust own CA and all self-signed certs</span></span><br><span class="line">SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, <span class="string">"1315688001"</span>.toCharArray()).build();</span><br><span class="line"><span class="comment">// Allow TLSv1 protocol only 指定TLS版本</span></span><br><span class="line">SSLConnectionSocketFactory sslsf = <span class="keyword">new</span> SSLConnectionSocketFactory(sslcontext, <span class="keyword">new</span> String[] &#123; <span class="string">"TLSv1"</span> &#125;, <span class="keyword">null</span>, SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);</span><br><span class="line">CloseableHttpClient httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();</span><br><span class="line"><span class="comment">// httpclient.getParams().setParameter(HttpEntity,"utf-8");</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">	HttpPost httpPost = <span class="keyword">new</span> HttpPost(<span class="string">"https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack"</span>);</span><br><span class="line">	httpPost.addHeader(<span class="string">"Content-Type"</span>, <span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//System.out.println(params.getBytes().);</span></span><br><span class="line">	<span class="comment">//StringEntity s = new StringEntity(new String(params.getBytes("gb18030"),"utf-8"));</span></span><br><span class="line">	ByteArrayEntity b = <span class="keyword">new</span> ByteArrayEntity(params.getBytes(<span class="string">"utf-8"</span>));</span><br><span class="line">	<span class="comment">// s.setContentEncoding("UTF-8");</span></span><br><span class="line">	httpPost.setEntity(b);</span><br><span class="line">	<span class="comment">// 设置httpclient的SSLSocketFactory,发送请求</span></span><br><span class="line">	System.out.println(<span class="string">"executing request"</span> + httpPost.getRequestLine());</span><br><span class="line"></span><br><span class="line">	System.out.println(<span class="string">"executing request"</span> + httpPost.getEntity().getContentEncoding());</span><br><span class="line">	CloseableHttpResponse response = httpclient.execute(httpPost);</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		HttpEntity entity = response.getEntity();</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">"----------------------------------------"</span>);</span><br><span class="line">		System.out.println(response.getStatusLine());</span><br><span class="line">		<span class="keyword">if</span> (entity != <span class="keyword">null</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">"Response content length: "</span> + entity.getContentLength());</span><br><span class="line">			BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(entity.getContent()));</span><br><span class="line">			String text;</span><br><span class="line">			<span class="keyword">while</span> ((text = bufferedReader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">				System.out.println(text);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		EntityUtils.consume(entity);</span><br><span class="line">	&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">		response.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">	httpclient.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          java http 链接code:1234567891011121314151617181920String urlStr = "www.baidu.com";URL url = new URL(urlStr);HttpURLConnection http = (HttpURLConnection)
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/Net-Protocol-java处理网络协议/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -817,20 +793,20 @@
       
         
           
-            <h3 id="安装-amp-运行-amp-关闭"><a href="#安装-amp-运行-amp-关闭" class="headerlink" title="安装&amp;运行&amp;关闭"></a>安装&amp;运行&amp;关闭</h3><ol>
-<li>bin/ add-user.bat<br>添加用户  </li>
-<li>standalone.bat<br>启动(单机模式)  </li>
-<li>访问管理页面<br><a href="http://localhost:9990/" target="_blank" rel="noopener">http://localhost:9990/</a><br>登录:添加的用户  </li>
-<li>服务端口<br><a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080/</a><br>关闭  <ol>
-<li>启动 : bin/ jboss-cli.bat  </li>
-<li>连接 : cmd 中 connect localhost:9990/  </li>
-<li>shutdown  </li>
-</ol>
-</li>
-</ol>
-<h3 id="jboss-post-提交中文乱码"><a href="#jboss-post-提交中文乱码" class="headerlink" title="jboss post 提交中文乱码"></a>jboss post 提交中文乱码</h3><p>  在HTTP的POST请求中，如果是这种情况<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">，若没有设置charset=utf-8，这时可能会出现请求参数中文乱码的情况  </span><br><span class="line">do:</span><br><span class="line">1. 改成get提交  </span><br><span class="line">2. Headers改    ```Content-Type:application/x-www-form-urlencoded;charset=UTF-8</span><br></pre></td></tr></table></figure></p>
-
-          
+          安装&amp;运行&amp;关闭
+bin/ add-user.bat添加用户  
+standalone.bat启动(单机模式)  
+访问管理页面http://localhost:9990/登录:添加的用户  
+服务端口http://localhost:8080/关闭  
+启动 : bin/ jbos
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/jboss/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -970,54 +946,19 @@
       
         
           
-            <h3 id="java-servlet监听"><a href="#java-servlet监听" class="headerlink" title="java servlet监听"></a>java servlet监听</h3><p>在JavaWeb被监听的事件源为： </p>
-<ul>
-<li>ServletContext、<ul>
-<li>ServletContext 对象是一个为整个 web 应用提供共享的内存，任何请求都可以访问里面的内容  </li>
-<li>ServletContext,是一个全局的储存信息的空间，服务器开始，其就存在，服务器关闭，其才释放。  <ul>
-<li>request，一个用户可有多个；</li>
-<li>session，一个用户一个；</li>
-</ul>
-</li>
-<li>而servletContext，所有用户共用一个。所以，为了节省空间，提高效率，ServletContext中，要放必须的、重要的、所有用户需要共享的线程又是安全的一些信息。</li>
-</ul>
-</li>
-<li>HttpSession、</li>
-<li>ServletRequest，  </li>
-</ul>
-<p>即三大域对象。</p>
-<p>类型:</p>
-<ul>
-<li>监听域对象“创建”与“销毁”的监听器；</li>
-<li>监听域对象“操作域属性”的监听器；</li>
-<li>监听HttpSession的监听器。</li>
-</ul>
-<p>创建与销毁监听器一共有三个：</p>
-<ul>
-<li><p>ServletContextListener：<br>Tomcat启动和关闭时调用下面两个方法<br>  public void contextInitialized(ServletContextEvent evt)：ServletContext对象被创建后调用；<br>  public void contextDestroyed(ServletContextEvent evt)：ServletContext对象被销毁前调用；  </p>
-</li>
-<li><p>HttpSessionListener：<br>开始会话和结束会话时调用下面两个方法<br>  public void sessionCreated(HttpSessionEvent evt)：HttpSession对象被创建后调用；<br>  public void sessionDestroyed(HttpSessionEvent evt)：HttpSession对象被销毁前调用；  </p>
-</li>
-<li><p>ServletRequestListener：<br>  开始请求和结束请求时调用下面两个方法<br>  public void requestInitiallized(ServletRequestEvent evt)：ServletRequest对象被创建后调用；<br>  public void requestDestroyed(ServletRequestEvent evt)：ServletRequest对象被销毁前调用。</p>
-</li>
-</ul>
-<p>事件对象:  </p>
-<ul>
-<li>ServletContextEvent：ServletContextgetServletContext()；</li>
-<li>HttpSeessionEvent：HttpSessiongetSession()；</li>
-<li>ServletRequestEvent：</li>
-</ul>
-<p>操作域属性的监听器  </p>
-<pre><code>- ServletContextAttributeEvent  
-- HttpSessionBindingEvent  
-- ServletRequestAttributeEvent   
-</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ServletContextAttributeEvent</span></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContextAttributeEvent;  </span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContextAttributeListener;  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyServletContextAttributeListener</span> <span class="keyword">implements</span>   <span class="title">ServletContextAttributeListener</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeAdded</span><span class="params">(ServletContextAttributeEvent arg0)</span> </span>&#123;</span><br><span class="line">        System.out.println(attributeAdded:+arg0.getName()+,+arg0.getValue());</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeRemoved</span><span class="params">(ServletContextAttributeEvent arg0)</span> </span>&#123;</span><br><span class="line">        System.out.println(attributeRemoved:+arg0.getName()+,+arg0.getValue());</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeReplaced</span><span class="params">(ServletContextAttributeEvent arg0)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//arg0.getValue()为替代之前的值</span></span><br><span class="line">        <span class="comment">//arg0.getServletContext().getAttribute(arg0.getName())为替代之后的值</span></span><br><span class="line">        System.out.println(attributeReplaced:+arg0.getName()+,+arg0.getValue()</span><br><span class="line">                +,+arg0.getServletContext().getAttribute(arg0.getName()));</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="ServletContext对象"><a href="#ServletContext对象" class="headerlink" title="ServletContext对象"></a>ServletContext对象</h3><p>ServletContext对象代表了一个应用，他是一个Context域对象，它里面的方法主要是一些全局性的方法，可以用来存储各个Servlet之间的共享数据。<br>ServletContext对象的应用场景，主要用于Servlet之间数据共享(可以用来做聊天室)，获取web应用的初始化参数，实现Servlet转发，读取资源文件。    </p>
-<h3 id="监听tomcat"><a href="#监听tomcat" class="headerlink" title="监听tomcat"></a>监听tomcat</h3><p>ServletContextListener使用（监听Tomcat启动、关闭）<br>自定义一个监听器类，并实现ServletContextListener，<br>重写里面的contextDestroyed和contextInitialized，将需要进行的操作写在这两个方  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TomcatListener</span> <span class="keyword">implements</span> <span class="title">ServletContextListener</span></span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">/* (non-Javadoc) </span></span><br><span class="line"><span class="comment">     * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent) </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextDestroyed</span><span class="params">(ServletContextEvent arg0)</span> </span>&#123;  </span><br><span class="line">          </span><br><span class="line">        System.out.println(<span class="string">"tomcat关闭了.........."</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">/* (non-Javadoc) </span></span><br><span class="line"><span class="comment">     * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent) </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextInitialized</span><span class="params">(ServletContextEvent arg0)</span> </span>&#123;  </span><br><span class="line">          </span><br><span class="line">        System.out.println(<span class="string">"tomcate启动了.............."</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">listener</span>&gt;</span>  </span><br><span class="line">	<span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>cn.caculate.web.action.TomcatListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          java servlet监听在JavaWeb被监听的事件源为： 
 
-          
+ServletContext、
+ServletContext 对象是一个为整个 web 应用提供共享的内存，任何请求都可以访问里面的内容  
+ServletContext,是一个全局的储存信息的空间，服务器开始，其就存在，服务器关闭
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/java监控servlet,server/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1135,9 +1076,16 @@
       
         
           
-            <h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>1.这是我整理的文档<br>2.保存我的电脑下的Note内容<br>3.可能保存project</p>
+          Note1.这是我整理的文档2.保存我的电脑下的Note内容3.可能保存project
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/README/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1277,31 +1225,17 @@
       
         
           
-            <h3 id="微信-mysql-nickname-乱码问题"><a href="#微信-mysql-nickname-乱码问题" class="headerlink" title="微信 mysql nickname 乱码问题:"></a>微信 mysql nickname 乱码问题:</h3><pre><code>java.sql.SQLException: Incorrect string value: &apos;\xF0\x9F\x92\x94&apos; for column &apos;nickname&apos; at row 1
+          微信 mysql nickname 乱码问题:java.sql.SQLException: Incorrect string value: &apos;\xF0\x9F\x92\x94&apos; for column &apos;nickname&apos; at row 1
 
-1.mysql在5.5.3版本中引入新的编码格式，取名为utf8mb4，
-所以如果电脑上的版本低于此版本，请先更新电脑中的Mysql版本
-
-2.mysql.ini
-添加编码格式配置：
-[client]
-default-character-set = utf8mb4
-
-[mysql]
-default-character-set = utf8mb4
-
-[mysqld]
-character-set-client-handshake = FALSE
-character-set-server = utf8mb4
-collation-server = utf8mb4_unicode_ci
-
-3.mysql-connector-java
-    没有问题的mysql-connector-java-5.1.39-bin.jar
-4.数据库连接池配置:
-    jdbc.url=jdbc\:mysql\://localhost\:3306/ams?autoReconnect\=true&amp;amp;failOverReadOnly\=false
-    #jdbc.url=jdbc\:mysql\://localhost\:3306/ams?useUnicode\=true&amp;amp;characterEncoding\=utf-8&amp;amp;autoReconnect\=true&amp;amp;failOverReadOnly\=false
-</code></pre>
-          
+1.mysql在5
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/weixin/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1441,37 +1375,33 @@ collation-server = utf8mb4_unicode_ci
       
         
           
-            <ol>
-<li>dos</li>
-<li>winpe</li>
-<li>win +</li>
-<li>win徽标+R</li>
-</ol>
-<p>……………………………………………</p>
-<ol>
-<li>dos</li>
-</ol>
-<p>..代表当前路径</p>
-<p>net start mssqlserver</p>
-<p>……………………………………………</p>
-<ol start="2">
-<li>winpe</li>
-</ol>
-<p>winPE u盘 重装系统</p>
-<p>ghost 备份 </p>
-<p>开始键 + r  运行界面<br>……………………………………………</p>
-<ol start="3">
-<li>win +</li>
-</ol>
-<p>win + r 切换用户<br>win + x windows移动中心<br>win + e 资源管理器<br>win + d 显示桌面<br>win +<br>资源管理器 shift + 右键 打开资源管理器</p>
-<p>………………………………………………………..</p>
-<ol start="4">
-<li>win徽标+R</li>
-</ol>
-<p>执行lusrmgr.msc命令<br>打开 本地用户管理界面</p>
-<p>mstsc 远程连接<br>regedit 注册表管理器<br>…………………………………………………………</p>
-
           
+dos
+winpe
+win +
+win徽标+R
+
+……………………………………………
+
+dos
+
+..代表当前路径
+net start mssqlserver
+……………………………………………
+
+winpe
+
+winPE u盘 重装系统
+ghost 备份 
+开始键 + r  运行界面………………
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/windows/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1589,10 +1519,17 @@ collation-server = utf8mb4_unicode_ci
       
         
           
-            <p>c++学习笔记：</p>
-<h3 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h3><p>1.VC++6.0<br>2.VA10<br>3.VS2013(未用)</p>
+          c++学习笔记：
+安装：1.VC++6.02.VA103.VS2013(未用)
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/C_study_base/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1732,19 +1669,19 @@ collation-server = utf8mb4_unicode_ci
       
         
           
-            <h3 id="JAVA虚拟机关闭钩子-Shutdown-Hook"><a href="#JAVA虚拟机关闭钩子-Shutdown-Hook" class="headerlink" title="JAVA虚拟机关闭钩子(Shutdown Hook)"></a>JAVA虚拟机关闭钩子(Shutdown Hook)</h3><p>JDK提供了Java.Runtime.addShutdownHook(Thread hook)方法，可以注册一个JVM关闭的钩子，这个钩子可以在一下几种场景中被调用： </p>
-<ol>
-<li>程序正常退出</li>
-<li>使用System.exit()</li>
-<li>终端使用Ctrl+C触发的中断</li>
-<li>系统关闭</li>
-<li>OutOfMemory宕机</li>
-<li>使用Kill pid命令干掉进程（注：在使用kill -9 pid时，是不会被调用的）</li>
-</ol>
-<h3 id="Runtime"><a href="#Runtime" class="headerlink" title="Runtime"></a>Runtime</h3><p>Runtime 封装着java程序的运行时环境。通过Runtime实例，java应用能够与其运行的环境连接。Runtime在jvm中保持一个单例，<br>所以不能通过Runtime类的构造函数。只能通过Runtime.getRuntime()来获的当前Runtime的一个实例。<br>获得Runtime实例后，就可以通过Runtime的exec()方法在当前jvm进程外启动其他进程了。<br>很常见的一个应用就是，启动浏览器进程来显示一个程序的帮助页面。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Runtime rt = Runtime.getRuntime();</span><br><span class="line">Process child = rt.exec();</span><br><span class="line">writer = <span class="keyword">new</span> OutputStreamWriter(child.getOutputStream(), <span class="string">"utf8"</span>);<span class="comment">// 控制台的输入信息作为输出流</span></span><br><span class="line">writer.write(sb.toString());</span><br></pre></td></tr></table></figure></p>
-<h4 id="在Runtime类中存在四个exec-重载方法"><a href="#在Runtime类中存在四个exec-重载方法" class="headerlink" title="在Runtime类中存在四个exec()重载方法."></a>在Runtime类中存在四个exec()重载方法.</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Process <span class="title">exec</span><span class="params">(String command)</span></span>;  </span><br><span class="line"><span class="function"><span class="keyword">public</span> Process <span class="title">exec</span><span class="params">(String [] cmdArray)</span></span>;  </span><br><span class="line"><span class="function"><span class="keyword">public</span> Process <span class="title">exec</span><span class="params">(String command, String [] envp)</span></span>;  </span><br><span class="line"><span class="function"><span class="keyword">public</span> Process <span class="title">exec</span><span class="params">(String [] cmdArray, String [] envp)</span></span>;</span><br></pre></td></tr></table></figure>
+          JAVA虚拟机关闭钩子(Shutdown Hook)JDK提供了Java.Runtime.addShutdownHook(Thread hook)方法，可以注册一个JVM关闭的钩子，这个钩子可以在一下几种场景中被调用： 
 
-          
+程序正常退出
+使用System.exit()
+终端使用Ctrl+C触发的中断
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/jvm_code/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1818,7 +1755,7 @@ collation-server = utf8mb4_unicode_ci
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">落叶</p>
-              <p class="site-description motion-element" itemprop="description">java redis mysql mybatis</p>
+              <p class="site-description motion-element" itemprop="description">高山仰止</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -1826,7 +1763,7 @@ collation-server = utf8mb4_unicode_ci
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives">
               
                   <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">posts</span>
@@ -1839,7 +1776,7 @@ collation-server = utf8mb4_unicode_ci
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

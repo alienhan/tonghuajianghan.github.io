@@ -180,22 +180,42 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
+        <li class="menu-item menu-item-首页">
           <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-标签页">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类页">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档页">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档页
           </a>
         </li>
       
@@ -325,133 +345,20 @@
       
         
           
-            <h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><ol>
-<li>编译成class文件(.class 文件结构)<br> 查看字节码: <pre><code>`javac 编译`
+          加载
+编译成class文件(.class 文件结构) 查看字节码: `javac 编译`
 `javap -verbose Class`
-</code></pre></li>
-<li><p>类(Class对象)加载到虚拟机内存过程(<br> 所谓的类加载就是把.class文件加载到内存成为Class对象) </p>
-<p> loading-&gt;linking(verification-&gt;preparation-&gt;resolution)<br> -&gt;initialization-&gt;using-&gt;unloading  </p>
-<p> preparation(准备): 类变量分配内存,设置初始值<br> resolution(解析):虚拟机将<code>常量池内</code>的符号引用替换成<code>直接引用</code>的过程.<br> initialization:执行<clinit>()方法的过程<br>   <code>&lt;clinit&gt;</code>()方法是编译器自动收集类变量,静态语句{}合成的.  </clinit></p>
-</li>
-<li><p>类加载器(双亲委派机制,树状结构):  </p>
-<ol>
-<li>启动类加载器(bootstrap ClassLoader c++实现)  </li>
-<li>扩展类加载器(Extension ClassLoader)  </li>
-<li>应用程序类加载器(Application ClassLoader)  </li>
-<li>自定义类加载器(User ClassLoader)  </li>
-<li>过程 : 类加载器收到一个类加载请求,先请求委派给父加载器完成加载  </li>
-<li>OSGi 非树状结构   </li>
-</ol>
-</li>
-<li>初始化前提:<ol>
-<li>遇到 <code>new getstatic putstatic invokestatic</code>这4条字节码(java 代码场景 使用new 实例化对象,读取或设置一个类的静态字段(final 除外))  </li>
-<li>反射调用时  </li>
-<li>初始化类的时候要先初始化父类  </li>
-<li>main  </li>
-<li>动态语言支持  </li>
-</ol>
-</li>
-</ol>
-<h3 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h3><p>main-&gt;启动线程-&gt;调用方法-&gt;线程结束  </p>
-<p>运行时栈帧结构(一个栈帧对应一个方法)  </p>
-<ul>
-<li>局部变量表  </li>
-<li>操作数栈  </li>
-<li>动态链接  </li>
-<li>方法返回地址  </li>
-<li>附加信息  </li>
-</ul>
-<h3 id="垃圾收集-Garbage-Collection"><a href="#垃圾收集-Garbage-Collection" class="headerlink" title="垃圾收集 Garbage Collection"></a>垃圾收集 Garbage Collection</h3><h4 id="GC目的"><a href="#GC目的" class="headerlink" title="GC目的:"></a>GC目的:</h4><ul>
-<li>那些内存需要回收  </li>
-<li>什么时候回收  </li>
-<li>如何回收 </li>
-</ul>
-<h4 id="判断对象死亡"><a href="#判断对象死亡" class="headerlink" title="判断对象死亡"></a>判断对象死亡</h4><ol>
-<li>引用计数算法(java中不用)  </li>
-<li>可达性分析算法<br> GC Roots:  <ul>
-<li>虚拟机栈中本地变量表中的引用对象(reference)  </li>
-<li>方法区中类静态属性引用的对象  </li>
-<li>方法区中常量引用的对象  </li>
-<li>本地方法栈(JNI)引用对象(native)  </li>
-</ul>
-</li>
-<li>引用种类<br> 强 strong 1,弱 weak 3,软 soft 2,虚 phantom 4  </li>
-</ol>
-<h4 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h4><ul>
-<li>种类<br>  标记-清除算法 Mark-Sweep<br>  标记-整理算法 Mark-Compact<br>  复制算法<br>  分代收集算法  <ul>
-<li>新生代 young generation–&gt;复制算法 Minor GC  </li>
-<li>老生代 tenured generation–&gt;标记 清理\整理 算法</li>
-<li>Major GC  </li>
-</ul>
-</li>
-<li>算法实现  <ul>
-<li>枚举根节点-&gt;停顿  </li>
-<li>安全点/区域  <ul>
-<li>发生GC时,要求所有线程处在安全域内  </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h4><ul>
-<li>并行:多条GC线程同时工作,用户线程处于等待状态  </li>
-<li>并发:用户线程与GC线程同时执行(但不一定是并行的,可能会交替执行)</li>
-<li>serial(串行) 暂停其他所有工作线程  <ul>
-<li>serial new 复制算法  <code>新生代</code>  </li>
-<li>serial old 标记-整理算法 <code>老年代</code>  </li>
-</ul>
-</li>
-<li>parnew  <code>新生代</code><br>  多线程版serial  </li>
-<li>parallel(并行)  <ul>
-<li>目标:达到一个可控的吞吐量  <ul>
-<li>吞吐量= 用户代码运行时间/(用户代码运行时间 + GC时间)  </li>
-</ul>
-</li>
-<li>parallel scavenge(打扫) <code>新生代</code>  </li>
-<li>parallel old <code>老年代</code>  </li>
-</ul>
-</li>
-<li>CMS concunrrent mark sweep(打扫) <code>老年代</code><br>  目标:获取最短回收停顿时间  </li>
-<li>G1 garbage first  <ul>
-<li>其他收集器区别: 将整个java堆划分成多个大小相等的区 域(Region)  </li>
-<li>region包含有 新/老代  </li>
-</ul>
-</li>
-</ul>
-<h3 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h3><ul>
-<li>young generation<ul>
-<li>Eden space 8(比例)<br>  当Eden区内存不够的时候就会触发MinorGC，对新生代区进行一次垃圾回收。</li>
-<li>survivor space 2  <ul>
-<li>form space 1<br>  上一次GC的幸存者，作为这一次GC的被扫描者。  </li>
-<li>to space 1<br>  保留了一次MinorGC过程中的幸存者。  </li>
-</ul>
-</li>
-<li>gc:MinorGC  <ul>
-<li>MinorGC的过程：  <ul>
-<li>MinorGC采用复制算法。  </li>
-<li>首先，把Eden和ServivorFrom区域中存活的对象复制到ServicorTo区域（如果有对象的年龄以及达到了老年的标准，则赋值到老年代区），同时把这些对象的年龄+1（如果ServicorTo不够位置了就放到老年区）；  </li>
-<li>然后，清空Eden和ServicorFrom中的对象；最后，ServicorTo和ServicorFrom互换，原ServicorTo成为下一次GC时的ServicorFrom区。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>tenured generation<ul>
-<li>gc:MajorGC</li>
-<li>进入条件<br>  survivor对象每经历一次GC,年龄+1,默认年龄15时,对象进入老年代<br>  大对象(很长的字符串/数组)直接进入老年代  </li>
-</ul>
-</li>
-<li>permanent generation<br>  PermGen PermGen space的全称是Permanent Generation space,是指内存的永久保存区域<br>  主要存放Class和Meta（元数据）的信息,Class在被加载的时候被放入永久区域.它和存放实例的区域不同,GC不会在主程序运行期对永久区域进行清理。所这也导致了永久代的区域会随着加载的Class的增多而胀满，最终抛出OOM异常。<br>  在Java8中，永久代已经被移除，被一个称为“元数据区”（元空间）的区域所取代。<br>  元空间的本质和永久代类似，都是对JVM规范中方法区的实现。不过元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。因此，默认情况下，元空间的大小仅受本地内存限制。类的元数据放入 native memory, 字符串池和类的静态变量放入java堆中. 这样可以加载多少类的元数据就不再由MaxPermSize控制, 而由系统的实际可用空间来控制.</li>
-</ul>
-<h3 id="命令-调试"><a href="#命令-调试" class="headerlink" title="命令 调试"></a>命令 调试</h3><h4 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h4><ul>
-<li>jps jvm process status  <ul>
-<li>列出正在运行的虚拟机进程</li>
-</ul>
-</li>
-</ul>
 
-          
+类(Class对象)加载到虚拟机内存过程( 所谓的类加载就是把.class文件加载到内存成为Class对象) 
+ loading-&gt;linking(veri
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/jvm-分析/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -591,8 +498,15 @@
       
         
           
-            
           
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/java-流程引擎/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -732,45 +646,18 @@
       
         
           
-            <h3 id="slf4j"><a href="#slf4j" class="headerlink" title="slf4j"></a>slf4j</h3><pre><code>SLF4J不同于其他日志类库，与其它有很大的不同。  
+          slf4jSLF4J不同于其他日志类库，与其它有很大的不同。  
 SLF4J(Simple logging Facade for Java)不是一个真正的日志实现，
 而是一个抽象层（ abstraction layer），它允许你在后台使用任意一个日志类库。   
-如果是在编写供内外部都可以使用的API或者通用类库，  
-那么你真不会希望使用你类库的客户端必须使用你选择的日志类库。  
-</code></pre><h4 id="配置slf4j-配置log4j"><a href="#配置slf4j-配置log4j" class="headerlink" title="配置slf4j,配置log4j"></a>配置slf4j,配置log4j</h4><ol>
-<li><p>引入jar包：  </p>
-<pre><code>slf4j-api-1.5.8.jar
-slf4j-log4j12-1.5.8.jar
-log4j-1.2.17.jar    
-</code></pre></li>
-<li><p>配置slf4j： </p>
-</li>
-</ol>
-<ol start="3">
-<li><p>配置log4j：<br> 配置log4j.properties  </p>
-<ul>
-<li>配置根Logger<br>配置显示日志记录的优先级<br>log4j.rootLogger=warn, stdout  </li>
-</ul>
-<ul>
-<li>配置日志信息输出目的地Appender<br>log4j.appender.appenderName.option = valueN   <ul>
-<li>valueN的值  <ul>
-<li>org.apache.log4j.ConsoleAppender（控制台）</li>
-<li>org.apache.log4j.FileAppender（文件)<br>　- org.apache.log4j.DailyRollingFileAppender（每天产生一个日志文件）  </li>
-<li>org.apache.log4j.RollingFileAppender（文件大小到达指定尺寸的时候产生一个新的文件）  </li>
-<li>org.apache.log4j.WriterAppender（将日志信息以流格式发送到任意指定的地方）  </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>输出debug语句<br>   log4j.logger.org.hibernate=debug  </li>
-</ul>
-</li>
-</ol>
-<h3 id="web-xml配置："><a href="#web-xml配置：" class="headerlink" title="web.xml配置："></a>web.xml配置：</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>log4jConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>/WEB-INF/classes/log4j.properties<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.util.Log4jConfigListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="java-调用："><a href="#java-调用：" class="headerlink" title="java 调用："></a>java 调用：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Logger log = LoggerFactory.getLogger(TicketQrInfoAction.class);</span><br></pre></td></tr></table></figure>
-<h3 id="log4j-properties"><a href="#log4j-properties" class="headerlink" title="log4j.properties"></a>log4j.properties</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># Output pattern : date [thread] priority category - message   FATAL 0  ERROR 3  WARN 4  INFO 6  DEBUG 7 </span><br><span class="line">log4j.rootLogger=DEBUG,Console,File</span><br><span class="line"></span><br><span class="line">#Console</span><br><span class="line">log4j.appender.Console=org.apache.log4j.ConsoleAppender</span><br><span class="line">log4j.appender.Console.threshold=DEBUG</span><br><span class="line">log4j.appender.Console.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.Console.layout.ConversionPattern=%d [%t] %-5p [%c] - %m%n</span><br><span class="line"></span><br><span class="line">#Springframework level</span><br><span class="line">log4j.logger.org.springframework=DEBUG</span><br><span class="line">log4j.logger.com.mybatis=DEBUG</span><br><span class="line">log4j.logger.org.apache.ibatis=DEBUG</span><br><span class="line">log4j.logger.com.ibatis = DEBUG</span><br><span class="line">log4j.logger.java.sql=DEBUG</span><br><span class="line">log4j.logger.java.sql.ResultSet=DEBUG  </span><br><span class="line">log4j.logger.org.apache=DEBUG  </span><br><span class="line">log4j.logger.java.sql.Connection=DEBUG  </span><br><span class="line">log4j.logger.java.sql.Statement=DEBUG  </span><br><span class="line">log4j.logger.java.sql.PreparedStatement=DEBUG   </span><br><span class="line"></span><br><span class="line">#log4j.appender.File=org.apache.log4j.DailyRollingFileAppender</span><br><span class="line">#log4j.appender.File.File=$&#123;tms.root&#125;logs/log</span><br><span class="line">#log4j.appender.File.DatePattern=&apos;_&apos;yyyy-MM-dd&apos;.log&apos; </span><br><span class="line">#log4j.appender.File.layout=org.apache.log4j.PatternLayout</span><br><span class="line">#log4j.appender.File.layout.ConversionPattern=[TMS] %p [%t] %-d&#123;yyyy-MM-dd HH\:mm\:ss&#125; %C.%M(%L) | %m%n</span><br></pre></td></tr></table></figure>
-
-          
+如果是在编写供内外部都可以使用的A
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/java-日志处理/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -910,42 +797,25 @@ log4j-1.2.17.jar
       
         
           
-            <p>1.jdk配置</p>
-<ol start="2">
-<li>keytools</li>
-<li>list</li>
-<li>java泛型</li>
-<li>实参个数可变</li>
-<li>windows多版本jdk</li>
-</ol>
-<p>java 安装，配置相关</p>
-<h3 id="jdk配置"><a href="#jdk配置" class="headerlink" title="jdk配置"></a>jdk配置</h3><p>-&gt;系统-》高级环境变量<br>系统变量配置<br>classpath， 最后一个为tomcat配置  </p>
-<pre><code>C:\Program Files(x86)\Java\jdk1.6.0_19\lib\rt.jar;
-C:\Program Files (x86)\Java\jdk1.6.0_19\lib\tools.jar;
-D:\tomcat\apache-tomcat-7.0.32;D:\tomcat\apache-tomcat-6.0.3
-</code></pre><p>java_home   </p>
-<pre><code>C:\Program Files (x86)\Java\jdk1.6.0_19
-</code></pre><p>path  </p>
-<pre><code>%M2%;%JAVA_HOME%\bin;
-C:\Program Files (x86)\Microsoft Visual Studio\Common\Tools\WinNT;
-C:\Program Files (x86)\Microsoft Visual Studio\Common\MSDev98\Bin;
-C:\Program Files (x86)\Microsoft Visual Studio\Common\Tools;
-c:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;
-C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;
-C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;
-C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;
-C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;
-C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;D:\mysqlserver32\mysql-5.1.66-winx64\bin
-</code></pre><h3 id="keytools"><a href="#keytools" class="headerlink" title="keytools"></a>keytools</h3><p>jdk密钥生成工具  </p>
-<p>Keytool是一个Java数据证书的管理工具。  </p>
-<h4 id="keystore"><a href="#keystore" class="headerlink" title="keystore"></a>keystore</h4><p>Keytool将密钥（key）和证书（certificates）<br>存在一个称为keystore的文件中<br>在keystore里，包含两种数据：<br>密钥实体（Key entity）——密钥（secret key）<br>又或者是私钥和配对公钥（采用非对称加密）<br>可信任的证书实体（trusted certificate entries）——只包含公钥   </p>
-<p>Alias（别名）<br>每个keystore都关联这一个独一无二的alias，这个alias通常不区分大小写     </p>
-<h4 id="cacerts证书文件-The-cacerts-Certificates-File"><a href="#cacerts证书文件-The-cacerts-Certificates-File" class="headerlink" title="cacerts证书文件(The cacerts Certificates File)"></a>cacerts证书文件(The cacerts Certificates File)</h4><p>改证书文件存在于java.home\lib\security目录下，是Java系统的CA证书仓库   </p>
-<pre><code>%Java_home%\bin\keytool -genkey -alias tomcat -keyalg RSA  
-</code></pre><h3 id="windows多版本jdk"><a href="#windows多版本jdk" class="headerlink" title="windows多版本jdk"></a>windows多版本jdk</h3><pre><code>将jdk8，jdk6安装，复制安装文件后
-卸载两个jdk，这样就只有java_home影响系统的jdk版本
-</code></pre>
-          
+          1.jdk配置
+
+keytools
+list
+java泛型
+实参个数可变
+windows多版本jdk
+
+java 安装，配置相关
+jdk配置-&gt;系统-》高级环境变量系统变量配置classpath， 最后一个为tomcat配置  
+C:\Program Files(x86)\Java\jdk1.
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/java-基础安装配置/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1085,51 +955,19 @@ C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)
       
         
           
-            <h3 id="Arraylist-、LinkedList、-vector的区别"><a href="#Arraylist-、LinkedList、-vector的区别" class="headerlink" title="Arraylist 、LinkedList、 vector的区别"></a>Arraylist 、LinkedList、 vector的区别</h3><p>List接口下一共实现了三个类：ArrayList，Vector，LinkedList  </p>
-<p>LinkedList ：<br>主要用在保持数据的插入顺序  </p>
-<p>ArrayList和Vector都是用数组实现的，主要有这么三个区别：</p>
-<ol>
-<li>Vector是多线程安全的，而ArrayList不是，<br>这个可以从源码中看出，Vector类中的方法很多有synchronized进行修饰，<br>这样就导致了Vector在效率上无法与ArrayList相比；  </li>
-<li>两个都是采用的线性连续空间存储元素，但是当空间不足的时候，两个类的增加方式是不同的，<br>Vector增加原来空间的一倍，ArrayList增加原来空间的50%。  </li>
-<li>Vector可以设置增长因子，而ArrayList不可以。 </li>
-</ol>
-<h3 id="HashMap-Hashtable-区别"><a href="#HashMap-Hashtable-区别" class="headerlink" title="HashMap Hashtable 区别"></a>HashMap Hashtable 区别</h3><p>HashMap put元素：<br> 当我们往hashmap中put元素的时候，先根据key的hash值得到这个元素在数组中的位置（即下标），<br> 然后就可以把这个元素放到对应的位置中了。如果这个元素所在的位子上已经存放有其他元素了，<br> 那么在同一个位子上的元素将以链表的形式存放，新加入的放在链头，最先加入的放在链尾。  </p>
-<p><strong><em>区别</em></strong><br>第一，继承不同。<br>public class Hashtable extends Dictionary implements Map<br>public class HashMap  extends AbstractMap implements Map</p>
-<p>第二<br>Hashtable 中的方法是同步的，而HashMap中的方法在缺省情况下是非同步的。<br>在多线程并发的环境下，可以直接使用Hashtable，但是要使用HashMap的话就要自己增加同步处理了。  </p>
-<p>第三<br>Hashtable 中，key和value都不允许出现null值。<br>在 HashMap 中，null可以作为键，这样的键只有一个；可以有一个或多个键所对应的值为null。当<br>get()方法返回null值时，即可以表示 HashMap中没有该键，也可以表示该键所对应的值为null。因此，<br>在HashMap中不能由get()方法来判断HashMap中是否存在某个键， 而应该用containsKey()方法来判断。  </p>
-<p>第四<br>两个遍历方式的内部实现上不同。<br>Hashtable 、HashMap 都使用了 Iterator 。而由于历史原因，Hashtable还使用了Enumeration的方式 。  </p>
-<p>第五<br>哈希值的使用不同，HashTable直接使用对象的hashCode。而HashMap重新计算hash值。  </p>
-<p>第六<br>Hashtable 和HashMap 它们两个内部实现方式的数组的初始大小和扩容的方式。<br>HashTable中hash数组默认大小是11，增加的方式是 old*2+1。HashMap中hash数组的默认大小是16，<br>而且一定是2的指数。   </p>
-<h3 id="String-StringBuffer-StringBuilder-区别"><a href="#String-StringBuffer-StringBuilder-区别" class="headerlink" title="String StringBuffer StringBuilder 区别"></a>String StringBuffer StringBuilder 区别</h3><p>String 字符串常量<br>StringBuffer 字符串变量（线程安全）<br>StringBuilder 字符串变量（非线程安全）  </p>
-<ol>
-<li><p>三者在执行速度方面的比较： StringBuilder &gt;  StringBuffer  &gt;  String<br>原因：  </p>
-<ul>
-<li>当用String操作字符串时，实际上是在不断的创建新的对象，而原来的对象就会变为垃圾被ＧＣ回收掉，<br>因此执行效率降低  </li>
-</ul>
-</li>
-<li><p>区别：  </p>
-<ul>
-<li>StringBuilder ：线程非安全的  </li>
-<li>StringBuffer ：线程安全的  </li>
-</ul>
-</li>
-</ol>
-<h3 id="对象克隆"><a href="#对象克隆" class="headerlink" title="对象克隆"></a>对象克隆</h3><p>Java中所有的对象都是保存在堆中，而堆是供全局共享的。也就是说，<br>如果同一个Java程序的不同方法，只要能拿到某个对象的引用，  </p>
-<p>引用者就可以随意的修改对象的内部数据（前提是这个对象的内部数据通过get/set方法曝露出来）。<br>有的时候，我们编写的代码想让调用者只获得该对象的一个拷贝<br>（也就是一个内容完全相同的对象，但是在内存中存在两个这样的对象）  </p>
-<p>继承Cloneable<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ByteArrayEntity</span> <span class="keyword">extends</span> <span class="title">AbstractHttpEntity</span> <span class="keyword">implements</span> <span class="title">Cloneable</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">super</span>.clone();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line">User u1 = <span class="keyword">new</span> User(<span class="string">"Kent"</span>, <span class="string">"123456"</span>, <span class="keyword">new</span> Date());</span><br><span class="line">User u2 = u1;</span><br><span class="line">User u3 = (User) u1.clone();</span><br><span class="line"></span><br><span class="line">System.out.println(u1 == u2);		<span class="comment">// true</span></span><br><span class="line">System.out.println(u1.equals(u2));	<span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">System.out.println(u1 == u3);		<span class="comment">// false</span></span><br><span class="line">System.out.println(u1.equals(u3));	<span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="error"><a href="#error" class="headerlink" title="error"></a>error</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java.io.IOException: failed to decrypt safe contents entry:   javax.crypto.BadPaddingException:  </span><br><span class="line">Given <span class="keyword">final</span> block not properly padded  </span><br><span class="line"></span><br><span class="line">Sometimes <span class="keyword">this</span> error is symptomatic of using an incorrect   password <span class="keyword">for</span> the p12 key.</span><br></pre></td></tr></table></figure>
-<h3 id="list-java-util-List"><a href="#list-java-util-List" class="headerlink" title="list java.util.List"></a>list java.util.List</h3><p>list使用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list&lt;<span class="class"><span class="keyword">class</span>&gt;  </span></span><br><span class="line"><span class="class"><span class="title">List</span>&lt;<span class="title">String</span>&gt; <span class="title">l</span> </span>= <span class="keyword">new</span> ArrayList&lt;String&gt;();  </span><br><span class="line">List&lt;String&gt; l2 = <span class="keyword">new</span> LinkedList&lt;String&gt;();</span><br></pre></td></tr></table></figure></p>
-<p>List接口的常用实现类有ArrayList和LinkedList，<br>在使用List集合时，通常情况下声明为List类型，<br>实例化时根据实际情况的需要，实例化为ArrayList或LinkedList，<br>例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; l = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"><span class="comment">// 利用ArrayList类实例化List集合</span></span><br><span class="line">List&lt;String&gt; l2 = <span class="keyword">new</span> LinkedList&lt;String&gt;();</span><br><span class="line"><span class="comment">// 利用LinkedList类实例化List集合</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="java泛型"><a href="#java泛型" class="headerlink" title="java泛型"></a>java泛型</h3><p><a href="http://www.w3cschool.cc/" target="_blank" rel="noopener">http://www.w3cschool.cc/</a></p>
-<p>泛型（Generic type 或者 generics）是对<br>Java 语言的类型系统的一种扩展，以支持创建可以按类型进行参数化的类。  </p>
-<p>example:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(Integer i, Integer[] ia)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(Double  d, Double[] da)</span></span>;</span><br><span class="line"><span class="comment">//范型版本为</span></span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(T t, T[] ta)</span></span>;</span><br></pre></td></tr></table></figure></p>
-<h3 id="实参个数可变"><a href="#实参个数可变" class="headerlink" title="实参个数可变"></a>实参个数可变</h3><p>定义实参个数可变的方法:  </p>
-<ul>
-<li>只要在一个形参的“类型”与“参数名”之间加上三个<br>连续的“.”（即“…”，英文里的句中省略号），就可以让它和不确定个实参相匹配。而一个带有这样的形参的方法，就是一个实参个数可变的方法。  </li>
-</ul>
-<p>一个实参个数可变的方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sumUp</span><span class="params">(<span class="keyword">int</span>... values)</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">Object... params</span><br><span class="line"><span class="keyword">new</span> Object[]&#123;para1, para2, para3 &#125;等同于这样的形式。</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sumUp</span><span class="params">(<span class="keyword">int</span>... values)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; values.length; i++) &#123;</span><br><span class="line">        sum += values[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">generalUse</span><span class="params">(<span class="keyword">int</span> []args)</span></span>&#123;  </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; args.length ; i++ )&#123;  </span><br><span class="line">                System.out.println(args[i]);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;   </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">newBehaviour</span><span class="params">(<span class="keyword">int</span>... args)</span></span>&#123;  </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; args.length ; i++ )&#123;  </span><br><span class="line">                System.out.println(args[i]);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+          Arraylist 、LinkedList、 vector的区别List接口下一共实现了三个类：ArrayList，Vector，LinkedList  
+LinkedList ：主要用在保持数据的插入顺序  
+ArrayList和Vector都是用数组实现的，主要有这么三个区别：
 
-          
+Vector是
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/java-基础/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1269,10 +1107,16 @@ C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)
       
         
           
-            <h3 id="XPDL（XML-Process-Definition-Language）"><a href="#XPDL（XML-Process-Definition-Language）" class="headerlink" title="XPDL（XML Process Definition Language）"></a>XPDL（XML Process Definition Language）</h3><p>是由Workflow Management Coalition所提出的一个标准化规格，<br>使用XML文件让不同的工作流程软件能够交换商业流程定义。  </p>
-<h3 id="使用dom4j解析xml文件"><a href="#使用dom4j解析xml文件" class="headerlink" title="使用dom4j解析xml文件"></a>使用dom4j解析xml文件</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.mendian.common.util;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.dom4j.Attribute;</span><br><span class="line"><span class="keyword">import</span> org.dom4j.Document;</span><br><span class="line"><span class="keyword">import</span> org.dom4j.DocumentException;</span><br><span class="line"><span class="keyword">import</span> org.dom4j.Element;</span><br><span class="line"><span class="keyword">import</span> org.dom4j.io.SAXReader;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * xml 工具类</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>: XmlUtil</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> jh</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2016-7-8 上午11:56:44</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XmlUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 通过文件名创建documnet</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@Author</span>: jianghan</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> fileName</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Document <span class="title">createDocument</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (StringUtil.isEmpty(fileName)) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		SAXReader reader = <span class="keyword">new</span> SAXReader();</span><br><span class="line">		Document doc = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			doc = reader.read(fileName);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (DocumentException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> doc;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 通过request创建document</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@Author</span>: jianghan</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Document <span class="title">createDocument</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">		Document doc = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			InputStream inputStream = request.getInputStream();</span><br><span class="line">			SAXReader reader = <span class="keyword">new</span> SAXReader();</span><br><span class="line"></span><br><span class="line">			doc = reader.read(inputStream);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (DocumentException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e1) &#123;</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> doc;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 通过文件名创建根节点</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@Author</span>: jianghan</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> fileName</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Element <span class="title">createRootElement</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> createDocument(fileName).getRootElement();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 通过request创建根节点</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@Author</span>: jianghan</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Element <span class="title">createRootElement</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> createDocument(request).getRootElement();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 获取当前节点的名字,内容等属性</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@Author</span>: jianghan</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> node</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, String&gt; <span class="title">getElement</span><span class="params">(Element node)</span> </span>&#123;</span><br><span class="line">		Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</span><br><span class="line">		map.put(<span class="string">"name"</span>, node.getName());</span><br><span class="line">		map.put(<span class="string">"value"</span>, node.getText());</span><br><span class="line">		<span class="keyword">return</span> map;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 获取当前节点的所有子节点</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@Author</span>: jianghan</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Element&gt; <span class="title">getChildElement</span><span class="params">(Element node)</span> </span>&#123;</span><br><span class="line">		List&lt;Element&gt; elements = <span class="keyword">new</span> ArrayList&lt;Element&gt;();</span><br><span class="line">		Iterator&lt;Element&gt; iterator = node.elementIterator();</span><br><span class="line">		<span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">			Element e = iterator.next();</span><br><span class="line">			elements.add(e);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> elements;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> List&lt;Map&lt;String, Object&gt;&gt; getAttributes(Element node) &#123;</span><br><span class="line">		List&lt;Map&lt;String, Object&gt;&gt; list = <span class="keyword">new</span> ArrayList&lt;Map&lt;String, Object&gt;&gt;();</span><br><span class="line">		<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (Iterator&lt;?&gt; it = node.attributeIterator(); it.hasNext();) &#123;</span><br><span class="line">			Attribute attribute = (Attribute) it.next();</span><br><span class="line">			list.get(i).put(attribute.getName(), attribute.getText());</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> list;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
+          XPDL（XML Process Definition Language）是由Workflow Management Coalition所提出的一个标准化规格，使用XML文件让不同的工作流程软件能够交换商业流程定义。  
+使用dom4j解析xml文件1234567891011121314151617
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/java-xml/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1412,11 +1256,17 @@ C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)
       
         
           
-            <h3 id="web-xml-加载顺序："><a href="#web-xml-加载顺序：" class="headerlink" title="web.xml 加载顺序："></a>web.xml 加载顺序：</h3><pre><code>加载顺序与它们在 web.xml 文件中的先后顺序无关。
+          web.xml 加载顺序：加载顺序与它们在 web.xml 文件中的先后顺序无关。
 context-param -&gt; listener -&gt; filter -&gt; servlet
-</code></pre><p>context-param<br>    context-param，它用于向 ServletContext 提供键值对，即应用程序上下文信息。<br>    我们的 listener, filter 等在初始化时会用到这些上下文中的信息  </p>
-
-          
+context-param    context-param，它用于向 ServletContext 提
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/java-web相关/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1556,13 +1406,15 @@ context-param -&gt; listener -&gt; filter -&gt; servlet
       
         
           
-            <h3 id="SMTP"><a href="#SMTP" class="headerlink" title="SMTP"></a>SMTP</h3><p>SMTP（Simple Mail Transfer Protocol）即简单邮件传输协议,它是一组用于由源地址到目的地址传送邮件的规则，<br>由它来控制信件的中转方式。SMTP协议属于TCP/IP协议簇，它帮助每台计算机在发送或中转信件时找到下一个目的地。<br>通过SMTP协议所指定的服务器,就可以把E-mail寄到收信人的服务器上了，整个过程只要几分钟。<br>SMTP服务器则是遵循SMTP协议的发送邮件服务器，用来发送或中转发出的电子邮件。<br>它使用由TCP提供的可靠的数据传输服务把邮件消息从发信人的邮件服务器传送到收信人的邮件服务器。<br>跟大多数应用层协议一样，SMTP也存在两个 端：在发信人的邮件服务器上执行的客户端和在收信人的邮件服务器上执行的服务器端。<br>SMTP的客户端和服务器端同时运行在每个邮件服务器上。当一个邮件服 务器在向其他邮件服务器发送邮件消息时，它是作为SMTP客户在运行。  </p>
-<p>引用jar包：  </p>
-<pre><code>mail.jar  
-activation.jar  
-</code></pre><h3 id="JavaMail-API的核心类："><a href="#JavaMail-API的核心类：" class="headerlink" title="JavaMail API的核心类："></a>JavaMail API的核心类：</h3><p>会话、消息、地址、验证程序、传输，存储和文件夹。所有这些类都可以在JavaMail API即javax.mail的顶层包中找到，<br>尽管你将频繁地发现你自己使用的子类是在javax.mail.internet包中找到的  </p>
-
-          
+          SMTPSMTP（Simple Mail Transfer Protocol）即简单邮件传输协议,它是一组用于由源地址到目的地址传送邮件的规则，由它来控制信件的中转方式。SMTP协议属于TCP/IP协议簇，它帮助每台计算机在发送或中转信件时找到下一个目的地。通过SMTP协议所指定的服务器,就可以把E
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/java-Mail/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1702,10 +1554,16 @@ activation.jar
       
         
           
-            <h3 id="java-读取classpath下的文件"><a href="#java-读取classpath下的文件" class="headerlink" title="java 读取classpath下的文件"></a>java 读取classpath下的文件</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String menuPath = MenuComponent.class.getResource(<span class="string">"/config/wx_menu.xml"</span>).getFile();</span><br></pre></td></tr></table></figure>
-<h3 id="java-读取classpath下的文件properties文件"><a href="#java-读取classpath下的文件properties文件" class="headerlink" title="java 读取classpath下的文件properties文件"></a>java 读取classpath下的文件properties文件</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 保存全局属性值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String, String&gt; map = <span class="keyword">new</span> ConcurrentHashMap&lt;String, String&gt;();</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 属性文件加载对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> PropertiesLoader propertiesLoader = <span class="keyword">new</span> PropertiesLoader(<span class="string">"config/application.properties"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取配置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getConfig</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">	String value = map.get(key);</span><br><span class="line">	<span class="keyword">if</span> (value == <span class="keyword">null</span>) &#123;</span><br><span class="line">		value = propertiesLoader.getProperty(key);</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">null</span> == value) &#123;</span><br><span class="line">			LOG.error(<span class="string">"配置文件加载错误,&#123;&#125;:&#123;&#125;"</span>, key, value);</span><br><span class="line">		&#125;</span><br><span class="line">		map.put(key, value);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
+          java 读取classpath下的文件1String menuPath = MenuComponent.class.getResource("/config/wx_menu.xml").getFile();
+java 读取classpath下的文件properties文件1234567891011
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/java-file/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1845,9 +1703,16 @@ activation.jar
       
         
           
-            <h3 id="google-chrome-f12-开发人员工具"><a href="#google-chrome-f12-开发人员工具" class="headerlink" title="google chrome f12 开发人员工具"></a>google chrome f12 开发人员工具</h3><p>快捷键<br>ctrl + p 打开源文件(在Sources)<br>F10 下一步<br>F8 就是F8  </p>
+          google chrome f12 开发人员工具快捷键ctrl + p 打开源文件(在Sources)F10 下一步F8 就是F8  
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/15/java-debug/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1921,7 +1786,7 @@ activation.jar
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">落叶</p>
-              <p class="site-description motion-element" itemprop="description">java redis mysql mybatis</p>
+              <p class="site-description motion-element" itemprop="description">高山仰止</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -1929,7 +1794,7 @@ activation.jar
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives">
               
                   <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">posts</span>
@@ -1942,7 +1807,7 @@ activation.jar
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
