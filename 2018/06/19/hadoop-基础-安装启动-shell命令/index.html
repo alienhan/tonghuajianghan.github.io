@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="hadoop 启动,hadoop shell,mapreduce," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="安装 参考:  http://www.cnblogs.com/wuxun1997/p/6847950.html   windows 需要文件  https://github.com/steveloughran/winutils  替换bin下的文件,system32下放入hadoop.dll  hadoop 启动 先启动zookeeper  启动Hadoop集群需要启动HDFS集群和Map/Red">
+<meta name="keywords" content="hadoop 启动,hadoop shell,mapreduce">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hadoop">
+<meta property="og:url" content="http://yoursite.com/2018/06/19/hadoop-基础-安装启动-shell命令/index.html">
+<meta property="og:site_name" content="大东山下">
+<meta property="og:description" content="安装 参考:  http://www.cnblogs.com/wuxun1997/p/6847950.html   windows 需要文件  https://github.com/steveloughran/winutils  替换bin下的文件,system32下放入hadoop.dll  hadoop 启动 先启动zookeeper  启动Hadoop集群需要启动HDFS集群和Map/Red">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-19T10:00:41.741Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hadoop">
+<meta name="twitter:description" content="安装 参考:  http://www.cnblogs.com/wuxun1997/p/6847950.html   windows 需要文件  https://github.com/steveloughran/winutils  替换bin下的文件,system32下放入hadoop.dll  hadoop 启动 先启动zookeeper  启动Hadoop集群需要启动HDFS集群和Map/Red">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/19/hadoop-基础-安装启动-shell命令/"/>
+
+
+
+
+
+  <title>hadoop | 大东山下</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">大东山下</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签页">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类页">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档页">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/19/hadoop-基础-安装启动-shell命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">hadoop</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-19T18:00:41+08:00">
+                2018-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li>参考:<br>  <a href="http://www.cnblogs.com/wuxun1997/p/6847950.html" target="_blank" rel="noopener">http://www.cnblogs.com/wuxun1997/p/6847950.html</a>  </li>
+<li>windows 需要文件<br>  <a href="https://github.com/steveloughran/winutils" target="_blank" rel="noopener">https://github.com/steveloughran/winutils</a><br>  替换bin下的文件,system32下放入hadoop.dll</li>
+</ul>
+<h3 id="hadoop-启动"><a href="#hadoop-启动" class="headerlink" title="hadoop 启动"></a>hadoop 启动</h3><ol>
+<li><p>先启动zookeeper</p>
+</li>
+<li><p>启动Hadoop集群需要启动HDFS集群和Map/Reduce集群。</p>
+<ol>
+<li><p>格式化一个新的分布式文件系统：(只能格式化一次,多次会造成put时sid错误.)  </p>
+<figure class="highlight plain"><figcaption><span>namenode -format ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2. 在分配的NameNode上，运行下面的命令启动HDFS：  </span><br><span class="line">  ```  sbin&gt;start-all.cmd</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>检验</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">* sbin&gt;jps</span><br><span class="line">     4944 DataNode</span><br><span class="line">     5860 NodeManager</span><br><span class="line">     3532 Jps</span><br><span class="line">     7852 NameNode</span><br><span class="line">     7932 ResourceManager</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<ol start="3">
+<li>监听端口  <ul>
+<li><code>与外部程序交互端口</code><br><a href="http://localhost:9000/" target="_blank" rel="noopener">http://localhost:9000/</a> </li>
+<li>web 页面访问端口欧<br><a href="http://localhost:50070/" target="_blank" rel="noopener">http://localhost:50070/</a> <code>看hdfs文件</code><br><a href="http://localhost:8088" target="_blank" rel="noopener">http://localhost:8088</a> <code>mapreduce任务</code>  </li>
+</ul>
+</li>
+</ol>
+<h3 id="hadoop-shell"><a href="#hadoop-shell" class="headerlink" title="hadoop shell"></a>hadoop shell</h3><h4 id="put"><a href="#put" class="headerlink" title="put"></a>put</h4><p>使用方法：hadoop fs -put <localsrc> … <dst>  </dst></localsrc></p>
+<ul>
+<li>从本地文件系统中复制单个或多个源路径到目标文件系统。也支持从标准输入中读取输入写入目标文件系统。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">* hadoop fs -put localfile /user/hadoop/hadoopfile  </span><br><span class="line">* hadoop fs -put localfile1 localfile2  </span><br><span class="line"> /user/hadoop/hadoopdir  </span><br><span class="line">* hadoop fs -put localfile  </span><br><span class="line"> hdfs://host:port/hadoop/hadoopfile</span><br><span class="line">* hadoop fs -put - hdfs://host:port/hadoop/hadoopfile</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>从标准输入中读取输入。</p>
+<p>返回值：<br>成功返回0，失败返回-1。(我put的时候没有返回值?)    </p>
+<p>put 的hadoop 的位置的路径下没有其他文件或目录时,直接替换这个路径,而不是在这个路径下新建文集   </p>
+<h4 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h4><p>使用方法：hadoop fs -mkdir <paths>  </paths></p>
+<ul>
+<li><p>接受路径指定的uri作为参数，创建这些目录。其行为类似于Unix  mkdir -p，它会创建路径中的各级父目录。<br>示例：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* hadoop fs -mkdir /user/hadoop/dir1 /user/hadoop/dir2</span><br><span class="line">* hadoop fs -mkdir hdfs://host1:port1/user/hadoop/dir hdfs://host2:port2/user/hadoop/dir</span><br></pre></td></tr></table></figure>
+<p>返回值：<br>成功返回0，失败返回-1。</p>
+</li>
+</ul>
+<p>mkdir多路径的时候(/user/hadoop/dir1) 如果没有父路径则不会新建子目录,会报错</p>
+<h3 id="mapreduce-demo"><a href="#mapreduce-demo" class="headerlink" title="mapreduce demo"></a>mapreduce demo</h3><h4 id="运行hadoop官网给的demo-失败"><a href="#运行hadoop官网给的demo-失败" class="headerlink" title="运行hadoop官网给的demo (失败)"></a>运行hadoop官网给的demo (失败)</h4><pre><code>http://hadoop.apache.org/docs/r1.0.4/cn/mapred_tutorial.html  
+</code></pre><p>运行应用程序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; $ bin/hadoop jar /usr/joe/wordcount.jar org.myorg.WordCount /usr/joe/wordcount/input /usr/joe/wordcount/output</span><br></pre></td></tr></table></figure></p>
+<p>应该为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; hadoop jar D:\java\hadoop-2.8.1\sbin\hh\hadoop-test-1.0.0.jar hadoop.WordCount /usr/joe/wordcount/input /usr/joe/wordcount/output</span><br></pre></td></tr></table></figure></p>
+<p>不用加jar包名称</p>
+<p>运行失败 原因:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">8/01/25 18:41:16 INFO mapreduce.Job: Job job_1516876525498_0002 failed with state FAILED due to: Application application_1516876525498_0002 failed 2 times due to AM Container for appattempt_1516876525498_0002_000</span><br><span class="line">002 exited with  exitCode: 5</span><br><span class="line">Failing this attempt.Diagnostics: Exception from container-launch.</span><br><span class="line">Container id: container_1516876525498_0002_02_000001</span><br><span class="line">Exit code: 5</span><br><span class="line">Exception message: AssignProcessToJobObject error (5): ?????</span><br></pre></td></tr></table></figure></p>
+<p>未解决文档<br>    <a href="https://wiki.apache.org/hadoop/Hadoop2OnWindows" target="_blank" rel="noopener">https://wiki.apache.org/hadoop/Hadoop2OnWindows</a></p>
+<h4 id="运行成功-通过idea运行-成功-demo"><a href="#运行成功-通过idea运行-成功-demo" class="headerlink" title="运行成功 通过idea运行(成功) demo"></a>运行成功 通过idea运行(<code>成功</code>) demo</h4><p><a href="https://www.jianshu.com/p/3e1b398ebfea" target="_blank" rel="noopener">https://www.jianshu.com/p/3e1b398ebfea</a></p>
+<p>error:<br>  版本问题(版本低于hadoop环境)<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Server IPC version 9 cannot communicate with client version 4</span><br></pre></td></tr></table></figure></p>
+<p>8088 没有监控到运行?  </p>
+<ul>
+<li>idea 运行的程序都监测不到  </li>
+</ul>
+<h3 id="map-reduce-计算模型"><a href="#map-reduce-计算模型" class="headerlink" title="map reduce 计算模型"></a>map reduce 计算模型</h3><ul>
+<li>执行任务角色:<br>  jobTracker(跟踪器) 调度工作 <code>一个hadoop集群中只有一个</code><br>  taskTracker 执行工作</li>
+</ul>
+<hr>
+<h3 id="lang-comparable-可比较的"><a href="#lang-comparable-可比较的" class="headerlink" title="lang comparable 可比较的"></a>lang comparable 可比较的</h3><p>Comparable 是排序接口。<br>若一个类实现了Comparable接口，就意味着“该类支持排序”。<br> 即然实现Comparable接口的类支持排序，假设现在存在“实现Comparable接口的类的对象的List列表(或数组)”，则该List列表(或数组)可以通过   Collections.sort（或 Arrays.sort）进行排序。  </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hadoop-启动/" rel="tag"># hadoop 启动</a>
+          
+            <a href="/tags/hadoop-shell/" rel="tag"># hadoop shell</a>
+          
+            <a href="/tags/mapreduce/" rel="tag"># mapreduce</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/19/struct/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/19/jenkins/" rel="prev" title="jenkins">
+                jenkins <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">落叶</p>
+              <p class="site-description motion-element" itemprop="description">高山仰止</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">126</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hadoop-启动"><span class="nav-number">2.</span> <span class="nav-text">hadoop 启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hadoop-shell"><span class="nav-number">3.</span> <span class="nav-text">hadoop shell</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#put"><span class="nav-number">3.1.</span> <span class="nav-text">put</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mkdir"><span class="nav-number">3.2.</span> <span class="nav-text">mkdir</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mapreduce-demo"><span class="nav-number">4.</span> <span class="nav-text">mapreduce demo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#运行hadoop官网给的demo-失败"><span class="nav-number">4.1.</span> <span class="nav-text">运行hadoop官网给的demo (失败)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行成功-通过idea运行-成功-demo"><span class="nav-number">4.2.</span> <span class="nav-text">运行成功 通过idea运行(成功) demo</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map-reduce-计算模型"><span class="nav-number">5.</span> <span class="nav-text">map reduce 计算模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lang-comparable-可比较的"><span class="nav-number">6.</span> <span class="nav-text">lang comparable 可比较的</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">落叶</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

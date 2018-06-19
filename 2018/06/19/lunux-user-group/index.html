@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux用户组," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="显示groups 查看当前登录用户的组内成员groups gliethttp 查看gliethttp用户所在的组,以及组内成员whoami 查看当前登录用户名 /etc/group文件包含所有组/etc/shadow和/etc/passwd系统存在的所有用户名 /etc/group 解说/etc/group 文件是用户组的配置文件，内容包括用户和用户组，并且能显示出用户是归属哪个用户组或哪几个用户">
+<meta name="keywords" content="linux用户组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux 用户组">
+<meta property="og:url" content="http://yoursite.com/2018/06/19/lunux-user-group/index.html">
+<meta property="og:site_name" content="大东山下">
+<meta property="og:description" content="显示groups 查看当前登录用户的组内成员groups gliethttp 查看gliethttp用户所在的组,以及组内成员whoami 查看当前登录用户名 /etc/group文件包含所有组/etc/shadow和/etc/passwd系统存在的所有用户名 /etc/group 解说/etc/group 文件是用户组的配置文件，内容包括用户和用户组，并且能显示出用户是归属哪个用户组或哪几个用户">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-19T10:00:44.213Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux 用户组">
+<meta name="twitter:description" content="显示groups 查看当前登录用户的组内成员groups gliethttp 查看gliethttp用户所在的组,以及组内成员whoami 查看当前登录用户名 /etc/group文件包含所有组/etc/shadow和/etc/passwd系统存在的所有用户名 /etc/group 解说/etc/group 文件是用户组的配置文件，内容包括用户和用户组，并且能显示出用户是归属哪个用户组或哪几个用户">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/19/lunux-user-group/"/>
+
+
+
+
+
+  <title>linux 用户组 | 大东山下</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">大东山下</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签页">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类页">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档页">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/19/lunux-user-group/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="落叶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大东山下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">linux 用户组</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-19T18:00:44+08:00">
+                2018-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h3><p>groups 查看当前登录用户的组内成员<br>groups gliethttp 查看gliethttp用户所在的组,以及组内成员<br>whoami 查看当前登录用户名</p>
+<p>/etc/group文件包含所有组<br>/etc/shadow和/etc/passwd系统存在的所有用户名</p>
+<h4 id="etc-group-解说"><a href="#etc-group-解说" class="headerlink" title="/etc/group 解说"></a>/etc/group 解说</h4><p>/etc/group 文件是用户组的配置文件，内容包括用户和用户组，<br>并且能显示出用户是归属哪个用户组或哪几个用户组，<br>因为一个用户可以归属一个或多个不同的用户组；<br>同一用 户组的用户之间具有相似的特征。比如我们把某一用户加入到root用户组，<br>那么这个用户就可以浏览root用户家目录的文件，如果root用户把某个文件 的读写执行权限开放，<br>root用户组的所有用户都可以修改此文件，如果是可执行的文件（比如脚本），root用户组的用户也是可以执行的；<br>用户组的特性在系统管理中为系统管理员提供了极大的方便，但安全性也是值得关注的，<br>如某个用户下有对系统管理有最重要的内容，最好让用户拥有独立的用户组，或者是把用户下的文件的权限设置为完全私有；<br>另外root用户组一般不要轻易把普通用户加入进去，  </p>
+<h4 id="etc-group-内容具体分析"><a href="#etc-group-内容具体分析" class="headerlink" title="/etc/group 内容具体分析"></a>/etc/group 内容具体分析</h4><p>/etc/group 的内容包括用户组（Group）、用户组口令、GID及该用户组所包含的用户（User），每个用户组一条记录；格式如下：<br><code>group_name:passwd:GID:user_list</code></p>
+<p>在/etc/group 中的每条记录分四个字段：<br>    第一字段：用户组名称；<br>    第二字段：用户组密码；<br>    第三字段：GID<br>    第四字段：用户列表，每个用户之间用,号分割；本字段可以为空；如果字段为空表示用户组为GID的用户名；  </p>
+<h3 id="显示用户"><a href="#显示用户" class="headerlink" title="显示用户"></a>显示用户</h3><p>id user</p>
+<p>cat /etc/passwd 可以查看所有用户的列表<br>w 可以查看当前活跃的用户列表  </p>
+<h3 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h3><p>总结了Linux添加或者删除用户和用户组时常用的一些命令和参数。</p>
+<pre><code>1. 建用户：  
+adduser phpq                              //新建phpq用户  
+passwd phpq                               //给phpq用户设置密码  
+
+2. 建工作组
+groupadd test                             //新建test工作组
+
+3. 新建用户同时增加工作组
+useradd -g test phpq                      //新建phpq用户并增加到test工作组
+                                          //新建用户时若不指定其组，系统会建一个与用户名相同的组。
+
+//注：：-g 所属组 -d 家目录 -s 所用的SHELL
+
+
+4. 给已有的用户增加工作组
+usermod -G groupname username
+
+或者：gpasswd -a user group
+
+5. 临时关闭：在/etc/shadow文件中属于该用户的行的第二个字段（密码）前面加上*就可以了。想恢复该用户，去掉*即可。
+
+或者使用如下命令关闭用户账号：
+passwd peter –l
+
+重新释放：
+passwd peter –u
+
+6. 永久性删除用户账号
+userdel peter
+
+groupdel peter
+
+usermod –G peter peter   （强制删除该用户的主目录和主目录下的所有文件和子目录）
+
+7. 从组中删除用户
+编辑/etc/group 找到GROUP1那一行，删除 A
+或者用命令
+gpasswd -d A GROUP
+
+8. 更改目录属主为Oracle用户所有，输入命令：
+chown -R oracle:oinstall /home/oracle/app  
+默认情况下绑定的位置为 /home/用户名
+</code></pre><h3 id="用户之前切换-运行java等命令"><a href="#用户之前切换-运行java等命令" class="headerlink" title="用户之前切换 运行java等命令:"></a>用户之前切换 运行java等命令:</h3><p>root –&gt; 普通用户<br>vi .bashrc   </p>
+<p>添加环境变量:</p>
+<pre><code>PATH=$PATH:$HOME/bin
+export JAVA_HOME=/root/Downloads/jdk1.8.0_91
+export CATALINA_HOME=/root/Downloads/apache-tomcat-7.0.42
+export MAVEN_HOME=/root/Downloads/apache-maven-3.0.5
+export PATH=$MAVEN_HOME/bin:$CATALINA_HOME/bin:$JAVA_HOME/bin:$PATH
+LANG=zh_CN.GB18030
+LANGUAGE=zh_CN.GB18030:zh_CN.GB2312:zh_CN
+export LANG LANGUAGE
+export PATH
+</code></pre><p>sudo 用户名<br>运行命令就可以了  </p>
+<h3 id="用户权限"><a href="#用户权限" class="headerlink" title="用户权限"></a>用户权限</h3><p>chmod命令是非常重要的，用于改变文件或目录的访问权限。用户用它控制文件或目录的访问权限。  </p>
+<ol>
+<li>文字设定法  </li>
+<li>数字设定法<br>　　我们必须首先了解用数字表示的属性的含义：<br>0表示没有权限，1表示可执行权限，2表示可写权限，4表示可读权限，然后将其相加。<br>所以数字属性的格式应为3个从0到7的八进制数，其顺序是（u）（g）（o）。<br>　　例如，如果想让某个文件的属主有“读/写”二种权限，需要把4（可读）+2（可写）＝6（读/写）。<br>　　数字设定法的一般形式为：<br>　　chmod ［mode］ 文件名¼  </li>
+</ol>
+<p><strong>chown 命令</strong><br>　　功能：更改某个文件或目录的属主和属组。这个命令也很常用。例如root用户把自己的一个文件拷贝给用户xu，<br>    为了让用户xu能够存取这个文件，root用户应该把这个文件的属主设为xu，否则，用户xu无法存取这个文件。<br>　　语法：chown ［选项］ 用户或组 文件<br>　　说明：chown将指定文件的拥有者改为指定的用户或组。<br>    用户可以是用户名或用户ID。组可以是组名或组ID。文件是以空格分开的要改变权限的文件列表，支持通配符。<br>　　该命令的各选项含义如下：<br>　　    - R 递归式地改变指定目录及其下的所有子目录和文件的拥有者。<br>    　　- v 显示chown命令所做的工作。<br>　　eg：把文件shiyan.c的所有者改为wang。<br>　　    <code>$ chown wang shiyan.c</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux用户组/" rel="tag"># linux用户组</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/19/linux-分区/" rel="next" title="linux 分区">
+                <i class="fa fa-chevron-left"></i> linux 分区
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/19/windows/" rel="prev" title="windows">
+                windows <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">落叶</p>
+              <p class="site-description motion-element" itemprop="description">高山仰止</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">126</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#显示"><span class="nav-number">1.</span> <span class="nav-text">显示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#etc-group-解说"><span class="nav-number">1.1.</span> <span class="nav-text">/etc/group 解说</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#etc-group-内容具体分析"><span class="nav-number">1.2.</span> <span class="nav-text">/etc/group 内容具体分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示用户"><span class="nav-number">2.</span> <span class="nav-text">显示用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作过程"><span class="nav-number">3.</span> <span class="nav-text">操作过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户之前切换-运行java等命令"><span class="nav-number">4.</span> <span class="nav-text">用户之前切换 运行java等命令:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户权限"><span class="nav-number">5.</span> <span class="nav-text">用户权限</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">落叶</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
